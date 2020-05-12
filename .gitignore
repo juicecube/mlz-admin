@@ -11,12 +11,11 @@
 /dist
 /.vscode/
 /.idea/
-/build 
+/build
 /undefined
 .DS_Store
 .env*
 *.tgz
-/es
 
 # umi
 .umi
@@ -27,3 +26,4 @@
 # testing
 /coverage
 /tsc
+/.tsc-check

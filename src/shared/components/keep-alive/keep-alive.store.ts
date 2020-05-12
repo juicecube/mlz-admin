@@ -6,6 +6,7 @@ class AlivesStore {
 
   // 启动时间
   public launchTime: number;
+
   // 快照们
   private snapshots = new Map()
 

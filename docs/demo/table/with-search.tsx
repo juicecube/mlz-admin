@@ -90,7 +90,7 @@ class App extends React.Component {
   }
 
   render() {
-    return <Table columns={columns} data={this.state.data} loading={this.state.loading} search={true} limit={10} rowKey="key" onChange={(e: any) => {}} onSearch={(e: any) => {}} />;
+    return <Table columns={columns} data={this.state.data} loading={this.state.loading} limit={10} rowKey="key" onChange={(e: any) => {}} onSearch={(e: any) => {}} />;
   }
 }
 

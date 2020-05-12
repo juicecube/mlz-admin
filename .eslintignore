@@ -1,0 +1,7 @@
+/.build-cache/
+/dist/
+/build/
+/test/
+**/_vendor/**/*
+**/*.test.ts
+**/*.test.js

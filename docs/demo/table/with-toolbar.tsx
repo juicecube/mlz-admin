@@ -78,7 +78,6 @@ class App extends React.Component {
         columns={columns}
         data={this.state.data}
         loading={this.state.loading}
-        search={true}
         limit={10}
         rowKey="key"
         onSearch={(e: any) => {}}
