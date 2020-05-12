@@ -1,18 +1,19 @@
-const path = require('path');
-const pkg = require('./package.json');
+const modules = require('./modules.js');
+
+const components = Object.values(modules);
+const overrides = {}
+components.forEach((comp) => {
+  const { entry, file } = comp;
+  return overrides[entry] = { file: file }
+})
 
 export default {
-  entry: ['src/Button/Button.tsx', 'src/Affix/Affix.tsx', 'src/index.tsx'],
+  entry: ['src/index.tsx', ...components.map(($module) => $module['entry'])],
   overridesByEntry: {
     'src/index.tsx': {
       file: `/es/index`,
     },
-    'src/Button/Button.tsx': {
-      file: `/es/Button`,
-    },
-    'src/Affix/Affix.tsx': {
-      file: `/es/Affix`,
-    },
+    ...overrides
   },
   esm: 'rollup',
   cjs: {
