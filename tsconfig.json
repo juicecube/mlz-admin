@@ -17,11 +17,10 @@
   },
   "exclude": [
     "node_modules",
-    "lib",
-    "es",
     "dist",
-    "typings",
+    "types",
     "**/__test__",
-    "test"
+    "test",
+    "docs"
   ]
 }

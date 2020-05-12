@@ -1,4 +1,4 @@
-/// <reference types="react" />
+// / <reference types="react" />
 import React from 'react';
 import { SizeType } from 'antd/es/config-provider/SizeContext.d';
 import { ProColumnType, ProTableTypes } from '@ant-design/pro-table/lib/Table.d';
@@ -21,7 +21,6 @@ declare namespace CommonTableTypes {
     size?: SizeType;
     limit?: paginationLimit;
     pagination?: TablePaginationConfig | false;
-    search?: false | SearchConfig;
     onSearch?: (formData: Record<string, any>) => void;
     onSearchReset?: () => void;
     onChange?: (formData: changeHandlerData) => void;
@@ -29,6 +28,7 @@ declare namespace CommonTableTypes {
     type?: ProTableTypes;
     keepAlive?: boolean;
     loading?: boolean;
+    search?: false | SearchConfig;
     // first case
     data: Record<string, any>[];
     // the other

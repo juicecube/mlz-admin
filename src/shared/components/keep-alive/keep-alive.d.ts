@@ -1,4 +1,4 @@
-/// <reference types="react" />
+// / <reference types="react" />
 import React from 'react';
 
 declare namespace KeepAliveTypes {

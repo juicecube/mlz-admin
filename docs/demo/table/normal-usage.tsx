@@ -68,7 +68,7 @@ class App extends React.Component {
     }, 1000);
   }
   render() {
-    return <Table columns={columns} data={this.state.data} loading={this.state.loading} search={true} limit={10} rowKey="key" onChange={(e: any) => {}} />;
+    return <Table columns={columns} data={this.state.data} loading={this.state.loading} limit={10} rowKey="key" onChange={(e: any) => {}} />;
   }
 }
 
