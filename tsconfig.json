@@ -21,6 +21,5 @@
     "types",
     "**/__test__",
     "test",
-    "docs"
   ]
 }

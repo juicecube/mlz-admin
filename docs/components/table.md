@@ -4,23 +4,19 @@
 
 ## 1. 基本使用
 
-<code src="./../demo/table/normal-usage.tsx"/>
+<code src="./../demo/table/normal-usage.demo.tsx"/>
 
 ## 2. 带搜索条件
 
-<code src="./../demo/table/with-search.tsx"/>
+<code src="./../demo/table/with-search.demo.tsx"/>
 
-## 3. 工具栏
+## 3. 带工具栏
 
-<code src="./../demo/table/with-toolbar.tsx"/>
+<code src="./../demo/table/with-toolbar.demo.tsx"/>
 
 ## 4. keep-alive
 
-<code src="./../demo/table/keep-alive.tsx"/>
-
-## 5. 非受控模式
-
-> 通过配置 request url，对应索引 key，以及其它请求参数，让 Table 内部完成数据渲染和交互。不需要外界控制。
+<code src="./../demo/table/keep-alive.demo.tsx"/>
 
 ## APIs
 

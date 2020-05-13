@@ -12,7 +12,7 @@ declare namespace CommonTableTypes {
   export type changeHandlerData = Partial<{
     current: number;
     limit: number;
-  }>
+  }>;
   export interface TableProps {
     columns: ColumnTypes[];
     options?: false | OptionConfig<unknown>;
@@ -55,5 +55,4 @@ declare namespace CommonTableTypes {
     render?: (...args: any) => React.ReactNode;
     dataIndex?: string;
   }
-
 }

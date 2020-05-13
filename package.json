@@ -16,6 +16,7 @@
     "test": "umi-test",
     "test:coverage": "umi-test --coverage",
     "lint": "./scripts/lint.sh",
+    "pretty-quick": "pretty-quick",
     "build": "father-build",
     "build:docs": "dumi build"
   },
@@ -24,10 +25,13 @@
   "typings": "dist/lib/index.d.ts",
   "files": [
     "dist",
-    "LICENSE"
+    "LICENSE",
+    "typings.d.ts"
   ],
-  "gitHooks": {
-    "pre-commit": "lint-staged && npm run lint"
+  "husky": {
+    "hooks": {
+      "pre-commit": "npx lint-staged && npm run pretty-quick"
+    }
   },
   "lint-staged": {
     "*.{js,jsx,less,md,json}": [

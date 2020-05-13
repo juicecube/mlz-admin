@@ -2,4 +2,4 @@
 
 set -xe
 
-npx eslint --ext ts,js src --fix && tsc --project tsconfig.json --outDir .tsc-check/
+npx eslint --ext tsx,ts,js src --fix && tsc --project tsconfig.json --outDir .tsc-check/

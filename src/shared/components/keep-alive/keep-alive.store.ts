@@ -1,7 +1,5 @@
-
 export type SnapshotType = Record<string, any>;
 class AlivesStore {
-
   constructor() {
     this.launchTime = new Date().valueOf();
   }
@@ -10,13 +8,13 @@ class AlivesStore {
   public launchTime: number;
 
   // 快照们
-  private snapshots = new Map()
+  private snapshots = new Map();
 
   // 加入序列
   public pushStateIntoSnapshots = ($name: string, ...$args: SnapshotType[]) => {
     const name = $name.toString();
     if (!$args || typeof $args !== 'object') {
-      console.error(`AlivesStore.ushStateIntoAlivesDict：参数错误`)
+      console.error(`AlivesStore.ushStateIntoAlivesDict：参数错误`);
       return;
     }
     const tnow = new Date().valueOf();
@@ -24,13 +22,12 @@ class AlivesStore {
     // TODO 暂时不支持历史功能
     this.snapshots.set(name, {
       shootedTime: tnow,
-      payload: $args.length === 1 ? $args[0] : $args
-    })
-
+      payload: $args.length === 1 ? $args[0] : $args,
+    });
   };
 
   // 寻找快照中是否存在对应的快照
-  protected ifSnapshoted = ($key: string) => this.snapshots.has($key)
+  protected ifSnapshoted = ($key: string) => this.snapshots.has($key);
 
   // 当快照数量超过一个数量时进行清除
   private stackChecker = () => this.snapshots.size >= 100 && this.snapshots.clear();
@@ -38,11 +35,11 @@ class AlivesStore {
   //
   public getSnapshot = ($key: string) => {
     if ($key) {
-      return this.snapshots.get($key)
+      return this.snapshots.get($key);
     } else {
-      console.error('必须指定一个keep-alive的name索引')
+      console.error('必须指定一个keep-alive的name索引');
     }
-  }
+  };
 }
 
 const aliveStore = new AlivesStore();
