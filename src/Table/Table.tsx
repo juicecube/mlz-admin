@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { ConfigProvider, Button, Tag } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
 import { ifPropertyExited, omitObject, guessPrimaryKey } from '@/shared/utils';
-import ProTable, { TableDropdown, ProColumns } from '@ant-design/pro-table';
+import ProTable from '@ant-design/pro-table';
 import { CommonTableTypes as CTs } from './index.d';
 import { ColorEnums } from './Table.constants';
 import './Table.less';
@@ -22,6 +22,7 @@ const resetDefault = (props: CTs.TableProps, cols: any[]): Omit<CTs.TableProps, 
       size: props.size !== 'small' ? 'default' : 'small',
       pageSize: props.limit || 10,
       showLessItems: true,
+      current: props.current || 1,
     },
     rowKey: props.rowKey || guessPrimaryKey(cols),
     search: ifShowSearch(cols) ? resetSearchDefault(props) : false,
@@ -92,7 +93,7 @@ const ifShowSearch = (columns: CTs.ColumnTypes[]) => {
   );
 };
 
-const omittedProps = ($props: CTs.TableProps, cols: any) => {
+const omittedProps = ($props: CTs.TableProps, cols: CTs.ColumnTypes[]) => {
   return {
     dataSource: $props.data,
     ...omitObject($props, 'data'),
@@ -112,23 +113,11 @@ function Table(props: CTs.TableProps): React.ReactElement {
     <div className={`table-wrapper`}>
       <ConfigProvider locale={zhCN}>
         {props.keepAlive ? (
-          <KeepAlive name="testName" props={props}>
+          <KeepAlive name={props.keepAlive} props={props}>
             <AlivableProTable props={props} />
           </KeepAlive>
         ) : (
-          <ProTable
-            {...omittedProps(props, cols)}
-            toolBarRender={props.toolBarRender || false}
-            rowClassName="admini-table-row"
-            onChange={(e) => {
-              const { current, pageSize } = e;
-              const { onChange } = props;
-              onChange &&
-                onChange({
-                  current,
-                  limit: pageSize,
-                });
-            }}></ProTable>
+          CommonTable(props, cols)
         )}
       </ConfigProvider>
     </div>
@@ -136,9 +125,13 @@ function Table(props: CTs.TableProps): React.ReactElement {
 }
 const AlivableProTable = ($props: { props: CTs.TableProps }): React.ReactElement => {
   const { props } = $props;
-  const contextValue = useContext(KAContext);
+  const contextValue = useContext<any>(KAContext);
   const cols = cloneDeep(props.columns);
-  console.log(contextValue);
+  const propsKeeped = Object.assign({}, props, contextValue?.payload || {});
+  return CommonTable(propsKeeped, cols, (contextValue as any)?.dispatch);
+};
+
+const CommonTable = (props: CTs.TableProps, cols: CTs.ColumnTypes[], aliveTrigger?: (keepAliveName: string | undefined, payload: any) => void) => {
   return (
     <ProTable
       {...omittedProps(props, cols)}
@@ -152,6 +145,10 @@ const AlivableProTable = ($props: { props: CTs.TableProps }): React.ReactElement
             current,
             limit: pageSize,
           });
+        aliveTrigger?.(props?.keepAlive, {
+          current,
+          limit: pageSize,
+        });
       }}></ProTable>
   );
 };

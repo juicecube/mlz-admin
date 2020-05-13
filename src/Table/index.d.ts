@@ -14,19 +14,20 @@ declare namespace CommonTableTypes {
     limit: number;
   }>
   export interface TableProps {
-    columns: Record<string, any>[];
+    columns: ColumnTypes[];
     options?: false | OptionConfig<unknown>;
     headerTitle?: string | false;
     toolBarRender?: ToolBarProps['toolBarRender'] | false;
     size?: SizeType;
     limit?: paginationLimit;
+    current?: number;
     pagination?: TablePaginationConfig | false;
     onSearch?: (formData: Record<string, any>) => void;
     onSearchReset?: () => void;
     onChange?: (formData: changeHandlerData) => void;
     rowKey?: string;
     type?: ProTableTypes;
-    keepAlive?: boolean;
+    keepAlive?: string;
     loading?: boolean;
     search?: false | SearchConfig;
     // first case
