@@ -1,22 +1,23 @@
 /**
  * title: 自带搜索条件的Table
- * desc: columns 数组的元素中，带有 `searchable` 属性的列，会渲染出对应的搜索表单，并且根据 `searchable` 值的大小进行排序。
+ * desc: columns 数组的元素中，带有 `searchable` 属性的列会渲染出对应的搜索表单，并且根据 `searchable` 值的大小进行排序。
  */
 import React from 'react';
 import Table from '@/Table/Table';
+import reqwest from 'reqwest';
 
 const columns = [
   {
-    title: '标题',
+    title: '服务',
     dataIndex: 'name',
     searchable: true,
+    fixed: 'left',
     primary: true,
   },
   {
-    title: '详情',
+    title: '服务描述',
     dataIndex: 'desc',
-    width: 220,
-    searchable: true,
+    width: 250,
     ellipsis: true,
   },
   {
@@ -34,16 +35,16 @@ const columns = [
     filters: [],
   },
   {
-    title: '创建时间',
+    title: '创建日期',
     dataIndex: 'createdAt',
-    valueType: 'dateTime',
+    valueType: 'date',
     searchable: true,
   },
   {
-    title: '更新时间',
+    title: '上线时间',
     dataIndex: 'updatedAt',
+    valueType: 'dateTime',
     searchable: true,
-    valueType: 'date',
   },
   {
     title: '花费',
@@ -54,43 +55,80 @@ const columns = [
   {
     title: '操作',
     valueType: 'option',
+    fixed: 'right',
     width: 120,
-    render: () => [<a>处理</a>, <a>删除</a>],
+    render: () => [<a>设置</a>, <a>删除</a>],
   },
 ];
-
-const stateEnum = ['close', 'running', 'online', 'error'];
-const list = [...new Array(50).keys()].reduce((prev: any, curr: any) => {
-  return prev.concat([
-    {
-      key: curr,
-      name: `TradeCode ${curr}`,
-      status: stateEnum[Math.floor(Math.random() * 10) % 4],
-      desc: String.fromCharCode(Math.ceil(Math.random() * 255)).repeat(Math.floor(Math.random() * 120)),
-      updatedAt: Date.now() - Math.floor(Math.random() * 1000),
-      createdAt: Date.now() - Math.floor(Math.random() * 2000),
-      money: Math.floor(Math.random() * 2000) * curr,
-    },
-  ]);
-}, []);
 
 class App extends React.Component {
   state = {
     data: [],
+    limit: 10,
+    current: 1,
+    total: 10,
+    params: {},
     loading: true,
   };
 
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({
-        data: list,
-        loading: false,
-      });
-    }, 1000);
+    this.fetchData({
+      current: this.state.current,
+      limit: this.state.limit,
+    });
   }
 
+  fetchData = (pgn?: { current: number; limit: number }) => {
+    this.setState({ loading: true });
+    reqwest({
+      url: 'http://rap2.taobao.org:38080/app/mock/252468/admini/table-demo',
+      method: 'get',
+      data: pgn
+        ? {
+            ...pgn,
+            ...this.state.params,
+          }
+        : {
+            current: this.state.current,
+            limit: this.state.limit,
+            ...this.state.params,
+          },
+    }).then((data: any) => {
+      this.setState({
+        data: data.items,
+        total: data.total,
+        current: parseInt(data.current_page, 10),
+        limit: parseInt(data.page_size, 10),
+        loading: false,
+      });
+    });
+  };
+
   render() {
-    return <Table columns={columns} data={this.state.data} loading={this.state.loading} limit={10} rowKey="key" onChange={(e: any) => {}} onSearch={(e: any) => {}} />;
+    return (
+      <Table
+        columns={columns}
+        data={this.state.data}
+        loading={this.state.loading}
+        current={this.state.current}
+        limit={this.state.limit as any}
+        total={this.state.total}
+        scroll={{ x: 1300 }}
+        onChange={(pgn: any) => {
+          this.fetchData(pgn);
+        }}
+        onSearch={(params: any) => {
+          this.setState(
+            {
+              params: Object.assign({}, this.state.params, params),
+            },
+            () => {
+              this.fetchData();
+            },
+          );
+        }}
+      />
+    );
   }
 }
 

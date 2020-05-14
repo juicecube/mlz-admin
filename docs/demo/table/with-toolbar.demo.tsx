@@ -5,6 +5,7 @@
 import React from 'react';
 import { Button, Divider } from 'antd';
 import Table from '@/Table/Table';
+import reqwest from 'reqwest';
 
 const columns = [
   {
@@ -42,35 +43,45 @@ const columns = [
   },
 ];
 
-const stateEnum = ['close', 'running', 'online', 'error'];
-const list = [...new Array(50).keys()].reduce((prev: any, curr: any) => {
-  return prev.concat([
-    {
-      key: curr,
-      name: `TradeCode ${curr}`,
-      status: stateEnum[Math.floor(Math.random() * 10) % 4],
-      desc: String.fromCharCode(Math.ceil(Math.random() * 255)).repeat(Math.floor(Math.random() * 120)),
-      updatedAt: Date.now() - Math.floor(Math.random() * 1000),
-      createdAt: Date.now() - Math.floor(Math.random() * 2000),
-      money: Math.floor(Math.random() * 2000) * curr,
-    },
-  ]);
-}, []);
-
 class App extends React.Component {
   state = {
     data: [],
+    limit: 10,
+    current: 1,
+    total: 10,
+    params: {},
     loading: true,
   };
 
   componentDidMount() {
-    setTimeout(() => {
+    this.fetchData();
+  }
+
+  fetchData = (pgn?: { current: number; limit: number }) => {
+    this.setState({ loading: true });
+    reqwest({
+      url: 'http://rap2.taobao.org:38080/app/mock/252468/admini/table-demo',
+      method: 'get',
+      data: pgn
+        ? {
+            ...pgn,
+            ...this.state.params,
+          }
+        : {
+            current: this.state.current,
+            limit: this.state.limit,
+            ...this.state.params,
+          },
+    }).then((data: any) => {
       this.setState({
-        data: list,
+        data: data.items,
+        total: data.total,
+        current: parseInt(data.current_page, 10),
+        limit: parseInt(data.page_size, 10),
         loading: false,
       });
-    }, 1000);
-  }
+    });
+  };
 
   render() {
     return (
@@ -78,15 +89,23 @@ class App extends React.Component {
         columns={columns}
         data={this.state.data}
         loading={this.state.loading}
-        limit={10}
-        rowKey="key"
-        onSearch={(e: any) => {}}
-        toolBarRender={() => [
-          <Button key="3" type="primary">
-            {/* <PlusOutlined /> */}
-            新建
-          </Button>,
-        ]}
+        current={this.state.current}
+        limit={this.state.limit as any}
+        total={this.state.total}
+        toolBarRender={() => [<Button type="primary">新建</Button>, <Button>导入</Button>]}
+        onChange={(pgn: any) => {
+          this.fetchData(pgn);
+        }}
+        onSearch={(params: any) => {
+          this.setState(
+            {
+              params: Object.assign({}, this.state.params, params),
+            },
+            () => {
+              this.fetchData();
+            },
+          );
+        }}
       />
     );
   }

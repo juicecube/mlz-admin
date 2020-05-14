@@ -4,6 +4,7 @@
  */
 import React from 'react';
 import Table from '@/Table/Table';
+import reqwest from 'reqwest';
 
 const columns = [
   {
@@ -29,31 +30,53 @@ const columns = [
   },
 ];
 
-const stateEnum = ['close', 'running', 'online', 'error'];
 class App extends React.Component {
   state = {
-    data: [...new Array(60).keys()].reduce((prev: any, curr: any) => {
-      return prev.concat([
-        {
-          key: curr + 1,
-          name: `TradeCode ${curr * 2}`,
-          status: stateEnum[Math.floor(Math.random() * 10) % 4],
-          updatedAt: Date.now() - Math.floor(Math.random() * 1000),
-          createdAt: Date.now() - Math.floor(Math.random() * 2000),
-        },
-      ]);
-    }, []),
+    data: [],
+    limit: 10,
+    current: 1,
+    total: 10,
     loading: true,
   };
+
   componentDidMount() {
-    setTimeout(() => {
+    this.fetchData();
+  }
+
+  fetchData = (params?: { current: number; limit: number }) => {
+    this.setState({ loading: true });
+    reqwest({
+      url: 'http://rap2.taobao.org:38080/app/mock/252468/admini/table-demo',
+      method: 'get',
+      data: params || {
+        current: 1,
+        limit: 10,
+      },
+    }).then((data: any) => {
       this.setState({
+        data: data.items,
+        total: data.total,
+        current: parseInt(data.current_page, 10),
+        limit: parseInt(data.page_size, 10),
         loading: false,
       });
-    }, 1000);
-  }
+    });
+  };
   render() {
-    return <Table columns={columns} keepAlive="keep-alive-demo" data={this.state.data} loading={this.state.loading} limit={10} rowKey="key" onChange={(e: any) => {}} />;
+    return (
+      <Table
+        columns={columns}
+        keepAlive="keep-alive-demo"
+        data={this.state.data}
+        loading={this.state.loading}
+        current={this.state.current}
+        limit={this.state.limit as any}
+        total={this.state.total}
+        onChange={(pgn: any) => {
+          this.fetchData(pgn);
+        }}
+      />
+    );
   }
 }
 

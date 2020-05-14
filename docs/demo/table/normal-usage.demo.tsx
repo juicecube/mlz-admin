@@ -4,23 +4,26 @@
  */
 import React from 'react';
 import Table from '@/Table/Table';
+import reqwest from 'reqwest';
 
 const columns = [
   {
-    title: '标题',
-    dataIndex: 'name',
+    title: '名称',
+    dataIndex: 'desc',
+    ellipsis: true,
+    width: 350,
     primary: true,
   },
   {
-    title: '状态标签',
+    title: '状态',
     dataIndex: 'status',
     valueType: 'tag',
     valueEnum: {
       all: { text: '全部', status: 'Default' },
-      close: { text: '关闭', status: 'Error' },
-      running: { text: '运行中', status: 'Processing' },
-      online: { text: '已上线', status: 'Success' },
-      error: { text: '异常', status: 'Warning' },
+      close: { text: '售罄', status: 'Error' },
+      running: { text: '补货中', status: 'Processing' },
+      online: { text: '正在销售', status: 'Success' },
+      error: { text: '库存不足', status: 'Warning' },
     },
   },
   {
@@ -37,38 +40,55 @@ const columns = [
     title: '操作',
     valueType: 'option',
     width: 120,
-    render: () => [<a>处理</a>, <a>删除</a>],
+    render: () => [<a>设置</a>, <a>下架</a>],
   },
 ];
-
-const stateEnum = ['close', 'running', 'online', 'error'];
-const list = [...new Array(60).keys()].reduce((prev: any, curr: any) => {
-  return prev.concat([
-    {
-      key: curr + 1,
-      name: `TradeCode ${curr * 2}`,
-      status: stateEnum[Math.floor(Math.random() * 10) % 4],
-      updatedAt: Date.now() - Math.floor(Math.random() * 1000),
-      createdAt: Date.now() - Math.floor(Math.random() * 2000),
-    },
-  ]);
-}, []);
 
 class App extends React.Component {
   state = {
     data: [],
+    current: 1,
+    total: 10,
+    limit: 10,
     loading: true,
   };
   componentDidMount() {
-    setTimeout(() => {
+    this.fetchData();
+  }
+  fetchData = (params?: { current: number; limit: number }) => {
+    this.setState({ loading: true });
+    reqwest({
+      url: 'http://rap2.taobao.org:38080/app/mock/252468/admini/table-demo',
+      method: 'get',
+      type: 'json',
+      data: params || {
+        current: 1,
+        limit: 10,
+      },
+    }).then((data: any) => {
       this.setState({
-        data: list,
+        data: data.items,
+        total: data.total,
+        current: parseInt(data.current_page, 10),
+        limit: parseInt(data.page_size, 10),
         loading: false,
       });
-    }, 1000);
-  }
+    });
+  };
   render() {
-    return <Table columns={columns} data={this.state.data} loading={this.state.loading} limit={10} rowKey="key" onChange={(e: any) => {}} />;
+    return (
+      <Table
+        columns={columns}
+        data={this.state.data}
+        loading={this.state.loading}
+        current={this.state.current}
+        limit={this.state.limit as any}
+        total={this.state.total}
+        onChange={(pgn: any) => {
+          this.fetchData(pgn);
+        }}
+      />
+    );
   }
 }
 

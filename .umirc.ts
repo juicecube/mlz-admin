@@ -22,9 +22,9 @@ export default defineConfig({
     '/components': [
       {
         title: '组件',
-        children: ['components/menu', 'components/table', 'components/affix']
+        children: ['components/table', 'components/icon'],
       },
     ],
-  }
+  },
   // more config: https://d.umijs.org/config
 });

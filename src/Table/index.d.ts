@@ -21,6 +21,7 @@ declare namespace CommonTableTypes {
     size?: SizeType;
     limit?: paginationLimit;
     current?: number;
+    total?: number;
     pagination?: TablePaginationConfig | false;
     onSearch?: (formData: Record<string, any>) => void;
     onSearchReset?: () => void;
