@@ -1,12 +1,26 @@
-// / <reference types="react" />
+// <reference types="react" />
 import React from 'react';
-import { SizeType } from 'antd/es/config-provider/SizeContext.d';
-import { ProColumnType, ProTableTypes } from '@ant-design/pro-table/lib/Table.d';
-import { OptionConfig } from '@ant-design/pro-table/lib/component/toolBar';
-import { TablePaginationConfig } from 'antd/es/table/interface.d';
-import { SearchConfig } from '@ant-design/pro-table/lib/Form';
-import { ToolBarProps } from '@ant-design/pro-table/lib/component/toolBar/index.d';
+import { ButtonProps, ButtonType } from 'antd/lib/button';
 
 declare namespace CommonButtonTypes {
-  export type ButtonTypes = any;
+  export type ButtonGroupPropableValue = any;
+  export interface GroupType {
+    key: string | number;
+    text: string;
+    onClick?: React.MouseEventHandler<HTMLElement>;
+    value?: ButtonGroupPropableValue;
+    leftIconType?: string;
+    rightIconType?: string;
+    type?: ButtonType;
+  }
+  export type MenuType = { iconType?: string } & Exclude<GroupType, 'leftIconType' | 'rightIconType' | 'type' | 'onClick'>;
+
+  export interface ButtonTypes extends ButtonProps {
+    menu?: MenuType[];
+    group?: GroupType[];
+    onChange?: (e: ButtonGroupPropableValue) => void;
+  }
+  export type ButtonGroupTypes = {
+    children: React.ReactNode;
+  };
 }

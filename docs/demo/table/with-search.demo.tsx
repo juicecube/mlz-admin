@@ -61,7 +61,7 @@ const columns = [
   },
 ];
 
-class App extends React.Component {
+class App extends React.PureComponent {
   state = {
     data: [],
     limit: 10,

@@ -3,7 +3,7 @@ import Icon from '@/Icon/Icon';
 import { Space, Button, Tag, Popconfirm } from 'antd';
 
 export default () => (
-  <Space size={25}>
+  <Space size={50}>
     <Button type="primary" icon={<Icon type="i-play" />}>
       点我
     </Button>

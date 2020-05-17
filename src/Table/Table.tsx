@@ -102,7 +102,7 @@ const omittedProps = ($props: CTs.TableProps, cols: CTs.ColumnTypes[]) => {
   };
 };
 /**
- * @component Admini.Components.Table 📦
+ * @component @mlz/admin.Components.Table 📦
  * @description 通过data填充数据，columns渲染展示
  */
 // TODO: 暂时不支持url非受控模式

@@ -1,1 +1,1 @@
-# admini
+# @mlz/admin
