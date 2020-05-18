@@ -20,6 +20,6 @@
     "dist",
     "types",
     "**/__test__",
-    "test",
+    "tests",
   ]
 }

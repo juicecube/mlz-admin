@@ -1,14 +1,24 @@
 import React from 'react';
 import Table from './../Table';
 import testMount from '../../shared/tests/testMount';
+import mockAxios from '../../../tests/__mocks__/axiosTest';
 
 describe('Table Component', function() {
   //
   testMount(Table);
 
   // 1， 渲染data数据
-  test('test 1st expectation', function() {
-    expect(1 + 1).toBe(2);
+  it('render dataSource successfully', function() {
+    mockAxios.get.mockImplementationOnce(() => {
+      const wrapper = mount(<Table />);
+      return Promise.resolve({
+        data: {
+          data: [1, 2, 3],
+          error_code: 0,
+          message: '',
+        },
+      });
+    });
   });
 
   // common func
