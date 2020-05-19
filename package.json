@@ -9,9 +9,9 @@
   ],
   "scripts": {
     "start": "dumi dev",
-    "dist:es": "tsc -d -m esnext --outDir dist/es --sourceMap false --inlineSources false",
-    "dist:cjs": "tsc -d -m commonjs --outDir dist/lib --sourceMap false --inlineSources false",
-    "dist": "rm -rf dist && npm run dist:cjs && npm run dist:es",
+    "dist:es": "tsc -d -m esnext --outDir es --sourceMap false --inlineSources false",
+    "dist:cjs": "tsc -d -m commonjs --outDir lib --sourceMap false --inlineSources false",
+    "dist": "rm -rf es lib && npm run dist:cjs && npm run dist:es",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "test": "umi-test",
     "test:coverage": "umi-test --coverage",
@@ -20,12 +20,14 @@
     "build": "father-build",
     "build:docs": "dumi build"
   },
-  "module": "dist/es/index.js",
-  "main": "dist/lib/index.js",
-  "typings": "dist/lib/index.d.ts",
+  "module": "es/index.js",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "files": [
-    "dist",
+    "lib",
+    "es",
     "LICENSE",
+    "CHANGELOG.md",
     "typings.d.ts"
   ],
   "husky": {
@@ -63,8 +65,10 @@
     "enzyme-adapter-react-16": "^1.15.2",
     "eslint-plugin-jest": "^23.8.2",
     "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-react-hooks": "^4.0.2",
     "father-build": "^1.17.2",
     "husky": "^4.2.5",
+    "jest": "^26.0.1",
     "lint-staged": "^10.0.7",
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",

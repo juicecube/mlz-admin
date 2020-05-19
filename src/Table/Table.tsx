@@ -3,7 +3,7 @@ import { ConfigProvider, Button, Tag } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
 import { ifPropertyExited, omitObject, guessPrimaryKey } from '@/shared/utils';
 import ProTable from '@ant-design/pro-table';
-import { CommonTableTypes as CTs } from './index.d';
+import { TableProps, ColumnTypes } from './Table.type';
 import { ColorEnums } from './Table.constants';
 import './Table.less';
 import { cloneDeep } from 'lodash-es';
@@ -11,7 +11,7 @@ import { cloneDeep } from 'lodash-es';
 import KeepAlive, { KAContext } from '@/shared/components/keep-alive';
 
 //
-const resetDefault = (props: CTs.TableProps, cols: any[]): Omit<CTs.TableProps, 'data'> => {
+const resetDefault = (props: TableProps, cols: any[]): Omit<TableProps, 'data'> => {
   return {
     options: props.options || false,
     headerTitle: props.headerTitle || false,
@@ -32,7 +32,7 @@ const resetDefault = (props: CTs.TableProps, cols: any[]): Omit<CTs.TableProps, 
 };
 
 //
-const resetSearchDefault = (props: CTs.TableProps) => {
+const resetSearchDefault = (props: TableProps) => {
   return {
     collapsed: false,
     optionRender: (searchConf: any, e: any) => {
@@ -62,39 +62,39 @@ const resetSearchDefault = (props: CTs.TableProps) => {
 };
 
 //
-const resetDefaultColumns = (columns: CTs.ColumnTypes[]) => {
+const resetDefaultColumns = (columns: ColumnTypes[]) => {
   // traverse + shallow clone is enough
   columns.forEach((item) => {
     // 增加对tag功能
     if (ifPropertyExited('valueEnum', item) && ifPropertyExited('dataIndex', item)) {
-      if (item['valueType'] === 'tag') {
-        item['render'] = (_, row: Record<string, any>) => {
+      if (item.valueType === 'tag') {
+        item.render = (_, row: Record<string, any>) => {
           const theExactValueObj = item.valueEnum[row[item.dataIndex || 'default']];
           return <Tag color={(ColorEnums as { [key: string]: string })[theExactValueObj?.status.toLowerCase() || 'default']}>{theExactValueObj?.text || '未知状态'}</Tag>;
         };
       }
     }
     // 指定key
-    item['key'] = item.key || item.dataIndex;
-    item['filters'] = item.filters || [];
+    item.key = item.key || item.dataIndex;
+    item.filters = item.filters || [];
   });
   return columns;
 };
 
 // 判断是否需要展示search
-const ifShowSearch = (columns: CTs.ColumnTypes[]) => {
+const ifShowSearch = (columns: ColumnTypes[]) => {
   return (
     // Arary.some() will terminated half a way
     columns?.filter((item) => {
       // TODO❗️side effects
-      item['hideInSearch'] = !item.searchable;
-      item['order'] = item.order || (typeof item.searchable === 'number' ? item.searchable : 1);
+      item.hideInSearch = !item.searchable;
+      item.order = item.order || (typeof item.searchable === 'number' ? item.searchable : 1);
       return item.searchable;
     }).length > 0
   );
 };
 
-const omittedProps = ($props: CTs.TableProps, cols: CTs.ColumnTypes[]) => {
+const omittedProps = ($props: TableProps, cols: ColumnTypes[]) => {
   return {
     dataSource: $props.data,
     ...omitObject($props, 'data'),
@@ -108,10 +108,10 @@ const omittedProps = ($props: CTs.TableProps, cols: CTs.ColumnTypes[]) => {
 // TODO: 暂时不支持url非受控模式
 // function Table(props: CTs.OmittedSuperPropsTypes['url']): React.ReactElement;
 // function Table(props: CTs.OmittedSuperPropsTypes['data']): React.ReactElement;
-function Table(props: CTs.TableProps): React.ReactElement {
+function Table(props: TableProps): React.ReactElement {
   const cols = cloneDeep(props.columns);
   return (
-    <div className={`table-wrapper`}>
+    <div className="table-wrapper">
       <ConfigProvider locale={zhCN}>
         {props.keepAlive ? (
           <KeepAlive name={props.keepAlive} props={props}>
@@ -124,7 +124,7 @@ function Table(props: CTs.TableProps): React.ReactElement {
     </div>
   );
 }
-const AlivableProTable = ($props: { props: CTs.TableProps }): React.ReactElement => {
+const AlivableProTable = ($props: { props: TableProps }): React.ReactElement => {
   const { props } = $props;
   const contextValue = useContext<any>(KAContext);
   const cols = cloneDeep(props.columns);
@@ -132,7 +132,7 @@ const AlivableProTable = ($props: { props: CTs.TableProps }): React.ReactElement
   return CommonTable(propsKeeped, cols, (contextValue as any)?.dispatch);
 };
 
-const CommonTable = (props: CTs.TableProps, cols: CTs.ColumnTypes[], aliveTrigger?: (keepAliveName: string | undefined, payload: any) => void) => {
+const CommonTable = (props: TableProps, cols: ColumnTypes[], aliveTrigger?: (keepAliveName: string | undefined, payload: any) => void) => {
   return (
     <ProTable
       {...omittedProps(props, cols)}
@@ -150,7 +150,8 @@ const CommonTable = (props: CTs.TableProps, cols: CTs.ColumnTypes[], aliveTrigge
           current,
           limit: pageSize,
         });
-      }}></ProTable>
+      }}
+    />
   );
 };
 

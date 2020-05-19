@@ -1,23 +1,23 @@
 import React, { useState, useContext } from 'react';
 import { Button as AntdButton, Dropdown, Menu } from 'antd';
 import { ClickParam } from 'antd/lib/menu/index.d';
-import 'antd/es/button/style/index.css';
 import { default as AntdButtonGroup } from 'antd/es/button/button-group';
 import { omitObject } from '@/shared/utils';
 import Icon from '@/Icon/Icon';
-import { CommonButtonTypes as CBTs } from './index.d';
+import { MenuType, GroupType, ButtonTypes, ButtonGroupPropableValue } from './Button.type';
+import 'antd/es/button/style/index.css';
 
-const calcValues = ($menuClickEvent: ClickParam, $menu: CBTs.MenuType[]): CBTs.ButtonGroupPropableValue | CBTs.ButtonGroupPropableValue[] => {
+const calcValues = ($menuClickEvent: ClickParam, $menu: MenuType[]): ButtonGroupPropableValue | ButtonGroupPropableValue[] => {
   const identifier = 'no value/@mlz-admin/identifier';
-  const values = $menu.reduce((prev: CBTs.ButtonGroupPropableValue | CBTs.ButtonGroupPropableValue[], curr) => {
+  const values = $menu.reduce((prev: ButtonGroupPropableValue | ButtonGroupPropableValue[], curr) => {
     // 必须使用特定的字符串，而不是null或undefined，因为
     // 用户可能想要的值就是它们
-    return prev.concat([curr.key == $menuClickEvent.key ? curr.value : identifier]);
+    return prev.concat([curr.key.toString() === $menuClickEvent.key ? curr.value : identifier]);
   }, []);
-  const result = values.filter((item: CBTs.ButtonGroupPropableValue) => item !== identifier);
+  const result = values.filter((item: ButtonGroupPropableValue) => item !== identifier);
   return result.length === 0 ? undefined : result.length === 1 ? result[0] : result;
 };
-const Button = (props: CBTs.ButtonTypes): React.ReactElement => {
+const Button = (props: ButtonTypes): React.ReactElement => {
   const { group, menu } = props;
   return !group ? (
     !menu ? (
@@ -40,7 +40,7 @@ const Button = (props: CBTs.ButtonTypes): React.ReactElement => {
     )
   ) : (
     <AntdButtonGroup>
-      {group?.map((item: CBTs.GroupType, index: number) => {
+      {group?.map((item: GroupType, index: number) => {
         return (
           <AntdButton
             key={item.key || index}

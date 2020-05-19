@@ -38,6 +38,7 @@ class AlivesStore {
       return this.snapshots.get($key);
     } else {
       console.error('必须指定一个keep-alive的name索引');
+      return undefined;
     }
   };
 }

@@ -3,9 +3,11 @@ import { createFromIconfontCN as createFromIconfont } from '@ant-design/icons';
 
 class IconFontScript {
   public scriptUrl: string;
+
   constructor($scriptUrl: URL['href']) {
     this.scriptUrl = $scriptUrl;
   }
+
   public replaceIconFontScript($scriptUrl: URL['href']) {
     this.scriptUrl = $scriptUrl;
   }
