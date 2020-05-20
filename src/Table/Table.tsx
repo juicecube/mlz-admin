@@ -69,7 +69,7 @@ const resetDefaultColumns = (columns: ColumnTypes[]) => {
     if (ifPropertyExited('valueEnum', item) && ifPropertyExited('dataIndex', item)) {
       if (item.valueType === 'tag') {
         item.render = (_, row: Record<string, any>) => {
-          const theExactValueObj = item.valueEnum[row[item.dataIndex || 'default']];
+          const theExactValueObj = item.valueEnum && item?.valueEnum[row[item.dataIndex || 'default']];
           return <Tag color={(ColorEnums as { [key: string]: string })[theExactValueObj?.status.toLowerCase() || 'default']}>{theExactValueObj?.text || '未知状态'}</Tag>;
         };
       }

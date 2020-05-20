@@ -1,6 +1,6 @@
 {
   "name": "@mlz/admin",
-  "version": "0.0.12",
+  "version": "0.0.2",
   "description": "一套编程猫设计规范下的管理系统React组件库，基于Antd",
   "keywords": [
     "typescript",
@@ -11,7 +11,7 @@
     "start": "dumi dev",
     "dist:es": "tsc -d -m esnext --outDir es --sourceMap false --inlineSources false",
     "dist:cjs": "tsc -d -m commonjs --outDir lib --sourceMap false --inlineSources false",
-    "dist": "rm -rf es lib && npm run dist:cjs && npm run dist:es",
+    "dist": "rm -rf es lib dist && npm run dist:cjs && npm run dist:es",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "test": "umi-test",
     "test:coverage": "umi-test --coverage",
@@ -22,13 +22,12 @@
   },
   "module": "es/index.js",
   "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
+  "typings": "lib/src/index.d.ts",
   "files": [
     "lib",
     "es",
     "LICENSE",
-    "CHANGELOG.md",
-    "typings.d.ts"
+    "CHANGELOG.md"
   ],
   "husky": {
     "hooks": {

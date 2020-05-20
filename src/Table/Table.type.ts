@@ -2,6 +2,8 @@
 import React from 'react';
 import { SizeType } from 'antd/es/config-provider/SizeContext.d';
 import { ProColumnType, ProTableTypes } from '@ant-design/pro-table/lib/Table.d';
+import { ProColumnsValueType } from '@ant-design/pro-table/lib/defaultRender.d';
+import { StatusType } from '@ant-design/pro-table/lib/component/status/index.d';
 import { OptionConfig } from '@ant-design/pro-table/lib/component/toolBar';
 import { TablePaginationConfig } from 'antd/es/table/interface.d';
 import { SearchConfig } from '@ant-design/pro-table/lib/Form';
@@ -41,17 +43,16 @@ export interface TableProps {
 export type ColorEnums = 'default' | 'processing' | 'error' | 'warning' | 'success' | 'planned' | 'adviced';
 
 export interface EnumObjectEnum {
-  text: string;
-  status: ColorEnums;
-  redundance?: any;
+  text: React.ReactNode;
+  status: StatusType;
+  redundances?: string;
 }
 
 export interface ColumnTypes extends ProColumnType {
   searchable?: boolean | number;
   primary?: boolean;
-  order?: number;
   valueType?: ProColumnType['valueType'] & 'tag';
-  valueEnum: Record<string, EnumObjectEnum>;
+  valueEnum?: Record<string, EnumObjectEnum>;
   render?: (...args: any) => React.ReactNode;
   dataIndex?: string;
 }
