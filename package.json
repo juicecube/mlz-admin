@@ -1,6 +1,6 @@
 {
   "name": "@mlz/admin",
-  "version": "0.0.2",
+  "version": "0.0.21",
   "description": "一套编程猫设计规范下的管理系统React组件库，基于Antd",
   "keywords": [
     "react",
@@ -26,7 +26,7 @@
   },
   "module": "es/index.js",
   "main": "lib/index.js",
-  "typings": "lib/src/index.d.ts",
+  "typings": "lib/index.d.ts",
   "files": [
     "lib",
     "es",

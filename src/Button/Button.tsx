@@ -1,5 +1,7 @@
 import React, { useState, useContext } from 'react';
-import { Button as AntdButton, Dropdown, Menu } from 'antd';
+import { default as AntdButton } from 'antd/es/button/button';
+import { default as Dropdown } from 'antd/es/dropdown/dropdown';
+import { default as Menu } from 'antd/es/menu';
 import { ClickParam } from 'antd/lib/menu/index.d';
 import { default as AntdButtonGroup } from 'antd/es/button/button-group';
 import { omitObject } from '@/shared/utils';

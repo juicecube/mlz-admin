@@ -3,8 +3,9 @@
  * desc: 通过自行配置 `toolBarRender` 函数来展示工具栏。它须返回一个React组件或组件的数组。
  */
 import React from 'react';
-import { Button, Divider } from 'antd';
+import { Divider } from 'antd';
 import Table from '@/Table/Table';
+import Button from '@/Button/Button';
 import axios from 'axios';
 
 const columns = [

@@ -1,11 +1,11 @@
 const modules = require('./modules.js');
 
 const components = Object.values(modules);
-const overrides = {}
+const overrides = {};
 components.forEach((comp) => {
   const { entry, file } = comp;
-  return overrides[entry] = { file: file }
-})
+  return (overrides[entry] = { file: file });
+});
 
 export default {
   entry: ['src/index.tsx', ...components.map(($module) => $module['entry'])],
@@ -13,16 +13,16 @@ export default {
     'src/index.tsx': {
       file: `/es/index`,
     },
-    ...overrides
+    ...overrides,
   },
   esm: 'rollup',
   cjs: {
     type: 'rollup',
-    file: "lib/index"
+    file: 'lib/index',
   },
   extractCSS: false,
   target: 'browser',
   inject: {
     'window.__DEV__': false,
   },
-}
+};

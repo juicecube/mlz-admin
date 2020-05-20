@@ -143,10 +143,9 @@ export default () => (
  * desc: 按钮组合使用时，推荐使用 1 个主操作 + n 个次操作，3 个以上操作时把更多操作放到菜单按钮中组合使用。🚗可以通过两种方式使用`菜单按钮`功能，一种是使用Dropdown + Menu实现，另一种是为Button组件传入menu属性。
  */
 import React from 'react';
-import { Dropdown, Menu, message, Space } from '@/index';
 import Icon from '@/Icon/Icon';
 import Button from '@/Button/Button';
-import { Divider } from 'antd';
+import { Divider, Dropdown, Menu, message, Space } from 'antd';
 
 const handleMenuClick = () => {
   message.info('哦呵？');
@@ -229,10 +228,9 @@ export default App;
  * desc: 可以将多个 Button 放入 Button.Group 的容器中。通过设置 size 为 large small 分别把按钮组合设为大、小尺寸。若不设置 size，则尺寸为中。🚗可以通过两种方式使用`组合按钮`功能，一种是使用Button.Group，另一种是为Button组件传入group属性。
  */
 import React from 'react';
-import { Dropdown, Menu, message, Space } from '@/index';
 import Icon from '@/Icon/Icon';
 import Button from '@/Button/Button';
-import { Divider } from 'antd';
+import { Divider, Dropdown, Menu, message, Space } from 'antd';
 
 const group = [
   {

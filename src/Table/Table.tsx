@@ -1,5 +1,7 @@
 import React, { useState, useContext } from 'react';
-import { ConfigProvider, Button, Tag } from 'antd';
+import { default as ConfigProvider } from 'antd/es/config-provider';
+import { default as Tag } from 'antd/es/tag';
+import Button from '@/Button/Button';
 import zhCN from 'antd/es/locale/zh_CN';
 import { ifPropertyExited, omitObject, guessPrimaryKey } from '@/shared/utils';
 import ProTable from '@ant-design/pro-table';
