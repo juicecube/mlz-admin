@@ -14,8 +14,11 @@ export type changeHandlerData = Partial<{
   current: number;
   limit: number;
 }>;
+
+// TODO 不是继承自pro table
 export interface TableProps {
   columns: ColumnTypes[];
+  data: Record<string | symbol, any>[];
   options?: false | OptionConfig<unknown>;
   headerTitle?: string | false;
   toolBarRender?: ToolBarProps['toolBarRender'] | false;
@@ -32,27 +35,21 @@ export interface TableProps {
   keepAlive?: string;
   loading?: boolean;
   search?: false | SearchConfig;
-  // first case
-  data: Record<string, any>[];
-  // the other
-  // url?: URL['href'];
-  // listName?: string;
-  // method?: HTMLFormElement['method'];
 }
 
-export type ColorEnums = 'default' | 'processing' | 'error' | 'warning' | 'success' | 'planned' | 'adviced';
+export type ColorEnums = StatusType | 'Planned' | 'Adviced';
 
 export interface EnumObjectEnum {
-  text: React.ReactNode;
-  status: StatusType;
+  text: string;
+  status: ColorEnums;
   redundances?: string;
 }
 
-export interface ColumnTypes extends ProColumnType {
+export interface ColumnTypes extends Omit<ProColumnType, 'valueType'> {
   searchable?: boolean | number;
   primary?: boolean;
-  valueType?: ProColumnType['valueType'] & 'tag';
-  valueEnum?: Record<string, EnumObjectEnum>;
+  valueType?: ProColumnsValueType | 'tag' | Enumerator;
+  valueEnum?: { [key: string]: EnumObjectEnum };
   render?: (...args: any) => React.ReactNode;
   dataIndex?: string;
 }

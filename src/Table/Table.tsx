@@ -23,7 +23,7 @@ const resetDefault = (props: TableProps, cols: any[]): Omit<TableProps, 'data'> 
       showLessItems: true,
       pageSize: props.limit || 10,
       current: props.current || 1,
-      total: props.total || props.data.length,
+      total: props.total || props?.data?.length || 1,
     },
     rowKey: props.rowKey || guessPrimaryKey(cols),
     search: ifShowSearch(cols) ? resetSearchDefault(props) : false,
@@ -50,8 +50,11 @@ const resetSearchDefault = (props: TableProps) => {
           <Button
             onClick={() => {
               e.form.resetFields();
-              const { onSearchReset } = props;
+              const { onSearchReset, onSearch } = props;
               onSearchReset && onSearchReset();
+              // reset也要触发onSearch
+              const searchParams = e.form.getFieldsValue();
+              onSearch && onSearch(searchParams);
             }}>
             {searchConf.resetText}
           </Button>{' '}
@@ -63,6 +66,9 @@ const resetSearchDefault = (props: TableProps) => {
 
 //
 const resetDefaultColumns = (columns: ColumnTypes[]) => {
+  if (!columns) {
+    return [];
+  }
   // traverse + shallow clone is enough
   columns.forEach((item) => {
     // 增加对tag功能
@@ -85,24 +91,26 @@ const resetDefaultColumns = (columns: ColumnTypes[]) => {
 const ifShowSearch = (columns: ColumnTypes[]) => {
   return (
     // Arary.some() will terminated half a way
-    columns?.filter((item) => {
-      // TODO❗️side effects
-      item.hideInSearch = !item.searchable;
-      item.order = item.order || (typeof item.searchable === 'number' ? item.searchable : 1);
-      return item.searchable;
-    }).length > 0
+    columns
+      ? columns?.filter((item) => {
+          // TODO❗️side effects
+          item.hideInSearch = !item.searchable;
+          item.order = item.order || (typeof item.searchable === 'number' ? item.searchable : 1);
+          return item.searchable;
+        })?.length > 0
+      : false
   );
 };
 
 const omittedProps = ($props: TableProps, cols: ColumnTypes[]) => {
   return {
-    dataSource: $props.data,
+    dataSource: $props.data || [],
     ...omitObject($props, 'data'),
-    ...resetDefault($props, cols),
+    ...resetDefault($props, cols || []),
   };
 };
 /**
- * @component @mlz/admin.Components.Table 📦
+ * @component Table 📦
  * @description 通过data填充数据，columns渲染展示
  */
 // TODO: 暂时不支持url非受控模式

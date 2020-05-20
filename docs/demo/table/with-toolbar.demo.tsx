@@ -5,7 +5,7 @@
 import React from 'react';
 import { Button, Divider } from 'antd';
 import Table from '@/Table/Table';
-import reqwest from 'reqwest';
+import axios from 'axios';
 
 const columns = [
   {
@@ -59,28 +59,30 @@ class App extends React.PureComponent {
 
   fetchData = (pgn?: { current: number; limit: number }) => {
     this.setState({ loading: true });
-    reqwest({
-      url: 'http://rap2.taobao.org:38080/app/mock/252468/admini/table-demo',
-      method: 'get',
-      data: pgn
-        ? {
-            ...pgn,
-            ...this.state.params,
-          }
-        : {
-            current: this.state.current,
-            limit: this.state.limit,
-            ...this.state.params,
-          },
-    }).then((data: any) => {
-      this.setState({
-        data: data.items,
-        total: data.total,
-        current: parseInt(data.current_page, 10),
-        limit: parseInt(data.page_size, 10),
-        loading: false,
+    axios
+      .get('http://rap2.taobao.org:38080/app/mock/252468/admini/table-demo', {
+        method: 'get',
+        params: pgn
+          ? {
+              ...pgn,
+              ...this.state.params,
+            }
+          : {
+              current: this.state.current,
+              limit: this.state.limit,
+              ...this.state.params,
+            },
+      })
+      .then((res: any) => {
+        const { data } = res;
+        this.setState({
+          data: data.items,
+          total: data.total,
+          current: parseInt(data.current_page, 10),
+          limit: parseInt(data.page_size, 10),
+          loading: false,
+        });
       });
-    });
   };
 
   render() {

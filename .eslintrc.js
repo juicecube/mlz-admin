@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['airbnb', 'prettier', 'prettier/react'],
+  extends: ['airbnb', 'prettier', 'prettier/react', './node_modules/@mlz/lint/ts-eslintrc-react.js'],
   env: {
     browser: true,
     node: true,

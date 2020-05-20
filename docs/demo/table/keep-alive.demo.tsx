@@ -45,22 +45,24 @@ class App extends React.PureComponent {
 
   fetchData = (params?: { current: number; limit: number }) => {
     this.setState({ loading: true });
-    axios({
-      url: 'http://rap2.taobao.org:38080/app/mock/252468/admini/table-demo',
-      method: 'get',
-      data: params || {
-        current: 1,
-        limit: 10,
-      },
-    }).then((data: any) => {
-      this.setState({
-        data: data.items,
-        total: data.total,
-        current: parseInt(data.current_page, 10),
-        limit: parseInt(data.page_size, 10),
-        loading: false,
+    axios
+      .get('http://rap2.taobao.org:38080/app/mock/252468/admini/table-demo', {
+        method: 'get',
+        params: params || {
+          current: 1,
+          limit: 10,
+        },
+      })
+      .then((res: any) => {
+        const { data } = res;
+        this.setState({
+          data: data.items,
+          total: data.total,
+          current: parseInt(data.current_page, 10),
+          limit: parseInt(data.page_size, 10),
+          loading: false,
+        });
       });
-    });
   };
   render() {
     return (

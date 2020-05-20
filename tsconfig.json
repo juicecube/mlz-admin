@@ -21,6 +21,7 @@
     "node_modules",
     "es",
     "lib",
-    "**/__test__"
+    "**/__test__",
+    "docs"
   ]
 }

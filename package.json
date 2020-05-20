@@ -19,7 +19,7 @@
     "lint": "npm run lint:ts && npm run lint:esFix",
     "lint:esFix": "npx eslint src docs/demo --ext '.js,.jsx,.ts,.tsx' --fix",
     "lint:es": "npx eslint src docs/demo --ext '.js,.jsx,.ts,.tsx'",
-    "lint:ts": "tsc --project config/ts/lint.json",
+    "lint:ts": "tsc --project tsconfig.lint.json",
     "pretty-quick": "pretty-quick",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "version": "node ./scripts/versioning"
@@ -31,7 +31,8 @@
     "lib",
     "es",
     "LICENSE",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "typings.d.ts"
   ],
   "husky": {
     "hooks": {
@@ -47,22 +48,23 @@
     ]
   },
   "dependencies": {
-    "react": "^16.12.0",
-    "antd": "^4.1.5",
     "@ant-design/pro-table": "^2.2.7",
-    "lodash-es": "^4.17.15"
+    "antd": "^4.1.5",
+    "axios": "^0.19.2",
+    "lodash-es": "^4.17.15",
+    "react": "^16.12.0"
   },
   "peerDependencies": {
     "antd": "^4.1.5",
     "react": "^16.12.0"
   },
   "devDependencies": {
+    "@mlz/lint": "^1.1.10",
     "@types/enzyme": "^3.10.5",
     "@types/jest": "^25.2.1",
     "@types/lodash-es": "^4.17.3",
     "@umijs/preset-react": "1.x",
     "@umijs/test": "^3.0.5",
-    "axios": "^0.19.2",
     "dumi": "^1.0.6",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
@@ -75,7 +77,6 @@
     "lint-staged": "^10.0.7",
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
-    "reqwest": "^2.0.5",
     "yorkie": "^2.0.0"
   },
   "bugs": {
