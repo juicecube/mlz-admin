@@ -16,11 +16,11 @@
     "test:coverage": "umi-test --coverage",
     "build": "father-build",
     "build:docs": "dumi build",
-    "lint": "npm run lint:ts && npm run lint:esFix",
+    "lint": "npm run lint:ts && npm run lint:es",
     "lint:esFix": "npx eslint --ext tsx,ts,js src --fix",
     "lint:es": " npx eslint --ext tsx,ts,js src docs/demo",
     "lint:ts": "tsc --project tsconfig.lint.json",
-    "pretty-quick": "pretty-quick",
+    "lint:style": "stylelint 'src/**/*.less' --syntax less",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "version": "node ./scripts/versioning"
   },
@@ -31,13 +31,10 @@
     "lib",
     "es",
     "LICENSE",
-    "CHANGELOG.md",
-    "typings.d.ts"
+    "CHANGELOG.md"
   ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "npx lint-staged && npm run pretty-quick"
-    }
+  "gitHooks": {
+    "pre-commit": "npx lint-staged && npx pretty-quick --staged"
   },
   "lint-staged": {
     "*.{js,jsx,less,md,json}": [
@@ -74,15 +71,25 @@
     "eslint-plugin-prettier": "^3.1.3",
     "eslint-plugin-react-hooks": "^4.0.2",
     "father-build": "^1.17.2",
-    "husky": "^4.2.5",
     "jest": "^26.0.1",
     "lint-staged": "^10.0.7",
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
+    "stylelint": "^13.5.0",
+    "stylelint-config-prettier": "^8.0.1",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-declaration-block-no-ignored-properties": "^2.3.0",
     "yorkie": "^2.0.0"
   },
   "bugs": {
     "url": "https://github.com/juicecube/mlz-admin/issues"
   },
+  "browserslist": [
+    "last 2 versions",
+    "Firefox ESR",
+    "> 1%",
+    "ie >= 11"
+  ],
   "homepage": "https://milobluebell.github.io/mytils"
 }

@@ -7,8 +7,9 @@ import { ifPropertyExited, omitObject, guessPrimaryKey } from '@/shared/utils';
 import ProTable from '@ant-design/pro-table';
 import { TableProps, ColumnTypes } from './Table.type';
 import { ColorEnums } from './Table.constants';
-import './Table.less';
 import { cloneDeep } from 'lodash-es';
+import '@ant-design/pro-table/es/index.less';
+import './Table.less';
 
 import KeepAlive, { KAContext } from '@/shared/components/keep-alive';
 
