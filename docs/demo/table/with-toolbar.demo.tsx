@@ -23,22 +23,22 @@ const columns = [
   {
     title: '创建时间',
     dataIndex: 'createdAt',
-    valueType: 'dateTime',
+    valueType: 'dateTime' as const,
     searchable: true,
   },
   {
     title: '更新时间',
     dataIndex: 'updatedAt',
-    valueType: 'date',
+    valueType: 'date' as const,
   },
   {
     title: '花费',
     dataIndex: 'money',
-    valueType: 'money',
+    valueType: 'money' as const,
   },
   {
     title: '操作',
-    valueType: 'option',
+    valueType: 'option' as const,
     render: () => [<a>处理</a>, <a>删除</a>],
   },
 ];

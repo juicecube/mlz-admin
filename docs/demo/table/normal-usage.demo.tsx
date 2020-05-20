@@ -17,28 +17,28 @@ const columns = [
   {
     title: '状态',
     dataIndex: 'status',
-    valueType: 'tag',
+    valueType: 'tag' as const,
     valueEnum: {
       all: { text: '全部', status: 'Default' },
       close: { text: '售罄', status: 'Error' },
       running: { text: '补货中', status: 'Processing' },
       online: { text: '正在销售', status: 'Success' },
       error: { text: '库存不足', status: 'Warning' },
-    },
+    } as const,
   },
   {
     title: '创建时间',
     dataIndex: 'createdAt',
-    valueType: 'dateTime',
+    valueType: 'dateTime' as const,
   },
   {
     title: '更新时间',
     dataIndex: 'createdAt',
-    valueType: 'date',
+    valueType: 'date' as const,
   },
   {
     title: '操作',
-    valueType: 'option',
+    valueType: 'option' as const,
     width: 120,
     render: () => [<a>设置</a>, <a>下架</a>],
   },
@@ -52,9 +52,11 @@ class App extends React.PureComponent {
     limit: 10,
     loading: true,
   };
+
   componentDidMount() {
     this.fetchData();
   }
+
   fetchData = (params?: { current: number; limit: number }) => {
     this.setState({ loading: true });
     axios
@@ -76,6 +78,7 @@ class App extends React.PureComponent {
         });
       });
   };
+
   render() {
     return (
       <Table

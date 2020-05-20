@@ -1,7 +1,7 @@
 // / <reference types="react" />
 import React from 'react';
 import { SizeType } from 'antd/es/config-provider/SizeContext.d';
-import { ProColumnType, ProTableTypes } from '@ant-design/pro-table/lib/Table.d';
+import { ProColumnType, ProTableTypes, ProTableProps } from '@ant-design/pro-table/lib/Table.d';
 import { ProColumnsValueType } from '@ant-design/pro-table/lib/defaultRender.d';
 import { StatusType } from '@ant-design/pro-table/lib/component/status/index.d';
 import { OptionConfig } from '@ant-design/pro-table/lib/component/toolBar';
@@ -16,7 +16,7 @@ export type changeHandlerData = Partial<{
 }>;
 
 // TODO 不是继承自pro table
-export interface TableProps {
+export interface TableProps extends Omit<ProTableProps<unknown, Record<string, any>>, 'columns'> {
   columns: ColumnTypes[];
   data: Record<string | symbol, any>[];
   options?: false | OptionConfig<unknown>;
@@ -48,8 +48,10 @@ export interface EnumObjectEnum {
 export interface ColumnTypes extends Omit<ProColumnType, 'valueType'> {
   searchable?: boolean | number;
   primary?: boolean;
-  valueType?: ProColumnsValueType | 'tag' | Enumerator;
+  valueType?: ProColumnsValueType | 'tag';
   valueEnum?: { [key: string]: EnumObjectEnum };
   render?: (...args: any) => React.ReactNode;
   dataIndex?: string;
 }
+
+export type transStringIntoConst<T, U> = T extends U ? T : U;

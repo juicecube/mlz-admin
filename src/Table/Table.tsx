@@ -105,7 +105,9 @@ const ifShowSearch = (columns: ColumnTypes[]) => {
 const omittedProps = ($props: TableProps, cols: ColumnTypes[]) => {
   return {
     dataSource: $props.data || [],
+    // 干掉data属性，使用dataSource注入
     ...omitObject($props, 'data'),
+    // 覆盖默认值
     ...resetDefault($props, cols || []),
   };
 };
@@ -143,7 +145,7 @@ const AlivableProTable = ($props: { props: TableProps }): React.ReactElement => 
 const CommonTable = (props: TableProps, cols: ColumnTypes[], aliveTrigger?: (keepAliveName: string | undefined, payload: any) => void) => {
   return (
     <ProTable
-      {...omittedProps(props, cols)}
+      {...(omittedProps(props, cols) as any)}
       toolBarRender={props.toolBarRender || false}
       rowClassName="admini-table-row"
       onChange={(e) => {

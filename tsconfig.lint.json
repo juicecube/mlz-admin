@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "./tsc-check"
+    "outDir": ".tsc-check"
   },
   "exclude": [
     "node_modules",

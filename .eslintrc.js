@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['airbnb', 'prettier', 'prettier/react', './node_modules/@mlz/lint/ts-eslintrc-react.js'],
+  extends: ['airbnb', 'prettier', 'prettier/react'],
   env: {
     browser: true,
     node: true,
@@ -12,7 +12,7 @@ module.exports = {
     },
   },
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'markdown', 'react', 'react-hooks', 'prettier'],
+  plugins: ['@typescript-eslint', 'react', 'react-hooks', 'prettier'],
   overrides: [
     {
       files: ['*.tsx'],
@@ -21,6 +21,10 @@ module.exports = {
         'react/jsx-filename-extension': 0,
         'react/destructuring-assignment': 1,
         'react/prop-types': 0,
+        'react/jsx-props-no-spreading': 0,
+        'react/state-in-constructor': 0,
+        'react/no-access-state-in-setstate': 0,
+        'react/destructuring-assignment': 0,
       },
     },
     {
@@ -50,5 +54,6 @@ module.exports = {
     'no-param-reassign': 0,
     'no-unused-vars': 0,
     'no-console': 0,
+    'jsx-a11y/anchor-is-valid': 0,
   },
 };
