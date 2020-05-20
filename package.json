@@ -3,22 +3,26 @@
   "version": "0.0.2",
   "description": "一套编程猫设计规范下的管理系统React组件库，基于Antd",
   "keywords": [
-    "typescript",
     "react",
-    "components"
+    "components",
+    "codemao"
   ],
   "scripts": {
     "start": "dumi dev",
+    "dist": "rm -rf es lib dist && npm run dist:cjs && npm run dist:es",
     "dist:es": "tsc -d -m esnext --outDir es --sourceMap false --inlineSources false",
     "dist:cjs": "tsc -d -m commonjs --outDir lib --sourceMap false --inlineSources false",
-    "dist": "rm -rf es lib dist && npm run dist:cjs && npm run dist:es",
-    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "test": "umi-test",
     "test:coverage": "umi-test --coverage",
-    "lint": "./scripts/lint.sh",
-    "pretty-quick": "pretty-quick",
     "build": "father-build",
-    "build:docs": "dumi build"
+    "build:docs": "dumi build",
+    "lint": "npm run lint:ts && npm run lint:esFix",
+    "lint:esFix": "npx eslint src docs/demo --ext '.js,.jsx,.ts,.tsx' --fix",
+    "lint:es": "npx eslint src docs/demo --ext '.js,.jsx,.ts,.tsx'",
+    "lint:ts": "tsc --project config/ts/lint.json",
+    "pretty-quick": "pretty-quick",
+    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
+    "version": "node ./scripts/versioning"
   },
   "module": "es/index.js",
   "main": "lib/index.js",

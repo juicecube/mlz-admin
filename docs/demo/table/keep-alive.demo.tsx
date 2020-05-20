@@ -4,7 +4,7 @@
  */
 import React from 'react';
 import Table from '@/Table/Table';
-import reqwest from 'reqwest';
+import axios from 'axios';
 
 const columns = [
   {
@@ -45,7 +45,7 @@ class App extends React.PureComponent {
 
   fetchData = (params?: { current: number; limit: number }) => {
     this.setState({ loading: true });
-    reqwest({
+    axios({
       url: 'http://rap2.taobao.org:38080/app/mock/252468/admini/table-demo',
       method: 'get',
       data: params || {
