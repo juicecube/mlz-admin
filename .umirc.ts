@@ -2,7 +2,7 @@ import { defineConfig } from 'dumi';
 
 export default defineConfig({
   hash: true,
-  title: 'admini',
+  title: '@mlz/admin',
   mode: 'site',
   favicon: 'https://img.alicdn.com/tfs/TB1YHEpwUT1gK0jSZFhXXaAtVXa-28-27.svg',
   // description: '文档型管理系统组件库'
@@ -22,9 +22,9 @@ export default defineConfig({
     '/components': [
       {
         title: '组件',
-        children: ['components/menu', 'components/table', 'components/affix']
+        children: ['components/table', 'components/icon', 'components/button'],
       },
     ],
-  }
+  },
   // more config: https://d.umijs.org/config
 });

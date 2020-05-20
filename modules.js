@@ -1,11 +1,17 @@
-
+/**
+ * 要打包到dist中的组件集合ƒ
+ */
 module.exports = {
-  'Affix': {
+  Affix: {
     entry: 'src/Affix/Affix.tsx',
-    file: '/es/Affix'
+    file: '/es/Affix',
   },
-  'Button': {
+  Button: {
     entry: 'src/Button/Button.tsx',
-    file: '/es/Button'
+    file: '/es/Button',
   },
-}
+  Table: {
+    entry: 'src/Table/Table.tsx',
+    file: '/es/Table',
+  },
+};

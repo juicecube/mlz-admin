@@ -1,4 +1,6 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+/.vscode/
+/.idea/
 
 # dependencies
 /node_modules
@@ -9,8 +11,8 @@
 
 # production
 /dist
-/.vscode/
-/.idea/
+/es
+/lib
 /build
 /undefined
 .DS_Store

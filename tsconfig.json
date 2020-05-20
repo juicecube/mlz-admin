@@ -7,20 +7,21 @@
     "jsx": "react",
     "esModuleInterop": true,
     "sourceMap": true,
-    "baseUrl": "./",
     "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "removeComments": true,
+    "skipLibCheck": true,
+    "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"],
       "@@/*": ["src/.umi/*"]
-    },
-    "allowSyntheticDefaultImports": true
+    }
   },
   "exclude": [
     "node_modules",
-    "dist",
-    "types",
+    "es",
+    "lib",
     "**/__test__",
-    "test",
     "docs"
   ]
 }
