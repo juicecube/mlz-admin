@@ -18,7 +18,7 @@
     "build:docs": "dumi build",
     "lint": "npm run lint:ts && npm run lint:es",
     "lint:esFix": "npx eslint --ext tsx,ts,js src --fix",
-    "lint:es": " npx eslint --ext tsx,ts,js src docs/demo",
+    "lint:es": "npx eslint --ext tsx,ts,js src docs/demo",
     "lint:ts": "tsc --project tsconfig.lint.json",
     "lint:style": "stylelint 'src/**/*.less' --syntax less",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
@@ -95,5 +95,9 @@
     "> 1%",
     "ie >= 11"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/juicecube/mlz-admin"
+  },
   "homepage": "https://milobluebell.github.io/mytils"
 }
