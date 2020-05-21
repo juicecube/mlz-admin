@@ -1,3 +1,3 @@
-import { Affix } from 'antd';
+import Affix from 'antd/es/affix';
 
 export default Affix;

@@ -15,7 +15,10 @@
     "paths": {
       "@/*": ["src/*"],
       "@@/*": ["src/.umi/*"]
-    }
+    },
+    "plugins": [
+      {"transform": "typescript-transform-paths"}
+    ]
   },
   "exclude": [
     "node_modules",

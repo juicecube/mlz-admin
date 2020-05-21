@@ -1,12 +1,15 @@
 import React, { useState, useContext } from 'react';
-import { ConfigProvider, Button, Tag } from 'antd';
+import { default as ConfigProvider } from 'antd/es/config-provider';
+import { default as Tag } from 'antd/es/tag';
+import Button from '@/Button/Button';
 import zhCN from 'antd/es/locale/zh_CN';
 import { ifPropertyExited, omitObject, guessPrimaryKey } from '@/shared/utils';
 import ProTable from '@ant-design/pro-table';
 import { TableProps, ColumnTypes } from './Table.type';
 import { ColorEnums } from './Table.constants';
-import './Table.less';
 import { cloneDeep } from 'lodash-es';
+import '@ant-design/pro-table/es/index.less';
+import './Table.less';
 
 import KeepAlive, { KAContext } from '@/shared/components/keep-alive';
 
