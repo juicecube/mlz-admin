@@ -24,6 +24,8 @@
     "node_modules",
     "es",
     "lib",
+    "dist",
+    "tests",
     "**/__test__"
   ]
 }
