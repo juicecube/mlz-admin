@@ -1,0 +1,27 @@
+{
+  "name": "@mlz/admin",
+  "version": 2,
+  "routes": [
+    {
+      "src": "/(.*[.js|.css])",
+      "headers": {
+        "Cache-Control": "max-age=63072000"
+      },
+      "continue": true
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/dist/$1"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/dist/index.html"
+    }
+  ],
+  "github": {
+    "enabled": true
+  }
+}
