@@ -1,22 +1,22 @@
 import React from 'react';
 import { render } from 'enzyme';
 import Table from '../Table';
-import testMount from '../../shared/tests/testMount';
-import mockAxios from '../../../tests/__mocks__/axiosTest';
+import testMount from '../../../tests/testMount';
+import HttpReponseMock from '../../../tests/mockHttp';
 
-// 同步的方式mock数据
-const mockFn = jest.fn(({ current, limit }) => {
-  let mockedData = { status: 1, messages: '', items: [] };
-  for (var i = 1; i < 3; i++) {
-    mockedData.items.push({
+// 生成table所需数据
+export const generateData = (current, limit = 10) => {
+  const data = [];
+  for (let i = 1; i < 3; i++) {
+    data.push({
       id: current * i,
       name: `name${current * i}`,
     });
   }
-  return mockedData;
-});
+  return data;
+}
 
-describe('📦 Table', function() {
+describe('📦 Table', () => {
   //
   testMount(Table);
 
@@ -32,8 +32,9 @@ describe('📦 Table', function() {
       dataIndex: 'name',
     },
   ];
-  it('正确地渲染dataSource数据', function() {
-    const data = mockFn({ current: 1, limit: 2 });
+  it('正确地渲染dataSource数据', async () => {
+    const data = await new HttpReponseMock(generateData(1)).response();
+    console.log(data);
     const wrapper = render(<Table column={columns} data={data.items} />);
     const children = wrapper.find('.ant-table-row');
     expect(children.length).toBe(3);

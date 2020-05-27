@@ -1,6 +1,6 @@
 import React from 'react';
 import Icon from '../Icon';
-import testMount from '../../shared/tests/testMount';
+import testMount from '../../../tests/testMount';
 
 describe('📦 Icon', function() {
   //

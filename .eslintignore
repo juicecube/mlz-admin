@@ -3,7 +3,6 @@
 /es/
 /lib/
 /build/
-/tests/
 **/_vendor/**/*
-**/*.test.ts
+/tests/
 **/*.test.js
