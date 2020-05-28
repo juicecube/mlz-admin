@@ -7,7 +7,7 @@ import { default as AntdButtonGroup } from 'antd/es/button/button-group';
 import { omitObject } from '@/shared/utils';
 import Icon from '@/Icon/Icon';
 import { MenuType, GroupType, ButtonTypes, ButtonGroupPropableValue } from './Button.type';
-import 'antd/es/button/style/index.css';
+import 'antd/es/button/style/index.less';
 
 const calcValues = ($menuClickEvent: ClickParam, $menu: MenuType[]): ButtonGroupPropableValue | ButtonGroupPropableValue[] => {
   const identifier = 'no value/@mlz-admin/identifier';
