@@ -112,27 +112,31 @@ import Button from '@/Button/Button';
 import Icon from '@/Icon/Icon';
 import { Space, Divider } from 'antd';
 
-export default () => (
-  <>
-    <Space size={50}>
-      <Button type="primary" shape="circle" icon={<Icon type="i-play" />} />
-      <Button type="dashed" shape="circle" icon={<Icon type="i-danmu" />} />
-      <Button danger type="primary" shape="circle" icon={<Icon type="i-wrong" />} />
-    </Space>
-    <Divider />
-    <Space size={25}>
-      <Button type="primary" icon={<Icon type="i-play" />}>
-        播放
-      </Button>
-      <Button type="dashed" icon={<Icon type="i-danmu" />}>
-        开启弹幕
-      </Button>
-      <Button danger icon={<Icon type="i-wrong" />}>
-        删除
-      </Button>
-    </Space>
-  </>
-);
+const App = () => {
+  return (
+    <>
+      <Space size={50}>
+        <Button type="primary" shape="circle" icon={<Icon type="i-play" />} />
+        <Button type="dashed" shape="circle" icon={<Icon type="i-danmu" />} />
+        <Button danger type="primary" shape="circle" icon={<Icon type="i-wrong" />} />
+      </Space>
+      <Divider dashed />
+      <Space size={25}>
+        <Button type="primary" icon={<Icon type="i-play" />}>
+          播放
+        </Button>
+        <Button type="dashed" icon={<Icon type="i-danmu" />}>
+          开启弹幕
+        </Button>
+        <Button danger icon={<Icon type="i-wrong" />}>
+          删除
+        </Button>
+      </Space>
+    </>
+  );
+};
+
+export default App;
 ```
 
 ## 菜单按钮
@@ -266,7 +270,6 @@ const App = () => {
           <Icon type="i-danmu" />
         </Button>
       </Button.Group>
-      <Divider />
       <h4>使用group属性的方式：</h4>
       <Button
         group={group}

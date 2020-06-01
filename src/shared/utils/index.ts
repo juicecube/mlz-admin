@@ -1,4 +1,4 @@
-const __DEV__ = process.env.NODE_ENV || true;
+const __DEV__ = (window as any).__DEV__ !== 'false';
 
 // 🔧 判断对象非原型链上是否存在某一指定属性
 export const ifPropertyExited = ($key: PropertyKey, $targetObj: Record<string, any>): boolean => Object.prototype.hasOwnProperty.call($targetObj, $key);

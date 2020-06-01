@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",
     "importHelpers": true,
@@ -11,14 +11,12 @@
     "allowSyntheticDefaultImports": true,
     "removeComments": true,
     "skipLibCheck": true,
+    "declaration": true,
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"],
       "@@/*": ["src/.umi/*"]
-    },
-    "plugins": [
-      {"transform": "typescript-transform-paths"}
-    ]
+    }
   },
   "exclude": [
     "node_modules",
@@ -26,7 +24,6 @@
     "lib",
     "dist",
     "tests",
-    "**/__test__",
-    "docs/**/*.tsx"
+    "**/__tests__",
   ]
 }

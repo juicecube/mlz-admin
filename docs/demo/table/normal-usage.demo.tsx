@@ -47,9 +47,6 @@ const columns = [
 class App extends React.PureComponent {
   state = {
     data: [],
-    current: 1,
-    total: 10,
-    limit: 10,
     loading: true,
   };
 
@@ -71,9 +68,6 @@ class App extends React.PureComponent {
         const { data } = res;
         this.setState({
           data: data.items,
-          total: data.total,
-          current: parseInt(data.current_page, 10),
-          limit: parseInt(data.page_size, 10),
           loading: false,
         });
       });
@@ -83,11 +77,8 @@ class App extends React.PureComponent {
     return (
       <Table
         columns={columns}
-        data={this.state.data}
+        dataSource={this.state.data}
         loading={this.state.loading}
-        current={this.state.current}
-        limit={this.state.limit as any}
-        total={this.state.total}
         onChange={(pgn: any) => {
           this.fetchData(pgn);
         }}
