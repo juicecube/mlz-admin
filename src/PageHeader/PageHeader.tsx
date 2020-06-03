@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { default as AntdPageHeader } from 'antd/es/page-header';
-import 'antd/es/page-header/style/index.less';
+import { PageHeader as AntdPageHeader } from 'antd';
 
 const PageHeader = AntdPageHeader;
 
