@@ -13,6 +13,7 @@ export default {
     type: 'babel',
     importLibToEs: true,
   },
+  cjs: 'babel',
   extractCSS: false,
   runtimeHelpers: true,
   extraRollupPlugins: [
@@ -22,7 +23,6 @@ export default {
     }),
   ],
   extraBabelPlugins: [['import', { libraryName: 'antd', style: true }]],
-  cjs: 'babel',
   target: 'browser',
   inject: {
     'window.__DEV__': 'false',

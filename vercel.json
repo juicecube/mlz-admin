@@ -10,15 +10,11 @@
       "continue": true
     },
     {
-      "src": "/(.*)",
-      "dest": "/dist/$1"
-    },
-    {
       "handle": "filesystem"
     },
     {
-      "src": "/(.*)",
-      "dest": "/dist/index.html"
+      "src": "/.*",
+      "dest": "/index.html"
     }
   ],
   "github": {

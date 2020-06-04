@@ -1,6 +1,6 @@
 {
   "name": "@mlz/admin",
-  "version": "0.0.3",
+  "version": "0.0.11",
   "description": "一套编程猫设计规范下的管理系统React组件库，基于Antd",
   "keywords": [
     "react",
@@ -9,10 +9,10 @@
   ],
   "scripts": {
     "start": "dumi dev",
-    "dist": "rm -rf es lib dist && npm run dist:cjs && npm run dist:es",
+    "dist": "father-build",
     "dist:es": "npx ttsc --project ./tsconfig.dist.json -d -m esnext --outDir es --sourceMap false --inlineSources false",
     "dist:cjs": "npx ttsc --project ./tsconfig.dist.json -d -m commonjs --outDir lib --sourceMap false --inlineSources false",
-    "dist:compile": "father-build",
+    "dist:tsc": "rm -rf es lib dist && npm run dist:cjs && npm run dist:es",
     "test": "umi-test",
     "test:coverage": "umi-test --coverage",
     "build": "dumi build",
@@ -23,7 +23,8 @@
     "lint:style": "stylelint 'src/**/*.less' --syntax less",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "version": "node ./scripts/versioning",
-    "serve": "node scripts/serve.js"
+    "serve": "node scripts/serve.js",
+    "vercel": "node scripts/serve.js"
   },
   "module": "es/index.js",
   "main": "lib/index.js",
@@ -31,8 +32,7 @@
   "files": [
     "lib",
     "es",
-    "LICENSE",
-    "CHANGELOG.md"
+    "LICENSE"
   ],
   "sideEffects": false,
   "gitHooks": {
