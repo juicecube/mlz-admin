@@ -1,13 +1,10 @@
 import React, { useState, useContext } from 'react';
-import { default as AntdButton } from 'antd/es/button/button';
-import { default as Dropdown } from 'antd/es/dropdown/dropdown';
-import { default as Menu } from 'antd/es/menu';
+import { Button as AntdButton, Dropdown, Menu } from 'antd';
 import { ClickParam } from 'antd/lib/menu/index.d';
 import { default as AntdButtonGroup } from 'antd/es/button/button-group';
-import { omitObject } from '@/shared/utils';
-import Icon from '@/Icon/Icon';
+import { omitObject } from '../shared/utils';
+import Icon from '../Icon/Icon';
 import { MenuType, GroupType, ButtonTypes, ButtonGroupPropableValue } from './Button.type';
-import 'antd/es/button/style/index.css';
 
 const calcValues = ($menuClickEvent: ClickParam, $menu: MenuType[]): ButtonGroupPropableValue | ButtonGroupPropableValue[] => {
   const identifier = 'no value/@mlz-admin/identifier';

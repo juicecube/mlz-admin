@@ -1,9 +1,9 @@
 import React, { useContext, createContext, useState, useEffect } from 'react';
-import { KeepAliveTypes as KTs } from './keep-alive';
+import { KeepAliveProps } from './keep-alive.type';
 import aliveStore, { SnapshotType } from './keep-alive.store';
 
 export const KAContext = createContext(null);
-const KeepAlive: React.FC<KTs.KeepAliveProps> = (props: KTs.KeepAliveProps) => {
+const KeepAlive: React.FC<KeepAliveProps> = (props: KeepAliveProps) => {
   const [_, setPayload] = useState<any>({});
   const dispatch = ($name: string, $args: any) => {
     setPayload(aliveStore.getSnapshot(props.name)?.payload);

@@ -1,5 +1,11 @@
+const path = require('path');
+
 module.exports = {
   verbose: true,
-  setupFiles: ['./tests/setup.js'],
+  rootDir: path.join(__dirname, ''),
   setupFilesAfterEnv: ['<rootDir>/tests/setup.js'],
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
+    '^@@/(.*)$': '<rootDir>/src/.umi/$1',
+  },
 };

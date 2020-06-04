@@ -70,7 +70,7 @@ class App extends React.PureComponent {
       <Table
         columns={columns}
         keepAlive="keep-alive-demo"
-        data={this.state.data}
+        dataSource={this.state.data}
         loading={this.state.loading}
         current={this.state.current}
         limit={this.state.limit as any}

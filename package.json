@@ -1,6 +1,6 @@
 {
   "name": "@mlz/admin",
-  "version": "0.0.21",
+  "version": "0.0.11",
   "description": "一套编程猫设计规范下的管理系统React组件库，基于Antd",
   "keywords": [
     "react",
@@ -9,20 +9,22 @@
   ],
   "scripts": {
     "start": "dumi dev",
-    "dist": "rm -rf es lib dist && npm run dist:cjs && npm run dist:es",
-    "dist:es": "npx ttsc -d -m esnext --outDir es --sourceMap false --inlineSources false",
-    "dist:cjs": "npx ttsc -d -m commonjs --outDir lib --sourceMap false --inlineSources false",
+    "dist": "father-build",
+    "dist:es": "npx ttsc --project ./tsconfig.dist.json -d -m esnext --outDir es --sourceMap false --inlineSources false",
+    "dist:cjs": "npx ttsc --project ./tsconfig.dist.json -d -m commonjs --outDir lib --sourceMap false --inlineSources false",
+    "dist:tsc": "rm -rf es lib dist && npm run dist:cjs && npm run dist:es",
     "test": "umi-test",
     "test:coverage": "umi-test --coverage",
-    "build": "father-build",
-    "build:docs": "dumi build",
+    "build": "dumi build",
     "lint": "npm run lint:ts && npm run lint:es",
     "lint:esFix": "npx eslint --ext tsx,ts,js src --fix",
-    "lint:es": " npx eslint --ext tsx,ts,js src docs/demo",
-    "lint:ts": "tsc --project tsconfig.lint.json",
+    "lint:es": "npx eslint --ext tsx,ts,js src docs/demo",
+    "lint:ts": "tsc --project ./tsconfig.lint.json",
     "lint:style": "stylelint 'src/**/*.less' --syntax less",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
-    "version": "node ./scripts/versioning"
+    "version": "node ./scripts/versioning",
+    "serve": "node scripts/serve.js",
+    "vercel": "node scripts/serve.js"
   },
   "module": "es/index.js",
   "main": "lib/index.js",
@@ -30,9 +32,9 @@
   "files": [
     "lib",
     "es",
-    "LICENSE",
-    "CHANGELOG.md"
+    "LICENSE"
   ],
+  "sideEffects": false,
   "gitHooks": {
     "pre-commit": "npx lint-staged && npx pretty-quick --staged"
   },
@@ -45,15 +47,17 @@
     ]
   },
   "dependencies": {
-    "@ant-design/pro-table": "^2.2.7",
+    "@babel/runtime": "^7.10.2",
     "antd": "^4.1.5",
     "axios": "^0.19.2",
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
     "lodash-es": "^4.17.15",
     "react": "^16.12.0"
   },
   "peerDependencies": {
-    "antd": "^4.1.5",
-    "react": "^16.12.0"
+    "react": "^16.12.0",
+    "antd": "^4.1.5"
   },
   "devDependencies": {
     "@types/enzyme": "^3.10.5",
@@ -76,6 +80,7 @@
     "node-fetch": "^2.6.0",
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
+    "rollup-plugin-typescript2": "^0.27.1",
     "simple-git": "^2.5.0",
     "stylelint": "^13.5.0",
     "stylelint-config-prettier": "^8.0.1",
@@ -95,5 +100,9 @@
     "> 1%",
     "ie >= 11"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/juicecube/mlz-admin"
+  },
   "homepage": "https://milobluebell.github.io/mytils"
 }

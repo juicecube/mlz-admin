@@ -11,20 +11,19 @@
     "allowSyntheticDefaultImports": true,
     "removeComments": true,
     "skipLibCheck": true,
+    "declaration": true,
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"],
       "@@/*": ["src/.umi/*"]
-    },
-    "plugins": [
-      {"transform": "typescript-transform-paths"}
-    ]
+    }
   },
   "exclude": [
     "node_modules",
     "es",
     "lib",
-    "**/__test__",
-    "docs"
+    "dist",
+    "tests",
+    "**/__tests__",
   ]
 }

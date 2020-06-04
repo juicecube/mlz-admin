@@ -5,26 +5,23 @@ export default defineConfig({
   title: '@mlz/admin',
   mode: 'site',
   favicon: 'https://img.alicdn.com/tfs/TB1YHEpwUT1gK0jSZFhXXaAtVXa-28-27.svg',
-  // description: '文档型管理系统组件库'
-  menus: {
-    '/': [
-      {
-        title: '开始',
-        children: ['index'],
-      },
-    ],
-    '/standards': [
-      {
-        title: '标准',
-        children: ['standard'],
-      },
-    ],
-    '/components': [
-      {
-        title: '组件',
-        children: ['components/table', 'components/icon', 'components/button'],
-      },
-    ],
-  },
-  // more config: https://d.umijs.org/config
+  locales: [['zh-CN', '中文']],
+  navs: [
+    {
+      title: '开始',
+      path: '/start',
+    },
+    {
+      title: '组件',
+      path: '/components',
+    },
+    {
+      title: '其它仓库',
+      path: '/others',
+    },
+    {
+      title: 'Github',
+      path: 'https://github.com/juicecube/mlz-admin',
+    },
+  ],
 });

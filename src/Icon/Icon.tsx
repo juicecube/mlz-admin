@@ -1,5 +1,5 @@
 import React from 'react';
-import { createFromIconfontCN as createFromIconfont } from '@ant-design/icons';
+import { createFromIconfontCN as createFromIconfont } from '@ant-design/icons/es';
 
 class IconFontScript {
   public scriptUrl: string;

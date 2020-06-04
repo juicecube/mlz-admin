@@ -1,4 +1,4 @@
-const __DEV__ = true;
+const __DEV__ = (window as any).__DEV__ !== 'false';
 
 // 🔧 判断对象非原型链上是否存在某一指定属性
 export const ifPropertyExited = ($key: PropertyKey, $targetObj: Record<string, any>): boolean => Object.prototype.hasOwnProperty.call($targetObj, $key);
@@ -27,7 +27,7 @@ export const omitObject = <T extends Record<string, any>, U extends string>($tar
 // 🔧 预测columns可能的primary key
 export const guessPrimaryKey = ($columns: any[]): string | undefined => {
   if (!$columns) {
-    return undefined;
+    return;
   }
   const probables = $columns.filter((column) => column.primary === true);
   if (probables.length > 0) {
@@ -41,16 +41,17 @@ export const guessPrimaryKey = ($columns: any[]): string | undefined => {
     const checkerEnds = ['id', 'Id', 'key', 'Key', '_id', '_key'];
     let indexa = 0;
     $columns.forEach((column, index) => {
-      checkerEnds.some((checkerEnd, i) => {
+      checkerEnds.some((checkerEnd) => {
         const matched = new RegExp(`${checkerEnd}$`, 'g').test(column?.dataIndex);
-        if (matched) indexa = index;
+        if (matched) {
+          indexa = index;
+        }
         return matched;
       });
     });
-    if (__DEV__ && !$columns[indexa].dataIndex) {
+    if (__DEV__ && !$columns[indexa]?.dataIndex) {
       __DEV__ && console.warn(`[${guessPrimaryKey.name}]没有推测出primary key，请在Table.rowkey属性上自行指定`);
-      return '';
     }
-    return $columns[indexa].dataIndex;
+    return $columns[indexa]?.dataIndex;
   }
 };
