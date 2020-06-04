@@ -2,7 +2,7 @@
 
 ** `📦按钮`用于开始一个即时操作。标记了一个（或封装一组）操作命令，响应用户点击行为，触发相应的业务逻辑。**
 
-## 基本使用
+## 1. 基本使用
 
 ```tsx
 /**
@@ -26,7 +26,7 @@ export default () => (
 );
 ```
 
-## 不可用状态
+## 2. 不可用状态
 
 ```tsx
 /**
@@ -58,7 +58,7 @@ export default () => (
 );
 ```
 
-## loading 状态
+## 3. loading 状态
 
 ```tsx
 /**
@@ -100,7 +100,7 @@ class App extends React.PureComponent {
 export default App;
 ```
 
-## 图标按钮
+## 4. 图标按钮
 
 ```tsx
 /**
@@ -112,30 +112,34 @@ import Button from '@/Button/Button';
 import Icon from '@/Icon/Icon';
 import { Space, Divider } from 'antd';
 
-export default () => (
-  <>
-    <Space size={50}>
-      <Button type="primary" shape="circle" icon={<Icon type="i-play" />} />
-      <Button type="dashed" shape="circle" icon={<Icon type="i-danmu" />} />
-      <Button danger type="primary" shape="circle" icon={<Icon type="i-wrong" />} />
-    </Space>
-    <Divider />
-    <Space size={25}>
-      <Button type="primary" icon={<Icon type="i-play" />}>
-        播放
-      </Button>
-      <Button type="dashed" icon={<Icon type="i-danmu" />}>
-        开启弹幕
-      </Button>
-      <Button danger icon={<Icon type="i-wrong" />}>
-        删除
-      </Button>
-    </Space>
-  </>
-);
+const App = () => {
+  return (
+    <>
+      <Space size={50}>
+        <Button type="primary" shape="circle" icon={<Icon type="i-play" />} />
+        <Button type="dashed" shape="circle" icon={<Icon type="i-danmu" />} />
+        <Button danger type="primary" shape="circle" icon={<Icon type="i-wrong" />} />
+      </Space>
+      <Divider dashed />
+      <Space size={25}>
+        <Button type="primary" icon={<Icon type="i-play" />}>
+          播放
+        </Button>
+        <Button type="dashed" icon={<Icon type="i-danmu" />}>
+          开启弹幕
+        </Button>
+        <Button danger icon={<Icon type="i-wrong" />}>
+          删除
+        </Button>
+      </Space>
+    </>
+  );
+};
+
+export default App;
 ```
 
-## 菜单按钮
+## 5. 菜单按钮
 
 ```tsx
 /**
@@ -220,7 +224,7 @@ const App = () => {
 export default App;
 ```
 
-## 组合按钮
+## 6. 组合按钮
 
 ```tsx
 /**
@@ -266,7 +270,6 @@ const App = () => {
           <Icon type="i-danmu" />
         </Button>
       </Button.Group>
-      <Divider />
       <h4>使用group属性的方式：</h4>
       <Button
         group={group}

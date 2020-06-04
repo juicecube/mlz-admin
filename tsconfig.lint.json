@@ -1,12 +1,6 @@
 {
-  "extends": "./tsconfig.json",
+  "extends": "./tsconfig.dist.json",
   "compilerOptions": {
     "outDir": ".tsc-check"
   },
-  "exclude": [
-    "node_modules",
-    "es",
-    "lib",
-    "tests"
-  ]
 }

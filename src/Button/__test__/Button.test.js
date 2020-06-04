@@ -1,10 +1,10 @@
 import React from 'react';
-import Icon from '../Icon';
+import Button from '../Button';
 import testMount from '../../../tests/testMount';
 
-describe('📦 Icon', function() {
+describe('📦 Button', function() {
   //
-  testMount(Icon);
+  testMount(Button);
 
   //
   test('test 1st expectation', function() {
