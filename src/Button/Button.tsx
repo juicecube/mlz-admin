@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Button as AntdButton, Dropdown, Menu } from 'antd';
 import { ClickParam } from 'antd/lib/menu/index.d';
 import { default as AntdButtonGroup } from 'antd/es/button/button-group';
-import { omitObject } from '../shared/utils';
+import { omitProps } from 'mytils';
 import Icon from '../Icon/Icon';
 import { MenuType, GroupType, ButtonTypes, ButtonGroupPropableValue } from './Button.type';
 
@@ -43,7 +43,7 @@ const Button = (props: ButtonTypes): React.ReactElement => {
         return (
           <AntdButton
             key={item.key || index}
-            {...omitObject(props, ['size', 'style', 'className', 'prefixCls'])}
+            {...omitProps(['size', 'style', 'className', 'prefixCls'], props)}
             onClick={(e) => {
               item.onClick && item.onClick(e);
               props.onChange && props.onChange(item.value || undefined);
