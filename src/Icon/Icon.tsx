@@ -13,10 +13,9 @@ class IconFontScript {
     this.scriptUrls = this.scriptUrls.concat(scripts as URL['href'][]);
   }
 }
-const newScript = new IconFontScript('//at.alicdn.com/t/font_1820833_rlvsnwpya0j.js');
-console.log(newScript.scriptUrls);
+const newScript = new IconFontScript('//at.alicdn.com/t/font_1820833_zgnaif28led.js');
 const Icon = createFromIconfont({
-  scriptUrl: [...newScript.scriptUrls, '//at.alicdn.com/t/font_1545707_47fjy8om7mg.js'],
+  scriptUrl: [...newScript.scriptUrls],
 });
 
 export const createIconFontScript = newScript.addIconFontScript;

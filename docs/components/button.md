@@ -160,13 +160,13 @@ const menuComponents = (
     onClick={(e) => {
       message.success(`哦呵？`, e);
     }}>
-    <Menu.Item key="1" icon={<Icon type="i-add" />}>
+    <Menu.Item key="1" icon={<Icon type="gutline_add" />}>
       毛血旺
     </Menu.Item>
-    <Menu.Item key="2" icon={<Icon type="i-add" />}>
+    <Menu.Item key="2" icon={<Icon type="gutline_add" />}>
       水煮鱼
     </Menu.Item>
-    <Menu.Item key="3" icon={<Icon type="i-add" />}>
+    <Menu.Item key="3" icon={<Icon type="gutline_add" />}>
       红烧肉
     </Menu.Item>
   </Menu>
@@ -176,19 +176,19 @@ const pureMenuList = [
     key: 1,
     text: '毛血旺',
     value: '毛血旺',
-    iconType: 'i-add',
+    iconType: 'gutline_add',
   },
   {
     key: 2,
     text: '水煮鱼',
     value: '水煮鱼',
-    iconType: 'i-add',
+    iconType: 'gutline_add',
   },
   {
     key: 3,
     text: '红烧肉',
     value: '红烧肉',
-    iconType: 'i-add',
+    iconType: 'gutline_add',
   },
 ];
 const App = () => {
@@ -200,7 +200,7 @@ const App = () => {
         <Button>次要</Button>
         <Dropdown overlay={menuComponents}>
           <Button>
-            减脂 <Icon type="i-add" />
+            减脂 <Icon type="gutline_add" />
           </Button>
         </Dropdown>
       </Space>
@@ -214,7 +214,7 @@ const App = () => {
           onChange={(value) => {
             message.success(`来一份${value}`);
           }}>
-          减脂 <Icon type="i-add" />
+          减脂 <Icon type="gutline_add" />
         </Button>
       </Space>
     </>
@@ -241,7 +241,7 @@ const group = [
     key: 1,
     text: '菜单1',
     value: 1,
-    leftIconType: 'i-play',
+    leftIconType: 'round_left_g',
   },
   {
     key: 2,
@@ -253,7 +253,7 @@ const group = [
     key: 3,
     text: '菜单3',
     value: 3,
-    rightIconType: 'i-danmu',
+    rightIconType: 'round_right_g',
   },
 ];
 const App = () => {
@@ -261,15 +261,16 @@ const App = () => {
     <>
       <h4>使用Button.Group组件的方式：</h4>
       <Button.Group>
-        <Button type="primary" icon={<Icon type="i-play" />}>
+        <Button type="primary" icon={<Icon type="round_left_g" />}>
           菜单1
         </Button>
         <Button>菜单2</Button>
         <Button type="primary">
           菜单3
-          <Icon type="i-danmu" />
+          <Icon type="round_right_g" />
         </Button>
       </Button.Group>
+      <Divider />
       <h4>使用group属性的方式：</h4>
       <Button
         group={group}
@@ -285,3 +286,12 @@ export default App;
 ```
 
 ## APIs
+
+## 优化内容
+
+- Button.Group 在 Antd 4.0 之后已经被官方建议移除(参见https://github.com/ant-design/ant-design/issues/21278)，但是实际上该需求被高频使用，所以我们基于原有 api 将他复原了回来。
+- 按照 Antd 官方的「菜单按钮」和「组合按钮」案例，需要 Dropdown、Menu、Button.Group 等各种组件联合使用才能实现。对此两种需求，我们分别添加`menu`和`group`属性，大大简化了实现路径。现在你可以通过下述方法实践：
+
+```
+<Button menu={oneMenuColumns}/>和<Button group={oneGroupColumns}/>
+```

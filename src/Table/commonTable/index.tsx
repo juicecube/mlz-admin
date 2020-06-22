@@ -1,38 +1,43 @@
 import React, { useState, useContext } from 'react';
-import { Table } from 'antd';
-import { PaginationProps } from 'antd/lib/pagination';
-import { IColumnTypes, ITableTypes } from './index.type';
+import { Table, Tooltip, Tag } from 'antd';
+import { formatUnixTime, getDataType } from 'mytils';
+import { formatPrice } from '@/shared/utils';
+import { IColumnTypes, ITableTypes, recordedType, EnumsType, TagEnumsType, SupporttedColumnTypes } from './index.type';
+// import 'index.less';
 
-// const typeFilter = () => {};
+export const typeFilter = {
+  normal: (value: any) => value || '--',
+  price: (value: number) => formatPrice(value),
+  date: (value: number) => formatUnixTime(value, 'YYYY/MM/DD'),
+  datetime: (value: number) => formatUnixTime(value),
+  enum: (value: number | string, enums?: TagEnumsType) => enums?.[value] || '--',
+  tag: (value: string, enums?: EnumsType) => {
+    const TagNode = <Tag color={enums?.[value]?.color}>{enums?.[value]?.text || '--'}</Tag>;
+    return enums?.[value]?.desc ? <Tooltip title={enums?.[value]?.desc}>{TagNode}</Tooltip> : TagNode;
+  },
+};
 
-// const genRenderNode = (value, column, record) => {
-//   let { type = 'normal' } = column;
-//   return type === 'encodedPhone' ? typeFilter.encodedPhone(value, record, column) : typeFilter[type](value, column);
-// };
+const renderNode = (type: SupporttedColumnTypes = 'normal', value: any, column: IColumnTypes<recordedType>) => {
+  return ['enum', 'tag'].includes(type) ? typeFilter[type](value, column?.enums as Record<string, any>) : typeFilter[type](value);
+};
 
-// const transformColumns = ($columns: IColumnTypes<unknown>[]) => {
-//   return $columns.map((column) => {
-//     let { render, ...others } = column;
-//     if (!render) {
-//       render = (value, record) => {
-//         return genRenderNode(value, column, record);
-//       };
-//     }
-//     return {
-//       ...others,
-//       render,
-//     };
-//   });
-// };
+const formatColumns = ($columns: IColumnTypes<any>[]) => {
+  return $columns.map((column) => {
+    const { type, ...others } = column;
+    let { render } = column;
+    if (!render) {
+      render = (value) => renderNode(type as SupporttedColumnTypes, value, column);
+    }
+    return {
+      ...others,
+      render,
+    };
+  });
+};
 
-// const BaseTable: React.FC<ITableTypes<unknown>> = (props: ITableTypes<unknown>) => {
-//   const handlePageChange = (current: number, limit: number) => {
-//     props.onPageChange?.({ current, limit });
-//   };
-//   const { dataSource, total, limit, current, loading = false, columns, pagination, rowKey = 'id', ...others } = props;
-//   const transformedColumns = transformColumns(columns);
-//   const paginationConfig: PaginationProps | false = pagination || false;
-//   return <Table rowKey={rowKey} columns={transformedColumns} dataSource={dataSource} pagination={paginationConfig} loading={loading} {...others} />;
-// };
+const CommonTable = (props: ITableTypes<any>) => {
+  const { columns, pagination, rowKey = 'id', ...others } = props;
+  return <Table rowKey={rowKey} columns={formatColumns(columns)} pagination={pagination || false} {...others} />;
+};
 
-// export default BaseTable;
+export default CommonTable;

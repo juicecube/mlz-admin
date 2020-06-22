@@ -4,8 +4,8 @@ import { Space } from 'antd';
 
 export default () => (
   <Space size={50}>
-    <Icon type="ico_suggest_gift_l" style={{ color: 'red' }} />
+    <Icon type="ico_suggest_gift_l" />
     <Icon type="i-mute" />
-    <Icon type="i-danmu" style={{ color: 'red' }} />
+    <Icon type="i-danmu" />
   </Space>
 );

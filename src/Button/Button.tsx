@@ -34,7 +34,10 @@ const Button = (props: ButtonTypes): React.ReactElement => {
             })}
           </Menu>
         }>
-        <Button>{props.children}</Button>
+        <Button {...omitProps(['menu'], props)}>
+          <Icon type="arrow_down" />
+          {props.children}
+        </Button>
       </Dropdown>
     )
   ) : (

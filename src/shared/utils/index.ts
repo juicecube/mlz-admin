@@ -1,6 +1,6 @@
 const __DEV__ = (window as any).__DEV__ !== 'false';
 
-// 🔧 预测columns可能的primary key
+// 预测columns可能的primary key
 export const guessPrimaryKey = ($columns: any[]): string | undefined => {
   if (!$columns) {
     return;
@@ -30,4 +30,9 @@ export const guessPrimaryKey = ($columns: any[]): string | undefined => {
     }
     return $columns[indexa]?.dataIndex;
   }
+};
+
+// 数字转金额
+export const formatPrice = (price: number) => {
+  return price && price.toString().includes('.') ? `¥ ${price}` : `¥ ${price}.00`;
 };
