@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
-import { Table as AntdTable } from 'antd';
+import CommonTable from './commonTable';
 
-const Table = AntdTable;
+const Table = CommonTable;
 
 export default Table;

@@ -4,7 +4,7 @@ import { Space } from 'antd';
 
 export default () => (
   <Space size={50}>
-    <Icon type="i-play" />
+    <Icon type="ico_suggest_gift_l" />
     <Icon type="i-mute" />
     <Icon type="i-danmu" />
   </Space>

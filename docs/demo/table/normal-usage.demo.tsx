@@ -4,43 +4,63 @@
  */
 import React from 'react';
 import Table from '@/Table/Table';
+import Button from '@/Button/Button';
 import axios from 'axios';
 
 const columns = [
   {
-    title: '名称',
+    title: 'Normal',
     dataIndex: 'desc',
     ellipsis: true,
-    width: 350,
     primary: true,
   },
   {
-    title: '状态',
+    title: 'Enum',
     dataIndex: 'status',
-    valueType: 'tag' as const,
-    valueEnum: {
-      all: { text: '全部', status: 'Default' },
-      close: { text: '售罄', status: 'Error' },
-      running: { text: '补货中', status: 'Processing' },
-      online: { text: '正在销售', status: 'Success' },
-      error: { text: '库存不足', status: 'Warning' },
-    } as const,
+    type: 'enum',
+    enums: {
+      all: '全部',
+      close: '售罄',
+      running: '补货中',
+      online: '正在销售',
+      error: '库存不足',
+    },
   },
   {
-    title: '创建时间',
-    dataIndex: 'createdAt',
-    valueType: 'dateTime' as const,
-  },
-  {
-    title: '更新时间',
-    dataIndex: 'createdAt',
-    valueType: 'date' as const,
+    title: 'Tag',
+    dataIndex: 'status',
+    type: 'tag',
+    enums: {
+      all: { text: '全部', color: 'magenta' },
+      close: { text: '售罄', color: 'red' },
+      running: { text: '补货中', color: 'volcano', desc: 'testDesc' },
+      online: { text: '正在销售', color: 'orange' },
+      error: { text: '库存不足', color: 'gold' },
+    },
   },
   {
     title: '操作',
-    valueType: 'option' as const,
-    width: 120,
-    render: () => [<a>设置</a>, <a>下架</a>],
+    render: () => [
+      <a>检查</a>,
+      <Button
+        type="primary"
+        menu={[
+          {
+            key: 1,
+            text: '暂时关闭',
+            value: 'temp',
+            iconType: 'gutline_error',
+          },
+          {
+            key: 2,
+            text: '永久关闭',
+            value: 'forever',
+            iconType: 'gutline_error',
+          },
+        ]}>
+        关闭
+      </Button>,
+    ],
   },
 ];
 
@@ -54,36 +74,23 @@ class App extends React.PureComponent {
     this.fetchData();
   }
 
-  fetchData = (params?: { current: number; limit: number }) => {
+  fetchData = async (params?: { current: number; limit: number }) => {
     this.setState({ loading: true });
-    axios
-      .get('http://rap2.taobao.org:38080/app/mock/252468/admini/table-demo', {
-        method: 'get',
-        params: params || {
-          current: 1,
-          limit: 10,
-        },
-      })
-      .then((res: any) => {
-        const { data } = res;
-        this.setState({
-          data: data.items,
-          loading: false,
-        });
-      });
+    const { data } = await axios.get('http://rap2.taobao.org:38080/app/mock/252468/admini/table-demo', {
+      method: 'get',
+      params: params || {
+        current: 1,
+        limit: 10,
+      },
+    });
+    this.setState({
+      data: data.items,
+      loading: false,
+    });
   };
 
   render() {
-    return (
-      <Table
-        columns={columns}
-        dataSource={this.state.data}
-        loading={this.state.loading}
-        onChange={(pgn: any) => {
-          this.fetchData(pgn);
-        }}
-      />
-    );
+    return <Table columns={columns} dataSource={this.state.data} loading={this.state.loading} onChange={(pgn: any) => this.fetchData(pgn)} />;
   }
 }
 

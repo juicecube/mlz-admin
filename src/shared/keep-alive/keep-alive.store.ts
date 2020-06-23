@@ -19,7 +19,7 @@ class AlivesStore {
     }
     const tnow = new Date().valueOf();
     this.stackChecker();
-    // TODO 暂时不支持历史功能
+    // TODO 暂时不支持历史回溯功能
     this.snapshots.set(name, {
       shootedTime: tnow,
       payload: $args.length === 1 ? $args[0] : $args,
@@ -37,8 +37,7 @@ class AlivesStore {
     if ($key) {
       return this.snapshots.get($key);
     } else {
-      console.error('必须指定一个keep-alive的name索引');
-      return undefined;
+      throw new Error('必须指定一个keep-alive的name索引');
     }
   };
 }
