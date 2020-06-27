@@ -12,6 +12,7 @@
     "removeComments": true,
     "skipLibCheck": true,
     "declaration": true,
+    "noImplicitAny": false,
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"],

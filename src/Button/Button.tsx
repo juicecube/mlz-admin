@@ -9,7 +9,7 @@ import { MenuType, GroupType, ButtonTypes, ButtonGroupPropableValue } from './Bu
 const calcValues = ($menuClickEvent: ClickParam, $menu: MenuType[]): ButtonGroupPropableValue | ButtonGroupPropableValue[] => {
   const identifier = 'no value/@mlz-admin/identifier';
   const values = $menu.reduce((prev: ButtonGroupPropableValue | ButtonGroupPropableValue[], curr) => {
-    // 必须使用特定的字符串，而不是null或undefined，因为
+    // 必须使用特的定字符串，而不是null或undefined，因为
     // 用户可能想要的值就是它们
     return prev.concat([curr.key.toString() === $menuClickEvent.key ? curr.value : identifier]);
   }, []);
