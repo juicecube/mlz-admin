@@ -26,6 +26,8 @@ jobs:
 
       - name: setup dependencies
         run: npm install
+        env:
+          CI: true
 
   bundleSize: 
     runs-on: ubuntu-latest
