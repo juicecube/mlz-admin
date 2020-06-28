@@ -20,7 +20,7 @@
     "lint:es": "npx eslint --ext tsx,ts,js src docs/demo",
     "lint:ts": "tsc --project ./tsconfig.lint.json",
     "lint:style": "stylelint 'src/**/*.less' --syntax less",
-    "test": "jest ./src -c --coverage",
+    "test": "dumi test --coverage",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "version": "node ./scripts/versioning",
     "clean": "rm -rf es lib dist .tsc-check",
