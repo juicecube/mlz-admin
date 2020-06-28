@@ -9,6 +9,7 @@ jobs:
       matrix:
         node-version: [10.20.x] 
     steps:
+      - name: checkout
       - uses: actions/checkout@master
 
       - name: cache node_modules
@@ -33,6 +34,7 @@ jobs:
         node-version: [10.20.x] 
     needs: install
     steps:
+      - name: checkout
       - uses: actions/checkout@master
         
       - name: restore cached node_modules
@@ -55,6 +57,7 @@ jobs:
         node-version: [10.20.x] 
     needs: install
     steps:
+      - name: checkout
       - uses: actions/checkout@master
         
       - name: restore cached node_modules
