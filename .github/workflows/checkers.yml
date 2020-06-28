@@ -1,4 +1,4 @@
-name: PR checker
+name: checker
 
 on: [pull_request,push]
 
@@ -10,7 +10,12 @@ jobs:
         node-version: [10.20.x] 
     steps:
       - name: checkout
-      - uses: actions/checkout@master
+        uses: actions/checkout@master
+
+      - name: setup node ${{ matrix.node-version }}
+        uses: actions/setup-node@master
+        with:
+          node-version: ${{ matrix.node-version }}
 
       - name: cache node_modules
         uses: actions/cache@v1
@@ -32,10 +37,9 @@ jobs:
     strategy:
       matrix:
         node-version: [10.20.x] 
-    needs: install
     steps:
       - name: checkout
-      - uses: actions/checkout@master
+        uses: actions/checkout@master
         
       - name: restore cached node_modules
         uses: actions/cache@v1
@@ -44,21 +48,21 @@ jobs:
           key: node_modules-${{ hashFiles('**/package-temp-dir/package-lock.json') }}
 
       - name: run bundleSize checker
-      - uses: sarthak-saxena/JSBundleSize@master
+        uses: sarthak-saxena/JSBundleSize@master
         with:
           build_command: npm run dist
           dist_path: 'dist'
           token: ${{ secrets.GITHUB_TOKEN }}
+    needs: install
 
   codecov: 
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [10.20.x] 
-    needs: install
     steps:
       - name: checkout
-      - uses: actions/checkout@master
+        uses: actions/checkout@master
         
       - name: restore cached node_modules
         uses: actions/cache@v1
@@ -67,10 +71,11 @@ jobs:
           key: node_modules-${{ hashFiles('**/package-temp-dir/package-lock.json') }}
 
       - name: run codecov reporter
-      - uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: ./clover.xml
           flags: uitests,unittest
           name: mlz-admin
           fail_ci_if_error: true
+    needs: install
