@@ -3,6 +3,7 @@ name: checker
 on: [pull_request,push]
 
 jobs:
+  # 创建node_modules缓存
   install: 
     runs-on: ubuntu-latest
     strategy:
@@ -20,14 +21,10 @@ jobs:
       - name: cache node_modules
         uses: actions/cache@v1
         env:
-          cache-name: cache-node-modules
+          cache-name: cached-node-modules
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+          key: build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: setup dependencies
         run: npm install
@@ -41,11 +38,14 @@ jobs:
       - name: checkout
         uses: actions/checkout@master
         
+      # 转移缓存
       - name: restore cached node_modules
         uses: actions/cache@v1
+        env:
+          cache-name: cached-node-modules
         with:
-          path: node_modules
-          key: node_modules-${{ hashFiles('**/package-temp-dir/package-lock.json') }}
+          path: ~/.npm
+          key: build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: run bundleSize checker
         uses: sarthak-saxena/JSBundleSize@master
@@ -64,11 +64,14 @@ jobs:
       - name: checkout
         uses: actions/checkout@master
         
+      # 转移缓存
       - name: restore cached node_modules
         uses: actions/cache@v1
+        env:
+          cache-name: cached-node-modules
         with:
-          path: node_modules
-          key: node_modules-${{ hashFiles('**/package-temp-dir/package-lock.json') }}
+          path: ~/.npm
+          key: build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: run codecov reporter
         uses: codecov/codecov-action@v1
