@@ -39,6 +39,7 @@ jobs:
 
   bundleSize: 
     runs-on: ubuntu-latest
+    needs: install
     steps:
       - name: checkout
         uses: actions/checkout@master
@@ -58,10 +59,10 @@ jobs:
           build_command: npm run dist
           dist_path: 'dist'
           token: ${{ secrets.GITHUB_TOKEN }}
-    needs: install
 
   codecov: 
     runs-on: ubuntu-latest
+    needs: install
     steps:
       - name: checkout
         uses: actions/checkout@master
@@ -75,11 +76,12 @@ jobs:
           path: ~/.npm
           key: build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
 
+      - name: unit(component) test
+        run: npm run test:coverage
+
       - name: run codecov reporter
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          flags: uitests,unittest
           name: mlz-admin
           fail_ci_if_error: true
-    needs: install
