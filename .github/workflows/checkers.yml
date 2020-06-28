@@ -26,16 +26,16 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: install dependencies
-        run: npm install
-
       - name: cache node_modules
         uses: actions/cache@v1
         env:
           cache-name: cached-node-modules
         with:
-          path: node_modules
-          key: build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+
+      - name: install dependencies
+        run: npm install
 
   bundleSize: 
     runs-on: ubuntu-latest
@@ -50,8 +50,8 @@ jobs:
         env:
           cache-name: cached-node-modules
         with:
-          path: node_modules
-          key: build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: run bundleSize checker
         uses: sarthak-saxena/JSBundleSize@master
@@ -74,7 +74,7 @@ jobs:
           cache-name: cached-node-modules
         with:
           path: ~/.npm
-          key: build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: unit(component) test
         run: npm run test:coverage
