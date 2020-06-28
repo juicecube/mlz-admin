@@ -1,3 +1,5 @@
+# travis用来对 包大小变化 + 代码质量 + 测试覆盖率 进行提报。
+# npm一套的构建流水在github actions上进行。
 sudo: false
 
 language: node_js
@@ -12,7 +14,7 @@ install:
   - "npm install codecov -g"
 
 script:
-  - "npm run test && npm run test:webpack"
+  - "npm run test"
   - "codecov"
 
 matrix:
@@ -26,4 +28,4 @@ matrix:
     - env: TEST_TYPE=test:node
 
 script:
-  - scripts/travis-script.sh
+  - bin/travis.sh
