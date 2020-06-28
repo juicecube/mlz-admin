@@ -26,6 +26,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: install dependencies
+        run: npm install
+
       - name: cache node_modules
         uses: actions/cache@v1
         env:
@@ -33,9 +36,6 @@ jobs:
         with:
           path: ~/.npm
           key: build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-
-      - name: setup dependencies
-        run: npm install
 
   bundleSize: 
     runs-on: ubuntu-latest
