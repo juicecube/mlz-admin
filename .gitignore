@@ -1,7 +1,8 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 # IDE
 /.vscode/
 /.idea/
+.DS_Store
+.env*
 
 # dependencies
 /node_modules
@@ -15,8 +16,6 @@ yarn.lock
 /es
 /lib
 /build
-.DS_Store
-.env*
 *.tgz
 
 # umi
@@ -29,3 +28,8 @@ yarn.lock
 /coverage
 /tsc
 /.tsc-check
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

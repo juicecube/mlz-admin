@@ -1,8 +1,17 @@
 name: checker
 
-on: [pull_request,push]
+on: 
+  push:
+    branches:
+      - master
+      - staging
+      - feature
+      - 'sprint@*'
+  pull_request:
+    types: [opened,reopened]
 
 jobs:
+  # 创建node_modules缓存
   install: 
     runs-on: ubuntu-latest
     strategy:
@@ -19,24 +28,17 @@ jobs:
 
       - name: cache node_modules
         uses: actions/cache@v1
-        env:
-          cache-name: cache-node-modules
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
+          path: node_modules
+          key: ${{ runner.os }}-cached-node-modules-${{ hashFiles('**/package-lock.json') }}
 
-      - name: setup dependencies
+      - name: install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: npm install
 
   bundleSize: 
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [10.20.x] 
+    needs: install
     steps:
       - name: checkout
         uses: actions/checkout@master
@@ -45,7 +47,7 @@ jobs:
         uses: actions/cache@v1
         with:
           path: node_modules
-          key: node_modules-${{ hashFiles('**/package-temp-dir/package-lock.json') }}
+          key: ${{ runner.os }}-cached-node-modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: run bundleSize checker
         uses: sarthak-saxena/JSBundleSize@master
@@ -53,13 +55,10 @@ jobs:
           build_command: npm run dist
           dist_path: 'dist'
           token: ${{ secrets.GITHUB_TOKEN }}
-    needs: install
 
   codecov: 
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [10.20.x] 
+    needs: install
     steps:
       - name: checkout
         uses: actions/checkout@master
@@ -68,14 +67,14 @@ jobs:
         uses: actions/cache@v1
         with:
           path: node_modules
-          key: node_modules-${{ hashFiles('**/package-temp-dir/package-lock.json') }}
+          key: ${{ runner.os }}-cached-node-modules-${{ hashFiles('**/package-lock.json') }}
+
+      - name: unit(component) test
+        run: npm run test:coverage
 
       - name: run codecov reporter
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./clover.xml
-          flags: uitests,unittest
           name: mlz-admin
           fail_ci_if_error: true
-    needs: install
