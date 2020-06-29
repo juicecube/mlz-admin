@@ -31,7 +31,7 @@ jobs:
         env:
           cache-name: cached-node-modules
         with:
-          path: ~/.npm                                     
+          path: '**/node_modules'                                    
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: install dependencies
@@ -50,7 +50,7 @@ jobs:
         env:
           cache-name: cached-node-modules
         with:
-          path: ~/.npm
+          path: '**/node_modules'
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: run bundleSize checker
@@ -73,7 +73,7 @@ jobs:
         env:
           cache-name: cached-node-modules
         with:
-          path: ~/.npm
+          path: '**/node_modules'
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: unit(component) test
