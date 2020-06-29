@@ -11,7 +11,6 @@ on:
     types: [opened,reopened]
 
 jobs:
-  # 创建node_modules缓存
   install: 
     runs-on: ubuntu-latest
     strategy:
@@ -52,6 +51,7 @@ jobs:
       - name: run bundleSize checker
         uses: sarthak-saxena/JSBundleSize@master
         with:
+          bootstrap: npm install
           build_command: npm run dist
           dist_path: 'dist'
           token: ${{ secrets.GITHUB_TOKEN }}
