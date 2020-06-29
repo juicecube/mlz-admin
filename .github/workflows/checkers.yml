@@ -51,6 +51,7 @@ jobs:
       - name: run bundleSize checker
         uses: sarthak-saxena/JSBundleSize@master
         with:
+          bootstrap: npm install
           build_command: npm run dist
           dist_path: 'dist'
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -95,4 +96,3 @@ jobs:
         uses: codacy/codacy-coverage-reporter-action@master
         with:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-          coverage-reports: cobertura.xml
