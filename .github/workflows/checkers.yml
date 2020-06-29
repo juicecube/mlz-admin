@@ -27,14 +27,13 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: cache node_modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cached-node-modules
+        uses: actions/cache@v1
         with:
-          path: '**/node_modules'                                    
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          path: node_modules
+          key: ${{ runner.os }}-cached-node-modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: npm install
 
   bundleSize: 
@@ -44,14 +43,11 @@ jobs:
       - name: checkout
         uses: actions/checkout@master
         
-      # 转移缓存
       - name: restore cached node_modules
         uses: actions/cache@v1
-        env:
-          cache-name: cached-node-modules
         with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          path: node_modules
+          key: ${{ runner.os }}-cached-node-modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: run bundleSize checker
         uses: sarthak-saxena/JSBundleSize@master
@@ -67,14 +63,11 @@ jobs:
       - name: checkout
         uses: actions/checkout@master
         
-      # 转移缓存
       - name: restore cached node_modules
         uses: actions/cache@v1
-        env:
-          cache-name: cached-node-modules
         with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          path: node_modules
+          key: ${{ runner.os }}-cached-node-modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: unit(component) test
         run: npm run test:coverage
