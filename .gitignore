@@ -24,7 +24,7 @@ yarn.lock
 .umi-test
 .env.local
 
-# testing
+# testing and checking
 /coverage
 /tsc
 /.tsc-check
