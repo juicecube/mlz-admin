@@ -18,6 +18,7 @@ export interface ButtonTypes extends ButtonProps {
   menu?: MenuType[];
   group?: GroupType[];
   onChange?: (e: ButtonGroupPropableValue) => void;
+  onClick?: (params: any) => void & React.MouseEventHandler<HTMLElement>;
 }
 export type ButtonGroupTypes = {
   children: React.ReactNode;

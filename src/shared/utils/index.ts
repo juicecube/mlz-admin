@@ -3,7 +3,7 @@ const __DEV__ = (window as any).__DEV__ !== 'false';
 // 预测columns可能的primary key
 export const guessPrimaryKey = ($columns: any[]): string | undefined => {
   if (!$columns) {
-    return;
+    throw new Error('必须有待判断的columns数组参数');
   }
   const probables = $columns.filter((column) => column.primary === true);
   if (probables.length > 0) {
@@ -33,6 +33,10 @@ export const guessPrimaryKey = ($columns: any[]): string | undefined => {
 };
 
 // 数字转金额
+// TODO： locale和precision后续再加
 export const formatPrice = (price: number) => {
-  return price && price.toString().includes('.') ? `¥ ${price}` : `¥ ${price}.00`;
+  if (!price) {
+    throw new Error(`必须输入参数数字`);
+  }
+  return price && price?.toString()?.includes('.') ? `¥ ${price}` : `¥ ${price}.00`;
 };

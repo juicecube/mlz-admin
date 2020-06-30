@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
-import { Button as AntdButton, Dropdown, Menu } from 'antd';
+import { Button as AntdButton, Dropdown } from 'antd';
+import Menu from '@/Menu/Menu';
 import { ClickParam } from 'antd/lib/menu/index.d';
 import { default as AntdButtonGroup } from 'antd/es/button/button-group';
 import { omitProps } from 'mytils';
@@ -24,7 +25,11 @@ const Button = (props: ButtonTypes): React.ReactElement => {
     ) : (
       <Dropdown
         overlay={
-          <Menu onClick={(e: ClickParam) => props.onChange && props.onChange(calcValues(e, menu))}>
+          <Menu
+            onClick={(e: ClickParam) => {
+              props?.onChange?.(calcValues(e, menu));
+              props?.onClick?.(Object.assign(e, { target: { value: calcValues(e, menu) } }));
+            }}>
             {menu?.map((item, index) => {
               return (
                 <Menu.Item key={item.key || index} icon={item.iconType ? <Icon type={item?.iconType} /> : undefined}>
@@ -34,10 +39,7 @@ const Button = (props: ButtonTypes): React.ReactElement => {
             })}
           </Menu>
         }>
-        <Button {...omitProps(['menu'], props)}>
-          <Icon type="arrow_down" />
-          {props.children}
-        </Button>
+        <Button {...omitProps(['menu'], props)}>{props.children}</Button>
       </Dropdown>
     )
   ) : (
@@ -48,7 +50,7 @@ const Button = (props: ButtonTypes): React.ReactElement => {
             key={item.key || index}
             {...omitProps(['size', 'style', 'className', 'prefixCls'], props)}
             onClick={(e) => {
-              item.onClick && item.onClick(e);
+              item?.onClick?.(Object.assign(e, { target: { value: calcValues(e, menu) } }));
               props.onChange && props.onChange(item.value || undefined);
             }}
             type={item.type || props.type}>

@@ -213,7 +213,11 @@ const App = () => {
           menu={pureMenuList}
           onChange={(value) => {
             message.success(`来一份${value}`);
-          }}>
+          }}
+          onClick={(e) => {
+            console.log(e);
+          }}
+          type="primary">
           减脂 <Icon type="gutline_add" />
         </Button>
       </Space>
