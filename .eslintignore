@@ -6,3 +6,4 @@
 **/_vendor/**/*
 /tests/
 **/*.test.js
+**/*.md
