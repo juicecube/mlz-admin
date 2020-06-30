@@ -1,8 +1,9 @@
 codecov:
-  branch: master
+  notify: 
+    wait_for_ci: yes
 
 coverage:
   status:
     project:
       default:
-        threshold: 0.1
+        threshold: 0.15

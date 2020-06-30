@@ -2,32 +2,37 @@
   "name": "@mlz/admin",
   "version": "0.0.11",
   "description": "一套编程猫设计规范下的管理系统React组件库，基于Antd",
+  "license": "MIT",
   "keywords": [
     "react",
     "components",
     "codemao"
   ],
+  "contributors": [
+    "juicecube"
+  ],
   "scripts": {
     "start": "dumi dev",
+    "build": "dumi build",
     "dist": "father-build",
     "dist:es": "npx ttsc --project ./tsconfig.dist.json -d -m esnext --outDir es --sourceMap false --inlineSources false",
     "dist:cjs": "npx ttsc --project ./tsconfig.dist.json -d -m commonjs --outDir lib --sourceMap false --inlineSources false",
     "dist:tsc": "rm -rf es lib dist && npm run dist:cjs && npm run dist:es",
-    "test": "umi-test",
-    "test:coverage": "umi-test --coverage",
-    "build": "dumi build",
+    "serve": "node scripts/serve.js",
     "lint": "npm run lint:ts && npm run lint:es",
     "lint:esFix": "npx eslint --ext tsx,ts,js src --fix",
     "lint:es": "npx eslint --ext tsx,ts,js src docs/demo",
     "lint:ts": "tsc --project ./tsconfig.lint.json",
     "lint:style": "stylelint 'src/**/*.less' --syntax less",
+    "test": "dumi test",
+    "test:coverage": "dumi test --coverage",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "version": "node ./scripts/versioning",
-    "serve": "node scripts/serve.js",
     "clean": "rm -rf es lib dist .tsc-check"
   },
   "module": "es/index.js",
   "main": "lib/index.js",
+  "unpkg": "dist/mlz-admin.min.js",
   "typings": "lib/index.d.ts",
   "files": [
     "lib",
@@ -57,8 +62,8 @@
     "react": "^16.12.0"
   },
   "peerDependencies": {
-    "react": "^16.12.0",
-    "antd": "^4.1.5"
+    "react": ">=16.12.0",
+    "antd": ">=4.1.5"
   },
   "devDependencies": {
     "@types/enzyme": "^3.10.5",
@@ -106,5 +111,8 @@
     "type": "git",
     "url": "https://github.com/juicecube/mlz-admin"
   },
-  "homepage": "https://milobluebell.github.io/mytils"
+  "homepage": "https://milobluebell.github.io/mytils",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  }
 }
