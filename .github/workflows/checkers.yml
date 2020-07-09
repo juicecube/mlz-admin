@@ -75,7 +75,10 @@ jobs:
           timezone: Asia/Shanghai
 
       - name: unit(component) test
-        run: npm run test:coverage
+        run: npm run test
+
+      - name: check coverage limitation of coverage
+        run: npm run test:limit
 
       - name: run codecov reporter
         uses: codecov/codecov-action@v1
