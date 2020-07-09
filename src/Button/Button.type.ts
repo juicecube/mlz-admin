@@ -14,10 +14,8 @@ export interface GroupType {
 }
 export type MenuType = { iconType?: string } & Exclude<GroupType, 'leftIconType' | 'rightIconType' | 'type' | 'onClick'>;
 
-export interface ButtonTypes extends ButtonProps {
-  menu?: MenuType[];
+export interface IButtonProps extends ButtonProps {
   group?: GroupType[];
-  onChange?: (e: ButtonGroupPropableValue) => void;
   onClick?: (params: any) => void & React.MouseEventHandler<HTMLElement>;
 }
 export type ButtonGroupTypes = {

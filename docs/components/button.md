@@ -139,96 +139,7 @@ const App = () => {
 export default App;
 ```
 
-## 5. 菜单按钮
-
-```tsx
-/**
- * title: 菜单按钮
- * desc: 按钮组合使用时，推荐使用 1 个主操作 + n 个次操作，3 个以上操作时把更多操作放到菜单按钮中组合使用。🚗可以通过两种方式使用`菜单按钮`功能，一种是使用Dropdown + Menu实现，另一种是为Button组件传入menu属性。
- */
-import React from 'react';
-import Icon from '@/Icon/Icon';
-import Button from '@/Button/Button';
-import { Divider, Dropdown, Menu, message, Space } from 'antd';
-
-const handleMenuClick = () => {
-  message.info('哦呵？');
-};
-
-const menuComponents = (
-  <Menu
-    onClick={(e) => {
-      message.success(`哦呵？`, e);
-    }}>
-    <Menu.Item key="1" icon={<Icon type="gutline_add" />}>
-      毛血旺
-    </Menu.Item>
-    <Menu.Item key="2" icon={<Icon type="gutline_add" />}>
-      水煮鱼
-    </Menu.Item>
-    <Menu.Item key="3" icon={<Icon type="gutline_add" />}>
-      红烧肉
-    </Menu.Item>
-  </Menu>
-);
-const pureMenuList = [
-  {
-    key: 1,
-    text: '毛血旺',
-    value: '毛血旺',
-    iconType: 'gutline_add',
-  },
-  {
-    key: 2,
-    text: '水煮鱼',
-    value: '水煮鱼',
-    iconType: 'gutline_add',
-  },
-  {
-    key: 3,
-    text: '红烧肉',
-    value: '红烧肉',
-    iconType: 'gutline_add',
-  },
-];
-const App = () => {
-  return (
-    <>
-      <h4>使用Dropdown+Button+Menu组件的方式：</h4>
-      <Space size={5}>
-        <Button type="primary">主要</Button>
-        <Button>次要</Button>
-        <Dropdown overlay={menuComponents}>
-          <Button>
-            减脂 <Icon type="gutline_add" />
-          </Button>
-        </Dropdown>
-      </Space>
-      <Divider />
-      <h4>使用menu属性的方式：</h4>
-      <Space size={5}>
-        <Button type="primary">主要</Button>
-        <Button>次要</Button>
-        <Button
-          menu={pureMenuList}
-          onChange={(value) => {
-            message.success(`来一份${value}`);
-          }}
-          onClick={(e) => {
-            console.log(e);
-          }}
-          type="primary">
-          减脂 <Icon type="gutline_add" />
-        </Button>
-      </Space>
-    </>
-  );
-};
-
-export default App;
-```
-
-## 6. 组合按钮
+## 5. 组合按钮
 
 ```tsx
 /**
@@ -238,32 +149,32 @@ export default App;
 import React from 'react';
 import Icon from '@/Icon/Icon';
 import Button from '@/Button/Button';
-import { Divider, Dropdown, Menu, message, Space } from 'antd';
+import { Divider, Dropdown, message, Space } from 'antd';
 
 const group = [
   {
     key: 1,
     text: '菜单1',
-    value: 1,
+    value: '11',
     leftIconType: 'round_left_g',
   },
   {
     key: 2,
     text: '菜单2',
-    value: 2,
+    value: '22',
     type: 'default',
   },
   {
     key: 3,
     text: '菜单3',
-    value: 3,
+    value: '33',
     rightIconType: 'round_right_g',
   },
 ];
 const App = () => {
   return (
     <>
-      <h4>使用Button.Group组件的方式：</h4>
+      <h4>使用Antd的 Button.Group组件的方式：</h4>
       <Button.Group>
         <Button type="primary" icon={<Icon type="round_left_g" />}>
           菜单1
@@ -278,8 +189,8 @@ const App = () => {
       <h4>使用group属性的方式：</h4>
       <Button
         group={group}
-        onChange={(e) => {
-          message.success(`菜单${e}`);
+        onClick={(e) => {
+          message.success(`菜单${e.value}`);
         }}
         type="primary"></Button>
     </>

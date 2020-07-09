@@ -8,5 +8,5 @@ module.exports = {
     '^@/(.*)$': '<rootDir>/src/$1',
     '^@@/(.*)$': '<rootDir>/src/.umi/$1',
   },
-  testPathIgnorePatterns: ['/node_modules/', '/src/shared/utils'],
+  testPathIgnorePatterns: ['/node_modules/'],
 };

@@ -9,13 +9,23 @@ import axios from 'axios';
 
 const columns = [
   {
-    title: 'Normal',
-    dataIndex: 'desc',
-    ellipsis: true,
+    title: 'Name',
+    dataIndex: 'name',
     primary: true,
   },
   {
-    title: 'Enum',
+    title: 'Desc',
+    dataIndex: 'desc',
+    ellipsis: true,
+    width: 250,
+  },
+  {
+    title: 'Cost',
+    dataIndex: 'money',
+    type: 'price',
+  },
+  {
+    title: 'Status',
     dataIndex: 'status',
     type: 'enum',
     enums: {
@@ -27,7 +37,7 @@ const columns = [
     },
   },
   {
-    title: 'Tag',
+    title: 'Forwards',
     dataIndex: 'status',
     type: 'tag',
     enums: {
@@ -41,23 +51,8 @@ const columns = [
   {
     title: '操作',
     render: () => [
-      <a>检查</a>,
-      <Button
-        type="primary"
-        menu={[
-          {
-            key: 1,
-            text: '暂时关闭',
-            value: 'temp',
-            iconType: 'gutline_error',
-          },
-          {
-            key: 2,
-            text: '永久关闭',
-            value: 'forever',
-            iconType: 'gutline_error',
-          },
-        ]}>
+      <a key={1}>检查</a>,
+      <Button key={2} type="primary">
         关闭
       </Button>,
     ],
@@ -90,7 +85,7 @@ class App extends React.PureComponent {
   };
 
   render() {
-    return <Table columns={columns} dataSource={this.state.data} loading={this.state.loading} onChange={(pgn: any) => this.fetchData(pgn)} />;
+    return <Table columns={columns} dataSource={this.state.data} loading={this.state.loading} />;
   }
 }
 

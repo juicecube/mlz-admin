@@ -10,11 +10,11 @@ describe('formatPrice', function() {
   // 整型
   it('render within an integer input params', function() {
     const chars = 12;
-    expect(getByteLength(chars)).toBe('¥ 12.00');
+    expect(formatPrice(chars)).toBe('¥ 12.00');
   });
 
   // 报错
-  it('throw a correct error reminder without any params', function() {
-    expect(getByteLength()).toThrow('必须输入参数数字');
+  it('throw a correct error without params', function() {
+    expect(() => formatPrice()).toThrow('必须输入参数数字');
   });
 });

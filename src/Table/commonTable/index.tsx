@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Table, Tooltip, Tag } from 'antd';
 import { formatUnixTime, getDataType } from 'mytils';
-import { formatPrice } from '@/shared/utils';
+import { formatPrice, guessPrimaryKey } from '@/shared/utils';
 import { IColumnTypes, ITableTypes, recordedType, EnumsType, TagEnumsType, SupporttedColumnTypes } from './index.type';
 // import 'index.less';
 
@@ -36,8 +36,8 @@ const formatColumns = ($columns: IColumnTypes<any>[]) => {
 };
 
 const CommonTable = (props: ITableTypes<any>) => {
-  const { columns, pagination, rowKey = 'id', ...others } = props;
-  return <Table rowKey={rowKey} columns={formatColumns(columns)} pagination={pagination || false} {...others} />;
+  const { columns = [], pagination, rowKey, ...others } = props;
+  return <Table rowKey={rowKey || (columns.length > 0 ? guessPrimaryKey(columns) : null) || 'id'} columns={formatColumns(columns)} pagination={pagination || false} {...others} />;
 };
 
 export default CommonTable;

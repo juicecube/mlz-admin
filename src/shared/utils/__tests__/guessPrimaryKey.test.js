@@ -1,6 +1,6 @@
 import { guessPrimaryKey } from '..';
 
-const columnsWithPrimaryKey = [
+const columnsWithSpecifiedPrimaryKey = [
   {
     title: '用户Id',
     dataIndex: 'user_id',
@@ -38,18 +38,26 @@ const columnsWithGuessingKeyWord = [
 ];
 
 describe('guessPrimaryKey', function() {
-  // 没有columns参数，则抛出异常
-  it('without columns params', function() {
-    expect(guessPrimaryKey()).toThrow('必须有待判断的columns数组参数');
+  it('没有传入columns作为参数。抛出异常', function() {
+    expect(() => guessPrimaryKey()).toThrow('必须有待判断的columns数组参数');
   });
 
-  // 制定了primary的columns
-  it('throw a correct error reminder without any params', function() {
-    expect(guessPrimaryKey(columnsWithPrimaryKey)).toBe('name');
+  it('指定了1条primary的colum。使用它的dataIndex', function() {
+    expect(guessPrimaryKey(columnsWithSpecifiedPrimaryKey)).toBe('name');
   });
 
-  // 没有指定primary则需要判断
-  it('throw a correct error reminder without any params', function() {
-    expect(guessPrimaryKey(columnsWithGuessingKeyWord)).toThrow('user_id');
+  it('指定了多条primary的columns。使用第一条的dataIndex', function() {
+    columnsWithSpecifiedPrimaryKey[0]['primary'] = true;
+    expect(() => guessPrimaryKey(columnsWithSpecifiedPrimaryKey)).toThrow('[guessPrimaryKey]Table.columns只允许指定1列为primary，现在user_id,name都是');
+  });
+
+  it('没有指定primary。需要进行推断', function() {
+    columnsWithGuessingKeyWord[0]['dataIndex'] = 'user_id';
+    expect(guessPrimaryKey(columnsWithGuessingKeyWord)).toBe('user_id');
+  });
+
+  it('没有指定primary，且没有推断出结果。返回undefined', function() {
+    columnsWithGuessingKeyWord[0]['dataIndex'] = 'uuid';
+    expect(guessPrimaryKey(columnsWithGuessingKeyWord)).toBe(undefined);
   });
 });
