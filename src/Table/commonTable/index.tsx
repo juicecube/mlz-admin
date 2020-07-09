@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Table, Tooltip, Tag } from 'antd';
-import { formatUnixTime, getDataType } from 'mytils';
+import { formatUnixTime } from 'mytils';
 import { formatPrice, guessPrimaryKey } from '@/shared/utils';
 import { IColumnTypes, ITableTypes, recordedType, EnumsType, TagEnumsType, SupporttedColumnTypes } from './index.type';
 // import 'index.less';

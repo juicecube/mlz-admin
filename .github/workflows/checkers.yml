@@ -69,6 +69,11 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-cached-node-modules-${{ hashFiles('**/package-lock.json') }}
 
+      - name: setup zh-cn timezone
+        uses: zcong1993/setup-timezone@master
+        with:
+          timezone: Asia/Shanghai
+
       - name: unit(component) test
         run: npm run test:coverage
 
