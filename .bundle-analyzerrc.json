@@ -1,0 +1,9 @@
+{
+  "files": [
+    {
+      "test": "./dist/mlz-admin.min.js",
+      "maxSize": "500 kB",
+      "compression": "gzip"
+    }
+  ]
+}

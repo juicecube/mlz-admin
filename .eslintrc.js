@@ -38,7 +38,6 @@ module.exports = {
   rules: {
     'no-else-return': 0,
     'import/prefer-default-export': 0,
-    'no-unused-vars': 1,
     'no-nested-ternary': 1,
     'import/no-unresolved': 0,
     'import/extensions': 0,
@@ -56,5 +55,7 @@ module.exports = {
     'no-console': 0,
     'jsx-a11y/anchor-is-valid': 0,
     'consistent-return': 0,
+    'no-throw-literal': 1,
+    'no-restricted-globals': 1,
   },
 };

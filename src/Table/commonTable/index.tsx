@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { Table, Tooltip, Tag } from 'antd';
-import { formatUnixTime, getDataType } from 'mytils';
-import { formatPrice } from '@/shared/utils';
+import { formatUnixTime } from 'mytils';
+import { formatPrice, guessPrimaryKey, createBem } from '@/shared/utils';
 import { IColumnTypes, ITableTypes, recordedType, EnumsType, TagEnumsType, SupporttedColumnTypes } from './index.type';
-// import 'index.less';
+import './index.less';
 
+const bem = createBem('table');
 export const typeFilter = {
   normal: (value: any) => value || '--',
   price: (value: number) => formatPrice(value),
@@ -13,7 +14,13 @@ export const typeFilter = {
   enum: (value: number | string, enums?: TagEnumsType) => enums?.[value] || '--',
   tag: (value: string, enums?: EnumsType) => {
     const TagNode = <Tag color={enums?.[value]?.color}>{enums?.[value]?.text || '--'}</Tag>;
-    return enums?.[value]?.desc ? <Tooltip title={enums?.[value]?.desc}>{TagNode}</Tooltip> : TagNode;
+    return enums?.[value]?.desc ? (
+      <Tooltip title={enums?.[value]?.desc} className={bem('tooltip')} arrowPointAtCenter={true}>
+        {TagNode}
+      </Tooltip>
+    ) : (
+      TagNode
+    );
   },
 };
 
@@ -36,8 +43,8 @@ const formatColumns = ($columns: IColumnTypes<any>[]) => {
 };
 
 const CommonTable = (props: ITableTypes<any>) => {
-  const { columns, pagination, rowKey = 'id', ...others } = props;
-  return <Table rowKey={rowKey} columns={formatColumns(columns)} pagination={pagination || false} {...others} />;
+  const { columns = [], pagination, rowKey, ...others } = props;
+  return <Table rowKey={rowKey || (columns.length > 0 ? guessPrimaryKey(columns) : null) || 'id'} columns={formatColumns(columns)} pagination={pagination ?? false} {...others} />;
 };
 
 export default CommonTable;

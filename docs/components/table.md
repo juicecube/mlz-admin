@@ -9,5 +9,3 @@
 <code src="./../demo/table/normal-usage.demo.tsx"/>
 
 ## APIs
-
-More skills for writing demo: https://d.umijs.org/guide/demo-principle

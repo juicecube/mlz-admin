@@ -1,10 +1,10 @@
 import React from 'react';
 import { createFromIconfontCN as createFromIconfont } from '@ant-design/icons/es';
 
-class IconFontScript {
+export class IconFontScript {
   public scriptUrls: string[];
 
-  constructor($scriptUrl: URL['href']) {
+  constructor($scriptUrl: URL['href'] = '//at.alicdn.com/t/font_1820833_zgnaif28led.js') {
     this.scriptUrls = [$scriptUrl];
   }
 
@@ -13,7 +13,7 @@ class IconFontScript {
     this.scriptUrls = this.scriptUrls.concat(scripts as URL['href'][]);
   }
 }
-const newScript = new IconFontScript('//at.alicdn.com/t/font_1820833_zgnaif28led.js');
+const newScript = new IconFontScript();
 const Icon = createFromIconfont({
   scriptUrl: [...newScript.scriptUrls],
 });

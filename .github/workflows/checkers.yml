@@ -1,0 +1,103 @@
+name: checker
+
+on: 
+  push:
+    branches:
+      - master
+      - staging
+      - feature
+      - 'sprint@*'
+  pull_request:
+    types: [opened,reopened]
+
+jobs:
+  install: 
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.20.x] 
+    steps:
+      - name: checkout
+        uses: actions/checkout@master
+
+      - name: setup node ${{ matrix.node-version }}
+        uses: actions/setup-node@master
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: cache node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-cached-node-modules-${{ hashFiles('**/package-lock.json') }}
+
+      - name: install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm install
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - name: checkout
+        uses: actions/checkout@master
+        
+      - name: restore cached node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-cached-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: execute code lint
+        run: npm run lint
+
+  bundleSize: 
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - name: checkout
+        uses: actions/checkout@master
+        
+      - name: restore cached node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-cached-node-modules-${{ hashFiles('**/package-lock.json') }}
+
+      - name: run bundleSize checker
+        uses: sarthak-saxena/JSBundleSize@master
+        with:
+          bootstrap: npm install
+          build_command: npm run dist
+          dist_path: 'dist'
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  codecov: 
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - name: checkout
+        uses: actions/checkout@master
+        
+      - name: restore cached node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-cached-node-modules-${{ hashFiles('**/package-lock.json') }}
+
+      - name: setup zh-cn timezone
+        uses: zcong1993/setup-timezone@master
+        with:
+          timezone: Asia/Shanghai
+
+      - name: unit(component) test
+        run: npm run test
+
+      - name: check coverage limitation of coverage
+        run: npm run test:limit
+
+      - name: run codecov reporter
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          name: mlz-admin
+          fail_ci_if_error: true

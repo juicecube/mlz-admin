@@ -8,10 +8,7 @@ import Icon from '@/Icon/Icon';
 
 const { SubMenu } = Menu;
 class App extends React.PureComponent {
-  state = {
-    data: [],
-    loading: true,
-  };
+  state = {};
 
   render() {
     return (
