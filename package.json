@@ -67,7 +67,7 @@
   },
   "devDependencies": {
     "@types/enzyme": "^3.10.5",
-    "@types/jest": "^25.2.1",
+    "@types/jest": "^26.0.4",
     "@types/lodash-es": "^4.17.3",
     "@umijs/preset-react": "1.x",
     "@umijs/test": "^3.0.5",
