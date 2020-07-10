@@ -1,24 +1,22 @@
-import React, { useState, useContext } from 'react';
-import { Button as AntdButton, Dropdown } from 'antd';
-import Menu from '@/Menu/Menu';
-import { ClickParam } from 'antd/lib/menu/index.d';
-import { default as AntdButtonGroup } from 'antd/es/button/button-group';
+import React from 'react';
+import { Button as AntdButton } from 'antd';
 import { omitProps } from 'mytils';
 import Icon from '../Icon/Icon';
-import { MenuType, GroupType, IButtonProps, ButtonGroupPropableValue } from './Button.type';
+import { GroupType, IButtonProps } from './Button.type';
 
+const { Group } = AntdButton;
 const InternalButton: React.ForwardRefRenderFunction<unknown, IButtonProps> = (props: IButtonProps, ref): React.ReactElement => {
   const { group } = props;
   return !group ? (
     <AntdButton {...props}>{props.children}</AntdButton>
   ) : (
-    <AntdButtonGroup>
+    <Group>
       {group?.map((item: GroupType, index: number) => {
         return (
           <AntdButton
             key={item.key || index}
             {...omitProps(['size', 'style', 'className', 'prefixCls', 'group', 'onClick'], props)}
-            onClick={(e) => props?.onClick?.({ ...e, ...{ value: group[index].value } })}
+            onClick={(e) => props.onClick?.({ ...e, ...{ value: group[index].value } })}
             type={item.type || props.type}>
             {item.leftIconType ? <Icon type={item?.leftIconType} /> : null}
             {item.text}
@@ -26,13 +24,13 @@ const InternalButton: React.ForwardRefRenderFunction<unknown, IButtonProps> = (p
           </AntdButton>
         );
       })}
-    </AntdButtonGroup>
+    </Group>
   );
 };
 
 interface compositedComponent extends React.ForwardRefExoticComponent<IButtonProps & React.RefAttributes<HTMLElement>> {
-  Group: typeof AntdButtonGroup;
+  Group: typeof Group;
 }
 const Button = React.forwardRef(InternalButton);
-(Button as compositedComponent).Group = AntdButtonGroup;
+(Button as compositedComponent).Group = Group;
 export default Button;

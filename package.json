@@ -25,7 +25,7 @@
     "lint:ts": "tsc --project ./tsconfig.lint.json",
     "lint:style": "stylelint 'src/**/*.less' --syntax less",
     "test": "dumi test --coverage",
-    "test:limit": "npx istanbul check-coverage --statement 70",
+    "check-coverage": "npx istanbul check-coverage --statement 85",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "version": "node ./scripts/versioning",
     "clean": "rm -rf es lib dist .tsc-check"
