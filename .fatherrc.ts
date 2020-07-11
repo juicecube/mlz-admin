@@ -14,11 +14,11 @@ export default {
     importLibToEs: true,
   },
   cjs: 'babel',
-  umd: {
-    // minFile: true,
-    // file: 'dist/mlz-admin.min.js',
-    sourcemap: true,
-  },
+  // umd: {
+  //   // minFile: true,
+  //   // file: 'dist/mlz-admin.min.js',
+  //   sourcemap: true,
+  // },
   extractCSS: false,
   runtimeHelpers: true,
   extraRollupPlugins: [

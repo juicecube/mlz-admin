@@ -1,5 +1,3 @@
-# @mlz/admin
-
 <p align="center">
 基于 Antd，遵循编程猫后台管理系统设计规范的 React 组件库
 </p>
@@ -12,6 +10,8 @@
 
 ---
 
+<div align="center" style="font-size: 36px">@mlz/admin</div>
+
 # 📖 文档
 
 ### https://mlz-admin.now.sh
@@ -21,7 +21,7 @@
 1. 完全兼容`antd^4.1.5`的，请参考：https://ant.design/components/overview-cn
 2. 基于编程猫业务`扩展和优化`的，请参考：https://mlz-admin.now.sh
 
-# 使用方法
+# 🌈 使用方法
 
 ### 1. 安装
 
@@ -37,7 +37,7 @@ import { Button } from '@mlz/admin';
 const App = () => <Button type="primary">❤️❤️❤️</Button>;
 ```
 
-# 开发
+# 💻 开发
 
 ```js
 $ npm install
@@ -52,6 +52,6 @@ $ npm start
 - 编程猫目前所有后台系统所要求的浏览器版本均兼容
 - 大于 IE11 和其它现代浏览器
 
-# 🤝 贡献指南
+# 贡献指南
 
-本库的开发代码，至少建立但不限于 [《贡献指南》](https://github.com/juicecube/mlz-admin/blob/master/CONTRIBUTING.md) 之上，所以请先先仔细阅读。
+本库的开发代码，至少建立但不限于 [《贡献指南》](https://github.com/juicecube/mlz-admin/blob/master/CONTRIBUTING.md) 之上，所以请先仔细阅读。
