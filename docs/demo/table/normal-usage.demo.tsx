@@ -23,6 +23,7 @@ const columns = [
     title: 'Cost',
     dataIndex: 'money',
     type: 'price',
+    sorter: (a, b) => a.money - b.money,
   },
   {
     title: 'Status',
@@ -85,7 +86,17 @@ class App extends React.PureComponent {
   };
 
   render() {
-    return <Table columns={columns} dataSource={this.state.data} loading={this.state.loading} />;
+    return (
+      <Table
+        columns={columns}
+        dataSource={this.state.data}
+        loading={this.state.loading}
+        pagination={{ total: 50, showSizeChanger: true, showQuickJumper: true }}
+        onChange={(e, f, s) => {
+          console.log(e, s);
+        }}
+      />
+    );
   }
 }
 

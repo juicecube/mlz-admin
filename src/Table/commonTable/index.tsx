@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
-import { Table, Tooltip, Tag } from 'antd';
+import { Table, Tooltip, Tag, ConfigProvider } from 'antd';
+import zhCN from 'antd/es/locale/zh_CN';
 import { formatUnixTime } from 'mytils';
 import { formatPrice, guessPrimaryKey, createBem } from '@/shared/utils';
 import { IColumnTypes, ITableTypes, recordedType, EnumsType, TagEnumsType, SupporttedColumnTypes } from './index.type';
@@ -44,7 +45,19 @@ const formatColumns = ($columns: IColumnTypes<any>[]) => {
 
 const CommonTable = (props: ITableTypes<any>) => {
   const { columns = [], pagination, rowKey, ...others } = props;
-  return <Table rowKey={rowKey || (columns.length > 0 ? guessPrimaryKey(columns) : null) || 'id'} columns={formatColumns(columns)} pagination={pagination ?? false} {...others} />;
+  return (
+    <ConfigProvider locale={zhCN}>
+      <Table
+        rowKey={rowKey || (columns.length > 0 ? guessPrimaryKey(columns) : null) || 'id'}
+        columns={formatColumns(columns)}
+        pagination={pagination || false}
+        onChange={(e) => {
+          console.log(e, 1);
+        }}
+        {...others}
+      />
+    </ConfigProvider>
+  );
 };
 
 export default CommonTable;
