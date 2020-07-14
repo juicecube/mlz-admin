@@ -51,12 +51,7 @@ const columns = [
   },
   {
     title: '操作',
-    render: () => [
-      <a key={1}>检查</a>,
-      <Button key={2} type="primary">
-        关闭
-      </Button>,
-    ],
+    render: () => [<a key={1}>检查</a>],
   },
 ];
 

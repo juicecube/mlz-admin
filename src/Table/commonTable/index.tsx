@@ -6,9 +6,9 @@ import { formatPrice, guessPrimaryKey, createBem } from '@/shared/utils';
 import { IColumnTypes, ITableTypes, recordedType, EnumsType, TagEnumsType, SupporttedColumnTypes } from './index.type';
 import './index.less';
 
-const bem = createBem('table');
-export const typeFilter = {
+export const typeValueRefers = {
   normal: (value: any) => value || '--',
+  number: (value: number) => value || '--',
   price: (value: number) => formatPrice(value),
   date: (value: number) => formatUnixTime(value, 'YYYY/MM/DD'),
   datetime: (value: number) => formatUnixTime(value),
@@ -26,10 +26,11 @@ export const typeFilter = {
 };
 
 const renderNode = (type: SupporttedColumnTypes = 'normal', value: any, column: IColumnTypes<recordedType>) => {
-  return ['enum', 'tag'].includes(type) ? typeFilter[type](value, column?.enums as Record<string, any>) : typeFilter[type](value);
+  return ['enum', 'tag'].includes(type) ? typeValueRefers[type](value, column?.enums as Record<string, any>) : typeValueRefers[type](value);
 };
 
-const formatColumns = ($columns: IColumnTypes<any>[]) => {
+const bem = createBem('table');
+export const formatColumns = ($columns: IColumnTypes<any>[]) => {
   return $columns.map((column) => {
     const { type, ...others } = column;
     let { render } = column;
@@ -38,6 +39,7 @@ const formatColumns = ($columns: IColumnTypes<any>[]) => {
     }
     return {
       ...others,
+      type,
       render,
     };
   });
@@ -49,7 +51,7 @@ const CommonTable = (props: ITableTypes<any>) => {
     <ConfigProvider locale={zhCN}>
       <Table
         rowKey={rowKey || (columns.length > 0 ? guessPrimaryKey(columns) : null) || 'id'}
-        columns={formatColumns(columns)}
+        columns={columns}
         pagination={pagination || false}
         onChange={(e) => {
           console.log(e, 1);

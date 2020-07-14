@@ -8,4 +8,12 @@
 
 <code src="./../demo/table/normal-usage.demo.tsx"/>
 
+## 2. 带搜索项
+
+<code src="./../demo/table/with-search.demo.tsx"/>
+
+## 3. 带工具栏
+
+<code src="./../demo/table/with-toolbar.demo.tsx"/>
+
 ## APIs
