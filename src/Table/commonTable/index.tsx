@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Table, Tooltip, Tag, ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
-import { formatUnixTime } from 'mytils';
+import { formatUnixTime, omitProps } from 'mytils';
 import { formatPrice, guessPrimaryKey, createBem } from '@/shared/utils';
 import { IColumnTypes, ITableTypes, recordedType, EnumsType, TagEnumsType, SupporttedColumnTypes } from './index.type';
 import './index.less';
@@ -30,7 +30,7 @@ const renderNode = (type: SupporttedColumnTypes = 'normal', value: any, column: 
 };
 
 const bem = createBem('table');
-export const formatColumns = ($columns: IColumnTypes<any>[]) => {
+export const formatColumns = ($columns: IColumnTypes<unknown>[]) => {
   return $columns.map((column) => {
     const { type, ...others } = column;
     let { render } = column;
@@ -38,9 +38,9 @@ export const formatColumns = ($columns: IColumnTypes<any>[]) => {
       render = (value) => renderNode(type as SupporttedColumnTypes, value, column);
     }
     return {
-      ...others,
       type,
       render,
+      ...others,
     };
   });
 };
@@ -50,13 +50,11 @@ const CommonTable = (props: ITableTypes<any>) => {
   return (
     <ConfigProvider locale={zhCN}>
       <Table
+        {...others}
         rowKey={rowKey || (columns.length > 0 ? guessPrimaryKey(columns) : null) || 'id'}
         columns={columns}
         pagination={pagination || false}
-        onChange={(e) => {
-          console.log(e, 1);
-        }}
-        {...others}
+        onChange={(png, ...others) => props.onChange?.(omitProps(['showSizeChanger', 'showQuickJumper'], png), ...others)}
       />
     </ConfigProvider>
   );

@@ -65,13 +65,13 @@ class App extends React.PureComponent {
     this.fetchData();
   }
 
-  fetchData = async (params?: { current: number; limit: number }) => {
+  fetchData = async (params?: { current: number; pageSize: number }) => {
     this.setState({ loading: true });
     const { data } = await axios.get('http://rap2.taobao.org:38080/app/mock/252468/admini/table-demo', {
       method: 'get',
       params: params || {
         current: 1,
-        limit: 10,
+        pageSize: 10,
       },
     });
     this.setState({
@@ -81,17 +81,7 @@ class App extends React.PureComponent {
   };
 
   render() {
-    return (
-      <Table
-        columns={columns}
-        dataSource={this.state.data}
-        loading={this.state.loading}
-        pagination={{ total: 50, showSizeChanger: true, showQuickJumper: true }}
-        onChange={(e, f, s) => {
-          console.log(e, s);
-        }}
-      />
-    );
+    return <Table columns={columns} dataSource={this.state.data} loading={this.state.loading} />;
   }
 }
 

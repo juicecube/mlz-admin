@@ -10,14 +10,14 @@ const columns = [
   {
     title: 'Name',
     dataIndex: 'name',
-    searchable: true,
+    searchable: 6,
     primary: true,
   },
   {
     title: 'Id',
     dataIndex: 'id',
     type: 'number',
-    searchable: 2,
+    searchable: 5,
     width: 60,
   },
   {
@@ -30,19 +30,21 @@ const columns = [
     title: 'Cost',
     dataIndex: 'money',
     type: 'price',
-    searchable: true,
+    searchable: 4,
   },
   {
     title: 'CreatedAt',
     dataIndex: 'createdAt',
-    type: 'datetime',
+    type: 'date',
     searchable: true,
+    searchType: 'dateRange',
+    searchColSpan: 8,
   },
   {
     title: 'Status',
     dataIndex: 'status',
     type: 'enum',
-    searchable: 2,
+    searchable: 3,
     enums: {
       all: '全部',
       close: '售罄',
@@ -55,7 +57,7 @@ const columns = [
     title: 'Forwards',
     dataIndex: 'status',
     type: 'tag',
-    searchable: true,
+    searchable: 2,
     enums: {
       all: { text: '全部', color: 'magenta' },
       close: { text: '售罄', color: 'red' },
@@ -79,20 +81,21 @@ class App extends React.PureComponent {
   state = {
     data: [],
     loading: true,
+    searchParams: {
+      current: 1,
+      pageSize: 10,
+    },
   };
 
   componentDidMount() {
-    this.fetchData();
+    this.fetchData(this.state.searchParams);
   }
 
-  fetchData = async (params?: { current: number; limit: number }) => {
+  fetchData = async (params?: { current?: number; pageSize?: number; [key: string]: any }) => {
     this.setState({ loading: true });
     const { data } = await axios.get('http://rap2.taobao.org:38080/app/mock/252468/admini/table-demo', {
       method: 'get',
-      params: params || {
-        current: 1,
-        limit: 10,
-      },
+      params: params,
     });
     this.setState({
       data: data.items,
@@ -107,8 +110,32 @@ class App extends React.PureComponent {
         dataSource={this.state.data}
         loading={this.state.loading}
         pagination={{ total: 50, showSizeChanger: true, showQuickJumper: true }}
-        onChange={(e, f, s) => {
-          console.log(e, s);
+        onChange={(png) => {
+          this.setState(
+            {
+              searchParams: { ...png, ...this.state.searchParams },
+            },
+            () => this.fetchData(this.state.searchParams),
+          );
+        }}
+        onSearch={(e) => {
+          this.setState(
+            {
+              searchParams: { ...e, ...this.state.searchParams },
+            },
+            () => this.fetchData(this.state.searchParams),
+          );
+        }}
+        onReset={() => {
+          this.setState(
+            {
+              searchParams: {
+                current: 1,
+                pageSize: 10,
+              },
+            },
+            () => this.fetchData(this.state.searchParams),
+          );
         }}
       />
     );
