@@ -25,7 +25,7 @@ export const typeValueRefers = {
   },
 };
 
-const renderNode = (type: SupporttedColumnTypes = 'normal', value: any, column: IColumnTypes<recordedType>) => {
+export const renderNode = (type: SupporttedColumnTypes = 'normal', value: any, column: IColumnTypes<recordedType>) => {
   return ['enum', 'tag'].includes(type) ? typeValueRefers[type](value, column?.enums as Record<string, any>) : typeValueRefers[type](value);
 };
 
