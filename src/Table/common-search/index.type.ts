@@ -1,5 +1,5 @@
 import { TableProps } from 'antd/lib/table';
-import { IColumnTypes, ITableTypes } from '../commonTable/index.type';
+import { IColumnTypes } from '../common-table/index.type';
 
 export interface ICommonSearch<T> extends TableProps<T> {
   columns?: IColumnTypes<T>[];

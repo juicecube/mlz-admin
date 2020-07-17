@@ -1,14 +1,15 @@
 import React from 'react';
-import { IDetailCardProps } from './index.type';
-import { createBem, purgeData } from '@/shared/utils';
-import CommonTable, { renderNode } from '@/Table/commonTable';
-import { Card } from 'antd';
+import { IDetailCardProps } from './DetailCard.type';
+import { createBem } from '@/shared/utils';
+import Icon from '@/Icon/Icon';
+import CommonTable, { renderNode } from '@/Table/common-table';
+import { Card, Anchor } from 'antd';
 import './DetailCard.less';
 
 const defaultProps = (wrap?: boolean) => {
   return {
+    hoverable: false,
     style: Object.assign(
-      {},
       {
         width: '25%',
         boxShadow: 'none',
@@ -20,22 +21,38 @@ const defaultProps = (wrap?: boolean) => {
           } as const)
         : {},
     ),
-    hoverable: false,
   };
+};
+const CardTitle = (props): React.ReactElement => {
+  const defaultStyle = { marginRight: 6 };
+  const { linkable, title } = props;
+  return (
+    <>
+      {linkable ? (
+        <a href={`#${title}`}>
+          <Icon type="paperclip_l" style={defaultStyle} id={title} />
+        </a>
+      ) : (
+        <Icon type="list" style={defaultStyle} id={title} />
+      )}
+      {title}
+    </>
+  );
 };
 const bem = createBem('detail');
 const DetailCard = (props: IDetailCardProps) => {
-  const { dataSource, colSpan, columns, displayType, SupporttedNullExceptorTypes, ...others } = props;
+  const { dataSource, colSpan, columns, displayType, placeholder, title, linkable, ...others } = props;
   return displayType !== 'table' ? (
-    <Card {...others} bordered={false} className={bem('card')}>
+    <Card {...others} bordered={false} className={bem('card')} title={<CardTitle {...{ title, linkable }} />}>
       {columns.map((column, index) => {
         const { dataIndex, title, render, type, wrap } = column;
+        const data = dataSource?.[dataIndex];
         return (
           <>
-            {SupporttedNullExceptorTypes !== '' ? (
+            {placeholder !== '' && !!data ? (
               <Card.Grid {...defaultProps(wrap)} key={dataIndex}>
                 <span style={{ fontWeight: 600 }}>{title}：&nbsp;</span>
-                {render ? render(dataSource?.[dataIndex], dataSource, index, dataIndex) : dataSource?.[dataIndex] ? renderNode(type, dataSource?.[dataIndex], column) : ''}
+                {render ? render(data, dataSource, index, dataIndex) : data ? renderNode(type, data, column) : ''}
               </Card.Grid>
             ) : null}
           </>
@@ -43,8 +60,8 @@ const DetailCard = (props: IDetailCardProps) => {
       })}
     </Card>
   ) : (
-    <Card {...others} bordered={false} className={bem('card')}>
-      <CommonTable columns={columns} dataSource={dataSource} size={others.size || 'small'} />
+    <Card {...others} bordered={false} className={bem('card')} title={<CardTitle {...{ title, linkable }} />}>
+      <CommonTable columns={columns} dataSource={dataSource} />
     </Card>
   );
 };

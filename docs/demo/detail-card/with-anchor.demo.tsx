@@ -22,42 +22,9 @@ const columnsForDetail = [
     dataIndex: 'owner',
   },
   {
-    title: '售后原因',
-    dataIndex: 'reason',
-    wrap: true,
-  },
-  {
-    title: '售后状态',
-    dataIndex: 'status',
-    render: (text) => (
-      <Tooltip title={text}>
-        <a type="primary">摸我</a>
-      </Tooltip>
-    ),
-  },
-  {
     title: '申请时间',
     dataIndex: 'createdAt',
     type: 'datetime',
-  },
-];
-const columnsForCustomer = [
-  {
-    title: '售后单ID',
-    dataIndex: 'customerId',
-    type: 'normal',
-  },
-  {
-    title: '客户手机号',
-    dataIndex: 'maskedPhonenumber',
-    type: 'normal',
-  },
-  {
-    title: '业务人员手机号',
-    dataIndex: 'phoneNumber',
-    render: (value) => {
-      return <a onClick={() => message.info(value)}>{value}</a>;
-    },
   },
 ];
 
@@ -82,8 +49,7 @@ class App extends React.PureComponent {
   render() {
     return (
       <>
-        <DetailCard title="基本信息" dataSource={this.state.data} columns={columnsForDetail} />
-        <DetailCard title="客户信息" dataSource={this.state.data['customer']} columns={columnsForCustomer} />
+        <DetailCard title="锚点标题" linkable dataSource={this.state.data} columns={columnsForDetail} />
       </>
     );
   }

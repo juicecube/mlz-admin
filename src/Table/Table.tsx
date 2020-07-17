@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { Layout } from 'antd';
-import CommonTable, { formatColumns } from './commonTable';
-import CommonSearchForm from './commonSearch';
-import { ITableTypes } from './commonTable/index.type';
+import CommonTable, { formatColumns } from './common-table';
+import CommonSearchForm from './common-search';
+import { ITableTypes } from './common-table/index.type';
 
 const InteralTable = (props: ITableTypes<any>) => {
   const formattedColumns = formatColumns(props.columns);

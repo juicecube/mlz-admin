@@ -2,7 +2,7 @@ import { ColumnProps, TableProps, TablePaginationConfig } from 'antd/lib/table';
 import { PresetColorType, PresetStatusColorType } from 'antd/lib/_util/colors';
 import { LiteralUnion } from 'antd/lib/_util/type';
 import { typeValueRefers } from '.';
-import { typeFormItemRefers } from '../commonSearch';
+import { typeFormItemRefers } from '../common-search';
 
 export interface ITableTypes<T> extends TableProps<T> {
   columns: IColumnTypes<T>[];

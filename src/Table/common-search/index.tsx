@@ -2,18 +2,15 @@ import React from 'react';
 import { Form, Input, Row, Col, InputNumber, Select, DatePicker } from 'antd';
 import Button from '@/Button/Button';
 import { ICommonSearch } from './index.type';
-import { TagEnumsType, EnumsType } from '@/Table/commonTable/index.type';
-import * as moment from 'moment';
-import { getDataType } from 'mytils';
+import { TagEnumsType, EnumsType } from '@/Table/common-table/index.type';
 import locale from 'antd/es/date-picker/locale/zh_CN';
 import Icon from '@/Icon/Icon';
-import { cloneDeep } from 'lodash-es';
 import { createBem, purgeData } from '@/shared/utils';
 import './index.less';
 
 const bem = createBem('common-search');
 const renderSelection = (opts: TagEnumsType | EnumsType) => (
-  <Select>
+  <Select allowClear>
     {Object.entries(opts).map((kv) => {
       const [key, value] = kv;
       const text = typeof value === 'string' ? value : value.text;
@@ -39,22 +36,22 @@ const renderSelection = (opts: TagEnumsType | EnumsType) => (
  */
 const fullWidthStyle = { width: '100%' };
 export const typeFormItemRefers = {
-  normal: () => <Input />,
+  normal: () => <Input allowClear />,
   number: () => <InputNumber style={fullWidthStyle} />,
   enum: (opts) => renderSelection(opts),
   tag: (opts) => renderSelection(opts),
-  date: () => <DatePicker style={fullWidthStyle} locale={locale} />,
-  dateRange: () => <DatePicker.RangePicker style={fullWidthStyle} locale={locale} />,
-  datetime: () => <DatePicker showTime style={fullWidthStyle} locale={locale} />,
-  datetimeRange: () => <DatePicker.RangePicker style={fullWidthStyle} showTime locale={locale} />,
-  price: () => <Input addonBefore="¥" />,
+  date: () => <DatePicker style={fullWidthStyle} locale={locale} allowClear />,
+  dateRange: () => <DatePicker.RangePicker style={fullWidthStyle} locale={locale} allowClear />,
+  datetime: () => <DatePicker showTime style={fullWidthStyle} locale={locale} allowClear />,
+  datetimeRange: () => <DatePicker.RangePicker style={fullWidthStyle} locale={locale} showTime allowClear />,
+  price: () => <Input addonBefore="¥" allowClear />,
 };
 
 const renderCol = ($column) => {
   const { title, dataIndex, searchLabel, type, enums, searchType } = $column;
   return (
     <Form.Item name={dataIndex} label={searchLabel || title} key={$column.dataIndex}>
-      {typeFormItemRefers[searchType || type]?.(enums || undefined) ?? <Input />}
+      {typeFormItemRefers[searchType || type]?.(enums || undefined) ?? <Input allowClear />}
     </Form.Item>
   );
 };
