@@ -44,7 +44,8 @@ export const typeFormItemRefers = {
   dateRange: () => <DatePicker.RangePicker style={fullWidthStyle} locale={locale} allowClear />,
   datetime: () => <DatePicker showTime style={fullWidthStyle} locale={locale} allowClear />,
   datetimeRange: () => <DatePicker.RangePicker style={fullWidthStyle} locale={locale} showTime allowClear />,
-  price: () => <Input addonBefore="¥" allowClear />,
+  price: () => <InputNumber style={fullWidthStyle} />,
+  ratio: () => <InputNumber formatter={(value) => `${value ? value + ' %' : ''}`} parser={(value) => value?.replace(' %', '') as string} style={fullWidthStyle} />,
 };
 
 const renderCol = ($column) => {
@@ -56,18 +57,16 @@ const renderCol = ($column) => {
   );
 };
 
-const calcTotalColspan = ($items, colCount = 4) => {
-  return $items.reduce((prev, curr) => (prev += curr.searchColSpan || 24 / colCount), 0);
-};
-
+const calcTotalColspan = ($items, perColspan = 4) => $items.reduce((prev, curr) => (prev += curr.searchColSpan || perColspan), 0);
 const CommonSearchForm = (props: ICommonSearch<unknown>) => {
   const { columns, tools, colCount = 4 } = props;
   const [form] = Form.useForm();
   const searchings = columns?.filter((item) => item.searchable || item.searchable === 0).sort((prev, curr) => Number(curr.searchable) - Number(prev.searchable));
-  const sparedLastColSpan = searchings ? 24 - (calcTotalColspan(searchings, colCount) % 24) : 24 / colCount;
+  const perColspan = 24 / colCount;
+  const sparedLastColSpan = searchings ? 24 - (calcTotalColspan(searchings, perColspan) % 24) : perColspan;
   const shouldMergeSubmitButton = searchings && searchings?.length % colCount === 0;
   const formSubmitters = (
-    <Col span={sparedLastColSpan} style={{ textAlign: 'right' }}>
+    <Col span={sparedLastColSpan < perColspan ? 24 : sparedLastColSpan} style={{ textAlign: 'right' }}>
       <Button
         style={{ marginRight: 12 }}
         onClick={(e) => {
@@ -87,14 +86,13 @@ const CommonSearchForm = (props: ICommonSearch<unknown>) => {
       className={bem('form')}
       form={form}
       onFinish={(params) => {
-        console.log(params);
         props.onSearch?.(purgeData(params));
       }}
       onFinishFailed={props?.onSearchFailed}
       initialValues={props.initialSearchValues}>
       <Row gutter={24}>
         {searchings?.map((row, index) => (
-          <Col span={row.searchColSpan || 24 / colCount} key={(row.title as string) || index}>
+          <Col span={row.searchColSpan || perColspan} key={(row.title as string) || index}>
             {renderCol(row)}
           </Col>
         ))}

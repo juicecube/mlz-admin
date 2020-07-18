@@ -6,13 +6,12 @@
 import React from 'react';
 import DetailCard from '@/DetailCard/DetailCard';
 import axios from 'axios';
-import { message, Tooltip } from 'antd';
 
-const columnsForSkus = [
+const columns = [
   {
     title: 'sku编码',
     dataIndex: 'skuNumber',
-    width: 140,
+    width: 180,
   },
   {
     title: '发货单元名称',
@@ -33,23 +32,19 @@ class App extends React.PureComponent {
     data: [],
   };
 
-  componentDidMount() {
-    this.fetchData();
-  }
-
-  fetchData = async (params?: { current: number; pageSize: number }) => {
+  async componentDidMount() {
     this.setState({ loading: true });
     const { data } = await axios.get('http://rap2.taobao.org:38080/app/mock/252468/admini/detail-demo');
     this.setState({
       data,
       loading: false,
     });
-  };
+  }
 
   render() {
     return (
       <>
-        <DetailCard title="发货详情" displayType="table" dataSource={this.state.data['skus']} columns={columnsForSkus} />
+        <DetailCard title="发货详情" displayType="table" dataSource={this.state.data['skus']} columns={columns} />
       </>
     );
   }

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Table, Tooltip, Tag, ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
-import { formatUnixTime, omitProps } from 'mytils';
+import { formatUnixTime, omitProps, getRatioFromNum } from 'mytils';
 import { formatPrice, guessPrimaryKey, createBem } from '@/shared/utils';
 import { IColumnTypes, ITableTypes, recordedType, EnumsType, TagEnumsType, SupporttedColumnTypes } from './index.type';
 import './index.less';
@@ -23,11 +23,18 @@ export const typeValueRefers = {
       TagNode
     );
   },
+  ratio: (value: number) => getRatioFromNum(value, 2, true),
+  link: (uri) => (
+    <Tooltip title={uri}>
+      <a href={uri} target="_blank">
+        点击链接查看
+      </a>
+    </Tooltip>
+  ),
 };
 
-export const renderNode = (type: SupporttedColumnTypes = 'normal', value: any, column: IColumnTypes<recordedType>) => {
-  return ['enum', 'tag'].includes(type) ? typeValueRefers[type](value, column?.enums as Record<string, any>) : typeValueRefers[type](value);
-};
+export const renderNode = (type: SupporttedColumnTypes = 'normal', value: any, column: IColumnTypes<recordedType>) =>
+  ['enum', 'tag'].includes(type) ? typeValueRefers[type](value, column?.enums as Record<string, any>) : typeValueRefers[type](value);
 
 const bem = createBem('table');
 export const formatColumns = ($columns: IColumnTypes<unknown>[]) => {
@@ -52,7 +59,7 @@ const CommonTable = (props: ITableTypes<any>) => {
       <Table
         {...others}
         rowKey={rowKey || (columns.length > 0 ? guessPrimaryKey(columns) : null) || 'id'}
-        columns={columns}
+        columns={formatColumns(columns)}
         pagination={pagination || false}
         onChange={(png, ...others) => props.onChange?.(omitProps(['showSizeChanger', 'showQuickJumper'], png), ...others)}
       />

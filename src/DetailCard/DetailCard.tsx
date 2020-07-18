@@ -61,7 +61,7 @@ const DetailCard = (props: IDetailCardProps) => {
     </Card>
   ) : (
     <Card {...others} bordered={false} className={bem('card')} title={<CardTitle {...{ title, linkable }} />}>
-      <CommonTable columns={columns} dataSource={dataSource} />
+      <CommonTable {...{ columns, dataSource }} />
     </Card>
   );
 };

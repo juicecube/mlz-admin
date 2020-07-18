@@ -20,6 +20,11 @@ const columns = [
     width: 250,
   },
   {
+    title: 'Link',
+    dataIndex: 'linkage',
+    type: 'link',
+  },
+  {
     title: 'Cost',
     dataIndex: 'money',
     type: 'price',

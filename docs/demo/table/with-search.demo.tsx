@@ -21,16 +21,11 @@ const columns = [
     width: 60,
   },
   {
-    title: 'Desc',
-    dataIndex: 'desc',
-    ellipsis: true,
-    width: 220,
-  },
-  {
     title: 'Cost',
     dataIndex: 'money',
     type: 'price',
-    searchable: 4,
+    searchable: 5,
+    searchType: 'price',
   },
   {
     title: 'CreatedAt',
@@ -38,20 +33,7 @@ const columns = [
     type: 'date',
     searchable: true,
     searchType: 'dateRange',
-    searchColSpan: 8,
-  },
-  {
-    title: 'Status',
-    dataIndex: 'status',
-    type: 'enum',
-    searchable: 3,
-    enums: {
-      all: '全部',
-      close: '售罄',
-      running: '补货中',
-      online: '正在销售',
-      error: '库存不足',
-    },
+    searchColSpan: 10,
   },
   {
     title: 'Forwards',
