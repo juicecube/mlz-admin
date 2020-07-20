@@ -97,7 +97,7 @@ class App extends React.PureComponent {
     this.setState({ loading: true });
     const { data } = await axios.get('http://rap2.taobao.org:38080/app/mock/252468/admini/table-demo', {
       method: 'get',
-      params: params,
+      params,
     });
     this.setState({
       data: data.items,

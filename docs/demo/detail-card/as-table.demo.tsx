@@ -33,18 +33,14 @@ class App extends React.PureComponent {
   };
 
   async componentDidMount() {
-    this.setState({ loading: true });
     const { data } = await axios.get('http://rap2.taobao.org:38080/app/mock/252468/admini/detail-demo');
-    this.setState({
-      data,
-      loading: false,
-    });
+    this.setState({ data });
   }
 
   render() {
     return (
       <>
-        <DetailCard title="发货详情" displayType="table" dataSource={this.state.data['skus']} columns={columns} />
+        <DetailCard title="发货详情" displayType="table" dataSource={this.state.data?.['skus']} columns={columns} />
       </>
     );
   }

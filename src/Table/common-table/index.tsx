@@ -24,9 +24,10 @@ export const typeValueRefers = {
     );
   },
   ratio: (value: number) => getRatioFromNum(value, 2, true),
+  // -> https://mathiasbynens.github.io/rel-noopener/
   link: (uri) => (
     <Tooltip title={uri}>
-      <a href={uri} target="_blank">
+      <a href={uri} target="_blank" rel="noopener noreferrer">
         点击链接查看
       </a>
     </Tooltip>
@@ -61,7 +62,7 @@ const CommonTable = (props: ITableTypes<any>) => {
         rowKey={rowKey || (columns.length > 0 ? guessPrimaryKey(columns) : null) || 'id'}
         columns={formatColumns(columns)}
         pagination={pagination || false}
-        onChange={(png, ...others) => props.onChange?.(omitProps(['showSizeChanger', 'showQuickJumper'], png), ...others)}
+        onChange={(png, ...rests) => props.onChange?.(omitProps(['showSizeChanger', 'showQuickJumper'], png), ...rests)}
       />
     </ConfigProvider>
   );

@@ -55,9 +55,7 @@ const columnsForCustomer = [
   {
     title: '业务人员手机号',
     dataIndex: 'phoneNumber',
-    render: (value) => {
-      return <a onClick={() => message.info(value)}>{value}</a>;
-    },
+    render: (value) => <a>{value}</a>,
   },
 ];
 
@@ -71,19 +69,15 @@ class App extends React.PureComponent {
   }
 
   fetchData = async (params?: { current: number; pageSize: number }) => {
-    this.setState({ loading: true });
     const { data } = await axios.get('http://rap2.taobao.org:38080/app/mock/252468/admini/detail-demo');
-    this.setState({
-      data,
-      loading: false,
-    });
+    this.setState({ data });
   };
 
   render() {
     return (
       <>
         <DetailCard title="基本信息" dataSource={this.state.data} columns={columnsForDetail} />
-        <DetailCard title="客户信息" dataSource={this.state.data['customer']} columns={columnsForCustomer} />
+        <DetailCard title="客户信息" dataSource={this.state.data?.['customer']} columns={columnsForCustomer} />
       </>
     );
   }

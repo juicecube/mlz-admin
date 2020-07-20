@@ -3,7 +3,8 @@ import { IDetailCardProps } from './DetailCard.type';
 import { createBem } from '@/shared/utils';
 import Icon from '@/Icon/Icon';
 import CommonTable, { renderNode } from '@/Table/common-table';
-import { Card, Anchor } from 'antd';
+import { SupporttedColumnTypes } from '@/Table/common-table/index.type';
+import { Card } from 'antd';
 import './DetailCard.less';
 
 const defaultProps = (wrap?: boolean) => {
@@ -44,19 +45,15 @@ const DetailCard = (props: IDetailCardProps) => {
   const { dataSource, colSpan, columns, displayType, placeholder, title, linkable, ...others } = props;
   return displayType !== 'table' ? (
     <Card {...others} bordered={false} className={bem('card')} title={<CardTitle {...{ title, linkable }} />}>
-      {columns.map((column, index) => {
-        const { dataIndex, title, render, type, wrap } = column;
+      {(columns as any).map((column, index: number) => {
+        const { dataIndex, _title, render, type, wrap } = column;
         const data = dataSource?.[dataIndex];
-        return (
-          <>
-            {placeholder !== '' && !!data ? (
-              <Card.Grid {...defaultProps(wrap)} key={dataIndex}>
-                <span style={{ fontWeight: 600 }}>{title}：&nbsp;</span>
-                {render ? render(data, dataSource, index, dataIndex) : data ? renderNode(type, data, column) : ''}
-              </Card.Grid>
-            ) : null}
-          </>
-        );
+        return placeholder !== '' && !!data ? (
+          <Card.Grid {...defaultProps(wrap)} key={dataIndex}>
+            <span style={{ fontWeight: 600 }}>{_title}：&nbsp;</span>
+            {render ? render(data, dataSource, index) : data ? renderNode(type as SupporttedColumnTypes, data, column) : ''}
+          </Card.Grid>
+        ) : null;
       })}
     </Card>
   ) : (

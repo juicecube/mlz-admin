@@ -6,7 +6,7 @@ import { typeFormItemRefers } from '../common-search';
 
 export interface ITableTypes<T> extends TableProps<T> {
   columns: IColumnTypes<T>[];
-  tools?: React.ReactNode[];
+  tools?: React.ReactNode;
   onSearch?: (params: Record<any, string>) => void;
   onReset?: () => void;
 }

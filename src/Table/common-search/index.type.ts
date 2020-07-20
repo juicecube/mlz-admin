@@ -7,6 +7,6 @@ export interface ICommonSearch<T> extends TableProps<T> {
   onReset?: (e) => void;
   onSearchFailed?: (e) => void;
   colCount: number;
-  tools?: React.ReactNode[];
+  tools?: React.ReactNode | React.ReactNode[];
   initialSearchValues?: Record<string, any>;
 }

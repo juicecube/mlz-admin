@@ -3,6 +3,7 @@ import { Form, Input, Row, Col, InputNumber, Select, DatePicker } from 'antd';
 import Button from '@/Button/Button';
 import { ICommonSearch } from './index.type';
 import { TagEnumsType, EnumsType } from '@/Table/common-table/index.type';
+import { getDataType } from 'mytils';
 import locale from 'antd/es/date-picker/locale/zh_CN';
 import Icon from '@/Icon/Icon';
 import { createBem, purgeData } from '@/shared/utils';
@@ -60,6 +61,8 @@ const renderCol = ($column) => {
 const calcTotalColspan = ($items, perColspan = 4) => $items.reduce((prev, curr) => (prev += curr.searchColSpan || perColspan), 0);
 const CommonSearchForm = (props: ICommonSearch<unknown>) => {
   const { columns, tools, colCount = 4 } = props;
+  const toolsArr = (getDataType(tools) === 'array' ? tools : [tools]) as React.ReactNode[];
+
   const [form] = Form.useForm();
   const searchings = columns?.filter((item) => item.searchable || item.searchable === 0).sort((prev, curr) => Number(curr.searchable) - Number(prev.searchable));
   const perColspan = 24 / colCount;
@@ -69,7 +72,7 @@ const CommonSearchForm = (props: ICommonSearch<unknown>) => {
     <Col span={sparedLastColSpan < perColspan ? 24 : sparedLastColSpan} style={{ textAlign: 'right' }}>
       <Button
         style={{ marginRight: 12 }}
-        onClick={(e) => {
+        onClick={(e): void & React.MouseEventHandler<HTMLElement> => {
           props.onReset?.(undefined);
           form.resetFields();
         }}
@@ -82,14 +85,7 @@ const CommonSearchForm = (props: ICommonSearch<unknown>) => {
     </Col>
   );
   return (
-    <Form
-      className={bem('form')}
-      form={form}
-      onFinish={(params) => {
-        props.onSearch?.(purgeData(params));
-      }}
-      onFinishFailed={props?.onSearchFailed}
-      initialValues={props.initialSearchValues}>
+    <Form className={bem('form')} form={form} onFinish={(params) => props.onSearch?.(purgeData(params))} onFinishFailed={props?.onSearchFailed} initialValues={props.initialSearchValues}>
       <Row gutter={24}>
         {searchings?.map((row, index) => (
           <Col span={row.searchColSpan || perColspan} key={(row.title as string) || index}>
@@ -99,13 +95,13 @@ const CommonSearchForm = (props: ICommonSearch<unknown>) => {
         {shouldMergeSubmitButton ? null : formSubmitters}
       </Row>
       {shouldMergeSubmitButton ? <Row justify="end">{formSubmitters}</Row> : null}
-      {tools && tools?.length > 0 ? (
+      {toolsArr && (toolsArr as React.ReactNode[])?.length > 0 ? (
         <>
           <hr className={bem('hr')} />
           <Row justify="end" align="middle" gutter={16}>
-            {tools.map((tool, index) => {
-              return <Col key={index}>{tool}</Col>;
-            })}
+            {toolsArr.map((tool, index) => (
+              <Col key={tool?.['key'] || index}>{tool}</Col>
+            ))}
           </Row>
         </>
       ) : null}
