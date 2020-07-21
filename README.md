@@ -1,6 +1,5 @@
 <p align="center">
 基于 Antd，遵循编程猫后台管理系统设计规范的 React 组件库
-https://mlz-admin.now.sh
 </p>
 <p align="center" style="font-size: 26px">
 🌈 https://mlz-admin.now.sh

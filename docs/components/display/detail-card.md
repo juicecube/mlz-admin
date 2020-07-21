@@ -4,12 +4,12 @@
 
 ## 1. 基本使用
 
-<code src="./../demo/detail-card/normal-usage.demo.tsx"/>
+<code src="./../../demo/detail-card/normal-usage.demo.tsx"/>
 
 ## 2. 展示 Table 表格数据
 
-<code src="./../demo/detail-card/as-table.demo.tsx"/>
+<code src="./../../demo/detail-card/as-table.demo.tsx"/>
 
 ## 3. 带快速访问的锚点
 
-<code src="./../demo/detail-card/with-anchor.demo.tsx"/>
+<code src="./../../demo/detail-card/with-anchor.demo.tsx"/>

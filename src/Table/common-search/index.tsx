@@ -60,11 +60,11 @@ const renderCol = ($column) => {
 
 const calcTotalColspan = ($items, perColspan = 4) => $items.reduce((prev, curr) => (prev += curr.searchColSpan || perColspan), 0);
 const CommonSearchForm = (props: ICommonSearch<unknown>) => {
-  const { columns, tools, colCount = 4 } = props;
-  const toolsArr = (getDataType(tools) === 'array' ? tools : [tools]) as React.ReactNode[];
-
   const [form] = Form.useForm();
-  const searchings = columns?.filter((item) => item.searchable || item.searchable === 0).sort((prev, curr) => Number(curr.searchable) - Number(prev.searchable));
+  const { columns = [], tools = [], colCount = 4, extraSearchs = [] } = props;
+
+  const toolsArr = (getDataType(tools) === 'array' ? tools : [tools]) as React.ReactNode[];
+  const searchings = [...columns?.filter((item) => item.searchable || item.searchable === 0), ...extraSearchs].sort((prev, curr) => Number(curr?.['searchable']) - Number(prev?.['searchable']));
   const perColspan = 24 / colCount;
   const sparedLastColSpan = searchings ? 24 - (calcTotalColspan(searchings, perColspan) % 24) : perColspan;
   const shouldMergeSubmitButton = searchings && searchings?.length % colCount === 0;
@@ -84,6 +84,7 @@ const CommonSearchForm = (props: ICommonSearch<unknown>) => {
       </Button>
     </Col>
   );
+
   return (
     <Form className={bem('form')} form={form} onFinish={(params) => props.onSearch?.(purgeData(params))} onFinishFailed={props?.onSearchFailed} initialValues={props.initialSearchValues}>
       <Row gutter={24}>

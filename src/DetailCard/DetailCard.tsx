@@ -46,11 +46,11 @@ const DetailCard = (props: IDetailCardProps) => {
   return displayType !== 'table' ? (
     <Card {...others} bordered={false} className={bem('card')} title={<CardTitle {...{ title, linkable }} />}>
       {(columns as any).map((column, index: number) => {
-        const { dataIndex, _title, render, type, wrap } = column;
+        const { dataIndex, render, type, wrap } = column;
         const data = dataSource?.[dataIndex];
         return placeholder !== '' && !!data ? (
           <Card.Grid {...defaultProps(wrap)} key={dataIndex}>
-            <span style={{ fontWeight: 600 }}>{_title}：&nbsp;</span>
+            <span style={{ fontWeight: 600 }}>{column.title}：&nbsp;</span>
             {render ? render(data, dataSource, index) : data ? renderNode(type as SupporttedColumnTypes, data, column) : ''}
           </Card.Grid>
         ) : null;
