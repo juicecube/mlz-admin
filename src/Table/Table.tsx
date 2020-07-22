@@ -10,7 +10,7 @@ const InteralTable = (props: ITableTypes<any>) => {
   const showSearchForm = formattedColumns.some((item) => item.searchable);
   return (
     <Layout.Content>
-      {showSearchForm || extraSearchs?.length > 0 ? <CommonSearchForm {...props} columns={formattedColumns} colCount={4} tools={props.tools} /> : null}
+      {showSearchForm || extraSearchs?.length > 0 ? <CommonSearchForm {...props} colCount={4} tools={props.tools} /> : null}
       <CommonTable {...props} columns={formattedColumns} />
     </Layout.Content>
   );

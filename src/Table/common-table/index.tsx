@@ -2,13 +2,12 @@ import React, { useState, useContext } from 'react';
 import { Table, Tooltip, Tag, ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
 import { formatUnixTime, omitProps, getRatioFromNum } from 'mytils';
-import { formatPrice, guessPrimaryKey, createBem } from '@/shared/utils';
+import { formatPrice, guessPrimaryKey, createBem } from '../../shared/utils';
 import { IColumnTypes, ITableTypes, recordedType, EnumsType, TagEnumsType, SupporttedColumnTypes } from './index.type';
 import './index.less';
-
 export const typeValueRefers = {
   normal: (value: any) => value || '--',
-  number: (value: number) => value || '--',
+  number: (value: number) => (value || value === 0 ? value : '--'),
   price: (value: number) => formatPrice(value),
   date: (value: number) => formatUnixTime(value, 'YYYY/MM/DD'),
   datetime: (value: number) => formatUnixTime(value),
@@ -24,18 +23,10 @@ export const typeValueRefers = {
     );
   },
   ratio: (value: number) => getRatioFromNum(value, 2, true),
-  // -> https://mathiasbynens.github.io/rel-noopener/
-  link: (uri) => (
-    <Tooltip title={uri}>
-      <a href={uri} target="_blank" rel="noopener noreferrer">
-        点击链接查看
-      </a>
-    </Tooltip>
-  ),
 };
 
-export const renderNode = (type: SupporttedColumnTypes = 'normal', value: any, column: IColumnTypes<recordedType>) =>
-  ['enum', 'tag'].includes(type) ? typeValueRefers[type](value, column?.enums as Record<string, any>) : typeValueRefers[type](value);
+export const renderNode = (type: SupporttedColumnTypes, value: any, column: IColumnTypes<recordedType>) =>
+  ['enum', 'tag'].includes(type) ? typeValueRefers[type || 'normal'](value, column?.enums as Record<string, any>) : typeValueRefers[type || 'normal'](value);
 
 const bem = createBem('table');
 export const formatColumns = ($columns: IColumnTypes<unknown>[]) => {

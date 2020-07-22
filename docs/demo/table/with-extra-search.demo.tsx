@@ -1,72 +1,71 @@
-/**
- * title: 基本使用
- * desc: 通过传入 `dataSource` 来展示表格，通过 `onChange`和 `onSearch` 等参数控制交互。
- */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Table from '@/Table/Table';
-import { Slider } from 'antd';
 import axios from 'axios';
+import { Slider, Rate, Input } from 'antd';
 
 const columns = [
   {
     title: 'Name',
     dataIndex: 'name',
-    primary: true,
     searchable: 1,
-  },
-  {
-    title: 'Desc',
-    dataIndex: 'desc',
-    ellipsis: true,
-    width: 250,
+    primary: true,
   },
   {
     title: 'Cost',
     dataIndex: 'money',
     type: 'price',
-    sorter: (a, b) => a.money - b.money,
+    searchable: 2,
+    searchType: 'price',
+  },
+  {
+    title: '操作',
+    render: () => [
+      <a key={1} style={{ marginRight: 6 }}>
+        检查
+      </a>,
+      <a key={2}>关闭</a>,
+    ],
   },
 ];
+
+const CustomedSlider: React.FC<any> = ({ value, onChange }) => {
+  const [rate, setRate] = useState<number>(value || 0);
+  useEffect(() => {
+    console.log(value, rate);
+    onChange?.(rate);
+  }, [rate]);
+  useEffect(() => {
+    console.log(value, 222);
+  }, [value]);
+  return <Slider min={1} max={20} onChange={(e) => setRate(e)} value={value || rate} />;
+};
 
 const extraSearchColumns = [
   {
-    title: 'Forwards',
-    dataIndex: 'status',
-    type: 'tag',
-    enums: {
-      all: { text: '全部', color: 'magenta' },
-      close: { text: '售罄', color: 'red' },
-      running: { text: '补货中', color: 'volcano', desc: 'testDesc' },
-      online: { text: '正在销售', color: 'orange' },
-      error: { text: '库存不足', color: 'gold' },
-    },
-    searchable: 10,
-  },
-  {
-    title: 'Desc',
-    searchable: 100,
-    render: () => <Slider min={1} max={20} />,
+    title: 'Extra-Search',
+    searchable: 3,
+    render: () => <Input />,
   },
 ];
-
 class App extends React.PureComponent {
   state = {
     data: [],
     loading: true,
+    searchParams: {
+      current: 1,
+      pageSize: 10,
+    },
   };
 
   componentDidMount() {
-    this.fetchData();
+    this.fetchData(this.state.searchParams);
   }
 
-  fetchData = async (params?: { current: number; pageSize: number }) => {
+  fetchData = async (params?: { current?: number; pageSize?: number; [key: string]: any }) => {
     this.setState({ loading: true });
     const { data } = await axios.get('http://rap2.taobao.org:38080/app/mock/252468/admini/table-demo', {
       method: 'get',
-      params: params || {
-        current: 1,
-        pageSize: 10,
-      },
+      params,
     });
     this.setState({
       data: data.items,
@@ -75,7 +74,35 @@ class App extends React.PureComponent {
   };
 
   render() {
-    return <Table columns={columns} dataSource={this.state.data} loading={this.state.loading} extraSearchs={extraSearchColumns} />;
+    return (
+      <Table
+        columns={columns}
+        dataSource={this.state.data}
+        loading={this.state.loading}
+        pagination={{ total: 50, showSizeChanger: true, showQuickJumper: true }}
+        onChange={(png) => {
+          this.setState(
+            {
+              searchParams: { ...png, ...this.state.searchParams },
+            },
+            () => this.fetchData(this.state.searchParams),
+          );
+        }}
+        onSearch={(e) => this.fetchData({ ...this.state.searchParams, ...e })}
+        onReset={() => {
+          this.setState(
+            {
+              searchParams: {
+                current: 1,
+                pageSize: 10,
+              },
+            },
+            () => this.fetchData(this.state.searchParams),
+          );
+        }}
+        extraSearchs={extraSearchColumns}
+      />
+    );
   }
 }
 

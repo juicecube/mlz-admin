@@ -4,6 +4,7 @@
  */
 import React from 'react';
 import Table from '@/Table/Table';
+import { Slider } from 'antd';
 import axios from 'axios';
 
 const columns = [
@@ -59,6 +60,26 @@ const columns = [
   },
 ];
 
+const extraSearchColumns = [
+  {
+    title: 'Forwards',
+    dataIndex: 'status',
+    type: 'tag',
+    enums: {
+      all: { text: '全部', color: 'magenta' },
+      close: { text: '售罄', color: 'red' },
+      running: { text: '补货中', color: 'volcano', desc: 'testDesc' },
+      online: { text: '正在销售', color: 'orange' },
+      error: { text: '库存不足', color: 'gold' },
+    },
+    searchable: 10,
+  },
+  {
+    title: 'Desc',
+    searchable: 100,
+    render: () => <Slider min={1} max={20} />,
+  },
+];
 class App extends React.PureComponent {
   state = {
     data: [],
@@ -100,14 +121,7 @@ class App extends React.PureComponent {
             () => this.fetchData(this.state.searchParams),
           );
         }}
-        onSearch={(e) => {
-          this.setState(
-            {
-              searchParams: { ...e, ...this.state.searchParams },
-            },
-            () => this.fetchData(this.state.searchParams),
-          );
-        }}
+        onSearch={(e) => this.fetchData({ ...this.state.searchParams, ...e })}
         onReset={() => {
           this.setState(
             {

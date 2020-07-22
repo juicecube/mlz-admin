@@ -1,9 +1,9 @@
 import React from 'react';
 import { IDetailCardProps } from './DetailCard.type';
-import { createBem } from '@/shared/utils';
-import Icon from '@/Icon/Icon';
-import CommonTable, { renderNode } from '@/Table/common-table';
-import { SupporttedColumnTypes } from '@/Table/common-table/index.type';
+import { createBem } from '../shared/utils';
+import Icon from '../Icon/Icon';
+import CommonTable, { renderNode } from '../Table/common-table';
+import { SupporttedColumnTypes } from '../Table/common-table/index.type';
 import { Card } from 'antd';
 import './DetailCard.less';
 

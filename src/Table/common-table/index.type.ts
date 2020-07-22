@@ -11,7 +11,7 @@ export interface IColumnTypes<T> extends ColumnProps<T> {
 
   // ⬇️配合commonSearchForm
   // 是否添加该项的搜索到commonSearchForm中
-  searchable?: true | number;
+  searchable?: boolean | number;
   // 在searchForm中显示的key title
   searchLabel?: string;
   // 在searchForm中显示的ui类型

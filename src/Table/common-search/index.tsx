@@ -1,12 +1,12 @@
 import React from 'react';
 import { Form, Input, Row, Col, InputNumber, Select, DatePicker } from 'antd';
-import Button from '@/Button/Button';
+import Button from '../../Button/Button';
 import { ICommonSearch } from './index.type';
-import { TagEnumsType, EnumsType } from '@/Table/common-table/index.type';
+import { TagEnumsType, EnumsType } from '../../Table/common-table/index.type';
 import { getDataType } from 'mytils';
 import locale from 'antd/es/date-picker/locale/zh_CN';
-import Icon from '@/Icon/Icon';
-import { createBem, purgeData } from '@/shared/utils';
+import Icon from '../../Icon/Icon';
+import { createBem, purgeData } from '../../shared/utils';
 import './index.less';
 
 const bem = createBem('common-search');
@@ -37,23 +37,23 @@ const renderSelection = (opts: TagEnumsType | EnumsType) => (
  */
 const fullWidthStyle = { width: '100%' };
 export const typeFormItemRefers = {
-  normal: () => <Input allowClear />,
+  normal: () => <Input />,
   number: () => <InputNumber style={fullWidthStyle} />,
   enum: (opts) => renderSelection(opts),
   tag: (opts) => renderSelection(opts),
-  date: () => <DatePicker style={fullWidthStyle} locale={locale} allowClear />,
-  dateRange: () => <DatePicker.RangePicker style={fullWidthStyle} locale={locale} allowClear />,
-  datetime: () => <DatePicker showTime style={fullWidthStyle} locale={locale} allowClear />,
-  datetimeRange: () => <DatePicker.RangePicker style={fullWidthStyle} locale={locale} showTime allowClear />,
+  date: () => <DatePicker style={fullWidthStyle} locale={locale} />,
+  dateRange: () => <DatePicker.RangePicker style={fullWidthStyle} locale={locale} />,
+  datetime: () => <DatePicker showTime style={fullWidthStyle} locale={locale} />,
+  datetimeRange: () => <DatePicker.RangePicker style={fullWidthStyle} locale={locale} showTime />,
   price: () => <InputNumber style={fullWidthStyle} />,
   ratio: () => <InputNumber formatter={(value) => `${value ? value + ' %' : ''}`} parser={(value) => value?.replace(' %', '') as string} style={fullWidthStyle} />,
 };
 
 const renderCol = ($column) => {
-  const { title, dataIndex, searchLabel, type, enums, searchType } = $column;
+  const { title, dataIndex, searchLabel, type, enums, searchType, render } = $column;
   return (
     <Form.Item name={dataIndex} label={searchLabel || title} key={$column.dataIndex}>
-      {typeFormItemRefers[searchType || type]?.(enums || undefined) ?? <Input allowClear />}
+      {render ? render() : typeFormItemRefers[searchType || type || 'normal']?.(enums || undefined)}
     </Form.Item>
   );
 };
@@ -62,7 +62,6 @@ const calcTotalColspan = ($items, perColspan = 4) => $items.reduce((prev, curr) 
 const CommonSearchForm = (props: ICommonSearch<unknown>) => {
   const [form] = Form.useForm();
   const { columns = [], tools = [], colCount = 4, extraSearchs = [] } = props;
-
   const toolsArr = (getDataType(tools) === 'array' ? tools : [tools]) as React.ReactNode[];
   const searchings = [...columns?.filter((item) => item.searchable || item.searchable === 0), ...extraSearchs].sort((prev, curr) => Number(curr?.['searchable']) - Number(prev?.['searchable']));
   const perColspan = 24 / colCount;
@@ -86,27 +85,40 @@ const CommonSearchForm = (props: ICommonSearch<unknown>) => {
   );
 
   return (
-    <Form className={bem('form')} form={form} onFinish={(params) => props.onSearch?.(purgeData(params))} onFinishFailed={props?.onSearchFailed} initialValues={props.initialSearchValues}>
-      <Row gutter={24}>
-        {searchings?.map((row, index) => (
-          <Col span={row.searchColSpan || perColspan} key={(row.title as string) || index}>
-            {renderCol(row)}
-          </Col>
-        ))}
-        {shouldMergeSubmitButton ? null : formSubmitters}
-      </Row>
-      {shouldMergeSubmitButton ? <Row justify="end">{formSubmitters}</Row> : null}
-      {toolsArr && (toolsArr as React.ReactNode[])?.length > 0 ? (
-        <>
-          <hr className={bem('hr')} />
-          <Row justify="end" align="middle" gutter={16}>
-            {toolsArr.map((tool, index) => (
-              <Col key={tool?.['key'] || index}>{tool}</Col>
-            ))}
-          </Row>
-        </>
-      ) : null}
-    </Form>
+    <Form.Provider
+      onFormFinish={(e, params) => {
+        console.log(e, params);
+      }}>
+      <Form
+        className={bem('form')}
+        form={form}
+        onFinish={(params) => {
+          console.log(params, 'Form');
+          props.onSearch?.(purgeData(params));
+        }}
+        onFinishFailed={props?.onSearchFailed}
+        initialValues={props.initialSearchValues}>
+        <Row gutter={24}>
+          {searchings?.map((row, index) => (
+            <Col span={row.searchColSpan || perColspan} key={(row.title as string) || index}>
+              {renderCol(row)}
+            </Col>
+          ))}
+          {shouldMergeSubmitButton ? null : formSubmitters}
+        </Row>
+        {shouldMergeSubmitButton ? <Row justify="end">{formSubmitters}</Row> : null}
+        {toolsArr && (toolsArr as React.ReactNode[])?.length > 0 ? (
+          <>
+            <hr className={bem('hr')} />
+            <Row justify="end" align="middle" gutter={16}>
+              {toolsArr.map((tool, index) => (
+                <Col key={tool?.['key'] || index}>{tool}</Col>
+              ))}
+            </Row>
+          </>
+        ) : null}
+      </Form>
+    </Form.Provider>
   );
 };
 export default CommonSearchForm;

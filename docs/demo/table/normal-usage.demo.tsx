@@ -20,9 +20,18 @@ const columns = [
     width: 250,
   },
   {
+    title: 'Nothing',
+    dataIndex: 'name1',
+  },
+  {
     title: 'Link',
     dataIndex: 'linkage',
     type: 'link',
+    render: (value) => (
+      <a href={value} target="_blank" rel="noopener noreferrer">
+        点击查看链接
+      </a>
+    ),
   },
   {
     title: 'Cost',
@@ -86,7 +95,7 @@ class App extends React.PureComponent {
   };
 
   render() {
-    return <Table columns={columns} dataSource={this.state.data} loading={this.state.loading} />;
+    return <Table columns={columns} dataSource={this.state.data} loading={this.state.loading} scroll={{ x: 1300 }} />;
   }
 }
 
