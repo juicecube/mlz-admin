@@ -18,8 +18,9 @@ const columns = [
     title: 'Id',
     dataIndex: 'id',
     type: 'number',
-    searchable: 5,
     width: 60,
+    searchable: 5,
+    hidden: true,
   },
   {
     title: 'Cost',
@@ -60,26 +61,6 @@ const columns = [
   },
 ];
 
-const extraSearchColumns = [
-  {
-    title: 'Forwards',
-    dataIndex: 'status',
-    type: 'tag',
-    enums: {
-      all: { text: '全部', color: 'magenta' },
-      close: { text: '售罄', color: 'red' },
-      running: { text: '补货中', color: 'volcano', desc: 'testDesc' },
-      online: { text: '正在销售', color: 'orange' },
-      error: { text: '库存不足', color: 'gold' },
-    },
-    searchable: 10,
-  },
-  {
-    title: 'Desc',
-    searchable: 100,
-    render: () => <Slider min={1} max={20} />,
-  },
-];
 class App extends React.PureComponent {
   state = {
     data: [],
@@ -113,14 +94,7 @@ class App extends React.PureComponent {
         dataSource={this.state.data}
         loading={this.state.loading}
         pagination={{ total: 50, showSizeChanger: true, showQuickJumper: true }}
-        onChange={(png) => {
-          this.setState(
-            {
-              searchParams: { ...png, ...this.state.searchParams },
-            },
-            () => this.fetchData(this.state.searchParams),
-          );
-        }}
+        onChange={(png) => this.fetchData({ ...this.state.searchParams })}
         onSearch={(e) => this.fetchData({ ...this.state.searchParams, ...e })}
         onReset={() => {
           this.setState(

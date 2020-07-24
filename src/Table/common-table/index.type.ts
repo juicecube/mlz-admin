@@ -10,6 +10,8 @@ export interface IColumnTypes<T> extends ColumnProps<T> {
   primary?: number | boolean;
 
   // ⬇️配合commonSearchForm
+  // 是否在table中隐藏该列
+  hidden?: boolean;
   // 是否添加该项的搜索到commonSearchForm中
   searchable?: boolean | number;
   // 在searchForm中显示的key title

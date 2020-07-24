@@ -50,10 +50,10 @@ export const typeFormItemRefers = {
 };
 
 const renderCol = ($column) => {
-  const { title, dataIndex, searchLabel, type, enums, searchType, render } = $column;
+  const { title, dataIndex, searchLabel, type, enums, searchType } = $column;
   return (
     <Form.Item name={dataIndex} label={searchLabel || title} key={$column.dataIndex}>
-      {render ? render() : typeFormItemRefers[searchType || type || 'normal']?.(enums || undefined)}
+      {typeFormItemRefers[searchType || type || 'normal']?.(enums || undefined)}
     </Form.Item>
   );
 };
@@ -61,9 +61,9 @@ const renderCol = ($column) => {
 const calcTotalColspan = ($items, perColspan = 4) => $items.reduce((prev, curr) => (prev += curr.searchColSpan || perColspan), 0);
 const CommonSearchForm = (props: ICommonSearch<unknown>) => {
   const [form] = Form.useForm();
-  const { columns = [], tools = [], colCount = 4, extraSearchs = [] } = props;
+  const { columns = [], tools = [], colCount = 4 } = props;
   const toolsArr = (getDataType(tools) === 'array' ? tools : [tools]) as React.ReactNode[];
-  const searchings = [...columns?.filter((item) => item.searchable || item.searchable === 0), ...extraSearchs].sort((prev, curr) => Number(curr?.['searchable']) - Number(prev?.['searchable']));
+  const searchings = columns?.filter((item) => item.searchable || item.searchable === 0).sort((prev, curr) => Number(curr?.['searchable']) - Number(prev?.['searchable']));
   const perColspan = 24 / colCount;
   const sparedLastColSpan = searchings ? 24 - (calcTotalColspan(searchings, perColspan) % 24) : perColspan;
   const shouldMergeSubmitButton = searchings && searchings?.length % colCount === 0;
@@ -85,40 +85,34 @@ const CommonSearchForm = (props: ICommonSearch<unknown>) => {
   );
 
   return (
-    <Form.Provider
-      onFormFinish={(e, params) => {
-        console.log(e, params);
-      }}>
-      <Form
-        className={bem('form')}
-        form={form}
-        onFinish={(params) => {
-          console.log(params, 'Form');
-          props.onSearch?.(purgeData(params));
-        }}
-        onFinishFailed={props?.onSearchFailed}
-        initialValues={props.initialSearchValues}>
-        <Row gutter={24}>
-          {searchings?.map((row, index) => (
-            <Col span={row.searchColSpan || perColspan} key={(row.title as string) || index}>
-              {renderCol(row)}
-            </Col>
-          ))}
-          {shouldMergeSubmitButton ? null : formSubmitters}
-        </Row>
-        {shouldMergeSubmitButton ? <Row justify="end">{formSubmitters}</Row> : null}
-        {toolsArr && (toolsArr as React.ReactNode[])?.length > 0 ? (
-          <>
-            <hr className={bem('hr')} />
-            <Row justify="end" align="middle" gutter={16}>
-              {toolsArr.map((tool, index) => (
-                <Col key={tool?.['key'] || index}>{tool}</Col>
-              ))}
-            </Row>
-          </>
-        ) : null}
-      </Form>
-    </Form.Provider>
+    <Form
+      className={bem('form')}
+      form={form}
+      onFinish={(params) => {
+        props.onSearch?.(purgeData(params));
+      }}
+      onFinishFailed={props?.onSearchFailed}
+      initialValues={props.initialSearchValues}>
+      <Row gutter={24}>
+        {searchings?.map((row, index) => (
+          <Col span={row.searchColSpan || perColspan} key={(row.title as string) || index}>
+            {renderCol(row)}
+          </Col>
+        ))}
+        {shouldMergeSubmitButton ? null : formSubmitters}
+      </Row>
+      {shouldMergeSubmitButton ? <Row justify="end">{formSubmitters}</Row> : null}
+      {toolsArr && (toolsArr as React.ReactNode[])?.length > 0 ? (
+        <>
+          <hr className={bem('hr')} />
+          <Row justify="end" align="middle" gutter={16}>
+            {toolsArr.map((tool, index) => (
+              <Col key={tool?.['key'] || index}>{tool}</Col>
+            ))}
+          </Row>
+        </>
+      ) : null}
+    </Form>
   );
 };
 export default CommonSearchForm;

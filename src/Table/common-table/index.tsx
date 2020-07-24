@@ -29,20 +29,21 @@ export const renderNode = (type: SupporttedColumnTypes, value: any, column: ICol
   ['enum', 'tag'].includes(type) ? typeValueRefers[type || 'normal'](value, column?.enums as Record<string, any>) : typeValueRefers[type || 'normal'](value);
 
 const bem = createBem('table');
-export const formatColumns = ($columns: IColumnTypes<unknown>[]) => {
-  return $columns.map((column) => {
-    const { type, ...others } = column;
-    let { render } = column;
-    if (!render) {
-      render = (value) => renderNode(type as SupporttedColumnTypes, value, column);
-    }
-    return {
-      type,
-      render,
-      ...others,
-    };
-  });
-};
+export const formatColumns = ($columns: IColumnTypes<unknown>[]) =>
+  $columns
+    .filter((column) => !column.hidden)
+    .map((column) => {
+      const { type, ...others } = column;
+      let { render } = column;
+      if (!render) {
+        render = (value) => renderNode(type as SupporttedColumnTypes, value, column);
+      }
+      return {
+        type,
+        render,
+        ...others,
+      };
+    });
 
 const CommonTable = (props: ITableTypes<any>) => {
   const { columns = [], pagination, rowKey, ...others } = props;
@@ -53,7 +54,9 @@ const CommonTable = (props: ITableTypes<any>) => {
         rowKey={rowKey || (columns.length > 0 ? guessPrimaryKey(columns) : null) || 'id'}
         columns={formatColumns(columns)}
         pagination={pagination || false}
-        onChange={(png, ...rests) => props.onChange?.(omitProps(['showSizeChanger', 'showQuickJumper'], png), ...rests)}
+        onChange={(png, ...rests) => {
+          props.onChange?.(omitProps(['showSizeChanger', 'showQuickJumper'], png), ...rests);
+        }}
       />
     </ConfigProvider>
   );

@@ -5,12 +5,11 @@ import CommonSearchForm from './common-search';
 import { ITableTypes } from './common-table/index.type';
 
 const InteralTable = (props: ITableTypes<any>) => {
-  const { columns = [], extraSearchs = [] } = props;
+  const { columns = [] } = props;
   const formattedColumns = formatColumns(columns);
-  const showSearchForm = formattedColumns.some((item) => item.searchable);
   return (
     <Layout.Content>
-      {showSearchForm || extraSearchs?.length > 0 ? <CommonSearchForm {...props} colCount={4} tools={props.tools} /> : null}
+      {formattedColumns.some((item) => item.searchable) ? <CommonSearchForm {...props} colCount={4} tools={props.tools} /> : null}
       <CommonTable {...props} columns={formattedColumns} />
     </Layout.Content>
   );
