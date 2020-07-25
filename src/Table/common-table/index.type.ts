@@ -20,6 +20,8 @@ export interface IColumnTypes<T> extends ColumnProps<T> {
   searchType?: keyof typeof typeFormItemRefers;
   // 占据的格栅宽度
   searchColSpan?: number;
+  // 渲染form块
+  searchRender?: React.ReactNode | React.ReactNode[];
 }
 export type recordedType = any;
 export type IExtraSearchType = Omit<IColumnTypes<unknown>, 'primary' | 'searchable'>;

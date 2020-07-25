@@ -53,7 +53,7 @@ const renderCol = ($column) => {
   const { title, dataIndex, searchLabel, type, enums, searchType } = $column;
   return (
     <Form.Item name={dataIndex} label={searchLabel || title} key={$column.dataIndex}>
-      {typeFormItemRefers[searchType || type || 'normal']?.(enums || undefined)}
+      {$column.searchRender?.() || typeFormItemRefers[searchType || type || 'normal']?.(enums || undefined)}
     </Form.Item>
   );
 };

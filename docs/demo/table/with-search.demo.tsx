@@ -21,6 +21,7 @@ const columns = [
     width: 60,
     searchable: 5,
     hidden: true,
+    searchRender: (val) => <Slider />,
   },
   {
     title: 'Cost',
