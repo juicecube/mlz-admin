@@ -22,6 +22,8 @@ export interface IColumnTypes<T> extends ColumnProps<T> {
   searchColSpan?: number;
   // 渲染form块
   searchRender?: React.ReactNode | React.ReactNode[];
+  // 自定义搜索formName，即搜索条件中的key
+  searchKey?: string | symbol;
 }
 export type recordedType = any;
 export type IExtraSearchType = Omit<IColumnTypes<unknown>, 'primary' | 'searchable'>;

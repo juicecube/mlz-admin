@@ -22,6 +22,7 @@ const columns = [
     searchable: 5,
     hidden: true,
     searchRender: (val) => <Slider />,
+    searchKey: 'testKey',
   },
   {
     title: 'Cost',
