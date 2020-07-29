@@ -11,7 +11,7 @@ import './index.less';
 
 const bem = createBem('common-search');
 const renderSelection = (opts: TagEnumsType | EnumsType) => (
-  <Select allowClear>
+  <Select allowClear placeholder="请选择">
     {Object.entries(opts).map((kv) => {
       const [key, value] = kv;
       const text = typeof value === 'string' ? value : value.text;
@@ -92,7 +92,8 @@ const CommonSearchForm = (props: ICommonSearch<unknown>) => {
         props.onSearch?.(purgeData(params));
       }}
       onFinishFailed={props?.onSearchFailed}
-      initialValues={props.initialSearchValues}>
+      initialValues={props.initialSearchValues}
+      style={toolsArr.length ? { marginBottom: 18 } : {}}>
       <Row gutter={24}>
         {searchings?.map((row, index) => (
           <Col span={row.searchColSpan || perColspan} key={(row.title as string) || index}>

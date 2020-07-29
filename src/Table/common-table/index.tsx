@@ -5,6 +5,7 @@ import { formatUnixTime, omitProps, getRatioFromNum } from 'mytils';
 import { formatPrice, guessPrimaryKey, createBem } from '../../shared/utils';
 import { IColumnTypes, ITableTypes, recordedType, EnumsType, TagEnumsType, SupporttedColumnTypes } from './index.type';
 import './index.less';
+
 export const checkValValidated = ($val) => $val || $val === 0;
 export const typeValueRefers = {
   normal: (value: any) => (checkValValidated(value) ? value : '--'),
