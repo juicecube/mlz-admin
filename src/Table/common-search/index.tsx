@@ -102,7 +102,11 @@ const CommonSearchForm = (props: ICommonSearch<unknown>) => {
         ))}
         {shouldMergeSubmitButton ? null : formSubmitters}
       </Row>
-      {shouldMergeSubmitButton ? <Row justify="end">{formSubmitters}</Row> : null}
+      {shouldMergeSubmitButton ? (
+        <Row justify="end" style={{ marginBottom: 16 }}>
+          {formSubmitters}
+        </Row>
+      ) : null}
       {toolsArr && (toolsArr as React.ReactNode[])?.length > 0 ? (
         <>
           <hr className={bem('hr')} />

@@ -35,7 +35,6 @@ const columns = [
     title: 'CreatedAt',
     dataIndex: 'createdAt',
     type: 'date',
-    searchable: true,
     searchType: 'dateRange',
     searchColSpan: 10,
   },
