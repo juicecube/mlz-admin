@@ -89,7 +89,7 @@
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
     "rollup-plugin-typescript2": "^0.27.1",
-    "simple-git": "^2.5.0",
+    "simple-git": "^2.15.0",
     "stylelint": "^13.5.0",
     "stylelint-config-prettier": "^8.0.1",
     "stylelint-config-rational-order": "^0.1.2",
