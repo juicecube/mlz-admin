@@ -11,8 +11,10 @@ const purgeData = ($object: Record<string, unknown>) => {
     const [key, value] = kv;
     if (value === undefined) {
       delete newObj[key];
+    } else {
+      value && typeof value === 'string' ? (newObj[key] as string)?.trim() : value;
     }
   });
-  return newObj && typeof newObj === 'string' ? (newObj as string)?.trim() : newObj;
+  return newObj;
 };
 export default purgeData;
