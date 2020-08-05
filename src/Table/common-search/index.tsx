@@ -94,7 +94,7 @@ const CommonSearchForm = (props: ICommonSearch<unknown>) => {
       style={toolsArr.length ? { marginBottom: 18 } : {}}>
       <Row gutter={24}>
         {searchings?.map((row, index) => (
-          <Col sm={row.searchColSpan || perColspan * 3} lg={row.searchColSpan || perColspan * 2} xxl={row.searchColSpan || perColspan} key={(row.title as string) || index}>
+          <Col sm={row.searchColSpan || perColspan * 3} lg={row.searchColSpan || perColspan * 2} xl={row.searchColSpan || perColspan} key={(row.title as string) || index}>
             {renderCol(row)}
           </Col>
         ))}
