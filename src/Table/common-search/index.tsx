@@ -88,15 +88,13 @@ const CommonSearchForm = (props: ICommonSearch<unknown>) => {
     <Form
       className={bem('form')}
       form={form}
-      onFinish={(params) => {
-        props.onSearch?.(purgeData(params));
-      }}
+      onFinish={(params) => props.onSearch?.(purgeData(params))}
       onFinishFailed={props?.onSearchFailed}
       initialValues={props.initialSearchValues}
       style={toolsArr.length ? { marginBottom: 18 } : {}}>
       <Row gutter={24}>
         {searchings?.map((row, index) => (
-          <Col span={row.searchColSpan || perColspan} key={(row.title as string) || index}>
+          <Col sm={row.searchColSpan || perColspan * 3} lg={row.searchColSpan || perColspan * 2} xxl={row.searchColSpan || perColspan} key={(row.title as string) || index}>
             {renderCol(row)}
           </Col>
         ))}
