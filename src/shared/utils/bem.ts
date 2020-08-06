@@ -42,9 +42,9 @@ function prefix(name: string, mods: BemMods): string {
   return ret.join(' ');
 }
 
-var root = `admini`;
+const root = `admini`;
 function createBem($name: string) {
-  let name = `${root}-${$name}`;
+  const name = `${root}-${$name}`;
   return function(el?: BemMods, mods?: BemMods): string {
     let res: string;
     if (typeof el === 'string') {
