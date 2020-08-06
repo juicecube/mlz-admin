@@ -15,7 +15,7 @@ export const typeFilter = {
   tag: (value: string, enums?: EnumsType) => {
     const TagNode = <Tag color={enums?.[value]?.color}>{enums?.[value]?.text || '--'}</Tag>;
     return enums?.[value]?.desc ? (
-      <Tooltip title={enums?.[value]?.desc} className={bem('tooltip')} arrowPointAtCenter={true}>
+      <Tooltip title={enums?.[value]?.desc} className={bem('tooltip')}>
         {TagNode}
       </Tooltip>
     ) : (
