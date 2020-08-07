@@ -12,9 +12,4 @@ describe('formatPrice', function() {
     const chars = 12;
     expect(formatPrice(chars)).toBe('¥ 12.00');
   });
-
-  // 报错
-  it('throw a correct error without params', function() {
-    expect(() => formatPrice()).toThrow('必须输入参数数字');
-  });
 });

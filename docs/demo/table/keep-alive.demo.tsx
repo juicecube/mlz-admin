@@ -33,7 +33,7 @@ const columns = [
 class App extends React.PureComponent {
   state = {
     data: [],
-    limit: 10,
+    pageSize: 10,
     current: 1,
     total: 10,
     loading: true,
@@ -43,14 +43,14 @@ class App extends React.PureComponent {
     this.fetchData();
   }
 
-  fetchData = (params?: { current: number; limit: number }) => {
+  fetchData = (params?: { current: number; pageSize: number }) => {
     this.setState({ loading: true });
     axios
       .get('http://rap2.taobao.org:38080/app/mock/252468/admini/table-demo', {
         method: 'get',
         params: params || {
           current: 1,
-          limit: 10,
+          pageSize: 10,
         },
       })
       .then((res: any) => {
@@ -59,7 +59,7 @@ class App extends React.PureComponent {
           data: data.items,
           total: data.total,
           current: parseInt(data.current_page, 10),
-          limit: parseInt(data.page_size, 10),
+          pageSize: parseInt(data.page_size, 10),
           loading: false,
         });
       });
@@ -73,7 +73,7 @@ class App extends React.PureComponent {
         dataSource={this.state.data}
         loading={this.state.loading}
         current={this.state.current}
-        limit={this.state.limit as any}
+        pageSize={this.state.pageSize as any}
         total={this.state.total}
         onChange={(pgn: any) => {
           this.fetchData(pgn);

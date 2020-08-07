@@ -4,7 +4,7 @@ import { createFromIconfontCN as createFromIconfont } from '@ant-design/icons/es
 export class IconFontScript {
   public scriptUrls: string[];
 
-  constructor($scriptUrl: URL['href'] = '//at.alicdn.com/t/font_1820833_zgnaif28led.js') {
+  constructor($scriptUrl: URL['href'] = '//at.alicdn.com/t/font_1820833_32ida2n9cyl.js') {
     this.scriptUrls = [$scriptUrl];
   }
 
