@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import testMount, { sleep } from '../../../../tests/testMount';
+import testMount from '../../../../tests/testMount';
 import { mount } from 'enzyme';
 import CommonTable from '..';
 
@@ -26,15 +26,15 @@ describe('📦 CommonTable', () => {
 
   // testMount(CommonTable);
 
-  test("如果没有一个正值，则返回'--'", async () => {
+  test("如果没有一个值，则返回'--'", async () => {
     const data = [
       {
         name: 'milo',
         score: 90,
       },
       {
-        name: 'kacy',
-        score: null,
+        name: 'joyce',
+        score: undefined,
       },
     ];
     const columns = [

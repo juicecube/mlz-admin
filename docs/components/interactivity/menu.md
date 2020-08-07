@@ -8,11 +8,11 @@
 
 ## 1. 顶部导航
 
-<code src="./../demo/menu/head-menu.demo.tsx"/>
+<code src="./../../demo/menu/head-menu.demo.tsx"/>
 
 ## 2. 垂直菜单
 
-<code src="./../demo/menu/side-menu.demo.tsx"/>
+<code src="./../../demo/menu/side-menu.demo.tsx"/>
 
 参见：
 

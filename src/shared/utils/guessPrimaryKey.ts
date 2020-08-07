@@ -1,3 +1,5 @@
+import { getDataType } from 'mytils';
+
 const __DEV__ = (window as any).__DEV__ !== 'false';
 
 const guessPrimaryKey = ($columns: any[]): string | undefined => {
@@ -24,7 +26,7 @@ const guessPrimaryKey = ($columns: any[]): string | undefined => {
         return matched;
       });
     });
-    if (__DEV__ && isNaN(indexa)) {
+    if (__DEV__ && getDataType(indexa) === null) {
       return undefined;
     }
     return $columns[indexa]?.dataIndex;

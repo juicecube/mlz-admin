@@ -4,11 +4,11 @@
 
 ## 1. 基本使用
 
-<code src="./../demo/icon/normal-usage.demo.tsx"/>
+<code src="./../../demo/icon/normal-usage.demo.tsx"/>
 
 ## 2. 在其它组件中使用
 
-<code src="./../demo/icon/used-in-others.demo.tsx"/>
+<code src="./../../demo/icon/used-in-others.demo.tsx"/>
 
 ## 3. 全部图标
 

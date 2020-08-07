@@ -1,4 +1,13 @@
 import { defineConfig } from 'dumi';
+import path from 'path';
+import fs from 'fs';
+
+// 根据dir获取其下的所有.md文件
+const getMds = ($relativedFromDoc) => {
+  const absltRoute = path.resolve(__dirname, 'docs/' + $relativedFromDoc);
+  const files = fs.readdirSync(absltRoute);
+  return files;
+};
 
 export default defineConfig({
   hash: true,
@@ -6,6 +15,22 @@ export default defineConfig({
   mode: 'site',
   favicon: 'https://img.alicdn.com/tfs/TB1YHEpwUT1gK0jSZFhXXaAtVXa-28-27.svg',
   locales: [['zh-CN', '中文']],
+  menus: {
+    '/components': [
+      {
+        title: '布局',
+        children: getMds('components/layout').map((item) => 'components/layout/' + item),
+      },
+      {
+        title: '交互型组件',
+        children: getMds('components/interactivity').map((item) => 'components/interactivity/' + item),
+      },
+      {
+        title: '展示型组件',
+        children: getMds('components/display').map((item) => 'components/display/' + item),
+      },
+    ],
+  },
   navs: [
     {
       title: '开始',

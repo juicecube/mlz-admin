@@ -1,6 +1,19 @@
 import React, { useState, useContext } from 'react';
-import CommonTable from './commonTable';
+import { Layout } from 'antd';
+import CommonTable, { formatColumns } from './common-table';
+import CommonSearchForm from './common-search';
+import { ITableTypes } from './common-table/index.type';
 
-const Table = CommonTable;
+const InteralTable = (props: ITableTypes<any>) => {
+  const { columns = [] } = props;
+  const formattedColumns = formatColumns(columns);
+  return (
+    <Layout.Content>
+      {formattedColumns.some((item) => item.searchable) ? <CommonSearchForm {...props} colCount={4} tools={props.tools} /> : null}
+      <CommonTable {...props} columns={formattedColumns} />
+    </Layout.Content>
+  );
+};
+const Table = InteralTable;
 
 export default Table;

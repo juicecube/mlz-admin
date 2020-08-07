@@ -1,7 +1,6 @@
 export * from 'antd';
 export { default as Button } from './Button/Button';
 export { default as Avatar } from './Avatar/Avatar';
-export { default as Breadcrumb } from './Breadcrumb/Breadcrumb';
 export { default as Card } from './Card/Card';
 export { default as Col } from './Col/Col';
 export { default as ConfigProvider } from './ConfigProvider/ConfigProvider';
@@ -25,3 +24,4 @@ export { default as Table } from './Table/Table';
 export { default as Tag } from './Tag/Tag';
 export { default as Tooltip } from './Tooltip/Tooltip';
 export { default as Upload } from './Upload/Upload';
+export { default as DetailCard } from './DetailCard/DetailCard';
