@@ -4,4 +4,4 @@
 
 ### 基本使用
 
-<code src="./../demo/avatar/normal-usage.demo.tsx" />
+<code src="./../../demo/avatar/normal-usage.demo.tsx" />

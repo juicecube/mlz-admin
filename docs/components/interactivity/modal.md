@@ -8,4 +8,4 @@
 
 另外当需要一个简洁的确认框询问用户时，可以使用 Modal.confirm() 等语法糖方法。
 
-<code src="./../demo/modal/normal-usage.demo.tsx" />
+<code src="./../../demo/modal/normal-usage.demo.tsx" />

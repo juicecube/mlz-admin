@@ -9,4 +9,4 @@
 
 ### 基本使用
 
-<code src="./../demo/select/normal-usage.demo.tsx"/>
+<code src="./../../demo/select/normal-usage.demo.tsx"/>

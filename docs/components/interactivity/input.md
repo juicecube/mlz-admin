@@ -9,4 +9,4 @@
 
 ### 基本使用
 
-<code src="./../demo/input/normal-usage.demo.tsx" />
+<code src="./../../demo/input/normal-usage.demo.tsx" />

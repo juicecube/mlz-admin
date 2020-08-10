@@ -10,4 +10,4 @@
 
 ### 基本使用
 
-<code src="./../demo/Popover/normal-usage.demo.tsx" />
+<code src="./../../demo/Popover/normal-usage.demo.tsx" />
