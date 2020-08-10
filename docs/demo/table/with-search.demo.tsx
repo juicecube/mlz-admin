@@ -1,5 +1,5 @@
 /**
- * title: 基本使用
+ * title: 搜索项
  * desc: 通过传入 `data` 来展示表格，通过 `onChange`和 `onSearch` 等参数控制交互。
  */
 import React from 'react';
@@ -21,7 +21,6 @@ const columns = [
     width: 60,
     searchable: 5,
     hidden: true,
-    searchRender: (val) => <Slider />,
     searchKey: 'testKey',
   },
   {

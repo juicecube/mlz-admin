@@ -24,7 +24,7 @@ const groupList = [
   },
 ];
 
-describe('📦 Button', () => {
+describe('📦  Button', () => {
   /**
    * @FIRST 挂载
    */

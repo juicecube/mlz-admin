@@ -3,7 +3,7 @@ import testMount from '../../../../tests/testMount';
 import { mount } from 'enzyme';
 import CommonTable from '..';
 
-describe('📦 CommonTable', () => {
+describe('📦  CommonTable', () => {
   /**
    * https://jestjs.io/docs/en/manual-mocks#mocking-methods-which-are-not-implemented-in-jsdom
    * @desc 现在如果需要渲染js原生dom，则需要添加如下代码：

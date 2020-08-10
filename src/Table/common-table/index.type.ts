@@ -17,7 +17,7 @@ export interface IColumnTypes<T> extends ColumnProps<T> {
   // 在searchForm中显示的key title
   searchLabel?: string;
   // 在searchForm中显示的ui类型
-  searchType?: keyof typeof typeFormItemRefers;
+  searchType?: keyof typeof typeFormItemRefers | string;
   // 占据的格栅宽度
   searchColSpan?: number;
   // 渲染form块
@@ -34,6 +34,7 @@ export interface ITableTypes<T> extends TableProps<T> {
   tools?: React.ReactNode;
   onSearch?: (params: Record<any, string>) => void;
   onReset?: () => void;
+  keepAlive?: string | ((d?: any, c?: any) => string);
 }
 export type SupporttedColumnTypes = keyof typeof typeValueRefers;
 export type ColorTypes = LiteralUnion<PresetColorType | PresetStatusColorType, string>;

@@ -50,26 +50,26 @@ jobs:
       - name: execute code lint
         run: npm run lint
 
-  bundleSize: 
-    runs-on: ubuntu-latest
-    needs: lint
-    steps:
-      - name: checkout
-        uses: actions/checkout@master
+  # bundleSize: 
+  #   runs-on: ubuntu-latest
+  #   needs: lint
+  #   steps:
+  #     - name: checkout
+  #       uses: actions/checkout@master
         
-      - name: restore cached node_modules
-        uses: actions/cache@v1
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-cached-node-modules-${{ hashFiles('**/package-lock.json') }}
+  #     - name: restore cached node_modules
+  #       uses: actions/cache@v1
+  #       with:
+  #         path: node_modules
+  #         key: ${{ runner.os }}-cached-node-modules-${{ hashFiles('**/package-lock.json') }}
 
-      - name: run bundleSize checker
-        uses: sarthak-saxena/JSBundleSize@master
-        with:
-          bootstrap: npm install
-          build_command: npm run dist
-          dist_path: 'dist'
-          token: ${{ secrets.GITHUB_TOKEN }}
+  #     - name: run bundleSize checker
+  #       uses: sarthak-saxena/JSBundleSize@master
+  #       with:
+  #         bootstrap: npm install
+  #         build_command: npm run dist
+  #         dist_path: 'dist'
+  #         token: ${{ secrets.GITHUB_TOKEN }}
 
   codecov: 
     runs-on: ubuntu-latest

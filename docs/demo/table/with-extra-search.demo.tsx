@@ -16,6 +16,7 @@ const columns = [
     type: 'price',
     searchable: 2,
     searchType: 'price',
+    searchRender: () => <CustomedSlider />,
   },
   {
     title: '操作',

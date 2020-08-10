@@ -2,7 +2,7 @@ import React from 'react';
 import Icon, { IconFontScript } from '../Icon';
 import testMount from '../../../tests/testMount';
 
-describe('📦 Icon', () => {
+describe('📦  Icon', () => {
   let newIconInstance = null;
 
   beforeEach(() => {

@@ -6,5 +6,5 @@ export interface KeepAliveProps {
   name: string;
   timeout?: number;
   onLoad?: () => void;
-  props: any;
+  triggerEvent?: 'onChange' | 'onSubmit';
 }

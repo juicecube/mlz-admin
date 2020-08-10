@@ -1,4 +1,9 @@
 export type SnapshotType = Record<string, any>;
+export interface IKAContext {
+  payload: any;
+  dispatch: ($name: string, $args: any) => void;
+  launchedAt?: number;
+}
 class AlivesStore {
   constructor() {
     this.launchTime = new Date().valueOf();
@@ -42,5 +47,5 @@ class AlivesStore {
   };
 }
 
-const aliveStore = new AlivesStore();
-export default aliveStore;
+const cachingStore = new AlivesStore();
+export default cachingStore;

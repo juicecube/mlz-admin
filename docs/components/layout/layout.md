@@ -1,6 +1,6 @@
 # Layout
 
-**`📦布局`进行页面级整体布局。**
+**`📦 布局`进行页面级整体布局。**
 
 ## 1. 顶部导航布局
 
@@ -64,7 +64,7 @@ const HeaderContent = () => (
     <div style={{ float: 'right' }}>
       <a style={{ marginRight: 12 }}>查收通知</a>
       <Button type="primary">
-        <Icon type="user" />
+        <Icon type="close" />
         退出登陆
       </Button>
     </div>

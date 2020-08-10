@@ -1,6 +1,6 @@
 # Button
 
-** `📦按钮`用于开始一个即时操作。标记了一个（或封装一组）操作命令，响应用户点击行为，触发相应的业务逻辑。**
+** `📦 按钮`用于开始一个即时操作。标记了一个（或封装一组）操作命令，响应用户点击行为，触发相应的业务逻辑。**
 
 ## 1. 基本使用
 
@@ -83,13 +83,13 @@ class App extends React.PureComponent {
   render() {
     return (
       <Space size={50}>
-        <Button type="primary" shape="circle" icon={<Icon type="i-play" />} loading />
-        <Button type="primary" icon={<Icon type="i-play" />} loading>
+        <Button type="primary" shape="circle" icon={<Icon type="play_l" />} loading />
+        <Button type="primary" icon={<Icon type="play_l" />} loading>
           播放
         </Button>
         <Divider />
-        <Button type="primary" shape="circle" icon={<Icon type="i-play" />} loading={this.state.firstDemo} onClick={() => this.triggerLoading('first')} />
-        <Button type="primary" icon={<Icon type="i-play" />} loading={this.state.secondDemo} onClick={() => this.triggerLoading('second')}>
+        <Button type="primary" shape="circle" icon={<Icon type="play_l" />} loading={this.state.firstDemo} onClick={() => this.triggerLoading('first')} />
+        <Button type="primary" icon={<Icon type="play_l" />} loading={this.state.secondDemo} onClick={() => this.triggerLoading('second')}>
           播放
         </Button>
       </Space>
@@ -116,19 +116,19 @@ const App = () => {
   return (
     <>
       <Space size={50}>
-        <Button type="primary" shape="circle" icon={<Icon type="i-play" />} />
-        <Button type="dashed" shape="circle" icon={<Icon type="i-danmu" />} />
-        <Button danger type="primary" shape="circle" icon={<Icon type="i-wrong" />} />
+        <Button type="primary" shape="circle" icon={<Icon type="play_l" />} />
+        <Button type="dashed" shape="circle" icon={<Icon type="gutline_success" />} />
+        <Button danger type="primary" shape="circle" icon={<Icon type="gutline_error" />} />
       </Space>
       <Divider dashed />
       <Space size={25}>
-        <Button type="primary" icon={<Icon type="i-play" />}>
+        <Button type="primary" icon={<Icon type="play_l" />}>
           播放
         </Button>
-        <Button type="dashed" icon={<Icon type="i-danmu" />}>
+        <Button type="dashed" icon={<Icon type="gutline_success" />}>
           开启弹幕
         </Button>
-        <Button danger icon={<Icon type="i-wrong" />}>
+        <Button danger icon={<Icon type="gutline_error" />}>
           删除
         </Button>
       </Space>

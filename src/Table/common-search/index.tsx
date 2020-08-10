@@ -7,9 +7,15 @@ import { getDataType } from 'mytils';
 import locale from 'antd/es/date-picker/locale/zh_CN';
 import Icon from '../../Icon/Icon';
 import { createBem, purgeData } from '../../shared/utils';
+import KeepAlive from '../../shared/keep-alive';
 import './index.less';
 
+const fullWidthStyle = { width: '100%' };
 const bem = createBem('common-search');
+
+/**
+ * @func 根据column.enums生成对应的Select
+ */
 const renderSelection = (opts: TagEnumsType | EnumsType) => (
   <Select allowClear placeholder="请选择">
     {Object.entries(opts).map((kv) => {
@@ -33,9 +39,9 @@ const renderSelection = (opts: TagEnumsType | EnumsType) => (
 );
 
 /**
- * @REFLECTs type|searchType映射到组件
+ * @func 根据column.type渲染对应的组件
+ * @remark common-table的typeRender和common-search的typeRender不互相复用
  */
-const fullWidthStyle = { width: '100%' };
 export const typeFormItemRefers = {
   normal: () => <Input />,
   number: () => <InputNumber style={fullWidthStyle} />,
@@ -49,6 +55,9 @@ export const typeFormItemRefers = {
   ratio: () => <InputNumber formatter={(value) => `${value ? value + ' %' : ''}`} parser={(value) => value?.replace(' %', '') as string} style={fullWidthStyle} />,
 };
 
+/**
+ * @func 根据column.search[xx]字段渲染对应的搜索组件
+ */
 const renderCol = ($column) => {
   const { title, dataIndex, searchLabel, type, enums, searchType, searchKey } = $column;
   return (
@@ -67,8 +76,9 @@ const CommonSearchForm = (props: ICommonSearch<unknown>) => {
   const perColspan = 24 / colCount;
   const sparedLastColSpan = searchings ? 24 - (calcTotalColspan(searchings, perColspan) % 24) : perColspan;
   const shouldMergeSubmitButton = searchings && searchings?.length % colCount === 0;
+
   const formSubmitters = (
-    <Col span={sparedLastColSpan < perColspan ? 24 : sparedLastColSpan} style={{ textAlign: 'right' }}>
+    <Col span={sparedLastColSpan < perColspan ? 24 : sparedLastColSpan} style={{ textAlign: 'right', marginBottom: 16 }}>
       <Button
         style={{ marginRight: 12 }}
         onClick={(e): void & React.MouseEventHandler<HTMLElement> => {
@@ -100,11 +110,7 @@ const CommonSearchForm = (props: ICommonSearch<unknown>) => {
         ))}
         {shouldMergeSubmitButton ? null : formSubmitters}
       </Row>
-      {shouldMergeSubmitButton ? (
-        <Row justify="end" style={{ marginBottom: 16 }}>
-          {formSubmitters}
-        </Row>
-      ) : null}
+      {shouldMergeSubmitButton ? <Row justify="end">{formSubmitters}</Row> : null}
       {toolsArr && (toolsArr as React.ReactNode[])?.length > 0 ? (
         <>
           <hr className={bem('hr')} />

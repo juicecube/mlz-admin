@@ -22,12 +22,16 @@ export default defineConfig({
         children: getMds('components/layout').map((item) => 'components/layout/' + item),
       },
       {
-        title: '交互型组件',
+        title: '交互和展示组件',
         children: getMds('components/interactivity').map((item) => 'components/interactivity/' + item),
       },
       {
-        title: '展示型组件',
+        title: '组合组件',
         children: getMds('components/display').map((item) => 'components/display/' + item),
+      },
+      {
+        title: '业务套件',
+        children: getMds('components/composit').map((item) => 'components/composit/' + item),
       },
     ],
   },

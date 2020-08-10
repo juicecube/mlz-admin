@@ -3,9 +3,9 @@ import Icon from '@/Icon/Icon';
 import { Space } from 'antd';
 
 export default () => (
-  <Space size={50}>
-    <Icon type="ico_suggest_gift_l" />
-    <Icon type="i-mute" />
-    <Icon type="i-danmu" />
+  <Space size={25}>
+    <Icon type="google_g" />
+    <Icon type="add_rectangle_g" style={{ color: '#cd201f' }} />
+    <Icon type="cloud_g" style={{ color: '#1890ff' }} />
   </Space>
 );
