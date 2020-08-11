@@ -1,7 +1,7 @@
 export type SnapshotType = Record<string, any>;
 export interface IKAContext {
   payload: any;
-  dispatch: ($name: string, $args: any) => void;
+  dispatch: ($args: SnapshotType | SnapshotType[]) => void;
   launchedAt?: number;
 }
 class AlivesStore {

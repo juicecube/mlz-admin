@@ -35,9 +35,6 @@ const CustomedSlider: React.FC<any> = ({ value, onChange }) => {
     console.log(value, rate);
     onChange?.(rate);
   }, [rate]);
-  useEffect(() => {
-    console.log(value, 222);
-  }, [value]);
   return <Slider min={1} max={20} onChange={(e) => setRate(e)} value={value || rate} />;
 };
 
