@@ -1,23 +1,12 @@
 # Radio
 
-**`📦 菜单`为页面和功能提供导航的菜单列表。**
+**单选框。**
 
-```tsx
-import React from 'react';
-import Radio from '@/Radio/Radio';
+### 何时使用
 
-const App = () => {
-  return (
-    <>
-      <Radio.Group>
-        <Radio value={1}>A</Radio>
-        <Radio value={2}>B</Radio>
-        <Radio value={3}>C</Radio>
-        <Radio value={4}>D</Radio>
-      </Radio.Group>
-    </>
-  );
-};
+- 用于在多个备选项中选中单个状态。
+- 和 Select 的区别是，Radio 所有选项默认可见，方便用户在比较中选择，因此选项不宜过多。
 
-export default App;
-```
+### 基本使用
+
+<code src="./../../demo/radio/normal-usage.demo.tsx" />
