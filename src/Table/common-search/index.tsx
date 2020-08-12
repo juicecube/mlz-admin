@@ -82,7 +82,7 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
   let keepAliveHandler;
   if (cacheKey) {
     keepAliveHandler = (fields) => dispatch(fields);
-    form.setFieldsValue(omitProps(['pagination', 'sorter', 'filters'], payload));
+    form.setFieldsValue(payload ? omitProps(['pagination', 'sorter', 'filters'], payload) : {});
   }
 
   const formSubmitters = (
