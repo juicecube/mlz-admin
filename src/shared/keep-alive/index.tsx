@@ -7,6 +7,7 @@ export const KAContext = createContext({} as IKAContext);
 const KeepAlive: React.FC<KeepAliveProps> = (props: KeepAliveProps) => {
   const [_, setPayload] = useState([]);
   const dispatch = ($args: SnapshotType): void => {
+    console.log($args, '触发了dispatch');
     cachingStore.pushStateIntoSnapshots(props.name, $args);
     setPayload(cachingStore.getSnapshot(props.name)?.payload);
   };

@@ -1,6 +1,6 @@
 import { TableProps } from 'antd/lib/table';
 import { IColumnTypes } from '../common-table/index.type';
-import { KeepAliveProps } from './../../shared/keep-alive/keep-alive.type';
+import { KeepAliveProps } from '../../shared/keep-alive/keep-alive.type';
 
 export interface ICommonSearch<T> extends TableProps<T> {
   columns?: IColumnTypes<T>[];

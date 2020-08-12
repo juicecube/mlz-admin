@@ -71,7 +71,7 @@ const calcTotalColspan = ($items, perColspan = 4) => $items.reduce((prev, curr) 
 
 const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
   const [form] = Form.useForm();
-  const { columns = [], tools = [], colCount = 4, keepAlive } = props;
+  const { columns = [], tools = [], colCount = 4, cacheKey } = props;
   const toolsArr = (getDataType(tools) === 'array' ? tools : [tools]) as React.ReactNode[];
   const searchings = columns?.filter((item) => item.searchable || item.searchable === 0).sort((prev, curr) => Number(curr?.['searchable']) - Number(prev?.['searchable']));
   const perColspan = 24 / colCount;
@@ -80,7 +80,7 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
 
   const { dispatch } = useContext(KAContext);
   let keepAliveHandler;
-  if (keepAlive) {
+  if (cacheKey) {
     keepAliveHandler = (fields) => dispatch(fields);
   }
 

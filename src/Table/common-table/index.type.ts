@@ -2,9 +2,10 @@ import { ColumnProps, TableProps, TablePaginationConfig } from 'antd/lib/table';
 import { PresetColorType, PresetStatusColorType } from 'antd/lib/_util/colors';
 import { LiteralUnion } from 'antd/lib/_util/type';
 import { typeValueRefers } from '.';
-import { KeepAliveProps } from './../../shared/keep-alive/keep-alive.type';
+import { KeepAliveProps } from '../../shared/keep-alive/keep-alive.type';
 import { typeFormItemRefers } from '../common-search';
 
+export type recordedType = any;
 export interface IColumnTypes<T> extends ColumnProps<T> {
   type?: string;
   // 当type=enums|tags时的枚举
