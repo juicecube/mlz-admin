@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import { Popconfirm as AntdPopconfirm } from 'antd';
 
 const Popconfirm = AntdPopconfirm;

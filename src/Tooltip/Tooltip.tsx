@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import { Tooltip as AntdTooltip } from 'antd';
 
 const Tooltip = AntdTooltip;

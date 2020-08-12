@@ -94,9 +94,13 @@ class App extends React.PureComponent {
         dataSource={this.state.data}
         loading={this.state.loading}
         pagination={{ total: 50, showSizeChanger: true, showQuickJumper: true }}
-        onChange={(png) => this.fetchData({ ...this.state.searchParams })}
-        onSearch={(e) => this.fetchData({ ...this.state.searchParams, ...e })}
+        onChange={(png) => this.fetchData({ ...this.state.searchParams, ...png })}
+        onSearch={(e) => {
+          console.log('onSearch');
+          this.fetchData({ ...this.state.searchParams, ...e });
+        }}
         onReset={() => {
+          console.log('onReset');
           this.setState(
             {
               searchParams: {

@@ -1,6 +1,6 @@
 /**
  * title: keepAlive 数据缓存
- * desc: 通过指定 `keepAlive` 的key来为Table组件指定唯一的缓存key
+ * desc: 通过指定 `cacheKey` 的key来为Table组件指定对应的缓存，当该key对应的缓存被调取时会触发`onCacheHitted`方法
  */
 import React from 'react';
 import Table from '@/Table/Table';
@@ -68,16 +68,12 @@ class App extends React.PureComponent {
         columns={columns}
         dataSource={this.state.data}
         loading={this.state.loading}
-        keepAlive="testKA"
-        pagination={{ total: 50, showSizeChanger: true, showQuickJumper: true }}
-        onChange={(png) => {
-          this.setState(
-            {
-              searchParams: { ...png, ...this.state.searchParams },
-            },
-            () => this.fetchData(this.state.searchParams),
-          );
+        cacheKey="testKA"
+        onCacheHitted={(pa) => {
+          console.log(pa);
         }}
+        pagination={{ total: 50, showSizeChanger: true, showQuickJumper: true }}
+        onChange={(png) => this.fetchData({ ...this.state.searchParams, ...png })}
         onSearch={(e) => {
           this.setState(
             {

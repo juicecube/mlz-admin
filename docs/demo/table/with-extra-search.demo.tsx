@@ -32,19 +32,11 @@ const columns = [
 const CustomedSlider: React.FC<any> = ({ value, onChange }) => {
   const [rate, setRate] = useState<number>(value || 0);
   useEffect(() => {
-    console.log(value, rate);
     onChange?.(rate);
   }, [rate]);
   return <Slider min={1} max={20} onChange={(e) => setRate(e)} value={value || rate} />;
 };
 
-const extraSearchColumns = [
-  {
-    title: 'Extra-Search',
-    searchable: 3,
-    render: () => <Input />,
-  },
-];
 class App extends React.PureComponent {
   state = {
     data: [],
@@ -98,7 +90,6 @@ class App extends React.PureComponent {
             () => this.fetchData(this.state.searchParams),
           );
         }}
-        extraSearchs={extraSearchColumns}
       />
     );
   }

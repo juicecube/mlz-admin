@@ -2,9 +2,10 @@
 import React from 'react';
 
 export interface KeepAliveProps {
-  children: React.ReactElement;
   name: string;
+  children: React.ReactElement;
   timeout?: number;
   onLoad?: () => void;
   triggerEvent?: 'onChange' | 'onSubmit';
+  onCacheHitted?: (params: Record<any, string>) => void;
 }

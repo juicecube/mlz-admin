@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Form, Input, Row, Col, InputNumber, Select, DatePicker } from 'antd';
 import Button from '../../Button/Button';
 import { ICommonSearch } from './index.type';
@@ -7,7 +7,7 @@ import { getDataType } from 'mytils';
 import locale from 'antd/es/date-picker/locale/zh_CN';
 import Icon from '../../Icon/Icon';
 import { createBem, purgeData } from '../../shared/utils';
-import KeepAlive from '../../shared/keep-alive';
+import KeepAlive, { KAContext } from '../../shared/keep-alive';
 import './index.less';
 
 const fullWidthStyle = { width: '100%' };
@@ -68,22 +68,33 @@ const renderCol = ($column) => {
 };
 
 const calcTotalColspan = ($items, perColspan = 4) => $items.reduce((prev, curr) => (prev += curr.searchColSpan || perColspan), 0);
-const CommonSearchForm = (props: ICommonSearch<unknown>) => {
+
+const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
   const [form] = Form.useForm();
-  const { columns = [], tools = [], colCount = 4 } = props;
+  const { columns = [], tools = [], colCount = 4, keepAlive } = props;
   const toolsArr = (getDataType(tools) === 'array' ? tools : [tools]) as React.ReactNode[];
   const searchings = columns?.filter((item) => item.searchable || item.searchable === 0).sort((prev, curr) => Number(curr?.['searchable']) - Number(prev?.['searchable']));
   const perColspan = 24 / colCount;
   const sparedLastColSpan = searchings ? 24 - (calcTotalColspan(searchings, perColspan) % 24) : perColspan;
   const shouldMergeSubmitButton = searchings && searchings?.length % colCount === 0;
 
+  const { dispatch } = useContext(KAContext);
+  let keepAliveHandler;
+  if (keepAlive) {
+    keepAliveHandler = (fields) => dispatch(fields);
+  }
+
   const formSubmitters = (
     <Col span={sparedLastColSpan < perColspan ? 24 : sparedLastColSpan} style={{ textAlign: 'right', marginBottom: 16 }}>
       <Button
         style={{ marginRight: 12 }}
         onClick={(e): void & React.MouseEventHandler<HTMLElement> => {
-          props.onReset?.(undefined);
           form.resetFields();
+          const currFieldsValues = form.getFieldsValue();
+          !!keepAliveHandler && keepAliveHandler(currFieldsValues);
+          // ⚠️TODO: 建议不要再使用onReset了，后面会去掉。onReset只是一种特殊的onSearch
+          props.onReset?.(currFieldsValues);
+          props.onSearch?.(currFieldsValues);
         }}
         htmlType="button">
         重置
@@ -98,7 +109,11 @@ const CommonSearchForm = (props: ICommonSearch<unknown>) => {
     <Form
       className={bem('form')}
       form={form}
-      onFinish={(params) => props.onSearch?.(purgeData(params))}
+      onFinish={(params) => {
+        const results = purgeData(params);
+        props.onSearch?.(results);
+        !!keepAliveHandler && keepAliveHandler(results);
+      }}
       onFinishFailed={props?.onSearchFailed}
       initialValues={props.initialSearchValues}
       style={toolsArr.length ? { marginBottom: 18 } : {}}>
@@ -124,4 +139,12 @@ const CommonSearchForm = (props: ICommonSearch<unknown>) => {
     </Form>
   );
 };
+const CommonSearchForm = (props: ICommonSearch<unknown>) =>
+  props?.cacheKey ? (
+    <KeepAlive name={props.cacheKey} onCacheHitted={props.onCacheHitted}>
+      <InternalCommonSearch {...props} />
+    </KeepAlive>
+  ) : (
+    <InternalCommonSearch {...props} />
+  );
 export default CommonSearchForm;

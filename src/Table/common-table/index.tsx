@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Table, Tooltip, Tag, ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
-import KeepAlive from '../../shared/keep-alive';
+import KeepAlive, { KAContext } from '../../shared/keep-alive';
 import { formatUnixTime, omitProps, getRatioFromNum } from 'mytils';
 import { formatPrice, guessPrimaryKey, createBem } from '../../shared/utils';
 import { IColumnTypes, ITableTypes, recordedType, EnumsType, TagEnumsType, SupporttedColumnTypes } from './index.type';
@@ -49,15 +49,25 @@ export const formatColumns = ($columns: IColumnTypes<unknown>[]) =>
     });
 
 const InternalCommonTable = (props: ITableTypes<any>) => {
-  const { columns = [], pagination, rowKey, ...others } = props;
+  const { columns = [], rowKey, pagination, cacheKey, ...others } = props;
+  const { dispatch, payload } = useContext(KAContext);
   return (
     <Table
       {...others}
       rowKey={rowKey || (columns.length > 0 ? guessPrimaryKey(columns) : null) || 'id'}
       columns={formatColumns(columns)}
-      pagination={pagination || false}
+      pagination={(cacheKey ? payload?.pagination || pagination : pagination) || false}
       onChange={(png, ...rests) => {
-        props.onChange?.(omitProps(['showSizeChanger', 'showQuickJumper'], png), ...rests);
+        const pagResults = omitProps(['showSizeChanger', 'showQuickJumper'], png);
+        props.onChange?.(pagResults, ...rests);
+        // TODO: keep-alive现在只支持table组件，按理说keep-alive应该
+        // 是一个组件，可以包裹任何可受控组件，并且通过triggerEvent的事件
+        // 触发更新缓存。
+        if (cacheKey) {
+          const [filters, sorter] = rests;
+          //
+          dispatch({ pagination: pagResults, filters, sorter });
+        }
       }}
     />
   );
@@ -66,8 +76,8 @@ const InternalCommonTable = (props: ITableTypes<any>) => {
 const CommonTable = (props: ITableTypes<any>) => {
   return (
     <ConfigProvider locale={zhCN}>
-      {props?.keepAlive ? (
-        <KeepAlive name={props.keepAlive as string}>
+      {props?.cacheKey ? (
+        <KeepAlive name={props.cacheKey} onCacheHitted={props.onCacheHitted}>
           <InternalCommonTable {...props} />
         </KeepAlive>
       ) : (

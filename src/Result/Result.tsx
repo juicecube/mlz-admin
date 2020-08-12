@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import { Result as AntdResult } from 'antd';
 
 const Result = AntdResult;

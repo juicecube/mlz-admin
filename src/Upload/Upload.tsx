@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import { Upload as AntdUpload } from 'antd';
 
 const Upload = AntdUpload;
