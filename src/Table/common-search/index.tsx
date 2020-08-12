@@ -3,7 +3,7 @@ import { Form, Input, Row, Col, InputNumber, Select, DatePicker } from 'antd';
 import Button from '../../Button/Button';
 import { ICommonSearch } from './index.type';
 import { TagEnumsType, EnumsType } from '../../Table/common-table/index.type';
-import { getDataType } from 'mytils';
+import { getDataType, omitProps } from 'mytils';
 import locale from 'antd/es/date-picker/locale/zh_CN';
 import Icon from '../../Icon/Icon';
 import { createBem, purgeData } from '../../shared/utils';
@@ -78,10 +78,11 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
   const sparedLastColSpan = searchings ? 24 - (calcTotalColspan(searchings, perColspan) % 24) : perColspan;
   const shouldMergeSubmitButton = searchings && searchings?.length % colCount === 0;
 
-  const { dispatch } = useContext(KAContext);
+  const { dispatch, payload } = useContext(KAContext);
   let keepAliveHandler;
   if (cacheKey) {
     keepAliveHandler = (fields) => dispatch(fields);
+    form.setFieldsValue(omitProps(['pagination', 'sorter', 'filters'], payload));
   }
 
   const formSubmitters = (
