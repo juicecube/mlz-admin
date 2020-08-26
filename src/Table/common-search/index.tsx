@@ -3,6 +3,7 @@ import { Form, Input, Row, Col, InputNumber, Select, DatePicker } from 'antd';
 import Button from '../../Button/Button';
 import { ICommonSearch } from './index.type';
 import { TagEnumsType, EnumsType } from '../../Table/common-table/index.type';
+import { commonPaginationKeys } from '../../Table/common-table';
 import { getDataType, omitProps } from 'mytils';
 import locale from 'antd/es/date-picker/locale/zh_CN';
 import Icon from '../../Icon/Icon';
@@ -82,7 +83,7 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
   let keepAliveHandler;
   if (cacheKey) {
     keepAliveHandler = (fields) => dispatch(fields);
-    form.setFieldsValue(payload ? omitProps(['pagination', 'sorter', 'filters'], payload) : {});
+    form.setFieldsValue(payload ? omitProps(commonPaginationKeys, payload) : {});
   }
 
   const formSubmitters = (

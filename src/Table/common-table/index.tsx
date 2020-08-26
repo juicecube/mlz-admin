@@ -8,6 +8,7 @@ import { IColumnTypes, ITableTypes, recordedType, EnumsType, TagEnumsType, Suppo
 import './index.less';
 
 export const checkValValidated = ($val) => $val || $val === 0;
+export const commonPaginationKeys = ['pagination', 'sorter', 'filters'];
 export const typeValueRefers = {
   normal: (value: any) => (checkValValidated(value) ? value : '--'),
   number: (value: number) => (checkValValidated(value) ? value : '--'),
