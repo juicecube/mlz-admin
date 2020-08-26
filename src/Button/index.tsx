@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button as AntdButton } from 'antd';
 import { omitProps } from 'mytils';
-import Icon from '../Icon/Icon';
-import { GroupType, IButtonProps } from './Button.type';
+import Icon from '@/icon';
+import { GroupType, IButtonProps } from './index.type';
 
 const { Group } = AntdButton;
 const InternalButton: React.ForwardRefRenderFunction<unknown, IButtonProps> = (props: IButtonProps, ref): React.ReactElement => {

@@ -1,11 +1,11 @@
 import React from 'react';
-import { IDetailCardProps } from './DetailCard.type';
+import { IDetailCardProps } from './index.type';
 import { createBem } from '../shared/utils';
-import Icon from '../Icon/Icon';
-import CommonTable, { renderNode } from '../Table/common-table';
-import { SupporttedColumnTypes } from '../Table/common-table/index.type';
+import Icon from '../icon';
+import CommonTable, { renderNode } from '../table/common-table';
+import { SupporttedColumnTypes } from '../table/common-table/index.type';
 import { Card } from 'antd';
-import './DetailCard.less';
+import './index.less';
 
 const defaultProps = (wrap?: boolean) => {
   return {

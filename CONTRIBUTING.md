@@ -35,7 +35,15 @@
 
 1. 需求创建请参照本节第一部分。
 2. 需求分配本着`自愿领取为原则`。
-3. 当无人认领时，`应由王福凯或王玉进行分配`。优先分配至由相关业务的开发人员。
+3. 当无人认领时，`应由王福凯进行分配，其它管理员具有否决权`。优先程度上，应当分配至由相关业务的开发人员。
+
+## 📁 文件命名规范
+
+为配合 antd 在**babel-import-plugin**下的使用习惯，我们规定：
+
+1. 组件命名必须使用`小写字母`，比如 Icon 组件，应该定位在 `src/icon/index.tsx`里，而不是 src/Icon/xxx.tsx。
+2. 分词命名以`链接符`隔开（原则上是，但个别组件有意外，比如 popconfirm，它在 antd 没有被链接符命名），既不是大小驼峰，更不是 snake 命名。比如 DatePicker 组件，应该定位在 src/`date-picker`/index.tsx 而不是 src/datePicker/index.tsx。
+3. 组件文件夹下，default 导出应该由 `index.tsx` 进行，这样可以被 node 默认读取。比如 Buttona 组件，应该定位在 src/button/`index.tsx`而不是 src/button/button.tsx。
 
 ## 🤵 CSS 原则
 
@@ -45,7 +53,7 @@
    >
    > - `代码`可参照**CommonTable**组件中的代码
 
-## ⚛️ 组件设计原则
+## ⚛️ 组件和 API 设计原则
 
 1. 尽量减少一个功能所需要的新增的 api。
 2. 严禁覆盖 antd 原生 api，扩展也须谨慎。

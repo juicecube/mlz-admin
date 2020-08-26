@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ConfigProvider from '@/ConfigProvider/ConfigProvider';
+import ConfigProvider from '@/config-provider';
 import { Pagination, DatePicker, TimePicker, Calendar, Popconfirm, Table, Modal, Button, Select, Radio } from 'antd';
 import enUS from 'antd/es/locale/en_US';
 import zhCN from 'antd/es/locale/zh_CN';

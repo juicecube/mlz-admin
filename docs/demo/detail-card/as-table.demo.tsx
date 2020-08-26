@@ -4,7 +4,7 @@
  * background: '#F0F2F5'
  */
 import React from 'react';
-import DetailCard from '@/DetailCard/DetailCard';
+import DetailCard from '@/detail-card';
 import axios from 'axios';
 
 const columns = [

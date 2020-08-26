@@ -1,7 +1,7 @@
 import React from 'react';
-import Icon from '@/Icon/Icon';
+import Icon from '@/icon';
 import { Space, Tag, Popconfirm } from 'antd';
-import Button from '@/Button/Button';
+import Button from '@/button';
 
 export default () => (
   <Space size={40}>

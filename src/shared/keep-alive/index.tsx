@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect } from 'react';
 import { KeepAliveProps } from './keep-alive.type';
 import cachingStore, { IKAContext, SnapshotType } from './keep-alive.store';
 import { omitProps } from 'mytils';
-import { commonPaginationKeys } from '../../Table/common-table';
+import { commonPaginationKeys } from '../../table/common-table';
 
 export const KAContext = createContext({} as IKAContext);
 const KeepAlive: React.FC<KeepAliveProps> = (props: KeepAliveProps) => {

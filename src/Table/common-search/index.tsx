@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import { Form, Input, Row, Col, InputNumber, Select, DatePicker } from 'antd';
-import Button from '../../Button/Button';
+import Button from '../../button';
 import { ICommonSearch } from './index.type';
-import { TagEnumsType, EnumsType } from '../../Table/common-table/index.type';
-import { commonPaginationKeys } from '../../Table/common-table';
+import { TagEnumsType, EnumsType } from '../../table/common-table/index.type';
+import { commonPaginationKeys } from '../../table/common-table';
 import { getDataType, omitProps } from 'mytils';
 import locale from 'antd/es/date-picker/locale/zh_CN';
-import Icon from '../../Icon/Icon';
+import Icon from '../../icon';
 import { createBem, purgeData } from '../../shared/utils';
 import KeepAlive, { KAContext } from '../../shared/keep-alive';
 import './index.less';

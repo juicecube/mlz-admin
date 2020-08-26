@@ -10,9 +10,9 @@
  * desc: 最基本的『上-中-下』布局。网站路由由位于顶部的导航进行主控，没有侧边导航栏。
  */
 import React from 'react';
-import Menu from '@/Menu/Menu';
-import Layout from '@/Layout/Layout';
-import Button from '@/Button/Button';
+import Menu from '@/menu';
+import Layout from '@/layout';
+import Button from '@/button';
 
 const HeaderContent = () => (
   <div style={{ overflow: 'hidden' }}>
@@ -53,10 +53,10 @@ export default () => (
  * transform: true
  */
 import React from 'react';
-import Menu from '@/Menu/Menu';
-import Layout from '@/Layout/Layout';
-import Button from '@/Button/Button';
-import Icon from '@/Icon/Icon';
+import Menu from '@/menu';
+import Layout from '@/layout';
+import Button from '@/button';
+import Icon from '@/icon';
 import { Divider } from 'antd';
 
 const HeaderContent = () => (

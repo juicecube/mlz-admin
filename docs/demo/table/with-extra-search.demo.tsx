@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import Table from '@/Table/Table';
+import Table from '@/table';
+import Slider from '@/slider';
+import Input from '@/input';
 import axios from 'axios';
-import { Slider, Rate, Input } from 'antd';
+import { Rate } from 'antd';
 
 const columns = [
   {
