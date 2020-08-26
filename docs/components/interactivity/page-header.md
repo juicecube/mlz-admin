@@ -8,4 +8,4 @@
 
 ### 基本使用
 
-<code src="./../../demo/PageHeader/normal-usage.demo.tsx" />
+<code src="./../../demo/page-header/normal-usage.demo.tsx" />

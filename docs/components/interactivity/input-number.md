@@ -8,4 +8,4 @@
 
 ### 基本使用
 
-<code src="./../../demo/InputNumber/normal-usage.demo.tsx" />
+<code src="./../../demo/input-number/normal-usage.demo.tsx" />

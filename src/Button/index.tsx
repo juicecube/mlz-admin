@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button as AntdButton } from 'antd';
 import { omitProps } from 'mytils';
-import Icon from '@/icon';
+import Icon from '../icon';
 import { GroupType, IButtonProps } from './index.type';
 
 const { Group } = AntdButton;

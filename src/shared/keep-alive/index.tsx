@@ -14,7 +14,7 @@ const KeepAlive: React.FC<KeepAliveProps> = (props: KeepAliveProps) => {
   useEffect(() => {
     props?.onCacheHitted?.({
       pagination: {},
-      searchs: omitProps(commonPaginationKeys, cachingStore.getSnapshot(props.name)),
+      searchs: omitProps(commonPaginationKeys, cachingStore.getSnapshot(props.name) || {}),
     });
   }, []);
   return (

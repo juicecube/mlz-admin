@@ -4,4 +4,4 @@
 
 ### 基本使用
 
-<code src="./../../demo/ConfigProvider/normal-usage.demo.tsx" />
+<code src="./../../demo/config-provider/normal-usage.demo.tsx" />

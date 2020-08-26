@@ -2,7 +2,6 @@
 import React from 'react';
 import { CardProps } from 'antd/lib/card';
 import { IColumnTypes } from '../table/common-table/index.type';
-export { SupporttedColumnTypes } from '@/table/common-table/index.type';
 import { TableProps as RcTableProps } from 'rc-table/lib/Table';
 
 export interface IDetailCardColumn {

@@ -19,7 +19,7 @@ export default defineConfig({
     '/components': [
       {
         title: '布局',
-        children: getMds('components/layout').map((item) => 'components/layout/' + item),
+        children: getMds('components/structure').map((item) => 'components/structure/' + item),
       },
       {
         title: '交互和展示组件',
@@ -31,7 +31,7 @@ export default defineConfig({
       },
       {
         title: '业务套件',
-        children: getMds('components/business/').map((item) => 'components/business/' + item),
+        children: getMds('components/business').map((item) => 'components/business/' + item),
       },
     ],
   },
