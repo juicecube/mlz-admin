@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import testMount from '../../../tests/testMount';
-import Layout from '..';
+import Upload from '../Upload';
 
-describe('📦  Layout', () => {
-  testMount(Layout);
+describe('📦  Upload', () => {
+  testMount(Upload);
 });

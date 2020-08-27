@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import testMount from '../../../tests/testMount';
-import Layout from '..';
+import Popover from '../Popover';
 
-describe('📦  Layout', () => {
-  testMount(Layout);
+describe('📦  Popover', () => {
+  testMount(Popover);
 });

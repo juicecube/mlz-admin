@@ -39,11 +39,11 @@
 
 ## 📁 文件命名规范
 
-为配合 antd 在**babel-import-plugin**下的使用习惯，我们规定：
+为迎合广大用户形成了的 antd 在配置`babel-import-plugin`按需引入的使用习惯，我们规定：
 
-1. 组件命名必须使用`小写字母`，比如 Icon 组件，应该定位在 `src/icon/index.tsx`里，而不是 src/Icon/xxx.tsx。
-2. 分词命名以`链接符`隔开（原则上是，但个别组件有意外，比如 popconfirm，它在 antd 没有被链接符命名），既不是大小驼峰，更不是 snake 命名。比如 DatePicker 组件，应该定位在 src/`date-picker`/index.tsx 而不是 src/datePicker/index.tsx。
-3. 组件文件夹下，default 导出应该由 `index.tsx` 进行，这样可以被 node 默认读取。比如 Buttona 组件，应该定位在 src/button/`index.tsx`而不是 src/button/button.tsx。
+1. 组件命名必须使用**小写字母**，比如 Icon 组件，应该定位在 **src/icon/index.tsx**里，而不是 src/Icon/xxx.tsx。
+2. 分词命名以**链接符**隔开（原则上是，但个别组件有意外，比如 popconfirm，它在 antd 没有被链接符命名），既不是大小驼峰，更不是 snake 命名。比如 DatePicker 组件，应该定位在 src/**date-picker**/index.tsx 而不是 src/datePicker/index.tsx。
+3. 组件文件夹下，default 导出应该由 **index.tsx** 承担，这样可以被 node 默认读取。比如 Button 组件，应该定位在 src/button/**index.tsx**而不是 src/button/button.tsx。
 
 ## 🤵 CSS 原则
 
@@ -61,7 +61,7 @@
 4. Type 类型定义尽量和业务代码分开，不要放在同一个文件，即使 Types 很少。
 5. api 命名尽量使用最贴合的英文单词，且尽量简短。降低使用者认知和记忆成本。
 
-## 🍎 禁忌 (IMPORTANT 重要)
+## 🍎 禁忌
 
 1. 大量使用`any`或者带有恶意 any
 2. `命名`不符合编程猫前端开发规范(包括但不限于`文件命名`和`变量命名`)。
@@ -69,12 +69,12 @@
 4. 携带含有`敏感或编程猫业务信息`的代码进行 commit。
 5. (TODO)
 
-## 🔬 测试 (IMPORTANT 重要)
+## 🔬 测试
 
 1. 测试覆盖率，不低于 85%。
 2. 提交 PR 前，须保证 npm run test 可以正常通过，并且预设的 checkers 对应钩子执行通过。
 
-## 📖 文档 (IMPORTANT 重要)
+## 📖 文档
 
 1. 要求对组件扩展出来的 api 有明确的展示说明和详尽使用方法。
 2. 每个组件下的 APIs 节，只要求写多出于 antd 的，原生的不用复制一遍，原生 api 尽量引导用户去看 antd 的文档。
@@ -130,7 +130,7 @@ import Button from '@mlz/admin/es/Button/Button'; // esm按需引用
 > 3.  https://github.com/webpack/webpack/issues/8607#issuecomment-453068938
 > 4.  如果以上三种情况无法解决，则可能是由于 React 自身 bug 导致。参考 👉https://github.com/facebook/react/issues/13991#issuecomment-435135293 ，那么就必须使用第三种开发方式 👇
 
-#### 3. 情况 3⃣️：使用 npm link 开发组件时遇到困难。 则`通过npm dist + pack开发` 👇
+#### 3. 情况 3⃣️：使用 npm link 开发组件时遇到困难。 则`通过npm dist + pack开发`
 
 即先按照`情况1⃣️`进行开发，每次调试时，需要先运行`npm run dist`打包出至少 esm/lib 两种模式 pkg，然后再运行`npm pack`，这个时候项目根目录会多处一个 `.tgz` 文件，将该文件拖拽到 projA，然后在 projA 的终端安装它，比如：
 
