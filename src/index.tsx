@@ -15,7 +15,7 @@ export { default as Modal } from './modal';
 export { default as PageHeader } from './page-header';
 export { default as Popconfirm } from './popconfirm';
 export { default as Popover } from './popover';
-export { default as Radio } from './radio/radio';
+export { default as Radio } from './radio';
 export { default as Result } from './result';
 export { default as Select } from './select';
 export { default as Slider } from './slider';
