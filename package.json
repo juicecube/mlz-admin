@@ -1,6 +1,6 @@
 {
   "name": "@mlz/admin",
-  "version": "0.0.9",
+  "version": "0.5.2",
   "description": "一套编程猫设计规范下的管理系统React组件库，基于Antd",
   "license": "MIT",
   "keywords": [
@@ -14,21 +14,22 @@
   "scripts": {
     "start": "dumi dev",
     "build": "dumi build",
-    "dist": "father-build",
+    "dist": "npm run clean && father-build",
     "dist:es": "npx ttsc --project ./tsconfig.dist.json -d -m esnext --outDir es --sourceMap false --inlineSources false",
     "dist:cjs": "npx ttsc --project ./tsconfig.dist.json -d -m commonjs --outDir lib --sourceMap false --inlineSources false",
     "dist:tsc": "rm -rf es lib dist && npm run dist:cjs && npm run dist:es",
     "serve": "node scripts/serve.js",
     "lint": "npm run lint:ts && npm run lint:es",
+    "lint:fix": "npm run lint:ts && npm run lint:es --fix",
     "lint:esFix": "npx eslint --ext tsx,ts,js src --fix",
     "lint:es": "npx eslint --ext tsx,ts,js src docs/demo",
     "lint:ts": "tsc --project ./tsconfig.lint.json",
     "lint:style": "stylelint 'src/**/*.less' --syntax less",
-    "test": "dumi test",
-    "test:coverage": "dumi test --coverage",
+    "test": "dumi test --coverage",
+    "check-coverage": "npx istanbul check-coverage --statement 85",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "version": "node ./scripts/versioning",
-    "clean": "rm -rf es lib dist .tsc-check"
+    "clean": "rm -rf es lib dist .tsc-check coverage"
   },
   "module": "es/index.js",
   "main": "lib/index.js",
@@ -53,12 +54,12 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.10.2",
-    "antd": "^4.1.5",
+    "antd": "^4.4.1",
     "axios": "^0.19.2",
     "compression": "^1.7.4",
     "express": "^4.17.1",
     "lodash-es": "^4.17.15",
-    "mytils": "^1.2.8",
+    "mytils": "^1.2.92",
     "react": "^16.12.0"
   },
   "peerDependencies": {
@@ -67,7 +68,7 @@
   },
   "devDependencies": {
     "@types/enzyme": "^3.10.5",
-    "@types/jest": "^25.2.1",
+    "@types/jest": "^26.0.4",
     "@types/lodash-es": "^4.17.3",
     "@umijs/preset-react": "1.x",
     "@umijs/test": "^3.0.5",
@@ -77,11 +78,12 @@
     "enzyme-adapter-react-16": "^1.15.2",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-jest": "^23.8.2",
+    "eslint-plugin-jest": "^23.17.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react-hooks": "^4.0.2",
     "father-build": "^1.17.2",
+    "istanbul": "^0.4.5",
     "jest": "^26.0.1",
     "lint-staged": "^10.0.7",
     "node-fetch": "^2.6.0",

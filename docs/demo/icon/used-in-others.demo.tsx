@@ -1,18 +1,21 @@
 import React from 'react';
-import Icon from '@/Icon/Icon';
+import Icon from '@/icon';
 import { Space, Tag, Popconfirm } from 'antd';
-import Button from '@/Button/Button';
+import Button from '@/button';
 
 export default () => (
-  <Space size={50}>
-    <Button type="primary" icon={<Icon type="ico_suggest_close" />}>
+  <Space size={40}>
+    <Button type="primary" icon={<Icon type="like_yes_g" />}>
       点我
     </Button>
-    <Tag icon={<Icon type="ico_suggest_close" />} color="#cd201f">
+    <Tag icon={<Icon type="piechart_g" />} color="#cd201f">
       朕是个Tag
     </Tag>
-    <Popconfirm title="戳我干嘛？" icon={<Icon type="i-danmu" />}>
-      <a href="#">戳我</a>
+    <Popconfirm title="戳我干嘛？" icon={<Icon type="warning2_g" />}>
+      <a href="#">
+        <Icon type="refresh_l" />
+        戳我
+      </a>
     </Popconfirm>
   </Space>
 );

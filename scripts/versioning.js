@@ -39,6 +39,5 @@ const versioning = async () => {
   await checkVersion();
   await checkTag();
   await checkBranch(status);
-  // git.addTag(`${tagPrefix}${version}`, () => console.log(`检查完成并且打上标签,${tagPrefix}${version}`, `\r\n`));
 };
 versioning();
