@@ -3,9 +3,7 @@
  * desc: 垂直菜单，子菜单内嵌在菜单区域。
  */
 import React from 'react';
-import Menu from '@/Menu/Menu';
-import Icon from '@/Icon/Icon';
-import Button from '@/Button/Button';
+import { Menu, Icon, Button } from '@mlz/admin';
 
 const { SubMenu } = Menu;
 class App extends React.PureComponent {

@@ -3,8 +3,7 @@
  * desc: 水平的顶部导航菜单。
  */
 import React from 'react';
-import Menu from '@/Menu/Menu';
-import Icon from '@/Icon/Icon';
+import { Menu, Icon } from '@mlz/admin';
 
 const { SubMenu } = Menu;
 class App extends React.PureComponent {
