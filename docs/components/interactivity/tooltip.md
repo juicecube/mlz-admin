@@ -10,4 +10,4 @@
 
 ### 基本使用
 
-<code src="./../../demo/Tooltip/normal-usage.demo.tsx" />
+<code src="./../../demo/tooltip/normal-usage.demo.tsx" />
