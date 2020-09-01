@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import testMount from '../../../tests/testMount';
-import Spin from '../Spin';
+import Radio from '..';
 
-describe('📦  Spin', () => {
-  testMount(Spin);
+describe('📦  Radio', () => {
+  testMount(Radio);
 });

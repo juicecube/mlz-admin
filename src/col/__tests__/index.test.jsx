@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import testMount from '../../../tests/testMount';
-import Modal from '../Modal';
+import Col from '..';
 
-describe('📦  Modal', () => {
-  testMount(Modal);
+describe('📦  Col', () => {
+  testMount(Col);
 });

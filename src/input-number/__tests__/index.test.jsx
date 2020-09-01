@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import testMount from '../../../tests/testMount';
-import InputNumber from '../InputNumber';
+import InputNumber from '..';
 
 describe('📦  InputNumber', () => {
   testMount(InputNumber);

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import testMount from '../../../tests/testMount';
-import Tooltip from '../Tooltip';
+import Tag from '..';
 
-describe('📦  Tooltip', () => {
-  testMount(Tooltip);
+describe('📦  Tag', () => {
+  testMount(Tag);
 });

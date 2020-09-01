@@ -1,6 +1,5 @@
 import React from 'react';
-import Icon, { IconFontScript } from '../Icon';
-import testMount from '../../../tests/testMount';
+import { IconFontScript } from '..';
 
 describe('📦  Icon', () => {
   let newIconInstance = null;

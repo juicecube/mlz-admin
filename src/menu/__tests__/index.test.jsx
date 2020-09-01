@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import testMount from '../../../tests/testMount';
-import Input from '../Input';
+import Menu from '..';
 
-describe('📦  Input', () => {
-  testMount(Input);
+describe('📦  Menu', () => {
+  testMount(Menu);
 });

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import testMount from '../../../tests/testMount';
-import Form from '../Form';
+import Card from '..';
 
-describe('📦  Form', () => {
-  testMount(Form);
+describe('📦  Card', () => {
+  testMount(Card);
 });
