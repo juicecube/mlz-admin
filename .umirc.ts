@@ -5,7 +5,9 @@ import fs from 'fs';
 // 根据dir获取其下的所有.md文件
 const getMds = ($relativedFromDoc) => {
   const absltRoute = path.resolve(__dirname, 'docs/' + $relativedFromDoc);
-  const files = fs.readdirSync(absltRoute);
+  const files = fs.readdirSync(absltRoute).filter((file) => {
+    return path.extname(file) === '.md';
+  });
   return files;
 };
 

@@ -4,13 +4,12 @@ import { omitProps } from 'mytils';
 import Icon from '../icon';
 import { GroupType, IButtonProps } from './index.type';
 
-const { Group } = AntdButton;
 const InternalButton: React.ForwardRefRenderFunction<unknown, IButtonProps> = (props: IButtonProps, ref): React.ReactElement => {
   const { group } = props;
   return !group ? (
     <AntdButton {...props}>{props.children}</AntdButton>
   ) : (
-    <Group>
+    <AntdButton.Group>
       {group?.map((item: GroupType, index: number) => {
         return (
           <AntdButton
@@ -24,13 +23,13 @@ const InternalButton: React.ForwardRefRenderFunction<unknown, IButtonProps> = (p
           </AntdButton>
         );
       })}
-    </Group>
+    </AntdButton.Group>
   );
 };
 
 interface compositedComponent extends React.ForwardRefExoticComponent<IButtonProps & React.RefAttributes<HTMLElement>> {
-  Group: typeof Group;
+  Group: typeof AntdButton.Group;
 }
 const Button = React.forwardRef(InternalButton);
-(Button as compositedComponent).Group = Group;
+(Button as compositedComponent).Group = AntdButton.Group;
 export default Button;
