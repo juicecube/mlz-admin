@@ -4,9 +4,8 @@
  * background: '#F0F2F5'
  */
 import React from 'react';
-import DetailCard from '@/detail-card';
+import { DetailCard } from '@mlz/admin';
 import axios from 'axios';
-import { message, Tooltip } from 'antd';
 
 const columnsForDetail = [
   {

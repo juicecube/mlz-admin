@@ -3,7 +3,7 @@
  * desc: 通过传入 `dataSource` 来展示表格，通过 `onChange`和 `onSearch` 等参数控制交互。
  */
 import React from 'react';
-import Table from '@/table';
+import { Table } from '@mlz/admin';
 import axios from 'axios';
 
 const columns = [

@@ -3,9 +3,7 @@
  * desc: 通过传入 `tools` 组件数组，来展示对应的交互工具。
  */
 import React from 'react';
-import Table from '@/table';
-import Button from '@/button';
-import Icon from '@/icon';
+import { Table, Button, Icon } from '@mlz/admin';
 import axios from 'axios';
 
 const columns = [

@@ -3,7 +3,7 @@
  * desc: 通过指定 `cacheKey` 的key来为Table组件指定对应的缓存，当该key对应的缓存被调取时会触发`onCacheHitted`方法
  */
 import React from 'react';
-import Table from '@/table';
+import { Table } from '@mlz/admin';
 import axios from 'axios';
 
 const columns = [

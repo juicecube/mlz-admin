@@ -1,7 +1,6 @@
 import React from 'react';
-import Icon from '@/icon';
-import { Space, Tag, Popconfirm } from 'antd';
-import Button from '@/button';
+import { Icon, Button, Popconfirm } from '@mlz/admin';
+import { Space, Tag } from 'antd';
 
 export default () => (
   <Space size={40}>

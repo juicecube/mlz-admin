@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Table from '@/table';
-import Slider from '@/slider';
-import Input from '@/input';
+import { Table, Slider } from '@mlz/admin';
 import axios from 'axios';
 import { Rate } from 'antd';
 
