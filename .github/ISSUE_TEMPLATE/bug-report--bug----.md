@@ -1,7 +1,7 @@
 ---
 name: Bug Report [Bug 反馈]
 about: 创建一个缺陷反馈，协助我们改进产品
-title: ''
+title: '[Bug*]'
 labels: bug
 assignees: milobluebell
 
