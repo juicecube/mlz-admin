@@ -1,6 +1,6 @@
 ---
 
-name: 功能添加 about: 提供需求或创意 title: a feature for Button, to improving network[Feature] labels: enhancement, roadmap assignees: Fukiii, milobluebell ---**你想要添加的功能，解决哪些实际问题？必须提供简要描述**
+name: Feature Request [功能添加] about: 提供需求或创意 title: '[Feature*] A feature for Button, to improving something' labels: enhancement assignees: milobluebell ---**你想要添加的功能，解决哪些实际问题？必须提供简要描述**
 
 > 比如：每次公司网速很慢的时候，开发效率就比较低。所以我希望为 Button 组件添加一个功能，可以一键群发网速。
 
