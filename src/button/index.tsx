@@ -30,6 +30,7 @@ const InternalButton: React.ForwardRefRenderFunction<unknown, IButtonProps> = (p
 interface compositedComponent extends React.ForwardRefExoticComponent<IButtonProps & React.RefAttributes<HTMLElement>> {
   Group: typeof AntdButton.Group;
 }
+
 const Button = React.forwardRef(InternalButton);
-(Button as compositedComponent).Group = AntdButton.Group;
+(InternalButton as compositedComponent).Group = AntdButton.Group;
 export default Button;
