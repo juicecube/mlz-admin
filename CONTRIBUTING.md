@@ -20,7 +20,9 @@
 
 ![create PR](https://raw.githubusercontent.com/milobluebell/imgs-repo/master/WX20200709-182741.png)
 
-## 🏭 工作流管理
+**原则上我们要求所有代码必须通过部署在对应分支 push 触发的 Actions Checkers 后再提交 Pull Request**
+
+## 🏭 Git.flow 管理
 
 @mlz/admin 要求采用编程猫现有的 git flow 管理规范对 GIT.Flow 进行管理：[《编程猫前端 Git Flow》](https://shimo.im/docs/aBAYV4XJdXfn8d3j)
 
