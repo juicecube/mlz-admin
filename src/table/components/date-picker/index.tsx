@@ -1,6 +1,6 @@
 import React from 'react';
 import { DatePicker } from 'antd';
-import * as moment from 'moment';
+import moment from 'moment';
 
 const MDatePicker = (props) => {
   const { value, onChange, picker, ...rest } = props;
@@ -8,9 +8,9 @@ const MDatePicker = (props) => {
     <DatePicker
       {...rest}
       value={value && moment(value)}
-      onChange={(value) => {
+      onChange={(v) => {
         onChange(
-          moment(value)
+          moment(v)
             .startOf(picker)
             .valueOf(),
         );
@@ -25,12 +25,12 @@ const MDateRangePicker = (props) => {
     <DatePicker.RangePicker
       {...rest}
       value={value && [moment(value[0]), moment(value[1])]}
-      onChange={(value) => {
+      onChange={(v) => {
         onChange([
-          moment(value[0])
+          moment(v?.[0])
             .startOf(picker)
             .valueOf(),
-          moment(value[1])
+          moment(v?.[1])
             .startOf(picker)
             .valueOf(),
         ]);
