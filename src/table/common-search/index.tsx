@@ -9,6 +9,7 @@ import locale from 'antd/es/date-picker/locale/zh_CN';
 import Icon from '../../icon';
 import { createBem, purgeData } from '../../shared/utils';
 import KeepAlive, { KAContext } from '../../shared/keep-alive';
+import MDatePicker from '../components/date-picker';
 import './index.less';
 
 const fullWidthStyle = { width: '100%' };
@@ -46,12 +47,12 @@ const renderSelection = (opts: TagEnumsType | EnumsType) => (
 export const typeFormItemRefers = {
   normal: () => <Input />,
   number: () => <InputNumber style={fullWidthStyle} />,
-  enum: (opts) => renderSelection(opts),
-  tag: (opts) => renderSelection(opts),
-  date: () => <DatePicker style={fullWidthStyle} locale={locale} />,
-  dateRange: () => <DatePicker.RangePicker style={fullWidthStyle} locale={locale} />,
-  datetime: () => <DatePicker showTime style={fullWidthStyle} locale={locale} />,
-  datetimeRange: () => <DatePicker.RangePicker style={fullWidthStyle} locale={locale} showTime />,
+  enum: ({ enums }) => renderSelection(enums),
+  tag: ({ enums }) => renderSelection(enums),
+  date: ({ searchItemProps }) => <MDatePicker style={fullWidthStyle} locale={locale} picker={searchItemProps?.picker} />,
+  dateRange: ({ searchItemProps }) => <MDatePicker.RangePicker style={fullWidthStyle} locale={locale} picker={searchItemProps?.picker} />,
+  datetime: ({ searchItemProps }) => <MDatePicker showTime style={fullWidthStyle} locale={locale} picker={searchItemProps?.picker} />,
+  datetimeRange: ({ searchItemProps }) => <MDatePicker.RangePicker style={fullWidthStyle} locale={locale} showTime picker={searchItemProps?.picker} />,
   price: () => <InputNumber style={fullWidthStyle} />,
   ratio: () => <InputNumber formatter={(value) => `${value ? value + ' %' : ''}`} parser={(value) => value?.replace(' %', '') as string} style={fullWidthStyle} />,
 };
@@ -63,7 +64,7 @@ const renderCol = ($column) => {
   const { title, dataIndex, searchLabel, type, enums, searchType, searchKey } = $column;
   return (
     <Form.Item name={searchKey || dataIndex} label={searchLabel || title} key={$column.dataIndex}>
-      {$column.searchRender?.() || typeFormItemRefers[searchType || type || 'normal']?.(enums || undefined)}
+      {$column.searchRender?.() || typeFormItemRefers[searchType || type || 'normal']?.($column)}
     </Form.Item>
   );
 };
