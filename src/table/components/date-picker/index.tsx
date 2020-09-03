@@ -3,16 +3,16 @@ import { DatePicker } from 'antd';
 import * as moment from 'moment';
 
 const MDatePicker = (props) => {
-  const { value, onChange, picker = 'second', ...rest } = props;
+  const { value, onChange, picker, ...rest } = props;
   return (
     <DatePicker
       {...rest}
-      value={value && moment(value * 1000)}
+      value={value && moment(value)}
       onChange={(value) => {
         onChange(
           moment(value)
             .startOf(picker)
-            .unix(),
+            .valueOf(),
         );
       }}
     />
@@ -20,19 +20,19 @@ const MDatePicker = (props) => {
 };
 
 const MDateRangePicker = (props) => {
-  const { value, onChange, picker = 'second', ...rest } = props;
+  const { value, onChange, picker, ...rest } = props;
   return (
     <DatePicker.RangePicker
       {...rest}
-      value={value && [moment(value[0] * 1000), moment(value[1] * 1000)]}
+      value={value && [moment(value[0]), moment(value[1])]}
       onChange={(value) => {
         onChange([
           moment(value[0])
             .startOf(picker)
-            .unix(),
+            .valueOf(),
           moment(value[1])
             .startOf(picker)
-            .unix(),
+            .valueOf(),
         ]);
       }}
     />
