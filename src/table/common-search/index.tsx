@@ -73,8 +73,7 @@ const calcTotalColspan = ($items, perColspan = 4) => $items.reduce((prev, curr) 
 
 const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
   const [form] = Form.useForm();
-  const { columns = [], tools = [], colCount = 4, cacheKey } = props;
-  const toolsArr = (getDataType(tools) === 'array' ? tools : [tools]) as React.ReactNode[];
+  const { columns = [], tools = [], operations = [], colCount = 4, cacheKey } = props;
   const searchings = columns?.filter((item) => item.searchable || item.searchable === 0).sort((prev, curr) => Number(curr?.['searchable']) - Number(prev?.['searchable']));
   const perColspan = 24 / colCount;
   const sparedLastColSpan = searchings ? 24 - (calcTotalColspan(searchings, perColspan) % 24) : perColspan;
@@ -119,7 +118,7 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
       }}
       onFinishFailed={props?.onSearchFailed}
       initialValues={props.initialSearchValues}
-      style={toolsArr.length ? { marginBottom: 18 } : {}}>
+      style={tools.length ? { marginBottom: 18 } : {}}>
       <Row gutter={24}>
         {searchings?.map((row, index) => (
           <Col sm={row.searchColSpan || perColspan * 3} lg={row.searchColSpan || perColspan * 2} xl={row.searchColSpan || perColspan} key={(row.title as string) || index}>
@@ -129,14 +128,25 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
         {shouldMergeSubmitButton ? null : formSubmitters}
       </Row>
       {shouldMergeSubmitButton ? <Row justify="end">{formSubmitters}</Row> : null}
-      {toolsArr && (toolsArr as React.ReactNode[])?.length > 0 ? (
+      {tools?.length || operations?.length ? (
         <>
           <hr className={bem('hr')} />
-          <Row justify="end" align="middle" gutter={16}>
-            {toolsArr.map((tool, index) => (
-              <Col key={tool?.['key'] || index}>{tool}</Col>
-            ))}
-          </Row>
+          <section className={bem('extra')}>
+            <div className={`bar-area ${bem('operations-area')}`}>
+              <Row justify="start" align="middle" gutter={16}>
+                {operations.map((operation, index) => (
+                  <Col key={operation?.['key'] || index}>{operation}</Col>
+                ))}
+              </Row>
+            </div>
+            <div className={`bar-area ${bem('tools-area')}`}>
+              <Row justify="end" align="middle" gutter={16}>
+                {tools.map((tool, index) => (
+                  <Col key={tool?.['key'] || index}>{tool}</Col>
+                ))}
+              </Row>
+            </div>
+          </section>
         </>
       ) : null}
     </Form>

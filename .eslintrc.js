@@ -25,6 +25,7 @@ module.exports = {
         'react/state-in-constructor': 0,
         'react/no-access-state-in-setstate': 0,
         'react/destructuring-assignment': 0,
+        'react/sort-comp': 0,
       },
     },
     {
