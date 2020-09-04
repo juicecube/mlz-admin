@@ -27,6 +27,8 @@ export interface IColumnTypes<T> extends ColumnProps<T> {
   searchRender?: React.ReactNode | React.ReactNode[];
   // 自定义搜索formName，即搜索条件中的key
   searchKey?: string | symbol;
+  // 拓展属性
+  searchItemProps?: SearchItemType;
 }
 export type IExtraSearchType = Omit<IColumnTypes<unknown>, 'primary' | 'searchable'>;
 
@@ -47,3 +49,4 @@ export type SupporttedColumnTypes = keyof typeof typeValueRefers;
 export type ColorTypes = LiteralUnion<PresetColorType | PresetStatusColorType, string>;
 export type EnumsType = Record<string, { text?: string; color?: ColorTypes; status?: string; desc?: string }>;
 export type TagEnumsType = { [key: string]: string };
+export type SearchItemType = { [key: string]: any };
