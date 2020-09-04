@@ -15,6 +15,11 @@ jobs:
       - name: checkout
         uses: actions/checkout@master
 
+      - name: setup zh-cn timezone
+        uses: zcong1993/setup-timezone@master
+        with:
+          timezone: Asia/Shanghai
+
       - name: setup node ${{ matrix.node-version }}
         uses: actions/setup-node@master
         with:
