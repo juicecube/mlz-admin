@@ -87,7 +87,7 @@ class App extends React.PureComponent {
   rowSelection = {
     onChange: (selectedRowKeys, it) => {
       this.setState({
-        selected: selectedRowKeys?.length ? this.state.selected.concat(selectedRowKeys) : [],
+        selected: selectedRowKeys?.length ? Array.from(new Set(this.state.selected.concat(selectedRowKeys))) : [],
       });
     },
   };
