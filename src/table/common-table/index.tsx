@@ -16,6 +16,7 @@ export const typeValueRefers = {
   date: (value: number) => formatUnixTime(value, 'YYYY/MM/DD'),
   datetime: (value: number) => formatUnixTime(value),
   enum: (value: number | string, enums?: TagEnumsType) => enums?.[value] || '--',
+  ratio: (value: number) => getRatioFromNum(value, 2, true),
   tag: (value: string, enums?: EnumsType) => {
     const TagNode = <Tag color={enums?.[value]?.color}>{enums?.[value]?.text || '--'}</Tag>;
     return enums?.[value]?.desc ? (
@@ -26,7 +27,6 @@ export const typeValueRefers = {
       TagNode
     );
   },
-  ratio: (value: number) => getRatioFromNum(value, 2, true),
 };
 
 export const renderNode = (type: SupporttedColumnTypes, value: any, column: IColumnTypes<recordedType>) =>

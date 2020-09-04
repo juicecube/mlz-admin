@@ -1,4 +1,4 @@
-import { ColumnProps, TableProps, TablePaginationConfig } from 'antd/lib/table';
+import { ColumnProps, TableProps } from 'antd/lib/table';
 import { PresetColorType, PresetStatusColorType } from 'antd/lib/_util/colors';
 import { LiteralUnion } from 'antd/lib/_util/type';
 import { typeValueRefers } from '.';

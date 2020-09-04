@@ -27,7 +27,11 @@
 
 <code src="./../../demo/table/with-toolbar.demo.tsx"/>
 
-## 5. keepAlive 数据缓存
+## 5. 操作栏
+
+<code src="./../../demo/table/with-operations.demo.tsx"/>
+
+## 6. keepAlive 数据缓存
 
 由 Table 组件所在页面向其它路由页面的跳转时，比如"查看详情"。这个交互一旦完成，再返回上一页，之前在 Table 中的搜索和分页参数会被清空。但在特定需求下，我们须要做数据缓存，保证之前的搜索条件继续可用。
 

@@ -8,7 +8,10 @@ export interface ICommonSearch<T> extends TableProps<T> {
   onReset?: (e) => void;
   onSearchFailed?: (e) => void;
   colCount: number;
-  tools?: React.ReactNode | React.ReactNode[];
+  // 工具栏，用于table附加操作，比如新增、上传etc,
+  tools?: React.ReactNode[];
+  // 左侧操作栏，一般用于对table的批量操作
+  operations?: React.ReactNode[];
   initialSearchValues?: Record<string, any>;
   // keep-alive功能缓存的key
   cacheKey?: KeepAliveProps['name'];
