@@ -1,9 +1,9 @@
 /**
- * title: 搜索项
- * desc: 通过传入 `data` 来展示表格，通过 `onChange`和 `onSearch` 等参数控制交互。
+ * title: 操作栏
+ * desc: 通过传入 `operations` 组件数组，来展示对应的操作栏。它与tools api最直观的区别就是它位于Table的左侧，而后者在右侧。
  */
 import React from 'react';
-import { Table } from '@mlz/admin';
+import { Table, Button, Icon, message } from '@mlz/admin';
 import axios from 'axios';
 
 const columns = [
@@ -17,24 +17,20 @@ const columns = [
     title: 'Id',
     dataIndex: 'id',
     type: 'number',
-    width: 60,
     searchable: 5,
-    hidden: true,
-    searchKey: 'testKey',
+    width: 60,
+  },
+  {
+    title: 'Desc',
+    dataIndex: 'desc',
+    ellipsis: true,
+    width: 220,
   },
   {
     title: 'Cost',
     dataIndex: 'money',
     type: 'price',
-    searchable: 5,
-    searchType: 'price',
-  },
-  {
-    title: 'CreatedAt',
-    dataIndex: 'createdAt',
-    type: 'date',
-    searchType: 'dateRange',
-    searchColSpan: 10,
+    searchable: 4,
   },
   {
     title: 'Forwards',
@@ -68,6 +64,8 @@ class App extends React.PureComponent {
       current: 1,
       pageSize: 10,
     },
+    selectionType: 'checkbox',
+    selected: [],
   };
 
   componentDidMount() {
@@ -86,15 +84,36 @@ class App extends React.PureComponent {
     });
   };
 
+  rowSelection = {
+    onChange: (selectedRowKeys, it) => {
+      this.setState({
+        selected: selectedRowKeys?.length ? Array.from(new Set(this.state.selected.concat(selectedRowKeys))) : [],
+      });
+    },
+  };
+
   render() {
     return (
       <Table
+        columns={columns}
         dataSource={this.state.data}
         loading={this.state.loading}
         pagination={{ total: 50, showSizeChanger: true, showQuickJumper: true }}
-        onChange={(png) => this.fetchData({ ...this.state.searchParams, ...png })}
+        onChange={(png) => {
+          this.setState(
+            {
+              searchParams: { ...png, ...this.state.searchParams },
+            },
+            () => this.fetchData(this.state.searchParams),
+          );
+        }}
         onSearch={(e) => {
-          this.fetchData({ ...this.state.searchParams, ...e });
+          this.setState(
+            {
+              searchParams: { ...e, ...this.state.searchParams },
+            },
+            () => this.fetchData(this.state.searchParams),
+          );
         }}
         onReset={() => {
           this.setState(
@@ -106,6 +125,21 @@ class App extends React.PureComponent {
             },
             () => this.fetchData(this.state.searchParams),
           );
+        }}
+        tools={[
+          <a key={1}>上传</a>,
+          <Button type="primary" key={2}>
+            同步
+          </Button>,
+        ]}
+        operations={[
+          <Button disabled={!this.state.selected.length} type="primary" key={2} onClick={() => message.success(`选中了：${this.state.selected.join(' 和 ')}`)}>
+            批量通知
+          </Button>,
+        ]}
+        rowSelection={{
+          type: this.state.selectionType,
+          ...this.rowSelection,
         }}
       />
     );

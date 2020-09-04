@@ -5,8 +5,9 @@ on:
     branches:
       - master
       - staging
-      - feature
-      - 'sprint@*'
+      - 'sprint/*'
+      - 'feat/*'
+      - 'hotfix/*'
   pull_request:
     types: [opened,reopened]
 
