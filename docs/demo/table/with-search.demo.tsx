@@ -89,7 +89,6 @@ class App extends React.PureComponent {
   render() {
     return (
       <Table
-        columns={columns}
         dataSource={this.state.data}
         loading={this.state.loading}
         pagination={{ total: 50, showSizeChanger: true, showQuickJumper: true }}

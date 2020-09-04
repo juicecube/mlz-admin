@@ -9,7 +9,7 @@ const InteralTable = (props: ITableTypes<any>) => {
   const formattedColumns = formatColumns(columns);
   return (
     <Layout.Content>
-      {formattedColumns.some((item) => item.searchable) ? <CommonSearchForm {...props} colCount={4} tools={props.tools} /> : null}
+      {formattedColumns.some((item) => item.searchable) ? <CommonSearchForm {...props} colCount={4} /> : null}
       <CommonTable {...props} columns={formattedColumns} />
     </Layout.Content>
   );

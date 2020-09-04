@@ -32,5 +32,5 @@ interface compositedComponent extends React.ForwardRefExoticComponent<IButtonPro
 }
 
 const Button = React.forwardRef(InternalButton);
-(InternalButton as compositedComponent).Group = AntdButton.Group;
+(Button as compositedComponent).Group = AntdButton.Group;
 export default Button;
