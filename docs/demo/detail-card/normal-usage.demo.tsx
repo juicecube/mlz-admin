@@ -23,14 +23,14 @@ const columnsForDetail = [
   {
     title: '售后原因',
     dataIndex: 'reason',
-    wrap: true,
+    span: 2,
   },
   {
     title: '售后状态',
     dataIndex: 'status',
-    render: (text) => (
-      <Tooltip title={text}>
-        <a type="primary">摸我</a>
+    render: () => (
+      <Tooltip title={'因为卖完了'}>
+        <a type="primary">停售</a>
       </Tooltip>
     ),
   },

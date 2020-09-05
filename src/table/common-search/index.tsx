@@ -4,12 +4,12 @@ import Button from '../../button';
 import { ICommonSearch } from './index.type';
 import { TagEnumsType, EnumsType } from '../../table/common-table/index.type';
 import { commonPaginationKeys } from '../../table/common-table';
-import { getDataType, omitProps, purgeData } from 'mytils';
+import { omitProps, purgeData } from 'mytils';
 import locale from 'antd/es/date-picker/locale/zh_CN';
 import Icon from '../../icon';
 import { createBem } from '../../shared/utils';
 import KeepAlive, { KAContext } from '../../shared/keep-alive';
-import MDatePicker from '../components/date-picker';
+import MDatePicker from '../date-picker';
 import './index.less';
 
 const fullWidthStyle = { width: '100%' } as const;
