@@ -42,16 +42,16 @@ const CardTitle = (props): React.ReactElement => {
 
 const bem = createBem('detail');
 const DetailCard = (props: IDetailCardProps) => {
-  const { dataSource, columns, displayType, title, linkable, noDataResult, ...others } = props;
-  return !!dataSource ? (
+  const { dataSource, columns, displayType, linkable, noDataResult, ...others } = props;
+  return dataSource ? (
     displayType !== 'table' ? (
-      <Card {...others} bordered={false} className={bem('card')} title={<CardTitle {...{ title, linkable }} />}>
-        {!!columns ? (
+      <Card {...others} bordered={false} className={bem('card')} title={<CardTitle {...{ title: props.title, linkable }} />}>
+        {columns ? (
           <Descriptions bordered {...others.descriptionProps}>
             {(columns as any).map((column, index: number) => {
               const { dataIndex, title, render, span, type } = column;
               const data = dataSource?.[dataIndex];
-              return !!data ? (
+              return data ? (
                 <Descriptions.Item label={title} span={span}>
                   {render ? render(data, dataSource, index) : data ? renderNode(type, data, column) : ''}
                 </Descriptions.Item>
@@ -63,7 +63,7 @@ const DetailCard = (props: IDetailCardProps) => {
         )}
       </Card>
     ) : (
-      <Card {...others} bordered={false} className={bem('card')} title={<CardTitle {...{ title, linkable }} />}>
+      <Card {...others} bordered={false} className={bem('card')} title={<CardTitle {...{ title: props.title, linkable }} />}>
         <CommonTable {...{ columns, dataSource }} />
       </Card>
     )

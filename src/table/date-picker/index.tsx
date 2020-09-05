@@ -1,8 +1,7 @@
 import React from 'react';
 import { DatePicker } from 'antd';
-import { unitOfTime } from 'moment';
+import moment, { unitOfTime } from 'moment';
 import { DatePickerProps, RangePickerProps } from 'antd/lib/date-picker';
-import moment from 'moment';
 
 interface IMDatePickerProps extends Omit<DatePickerProps, 'onChange'> {
   startOf?: unitOfTime.StartOf;

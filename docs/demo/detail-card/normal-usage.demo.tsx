@@ -29,7 +29,7 @@ const columnsForDetail = [
     title: '售后状态',
     dataIndex: 'status',
     render: () => (
-      <Tooltip title={'因为卖完了'}>
+      <Tooltip title="因为卖完了">
         <a type="primary">停售</a>
       </Tooltip>
     ),
