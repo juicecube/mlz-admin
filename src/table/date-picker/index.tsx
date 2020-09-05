@@ -34,19 +34,19 @@ const MDatePicker = (props: IMDatePickerProps) => {
   );
 };
 
-const MDateRangePicker = (props: IMRangePickerProps) => {
+export const MDateRangePicker = (props: IMRangePickerProps) => {
   const { value, onChange, startOf, ...rest } = props;
   return (
-    <MDatePicker.RangePicker
+    <DatePicker.RangePicker
       {...rest}
       value={value && [moment(value[0]), moment(value[1])]}
-      onChange={(val, dateString: string) => {
+      onChange={(val, dateString: string[]) => {
         onChange?.(
           [
-            moment(val[0])
+            moment(val?.[0])
               .startOf(startOf || 'ms')
               .valueOf(),
-            moment(val[1])
+            moment(val?.[1])
               .startOf(startOf || 'ms')
               .valueOf(),
           ],
@@ -56,7 +56,5 @@ const MDateRangePicker = (props: IMRangePickerProps) => {
     />
   );
 };
-
-MDatePicker.RangePicker = MDateRangePicker;
 
 export default MDatePicker;

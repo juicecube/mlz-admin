@@ -1,6 +1,6 @@
 import React from 'react';
 import { Input as AntdInput } from 'antd';
 
-const Input = AntdInput;
+const Input: typeof AntdInput = AntdInput;
 
 export default Input;

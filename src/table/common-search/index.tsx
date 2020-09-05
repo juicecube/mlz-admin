@@ -9,7 +9,7 @@ import locale from 'antd/es/date-picker/locale/zh_CN';
 import Icon from '../../icon';
 import { createBem } from '../../shared/utils';
 import KeepAlive, { KAContext } from '../../shared/keep-alive';
-import MDatePicker from '../date-picker';
+import MDatePicker, { MDateRangePicker } from '../date-picker';
 import './index.less';
 
 const fullWidthStyle = { width: '100%' } as const;
@@ -54,9 +54,9 @@ export const typeFormItemRefers = {
   enum: ({ enums }) => renderSelection(enums),
   tag: ({ enums }) => renderSelection(enums),
   date: ({ searchItemProps }) => <MDatePicker picker="date" startOf="day" {...regularOptions} {...searchItemProps} />,
-  dateRange: ({ searchItemProps }) => <MDatePicker.RangePicker picker="date" startOf="day" {...regularOptions} {...searchItemProps} />,
   datetime: ({ searchItemProps }) => <MDatePicker showtime {...regularOptions} {...searchItemProps} />,
-  datetimeRange: ({ searchItemProps }) => <MDatePicker.RangePicker showTime {...regularOptions} {...searchItemProps} />,
+  dateRange: ({ searchItemProps }) => <MDateRangePicker picker="date" startOf="day" {...regularOptions} {...searchItemProps} />,
+  datetimeRange: ({ searchItemProps }) => <MDateRangePicker showTime {...regularOptions} {...searchItemProps} />,
   price: () => <InputNumber style={fullWidthStyle} />,
   ratio: () => <InputNumber formatter={(value) => `${value ? value + ' %' : ''}`} parser={(value) => value?.replace(' %', '') as string} style={fullWidthStyle} />,
 };
