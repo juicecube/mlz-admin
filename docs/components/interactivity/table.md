@@ -8,9 +8,9 @@
 
 <code src="./../../demo/table/normal-usage.demo.tsx"/>
 
-## 2. 搜索
+<!-- ## 2. 搜索 -->
 
-<code src="./../../demo/table/with-search.demo.tsx"/>
+<!-- <code src="./../../demo/table/with-search.demo.tsx"/> -->
 
 ## 3. 自定义搜索项
 

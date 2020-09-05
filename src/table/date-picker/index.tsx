@@ -57,4 +57,6 @@ export const MDateRangePicker = (props: IMRangePickerProps) => {
   );
 };
 
+MDatePicker.RangePicker = MDateRangePicker;
+
 export default MDatePicker;

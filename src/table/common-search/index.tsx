@@ -55,8 +55,8 @@ export const typeFormItemRefers = {
   tag: ({ enums }) => renderSelection(enums),
   date: ({ searchItemProps }) => <MDatePicker picker="date" startOf="day" {...regularOptions} {...searchItemProps} />,
   datetime: ({ searchItemProps }) => <MDatePicker showtime {...regularOptions} {...searchItemProps} />,
-  dateRange: ({ searchItemProps }) => <MDateRangePicker picker="date" startOf="day" {...regularOptions} {...searchItemProps} />,
-  datetimeRange: ({ searchItemProps }) => <MDateRangePicker showTime {...regularOptions} {...searchItemProps} />,
+  dateRange: ({ searchItemProps }) => <MDatePicker.RangePicker picker="date" startOf="day" {...regularOptions} {...searchItemProps} />,
+  datetimeRange: ({ searchItemProps }) => <MDatePicker.RangePicker showTime {...regularOptions} {...searchItemProps} />,
   price: () => <InputNumber style={fullWidthStyle} />,
   ratio: () => <InputNumber formatter={(value) => `${value ? value + ' %' : ''}`} parser={(value) => value?.replace(' %', '') as string} style={fullWidthStyle} />,
 };
