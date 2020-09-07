@@ -6,9 +6,13 @@
 
 <code src="./../../demo/icon/normal-usage.demo.tsx"/>
 
-## 2. 在其它组件中使用
+## 2. 在组件中使用
 
 <code src="./../../demo/icon/used-in-others.demo.tsx"/>
+
+## 3. 多个 iconfont 源
+
+<code src="./../../demo/icon/with-more-repo.demo.tsx"/>
 
 ## 说明
 

@@ -21,7 +21,11 @@ const donotCamelizes = ['message', 'notification'];
 // 不打包的文件夹
 const donotCompiles = ['shared'];
 
+// 额外打包的内容
+const extraContents = [`export { createIconFontScript } from './icon'`];
+
 const genExports = () => {
+  const gutter = '\r\n\r\n';
   let exportsContents = ``;
   for (const folder of fs.readdirSync(SRC_PATH)) {
     if (!/\.umi$/.test(folder) && !donotCompiles.includes(folder)) {
@@ -32,10 +36,13 @@ const genExports = () => {
       }
     }
   }
-  return `/** you SHOULD NOT delete this file or    *
-           * remove it from your .GITIGNORE evenif  *
-           * it is generated automatically          *
-          **/\r\n\r\n${exportsContents}`;
+  exportsContents += extraContents.reduce((prev, curr) => {
+    return (prev += `${gutter}${curr}`);
+  });
+  return `/**   you SHOULD NOT delete this file and         *
+           *    keep it stay in your .GITIGNORE cause       *
+           *    it is generated automatically and useful    *
+          **/${gutter}${exportsContents}`;
 };
 
 module.exports = genExports;
