@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-
+/* eslint-disable */
 const fs = require('fs');
 const path = require('path');
 const { capitalize } = require('lodash');
@@ -32,7 +32,10 @@ const genExports = () => {
       }
     }
   }
-  return exportsContents;
+  return `/** you SHOULD NOT delete this file or    *
+           * remove it from your .GITIGNORE evenif  *
+           * it is generated automatically          *
+          **/\r\n\r\n${exportsContents}`;
 };
 
 module.exports = genExports;

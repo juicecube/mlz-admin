@@ -6,7 +6,6 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/tests/setup.js'],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
-    '^@@/(.*)$': '<rootDir>/src/.umi/$1',
   },
   testPathIgnorePatterns: ['/node_modules/'],
 };

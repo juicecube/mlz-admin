@@ -12,9 +12,9 @@
     "juicecube"
   ],
   "scripts": {
-    "start": "dumi dev",
+    "start": "npm run clean && node ./scripts/genIndex.js && dumi dev",
     "build": "dumi build",
-    "dist": "npm run clean && node ./scripts/genIndex.js && father-build && rm src/index.tsx",
+    "dist": "father-build",
     "dist:es": "npx ttsc --project ./tsconfig.dist.json -d -m esnext --outDir es --sourceMap false --inlineSources false",
     "dist:cjs": "npx ttsc --project ./tsconfig.dist.json -d -m commonjs --outDir lib --sourceMap false --inlineSources false",
     "dist:tsc": "rm -rf es lib dist && npm run dist:cjs && npm run dist:es",

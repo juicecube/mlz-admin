@@ -87,11 +87,11 @@ class App extends React.PureComponent {
   };
 
   render() {
-    console.log(this.state.data);
     return (
       <Table
         dataSource={this.state.data}
         loading={this.state.loading}
+        columns={columns}
         pagination={{ total: 50, showSizeChanger: true, showQuickJumper: true }}
         onChange={(png) => this.fetchData({ ...this.state.searchParams, ...png })}
         onSearch={(e) => {
