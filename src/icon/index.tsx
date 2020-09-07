@@ -1,22 +1,22 @@
 import React from 'react';
-import { createFromIconfontCN as createFromIconfont } from '@ant-design/icons/es';
+import { createFromIconfontCN } from '@ant-design/icons/es';
 
-export class IconFontScript {
-  public scriptUrls: string[];
+const __window_ = window as any;
 
-  constructor($scriptUrl: URL['href'] = '//at.alicdn.com/t/font_1820833_32ida2n9cyl.js') {
-    this.scriptUrls = [$scriptUrl];
-  }
-
-  public addIconFontScript($scriptUrl: URL['href'] | URL['href'][]) {
-    const scripts = typeof $scriptUrl !== 'string' ? $scriptUrl : [$scriptUrl];
-    this.scriptUrls = this.scriptUrls.concat(scripts as URL['href'][]);
-  }
-}
-const newScript = new IconFontScript();
-const Icon = createFromIconfont({
-  scriptUrl: [...newScript.scriptUrls],
+// ⬇️ plz disregard this side effects
+__window_.IconScripts = ['//at.alicdn.com/t/font_1820833_32ida2n9cyl.js'];
+const appendScript = (url) => {
+  const scriptElem = document.createElement('script');
+  scriptElem.src = `http:${url}`;
+  document.body.append(scriptElem);
+};
+export const createIconFontScript = (scriptUrls: URL['href'][]) => {
+  // 创建script
+  scriptUrls.forEach((url) => appendScript(url));
+  // 同步当前数据
+  __window_.IconScripts = __window_.IconScripts.concat(scriptUrls);
+};
+const Icon = createFromIconfontCN({
+  scriptUrl: __window_.IconScripts,
 });
-
-export const createIconFontScript = newScript.addIconFontScript;
 export default Icon;
