@@ -8,7 +8,7 @@ import { ICommonSearch } from '../common-search/index.type';
 
 export type recordedType = any;
 export interface IColumnTypes<T> extends ColumnProps<T> {
-  type?: string;
+  type?: keyof typeof typeValueRefers | string;
   // 当type=enums|tags时的枚举
   enums?: EnumsType | TagEnumsType;
   // 指定为primary的column的dataIndex会被设置为Table.rowKey

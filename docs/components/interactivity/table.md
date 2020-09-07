@@ -8,7 +8,7 @@
 
 <code src="./../../demo/table/normal-usage.demo.tsx"/>
 
-## 2. 搜索
+## 2. 带搜索项
 
 <code src="./../../demo/table/with-search.demo.tsx"/>
 

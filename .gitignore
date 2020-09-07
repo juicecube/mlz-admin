@@ -16,6 +16,8 @@ yarn.lock
 /es
 /lib
 /build
+# 不需要index.tsx，它会在dist时自动生成
+/src/index.tsx
 *.tgz
 
 # umi
