@@ -4,7 +4,8 @@ import { createFromIconfontCN } from '@ant-design/icons/es';
 const __window_ = window as any;
 
 // ⬇️ plz disregard this side effects
-__window_.IconScripts = ['//at.alicdn.com/t/font_1820833_32ida2n9cyl.js'];
+export const defaultScriptUrl = '//at.alicdn.com/t/font_1820833_32ida2n9cyl.js';
+__window_.IconScripts = [defaultScriptUrl];
 const appendScript = (url) => {
   const scriptElem = document.createElement('script');
   scriptElem.src = `http:${url}`;
