@@ -4,7 +4,7 @@ import { omitProps } from 'mytils';
 import Icon from '../icon';
 import { GroupType, IButtonProps } from './index.type';
 
-export const InternalButton: React.ForwardRefRenderFunction<unknown, IButtonProps> = (props: IButtonProps, ref): React.ReactElement => {
+const InternalButton: React.ForwardRefRenderFunction<unknown, IButtonProps> = (props: IButtonProps, ref): React.ReactElement => {
   const { group } = props;
   return !group ? (
     <AntdButton {...props}>{props.children}</AntdButton>
