@@ -19,10 +19,10 @@ const camelizeFolderName = (foldername) => {
 const donotCamelizes = ['message', 'notification'];
 
 // 不打包的文件夹
-const donotCompiles = ['shared'];
+const donotCompiles = ['shared', 'testCom'];
 
 // 额外打包的内容
-const extraContents = [`export { createIconFontScript } from './icon'`];
+const extraContents = [`export { default as createIconFontScript } from './create-icon-font-script'`];
 
 const genExports = () => {
   const gutter = '\r\n\r\n';

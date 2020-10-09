@@ -1,6 +1,6 @@
 {
   "name": "@mlz/admin",
-  "version": "0.5.55",
+  "version": "0.5.56",
   "description": "一套编程猫设计规范下的管理系统React组件库，基于Antd",
   "license": "MIT",
   "keywords": [
@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "start": "npm run clean && node ./scripts/genIndex.js && dumi dev",
-    "build": "dumi build",
+    "build": "node ./scripts/genIndex.js && dumi build",
     "dist": "npm run clean && node ./scripts/genIndex.js && father-build",
     "dist:es": "npx ttsc --project ./tsconfig.dist.json -d -m esnext --outDir es --sourceMap false --inlineSources false",
     "dist:cjs": "npx ttsc --project ./tsconfig.dist.json -d -m commonjs --outDir lib --sourceMap false --inlineSources false",
@@ -26,6 +26,7 @@
     "lint:ts": "tsc --project ./tsconfig.lint.json",
     "lint:style": "stylelint 'src/**/*.less' --syntax less",
     "test": "dumi test --coverage",
+    "test:update": "dumi test --cache=false -u",
     "check-coverage": "npx istanbul check-coverage --statement 85",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "version": "node ./scripts/versioning",
@@ -79,7 +80,7 @@
     "enzyme-adapter-react-16": "^1.15.4",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-jest": "^23.17.1",
+    "eslint-plugin-jest": "^24.0.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react-hooks": "^4.0.2",
@@ -98,7 +99,7 @@
     "stylelint-config-standard": "^20.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^2.3.0",
     "ttypescript": "^1.5.10",
-    "typescript-transform-paths": "^1.1.14",
+    "typescript-transform-paths": "^2.0.1",
     "yorkie": "^2.0.0"
   },
   "bugs": {
