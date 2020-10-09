@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "start": "npm run clean && node ./scripts/genIndex.js && dumi dev",
-    "build": "dumi build",
+    "build": "node ./scripts/genIndex.js && dumi build",
     "dist": "npm run clean && node ./scripts/genIndex.js && father-build",
     "dist:es": "npx ttsc --project ./tsconfig.dist.json -d -m esnext --outDir es --sourceMap false --inlineSources false",
     "dist:cjs": "npx ttsc --project ./tsconfig.dist.json -d -m commonjs --outDir lib --sourceMap false --inlineSources false",
