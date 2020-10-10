@@ -7,7 +7,7 @@ import { formatPrice, guessPrimaryKey, createBem } from '../../shared/utils';
 import { IColumnTypes, ITableTypes, recordedType, EnumsType, TagEnumsType, SupporttedColumnTypes } from './index.type';
 import './index.less';
 
-export const checkValValidated = ($val) => $val || $val === 0;
+export const checkValValidated = ($val) => $val || $val === 0 || $val === false;
 export const commonPaginationKeys = ['pagination', 'sorter', 'filters'];
 export const typeValueRefers = {
   normal: (value: any) => (checkValValidated(value) ? value : '--'),
@@ -16,6 +16,7 @@ export const typeValueRefers = {
   date: (value: number) => formatUnixTime(value, 'YYYY/MM/DD'),
   datetime: (value: number) => formatUnixTime(value),
   enum: (value: number | string, enums?: TagEnumsType) => enums?.[value] || '--',
+  ratio: (value: number) => getRatioFromNum(value, 2, true),
   tag: (value: string, enums?: EnumsType) => {
     const TagNode = <Tag color={enums?.[value]?.color}>{enums?.[value]?.text || '--'}</Tag>;
     return enums?.[value]?.desc ? (
@@ -26,7 +27,6 @@ export const typeValueRefers = {
       TagNode
     );
   },
-  ratio: (value: number) => getRatioFromNum(value, 2, true),
 };
 
 export const renderNode = (type: SupporttedColumnTypes, value: any, column: IColumnTypes<recordedType>) =>

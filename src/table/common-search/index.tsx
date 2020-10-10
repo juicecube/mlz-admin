@@ -4,15 +4,15 @@ import Button from '../../button';
 import { ICommonSearch } from './index.type';
 import { TagEnumsType, EnumsType } from '../../table/common-table/index.type';
 import { commonPaginationKeys } from '../../table/common-table';
-import { getDataType, omitProps } from 'mytils';
+import { omitProps, purgeData } from 'mytils';
 import locale from 'antd/es/date-picker/locale/zh_CN';
 import Icon from '../../icon';
-import { createBem, purgeData } from '../../shared/utils';
+import { createBem } from '../../shared/utils';
 import KeepAlive, { KAContext } from '../../shared/keep-alive';
-import MDatePicker from '../components/date-picker';
+import MDatePicker, { MDateRangePicker } from '../date-picker';
 import './index.less';
 
-const fullWidthStyle = { width: '100%' };
+const fullWidthStyle = { width: '100%' } as const;
 const bem = createBem('common-search');
 
 /**
@@ -44,15 +44,19 @@ const renderSelection = (opts: TagEnumsType | EnumsType) => (
  * @func 根据column.type渲染对应的组件
  * @remark common-table的typeRender和common-search的typeRender不互相复用
  */
+const regularOptions = {
+  style: fullWidthStyle,
+  locale,
+};
 export const typeFormItemRefers = {
   normal: () => <Input />,
-  number: () => <InputNumber style={fullWidthStyle} />,
+  number: () => <InputNumber style={regularOptions.style} />,
   enum: ({ enums }) => renderSelection(enums),
   tag: ({ enums }) => renderSelection(enums),
-  date: ({ searchItemProps }) => <MDatePicker style={fullWidthStyle} locale={locale} picker={searchItemProps?.picker} />,
-  dateRange: ({ searchItemProps }) => <MDatePicker.RangePicker style={fullWidthStyle} locale={locale} picker={searchItemProps?.picker} />,
-  datetime: ({ searchItemProps }) => <MDatePicker showTime style={fullWidthStyle} locale={locale} picker={searchItemProps?.picker} />,
-  datetimeRange: ({ searchItemProps }) => <MDatePicker.RangePicker style={fullWidthStyle} locale={locale} showTime picker={searchItemProps?.picker} />,
+  date: ({ searchItemProps }) => <MDatePicker picker="date" startOf="day" {...regularOptions} {...searchItemProps} />,
+  datetime: ({ searchItemProps }) => <MDatePicker showtime {...regularOptions} {...searchItemProps} />,
+  dateRange: ({ searchItemProps }) => <MDatePicker.RangePicker picker="date" startOf="day" {...regularOptions} {...searchItemProps} />,
+  datetimeRange: ({ searchItemProps }) => <MDatePicker.RangePicker showTime {...regularOptions} {...searchItemProps} />,
   price: () => <InputNumber style={fullWidthStyle} />,
   ratio: () => <InputNumber formatter={(value) => `${value ? value + ' %' : ''}`} parser={(value) => value?.replace(' %', '') as string} style={fullWidthStyle} />,
 };
@@ -73,8 +77,7 @@ const calcTotalColspan = ($items, perColspan = 4) => $items.reduce((prev, curr) 
 
 const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
   const [form] = Form.useForm();
-  const { columns = [], tools = [], colCount = 4, cacheKey } = props;
-  const toolsArr = (getDataType(tools) === 'array' ? tools : [tools]) as React.ReactNode[];
+  const { columns = [], tools = [], operations = [], colCount = 4, cacheKey } = props;
   const searchings = columns?.filter((item) => item.searchable || item.searchable === 0).sort((prev, curr) => Number(curr?.['searchable']) - Number(prev?.['searchable']));
   const perColspan = 24 / colCount;
   const sparedLastColSpan = searchings ? 24 - (calcTotalColspan(searchings, perColspan) % 24) : perColspan;
@@ -119,7 +122,7 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
       }}
       onFinishFailed={props?.onSearchFailed}
       initialValues={props.initialSearchValues}
-      style={toolsArr.length ? { marginBottom: 18 } : {}}>
+      style={tools.length ? { marginBottom: 18 } : {}}>
       <Row gutter={24}>
         {searchings?.map((row, index) => (
           <Col sm={row.searchColSpan || perColspan * 3} lg={row.searchColSpan || perColspan * 2} xl={row.searchColSpan || perColspan} key={(row.title as string) || index}>
@@ -129,14 +132,25 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
         {shouldMergeSubmitButton ? null : formSubmitters}
       </Row>
       {shouldMergeSubmitButton ? <Row justify="end">{formSubmitters}</Row> : null}
-      {toolsArr && (toolsArr as React.ReactNode[])?.length > 0 ? (
+      {tools?.length || operations?.length ? (
         <>
           <hr className={bem('hr')} />
-          <Row justify="end" align="middle" gutter={16}>
-            {toolsArr.map((tool, index) => (
-              <Col key={tool?.['key'] || index}>{tool}</Col>
-            ))}
-          </Row>
+          <section className={bem('extra')}>
+            <div className={`bar-area ${bem('operations-area')}`}>
+              <Row justify="start" align="middle" gutter={16}>
+                {operations.map((operation, index) => (
+                  <Col key={operation?.['key'] || index}>{operation}</Col>
+                ))}
+              </Row>
+            </div>
+            <div className={`bar-area ${bem('tools-area')}`}>
+              <Row justify="end" align="middle" gutter={16}>
+                {tools.map((tool, index) => (
+                  <Col key={tool?.['key'] || index}>{tool}</Col>
+                ))}
+              </Row>
+            </div>
+          </section>
         </>
       ) : null}
     </Form>

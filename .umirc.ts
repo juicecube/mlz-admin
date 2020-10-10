@@ -31,10 +31,6 @@ export default defineConfig({
         title: '组合组件',
         children: getMds('components/composit').map((item) => 'components/composit/' + item),
       },
-      {
-        title: '业务套件',
-        children: getMds('components/business').map((item) => 'components/business/' + item),
-      },
     ],
   },
   navs: [

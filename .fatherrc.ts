@@ -1,7 +1,5 @@
 import typescript from 'rollup-plugin-typescript2';
 
-const path = require('path');
-
 export default {
   entry: ['src/index.tsx'],
   overridesByEntry: {

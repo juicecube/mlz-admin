@@ -29,7 +29,7 @@ describe('📦  Button', () => {
    * @FIRST 挂载
    */
   testMount(Button);
-  testMount(() => <Button group={groupList} />);
+  // testMount(() => <Button group={groupList} />);
   /**
    * 因为antd>=4已经不推荐支持button.group的使用方式
    * 所以后面是可能取消掉该api的，所以我们应该写这个功能点的测试
