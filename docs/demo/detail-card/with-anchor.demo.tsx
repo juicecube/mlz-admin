@@ -37,8 +37,12 @@ class App extends React.PureComponent {
   }
 
   fetchData = async (params?: { current: number; pageSize: number }) => {
-    const { data } = await axios.get('http://rap2.taobao.org:38080/app/mock/252468/admini/detail-demo');
-    this.setState({ data });
+    const { data } = await axios.post('https://service-81ozmkay-1252070958.gz.apigw.tencentcs.com/release/mock_redirect', {
+      url: 'http://rap2api.taobao.org/app/mock/252468/admini/detail-demo',
+    });
+    this.setState({
+      data: JSON.parse(data),
+    });
   };
 
   render() {

@@ -33,14 +33,18 @@ class App extends React.PureComponent {
   };
 
   async componentDidMount() {
-    const { data } = await axios.get('http://rap2.taobao.org:38080/app/mock/252468/admini/detail-demo');
-    this.setState({ data });
+    const { data } = await axios.post('https://service-81ozmkay-1252070958.gz.apigw.tencentcs.com/release/mock_redirect', {
+      url: 'http://rap2api.taobao.org/app/mock/252468/admini/detail-demo',
+    });
+    this.setState({
+      data: JSON.parse(data).skus,
+    });
   }
 
   render() {
     return (
       <>
-        <DetailCard title="发货详情" displayType="table" dataSource={this.state.data?.['skus']} columns={columns} />
+        <DetailCard title="发货详情" displayType="table" dataSource={this.state.data} columns={columns} />
       </>
     );
   }

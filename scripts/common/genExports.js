@@ -19,7 +19,7 @@ const camelizeFolderName = (foldername) => {
 const donotCamelizes = ['message', 'notification'];
 
 // 不打包的文件夹
-const donotCompiles = ['shared', 'testCom'];
+const donotCompiles = ['shared'];
 
 // 额外打包的内容
 const extraContents = [`export { default as createIconFontScript } from './create-icon-font-script'`];
@@ -28,7 +28,7 @@ const genExports = () => {
   const gutter = '\r\n\r\n';
   let exportsContents = ``;
   for (const folder of fs.readdirSync(SRC_PATH)) {
-    if (!/\.umi$/.test(folder) && !donotCompiles.includes(folder)) {
+    if (!/\.umi/.test(folder) && !donotCompiles.includes(folder)) {
       const filePathname = path.join(SRC_PATH, folder);
       const folderStat = fs.statSync(filePathname);
       if (folderStat.isDirectory()) {

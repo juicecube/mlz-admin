@@ -52,12 +52,15 @@ class App extends React.PureComponent {
 
   fetchData = async (params?: { current?: number; pageSize?: number; [key: string]: any }) => {
     this.setState({ loading: true });
-    const { data } = await axios.get('http://rap2.taobao.org:38080/app/mock/252468/admini/table-demo', {
-      method: 'get',
-      params,
+    const { data } = await axios.post('https://service-81ozmkay-1252070958.gz.apigw.tencentcs.com/release/mock_redirect', {
+      url: 'http://rap2api.taobao.org/app/mock/252468/admini/table-demo',
+      params: params || {
+        current: 1,
+        pageSize: 10,
+      },
     });
     this.setState({
-      data: data.items,
+      data: JSON.parse(data).items,
       loading: false,
     });
   };
@@ -70,7 +73,7 @@ class App extends React.PureComponent {
         loading={this.state.loading}
         cacheKey="testKA"
         onCacheHitted={(pa) => {
-          console.log(pa);
+          // console.log(pa);
         }}
         pagination={{ total: 50, showSizeChanger: true, showQuickJumper: true }}
         onChange={(png) => this.fetchData({ ...this.state.searchParams, ...png })}
