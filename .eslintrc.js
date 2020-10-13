@@ -59,6 +59,7 @@ module.exports = {
     'no-unused-vars': 0,
     'no-console': 0,
     'jsx-a11y/anchor-is-valid': 0,
+    'react/jsx-props-no-spreading': 0,
     'consistent-return': 0,
     'no-throw-literal': 1,
     'no-restricted-globals': 1,

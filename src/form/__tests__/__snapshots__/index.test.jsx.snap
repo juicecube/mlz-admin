@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`📦  Form snapshot test snapshot comparing 1`] = `"<form class=\\"ant-form ant-form-horizontal\\"></form>"`;
+
+exports[`🧪 Form snapshot test snapshot comparing 1`] = `"<form class=\\"ant-form ant-form-horizontal\\"></form>"`;
