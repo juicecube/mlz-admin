@@ -60,7 +60,7 @@ class App extends React.PureComponent {
       },
     });
     this.setState({
-      data: JSON.parse(data).items,
+      data: JSON.parse(data),
       loading: false,
     });
   };
@@ -69,13 +69,13 @@ class App extends React.PureComponent {
     return (
       <Table
         columns={columns}
-        dataSource={this.state.data}
+        dataSource={this.state.data['items']}
         loading={this.state.loading}
         cacheKey="testKA"
         onCacheHitted={(pa) => {
-          // console.log(pa);
+          console.log(pa);
         }}
-        pagination={{ total: 50, showSizeChanger: true, showQuickJumper: true }}
+        pagination={{ pageSize: 10, total: this.state.data['total'] || 50, showSizeChanger: true, showQuickJumper: true }}
         onChange={(png) => this.fetchData({ ...this.state.searchParams, ...png })}
         onSearch={(e) => {
           this.setState(
