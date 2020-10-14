@@ -1,9 +1,41 @@
 import React, { Component } from 'react';
-import testMount from '../../../tests/testMount';
-import testSnapshot from '../../../tests/testSnapshot';
+import { testMount, testSnapshot } from '../../../tests';
 import Tree from '..';
 
+const TempTreeMounter = () => {
+  const treeData = [
+    {
+      title: 'parent 1',
+      key: '0-0',
+      children: [
+        {
+          title: 'parent 1-0',
+          key: '0-0-0',
+          disabled: true,
+          children: [
+            {
+              title: 'leaf',
+              key: '0-0-0-0',
+              disableCheckbox: true,
+            },
+            {
+              title: 'leaf',
+              key: '0-0-0-1',
+            },
+          ],
+        },
+        {
+          title: 'parent 1-1',
+          key: '0-0-1',
+          children: [{ title: <span style={{ color: '#1890ff' }}>sss</span>, key: '0-0-1-0' }],
+        },
+      ],
+    },
+  ];
+  return <Tree checkable defaultExpandedKeys={['0-0-0', '0-0-1']} defaultSelectedKeys={['0-0-0', '0-0-1']} defaultCheckedKeys={['0-0-0', '0-0-1']} treeData={treeData} />;
+};
+
 describe('🧪 Tree', () => {
-  testMount(Tree);
-  testSnapshot(Tree);
+  testMount(TempTreeMounter);
+  testSnapshot(TempTreeMounter);
 });

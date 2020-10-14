@@ -22,7 +22,7 @@ const createColumns = ($type = null) => {
   ];
 };
 
-describe('📦  Table', () => {
+describe('🧪 Table', () => {
   // onClick在menu/group属性存在时会成为合成事件被唤起，且参数正确
   test('onClick should be called within a composed params when using group prop', () => {
     const wrapper = shallow(<Table columns={createColumns()} data={[]} />);

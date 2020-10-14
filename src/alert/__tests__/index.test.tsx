@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Alert from '..';
-import testMount from '../../../tests/testMount';
-import testSnapshot from '../../../tests/testSnapshot';
+import { testMount, testSnapshot } from '../../../tests';
 
 describe('🧪 Alert', () => {
   testMount(Alert);

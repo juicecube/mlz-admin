@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { mount } from 'enzyme';
 import Button from '..';
-import testMount from '../../../tests/testMount';
-
+import { testMount, testSnapshot } from '../../../tests';
 const groupList = [
   {
     key: 1,

@@ -1,30 +1,10 @@
 import React, { Component } from 'react';
-import testMount from '../../../../tests/testMount';
+import { testMount } from '../../../../tests';
 import { mount } from 'enzyme';
 import CommonTable from '..';
 
-describe('📦  CommonTable', () => {
-  /**
-   * https://jestjs.io/docs/en/manual-mocks#mocking-methods-which-are-not-implemented-in-jsdom
-   * @desc 现在如果需要渲染js原生dom，则需要添加如下代码：
-   */
-  beforeAll(() => {
-    Object.defineProperty(window, 'matchMedia', {
-      writable: true,
-      value: jest.fn().mockImplementation((query) => ({
-        matches: false,
-        media: query,
-        onchange: null,
-        addListener: jest.fn(), // deprecated
-        removeListener: jest.fn(), // deprecated
-        addEventListener: jest.fn(),
-        removeEventListener: jest.fn(),
-        dispatchEvent: jest.fn(),
-      })),
-    });
-  });
-
-  // testMount(CommonTable);
+describe('🧪 CommonTable', () => {
+  testMount(CommonTable);
 
   test("如果没有一个值，则返回'--'", async () => {
     const data = [

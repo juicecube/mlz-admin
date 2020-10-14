@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Affix from '..';
 import Button from '../../button';
-import testMount from '../../../tests/testMount';
-import testSnapshot from '../../../tests/testSnapshot';
+import { testMount, testSnapshot } from '../../../tests';
 
 const TempAffixMounter = () => (
   <Affix>

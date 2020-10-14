@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import testMount from '../../../tests/testMount';
-import testSnapshot from '../../../tests/testSnapshot';
+import { testMount, testSnapshot } from '../../../tests';
 import enUS from 'antd/es/locale/en_US';
 import ConfigProvider from '..';
 
