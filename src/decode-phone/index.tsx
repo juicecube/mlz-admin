@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { TooltipProps, RenderFunction } from 'antd/lib/tooltip';
 import { Tooltip } from 'antd';
 import Http from './../service/request';
+import { DECODE_URL } from './../service/constants';
 
 const INIT_TITLE = '加载中';
 
@@ -11,7 +12,7 @@ interface IProps extends Omit<TooltipProps, 'title'> {
 }
 
 const DecodePhone = (props: IProps) => {
-  const { children, params, url = 'https://dev-open-service.codemao.cn/decode/phone_number', ...rest } = props;
+  const { children, params, url = DECODE_URL, ...rest } = props;
   const _URL = new URL(url);
   const [title, setTitle] = useState<RenderFunction | React.ReactNode>(INIT_TITLE);
   const handleRequest = () => {

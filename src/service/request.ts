@@ -1,6 +1,7 @@
 import Http from '@mlz/axios';
 import { message } from 'antd';
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { DECODE_HOST } from './constants';
 
 Http.setReqInterceptor(
   (config: AxiosRequestConfig) => {
@@ -15,7 +16,6 @@ Http.setReqInterceptor(
 
 Http.setResInterceptor(
   (res: AxiosResponse) => {
-    // console.log("请求后res", res);
     switch (res.status) {
       case 200:
         return res.data;
@@ -24,10 +24,26 @@ Http.setResInterceptor(
     }
   },
   (err) => {
-    // console.log("请求后err", err);
     message.error(err);
     return Promise.reject(err);
   },
+);
+
+Http.setResInterceptor(
+  (res: AxiosResponse) => {
+    switch (res.status) {
+      case 200:
+        return res.data;
+      default:
+        message.error('位置异同异常');
+        return Promise.reject(res);
+    }
+  },
+  (err) => {
+    message.error(err);
+    return Promise.reject(err);
+  },
+  DECODE_HOST,
 );
 
 export default Http;
