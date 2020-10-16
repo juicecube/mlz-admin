@@ -9,3 +9,15 @@
 ### 基本使用
 
 <code src="./../../demo/date-picker/normal-usage.demo.tsx" />
+
+### 返回时间单位的开头
+
+<code src="./../../demo/date-picker/startof-usage.demo.tsx" />
+
+### APIS
+
+| 参数     | 说明               | 类型                                       | 默认值 | 版本 |
+| -------- | ------------------ | ------------------------------------------ | ------ | ---- |
+| value    | 日期               | number(时间戳)                             | -      |      |
+| startOf  | 返回时间单位的开头 | unitOfTime.StartOf                         | ms     |      |
+| onChange | 时间发生变化的回调 | function(date: number, dateString: string) | -      |      |
