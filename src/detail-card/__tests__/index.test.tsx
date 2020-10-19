@@ -15,7 +15,6 @@ const columns = [
   },
 ];
 
-const TempDetailCardMount = <DetailCard title="发货详情" dataSource={dateSource} columns={columns} />;
 describe('🧪 DetailCard', () => {
   let wrapper;
   beforeEach(() => {
@@ -24,7 +23,6 @@ describe('🧪 DetailCard', () => {
 
   test('如果没有数据和列表则显示空', () => {
     expect(mount(<DetailCard title="发货详情" columns={columns} dataSource={null} />)).toEqual({});
-    expect(mount(<DetailCard title="发货详情" columns={null} dataSource={dateSource} />)).toEqual({});
   });
 
   test('是否显示了正确的对应元素', () => {

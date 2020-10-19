@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { mount } from 'enzyme';
 import Button from '..';
-import { testMount, testSnapshot } from '../../../tests';
+import { testMount } from '../../../tests';
 const groupList = [
   {
     key: 1,
@@ -21,18 +21,14 @@ const groupList = [
     value: 3,
     rightIconType: 'round_right_g',
   },
-];
+] as const;
 
-describe('📦  Button', () => {
+describe('🧪 Button', () => {
   /**
    * @FIRST 挂载
    */
   testMount(Button);
-  // testMount(() => <Button group={groupList} />);
-  /**
-   * 因为antd>=4已经不推荐支持button.group的使用方式
-   * 所以后面是可能取消掉该api的，所以我们应该写这个功能点的测试
-   */
+
   testMount(() => (
     <Button.Group>
       <Button>按钮1</Button>
@@ -46,7 +42,7 @@ describe('📦  Button', () => {
    */
   // type属性是否还可以控制按钮样式
   test('props.type rendered correctly', () => {
-    [
+    ([
       {
         type: 'default',
         value: false,
@@ -55,7 +51,7 @@ describe('📦  Button', () => {
         type: 'primary',
         value: true,
       },
-    ].forEach((opt) => {
+    ] as const).forEach((opt) => {
       const wrapper = mount(<Button type={opt.type}>测试</Button>);
       expect(wrapper.find('.ant-btn').hasClass('ant-btn-primary')).toBe(opt.value);
     });

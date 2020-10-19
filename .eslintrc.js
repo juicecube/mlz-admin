@@ -64,5 +64,6 @@ module.exports = {
     'no-throw-literal': 1,
     'no-restricted-globals': 1,
     'no-return-assign': 0,
+    'no-plusplus': 1,
   },
 };

@@ -62,7 +62,7 @@ const columns = [
 
 class App extends React.PureComponent {
   state = {
-    data: [],
+    data: {} as any,
     loading: true,
     searchParams: {
       current: 1,
@@ -84,7 +84,7 @@ class App extends React.PureComponent {
       },
     });
     this.setState({
-      data: JSON.parse(data),
+      data: data && JSON.parse(data),
       loading: false,
     });
   };
@@ -92,10 +92,10 @@ class App extends React.PureComponent {
   render() {
     return (
       <Table
-        dataSource={this.state.data['items']}
+        dataSource={this.state.data.items}
         loading={this.state.loading}
         columns={columns}
-        pagination={{ pageSize: 10, total: this.state.data['total'] || 50, showSizeChanger: true, showQuickJumper: true }}
+        pagination={{ pageSize: 10, total: this.state.data.total || 50, showSizeChanger: true, showQuickJumper: true }}
         onChange={(png) => this.fetchData({ ...this.state.searchParams, ...png })}
         onSearch={(e) => {
           this.fetchData({ ...this.state.searchParams, ...e });

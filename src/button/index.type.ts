@@ -15,7 +15,7 @@ export interface GroupType {
 export type MenuType = { iconType?: string } & Exclude<GroupType, 'leftIconType' | 'rightIconType' | 'type' | 'onClick'>;
 
 export interface IButtonProps extends ButtonProps {
-  group?: GroupType[];
+  group?: readonly GroupType[];
 }
 export type ButtonGroupTypes = {
   children: React.ReactNode;

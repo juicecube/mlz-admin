@@ -25,9 +25,7 @@ const TempDropdownMounter = () => (
         <Menu.Item danger>a danger item</Menu.Item>
       </Menu>
     }>
-    <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
-      Hover me
-    </a>
+    <a className="ant-dropdown-link">Hover me</a>
   </Dropdown>
 );
 

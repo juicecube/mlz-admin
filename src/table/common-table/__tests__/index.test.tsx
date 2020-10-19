@@ -252,11 +252,11 @@ describe('🧪 CommonTable', () => {
     // onChange在antd的签名是function(pagination, filters, sorter, extra: { currentDataSource: [], action: paginate | sort | filter })
     const pagination = {
       current: skippedPage,
-      pageSize: pageSize,
+      pageSize,
       total: dataLength,
     };
-    const filters = {},
-      sorter = {};
+    const filters = {};
+    const sorter = {};
     const extra = {
       action: 'paginate',
       currentDataSource: thisCaseData,

@@ -14,7 +14,7 @@ export interface IDetailCardColumn {
 }
 export type SupporttedNullExceptorTypes = '--' | '';
 export interface IDetailCardProps extends CardProps {
-  dataSource: { [key: string]: any } | RcTableProps<unknown>['data'];
+  dataSource: { [key: string]: any } | RcTableProps<unknown>['data'] | undefined | null;
   columns: IDetailCardColumn[] | IColumnTypes<any>[];
   // 当前详情块是 普通格栅 还是 表格
   displayType?: 'grid' | 'table';
