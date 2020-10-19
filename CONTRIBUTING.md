@@ -16,7 +16,7 @@
 
 ## 🤝 协作方式
 
-@mlz/admin 采用开源项目的管理方式，请您将项目 fork 到**自身目录**下进行 coding。代码编写完成之后，提交到 remote origin 的对应 branch，**而非 upstream**。之后从**自身目录 remote origin**的任意分支发起 pull request 到 juicecube/mlz-admin 的对应**sprint** 或 **feature** 分支，创建时的界面应如下图 👇：
+@mlz/admin 采用开源项目的管理方式，请您将项目 fork 到**自身目录**下进行 coding。代码编写完成之后，提交到 remote origin 的对应 branch，**而非 upstream**。**在确定自身 forkded 项目的 checkers 钩子全部 run success 后**，从**自身目录 remote origin**的 master/spring/feat/hotfix 分支发起 pull request 到 juicecube/mlz-admin 的对应**sprint** 或 **feature** 分支，创建时的界面应如下图 👇：
 
 ![create PR](https://raw.githubusercontent.com/milobluebell/imgs-repo/master/WX20200709-182741.png)
 
