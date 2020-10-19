@@ -14,6 +14,4 @@ const InteralTable = (props: ITableTypes<any>) => {
     </Layout.Content>
   );
 };
-const Table = InteralTable;
-
-export default Table;
+export default InteralTable;

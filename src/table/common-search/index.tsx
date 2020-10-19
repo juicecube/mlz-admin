@@ -24,7 +24,7 @@ const renderSelection = (opts: TagEnumsType | EnumsType) => (
       const [key, value] = kv;
       const text = typeof value === 'string' ? value : value.text;
       return (
-        <Select.Option value={key}>
+        <Select.Option value={key} key={key}>
           {value.color ? (
             <div
               className={bem('form__select__tag')}
@@ -50,11 +50,11 @@ const regularOptions = {
 };
 export const typeFormItemRefers = {
   normal: () => <Input />,
-  number: () => <InputNumber style={regularOptions.style} />,
+  number: () => <InputNumber style={fullWidthStyle} />,
   enum: ({ enums }) => renderSelection(enums),
   tag: ({ enums }) => renderSelection(enums),
   date: ({ searchItemProps }) => <MDatePicker picker="date" startOf="day" {...regularOptions} {...searchItemProps} />,
-  datetime: ({ searchItemProps }) => <MDatePicker showtime {...regularOptions} {...searchItemProps} />,
+  datetime: ({ searchItemProps }) => <MDatePicker showTime {...regularOptions} {...searchItemProps} />,
   dateRange: ({ searchItemProps }) => <MDatePicker.RangePicker picker="date" startOf="day" {...regularOptions} {...searchItemProps} />,
   datetimeRange: ({ searchItemProps }) => <MDatePicker.RangePicker showTime {...regularOptions} {...searchItemProps} />,
   price: () => <InputNumber style={fullWidthStyle} />,

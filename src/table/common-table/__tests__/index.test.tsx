@@ -216,38 +216,51 @@ describe('🧪 CommonTable', () => {
 
   test('table的onChange事件携带正确参数被触发', () => {
     const changeHandler = jest.fn();
-    const columns = [
-      {
-        title: '姓名',
-        dataIndex: 'name',
-      },
-      {
-        title: '得分',
-        dataIndex: 'score',
-      },
-    ];
 
     const dataLength = 15;
-    const skipperTargetPage = 2;
+    const skippedPage = 2;
+    const pageSize = 10;
+    const thisCaseData = new Array(dataLength).fill('').map((_, index) => {
+      return {
+        name: index,
+        score: 1 + Math.random() * 100,
+      };
+    });
 
     const wrapper = mount(
       <CommonTable
-        columns={columns}
-        dataSource={new Array(dataLength).fill('').map((_, index) => {
-          return {
-            name: index,
-            score: 1 + Math.random() * 100,
-          };
-        })}
+        columns={[
+          {
+            title: '姓名',
+            dataIndex: 'name',
+          },
+          {
+            title: '得分',
+            dataIndex: 'score',
+          },
+        ]}
+        dataSource={thisCaseData}
         rowKey="name"
         onChange={changeHandler}
-        pagination={{ pageSize: 10, total: dataLength, showSizeChanger: true, showQuickJumper: true }}
+        pagination={{ pageSize, total: dataLength, showSizeChanger: true, showQuickJumper: true }}
       />,
     );
     // 确定分页正常
-    expect(wrapper.find('.ant-pagination-item').length).toBe(Math.ceil(dataLength / 10));
-    wrapper.find('.ant-pagination-item-' + skipperTargetPage).simulate('click');
+    expect(wrapper.find('.ant-pagination-item').length).toBe(Math.ceil(dataLength / pageSize));
+    wrapper.find('.ant-pagination-item-' + skippedPage).simulate('click');
     // 确定分页触发的onChange正常
-    expect(changeHandler).toBeCalledWith({});
+    // onChange在antd的签名是function(pagination, filters, sorter, extra: { currentDataSource: [], action: paginate | sort | filter })
+    const pagination = {
+      current: skippedPage,
+      pageSize: pageSize,
+      total: dataLength,
+    };
+    const filters = {},
+      sorter = {};
+    const extra = {
+      action: 'paginate',
+      currentDataSource: thisCaseData,
+    };
+    expect(changeHandler).toBeCalledWith(pagination, filters, sorter, extra);
   });
 });

@@ -4,5 +4,4 @@ import Calendar from '..';
 
 describe('🧪 Calendar', () => {
   testMount(Calendar);
-  testSnapshot(Calendar);
 });

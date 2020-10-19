@@ -73,7 +73,7 @@ class App extends React.PureComponent {
         loading={this.state.loading}
         cacheKey="testKA"
         onCacheHitted={(pa) => {
-          console.log(pa);
+          // console.log(pa);
         }}
         pagination={{ pageSize: 10, total: this.state.data['total'] || 50, showSizeChanger: true, showQuickJumper: true }}
         onChange={(png) => this.fetchData({ ...this.state.searchParams, ...png })}
