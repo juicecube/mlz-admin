@@ -8,7 +8,7 @@ title: 介绍
 
 <div align="left">
 
-![Codecov](https://codecov.io/gh/milobluebell/mlz-admin/branch/master/graph/badge.svg) ![Codacy](https://app.codacy.com/project/badge/Grade/999d89d9099e41ef81b9af94c98a8726) ![Action Checkers](https://github.com/juicecube/mlz-admin/workflows/checker/badge.svg) ![Npm Version](https://img.shields.io/npm/v/@mlz/admin?color=42b983&label=%40mlz%2Fadmin&logo=42b983&logoColor=42b983)
+[![codecov](https://codecov.io/gh/juicecube/mlz-admin/branch/master/graph/badge.svg?token=ZNPL3AMQ7Z)](undefined) ![Codacy](https://app.codacy.com/project/badge/Grade/999d89d9099e41ef81b9af94c98a8726) ![Action Checkers](https://github.com/juicecube/mlz-admin/workflows/checker/badge.svg) ![Npm Version](https://img.shields.io/npm/v/@mlz/admin?color=42b983&label=%40mlz%2Fadmin&logo=42b983&logoColor=42b983)
 
 </div>
 
@@ -66,8 +66,12 @@ npm install @mlz/pack -D
 
 # 贡献指南
 
-https://github.com/juicecube/mlz-admin/blob/master/CONTRIBUTING.md
+欢迎贡献代码，但请先参阅：https://github.com/juicecube/mlz-admin/blob/master/CONTRIBUTING.md
+
+或加入我们的钉钉群，与我们分享你的想法和建议：
+
+<img src="https://raw.githubusercontent.com/milobluebell/imgs-repo/master/WechatIMG9.jpeg" width="346" alt="Dingtalk Qrcode"/>
 
 ---
 
-##### ❤️ 如果你喜欢本项目，希望为我们点一颗星：[Github](https://github.com/juicecube/mlz-admin)
+##### ❤️ 如果你也喜欢本项目，请为我们点一颗星：[Github](https://github.com/juicecube/mlz-admin)
