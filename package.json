@@ -43,7 +43,9 @@
     "es",
     "LICENSE"
   ],
-  "sideEffects": false,
+  "sideEffects": [
+    "./docs/demo/icon/icon-classes/**"
+  ],
   "gitHooks": {
     "pre-commit": "npx lint-staged && npx pretty-quick --staged"
   },
