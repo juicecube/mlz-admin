@@ -1,6 +1,4 @@
 import React from 'react';
-import { Layout as AntdMLayout } from 'antd';
-import { BasicProps } from 'antd/lib/layout/layout.d';
+import { Layout as AntdLayout } from 'antd';
 
-const Layout = AntdMLayout;
-export default Layout;
+export default AntdLayout;

@@ -11,12 +11,7 @@ const KeepAlive: React.FC<KeepAliveProps> = (props: KeepAliveProps) => {
     cachingStore.pushStateIntoSnapshots(props.name, $args);
     setPayload(cachingStore.getSnapshot(props.name)?.payload);
   };
-  useEffect(() => {
-    props?.onCacheHitted?.({
-      pagination: {},
-      searchs: omitProps(commonPaginationKeys, cachingStore.getSnapshot(props.name) || {}),
-    });
-  }, []);
+  useEffect(() => props?.onCacheHitted?.(omitProps(commonPaginationKeys, cachingStore.getSnapshot(props.name) || {})), []);
   return (
     <KAContext.Provider
       value={{

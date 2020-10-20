@@ -7,5 +7,5 @@ export interface KeepAliveProps {
   timeout?: number;
   onLoad?: () => void;
   triggerEvent?: 'onChange' | 'onSubmit';
-  onCacheHitted?: (params: Record<'pagination' | 'searchs', any>) => void;
+  onCacheHitted?: (params: any) => void;
 }

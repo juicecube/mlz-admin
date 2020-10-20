@@ -55,19 +55,19 @@ const InternalCommonTable = (props: ITableTypes<any>) => {
   return (
     <Table
       {...others}
-      rowKey={rowKey || (columns.length > 0 ? guessPrimaryKey(columns) : null) || 'id'}
+      rowKey={rowKey || guessPrimaryKey(columns) || 'id'}
       columns={formatColumns(columns)}
-      pagination={(cacheKey ? payload?.pagination || pagination : pagination) || false}
+      pagination={payload?.pagination || pagination || false}
       onChange={(png, ...rests) => {
-        const pagResults = omitProps(['showSizeChanger', 'showQuickJumper'], png);
-        props.onChange?.(pagResults, ...rests);
+        const pageResults = omitProps(['showSizeChanger', 'showQuickJumper'], png);
+        props.onChange?.(pageResults, ...rests);
         // TODO: keep-alive现在只支持table组件，按理说keep-alive应该
         // 是一个组件，可以包裹任何可受控组件，并且通过triggerEvent的事件
         // 触发更新缓存。
         if (cacheKey) {
           const [filters, sorter] = rests;
           //
-          dispatch({ pagination: pagResults, filters, sorter });
+          dispatch({ pagination: pageResults, filters, sorter });
         }
       }}
     />

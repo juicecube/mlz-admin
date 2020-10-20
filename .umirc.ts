@@ -28,7 +28,7 @@ export default defineConfig({
         children: getMds('components/interactivity').map((item) => 'components/interactivity/' + item),
       },
       {
-        title: '组合组件',
+        title: '业务组件',
         children: getMds('components/composit').map((item) => 'components/composit/' + item),
       },
     ],

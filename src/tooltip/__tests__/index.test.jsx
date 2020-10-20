@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import testMount from '../../../tests/testMount';
+import { testMount, testSnapshot } from '../../../tests';
 import Tooltip from '..';
 
-describe('📦  Tooltip', () => {
+describe('🧪 Tooltip', () => {
   testMount(Tooltip);
+  testSnapshot(Tooltip);
 });

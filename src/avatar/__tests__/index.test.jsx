@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import testMount from '../../../tests/testMount';
+import { testMount, testSnapshot } from '../../../tests';
 import Avatar from '..';
 
-describe('📦  Avatar', () => {
+describe('🧪 Avatar', () => {
   testMount(Avatar);
+  testSnapshot(Avatar);
 });
