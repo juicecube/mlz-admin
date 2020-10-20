@@ -35,20 +35,25 @@ export default defineConfig({
   },
   navs: [
     {
-      title: '开始',
-      path: '/start',
-    },
-    {
       title: '组件',
       path: '/components',
     },
     {
-      title: '其它仓库',
-      path: '/others',
+      title: '样板项目',
+      children: [
+        { title: 'Libra投放系统', path: 'https://libra.codemao.cn/' },
+        { title: '行政综合支撑平台', path: 'https://support-admin.codemao.cn/' },
+        { title: 'LuckyCat营销管理系统', path: 'https://luckycat-admin.codemao.cn/' },
+        // { title: '供应链管理', path: 'coming' },
+      ],
     },
     {
-      title: 'Github',
+      title: '❤️ Star Us',
       path: 'https://github.com/juicecube/mlz-admin',
+    },
+    {
+      title: '编程猫其它项目',
+      path: '/others',
     },
   ],
 });
