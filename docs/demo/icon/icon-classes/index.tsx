@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Icon, message, Input, Affix, Spin } from '@mlz/admin';
+import { Icon, message, Input, Affix, Spin, BackTop } from '@mlz/admin';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import './index.less';
 
@@ -47,6 +47,7 @@ const IconClasses = () => {
           <div className="mask" />
         </div>
       </Spin>
+      <BackTop />
     </>
   );
 };

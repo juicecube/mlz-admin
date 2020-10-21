@@ -35,6 +35,10 @@ export default defineConfig({
   },
   navs: [
     {
+      title: '设计规范',
+      path: '/regularity',
+    },
+    {
       title: '组件',
       path: '/components',
     },

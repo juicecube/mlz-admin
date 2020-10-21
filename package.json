@@ -44,7 +44,7 @@
     "LICENSE"
   ],
   "sideEffects": [
-    "./docs/demo/icon/icon-classes/**"
+    "./docs/demo/**"
   ],
   "gitHooks": {
     "pre-commit": "npx lint-staged && npx pretty-quick --staged"

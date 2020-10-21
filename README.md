@@ -12,17 +12,12 @@
 
 ---
 
-基于 antd 开发。经扩展后，分为两种 api：
-
-1. 完全兼容`antd^4.x` 的部分，请参考：https://ant.design/components/overview-cn
-2. 基于实际后台系统业务做了大量深入优化的部分，请参考：https://mlz-admin.now.sh
-
-# 🌈 使用方法
+## 🌈 使用方法
 
 ### 1. 安装
 
 ```shell
-$ npm install @mlz/admin -S
+$ npm install @mlz/admin --save
 ```
 
 ### 2. 引用
@@ -33,7 +28,7 @@ import { Button } from '@mlz/admin';
 const App = () => <Button type="primary">❤️❤️❤️</Button>;
 ```
 
-# 💻 开发
+## 💻 开发
 
 ```js
 $ npm install
@@ -43,6 +38,14 @@ $ npm start
 
 默认启动段口为：`8000`。使用浏览器查看http://localhost:8000/
 
-# 贡献指南
+## 贡献指南
 
 本库的开发代码，至少建立但不限于 [《贡献指南》](https://github.com/juicecube/mlz-admin/blob/master/CONTRIBUTING.md) 之上，所以请先仔细阅读。
+
+也可以加入我们的钉钉群，与我们分享你的想法和建议：
+
+<img src="https://raw.githubusercontent.com/milobluebell/imgs-repo/master/WechatIMG9.jpeg" width="346" alt="Dingtalk Qrcode"/>
+
+---
+
+##### ❤️ 如果你也喜欢本项目，请为我们点一颗星：[Github](https://github.com/juicecube/mlz-admin)
