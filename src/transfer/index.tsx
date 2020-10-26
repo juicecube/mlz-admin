@@ -1,2 +1,6 @@
 import React from 'react';
-export { Transfer as default } from 'antd';
+import { Transfer as AntdTransfer } from 'antd';
+
+const Transfer: typeof AntdTransfer = AntdTransfer;
+
+export default Transfer;

@@ -1,4 +1,6 @@
 import React from 'react';
 import { Steps as AntdSteps } from 'antd';
 
-export default AntdSteps;
+const Steps: typeof AntdSteps = AntdSteps;
+
+export default Steps;

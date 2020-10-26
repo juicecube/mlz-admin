@@ -1,4 +1,6 @@
 import React from 'react';
 import { Tree as AntdTree } from 'antd';
 
-export default AntdTree;
+const Tree: typeof AntdTree = AntdTree;
+
+export default Tree;

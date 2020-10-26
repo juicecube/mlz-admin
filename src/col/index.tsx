@@ -1,4 +1,6 @@
 import React from 'react';
 import { Col as AntdCol } from 'antd';
 
-export default AntdCol;
+const Col: typeof AntdCol = AntdCol;
+
+export default Col;

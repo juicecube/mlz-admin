@@ -1,4 +1,6 @@
 import React from 'react';
 import { Checkbox as AntdCheckbox } from 'antd';
 
-export default AntdCheckbox;
+const Checkbox: typeof AntdCheckbox = AntdCheckbox;
+
+export default Checkbox;

@@ -1,4 +1,6 @@
 import React from 'react';
 import { DatePicker as AntdDatePicker } from 'antd';
 
-export default AntdDatePicker;
+const DatePicker: typeof AntdDatePicker = AntdDatePicker;
+
+export default DatePicker;

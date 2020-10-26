@@ -1,2 +1,6 @@
 import React from 'react';
-export { Tag as default } from 'antd';
+import { Tag as AntdTag } from 'antd';
+
+const Tag: typeof AntdTag = AntdTag;
+
+export default Tag;

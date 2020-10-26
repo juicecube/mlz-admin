@@ -1,4 +1,6 @@
 import React from 'react';
 import { Menu as AntdMenu } from 'antd';
 
-export default AntdMenu;
+const Menu: typeof AntdMenu = AntdMenu;
+
+export default Menu;

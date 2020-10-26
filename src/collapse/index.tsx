@@ -1,4 +1,6 @@
 import React from 'react';
 import { Collapse as AntdCollapse } from 'antd';
 
-export default AntdCollapse;
+const Collapse: typeof AntdCollapse = AntdCollapse;
+
+export default Collapse;

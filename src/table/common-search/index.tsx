@@ -57,7 +57,7 @@ export const typeFormItemRefers = {
   datetime: ({ searchItemProps }) => <MDatePicker showTime {...regularOptions} {...searchItemProps} />,
   dateRange: ({ searchItemProps }) => <MDatePicker.RangePicker picker="date" startOf="day" {...regularOptions} {...searchItemProps} />,
   datetimeRange: ({ searchItemProps }) => <MDatePicker.RangePicker showTime {...regularOptions} {...searchItemProps} />,
-  price: () => <InputNumber style={fullWidthStyle} formatter={(value) => `¥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')} parser={(value: any) => value.replace(/\¥\s?|(,*)/g, '')} min={0} />,
+  price: () => <InputNumber style={fullWidthStyle} formatter={(value) => `¥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')} parser={(value: any) => value.replace(/¥\s?|(,*)/g, '')} min={0} />,
   ratio: () => <InputNumber formatter={(value) => `${value ? value + ' %' : ''}`} parser={(value) => value?.replace(' %', '') as string} style={fullWidthStyle} />,
 };
 
@@ -107,7 +107,7 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
 
   const formSubmitters = (
     <Col span={sparedColSpan < perColspan + collapsingButtonColspan ? 24 : sparedColSpan} style={{ textAlign: 'right', marginBottom: 16 }} flex="1">
-      {!!searchCollapsedThreshold ? (
+      {searchCollapsedThreshold ? (
         <Button type="link" icon={<Icon type="arrow_down" rotate={collapsed ? 0 : 180} />} onClick={collapsedHandler}>
           {collapsed ? '展开' : '收起'}
         </Button>

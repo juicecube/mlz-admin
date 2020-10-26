@@ -1,2 +1,6 @@
 import React from 'react';
-export { Space as default } from 'antd';
+import { Space as AntdSpace } from 'antd';
+
+const Space: typeof AntdSpace = AntdSpace;
+
+export default Space;

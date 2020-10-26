@@ -1,2 +1,6 @@
 import React from 'react';
-export { Select as default } from 'antd';
+import { Select as AntdSelect } from 'antd';
+
+const Select: typeof AntdSelect = AntdSelect;
+
+export default Select;

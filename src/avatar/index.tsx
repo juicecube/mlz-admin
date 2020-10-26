@@ -1,4 +1,6 @@
 import React from 'react';
 import { Avatar as AntdAvatar } from 'antd';
 
-export default AntdAvatar;
+const Avatar: typeof AntdAvatar = AntdAvatar;
+
+export default Avatar;

@@ -1,4 +1,6 @@
 import React from 'react';
 import { Form as AntdForm } from 'antd';
 
-export default AntdForm;
+const Form: typeof AntdForm = AntdForm;
+
+export default Form;

@@ -1,4 +1,6 @@
 import React from 'react';
 import { Drawer as AntdDrawer } from 'antd';
 
-export default AntdDrawer;
+const Drawer: typeof AntdDrawer = AntdDrawer;
+
+export default Drawer;

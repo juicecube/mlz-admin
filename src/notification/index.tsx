@@ -1,4 +1,6 @@
 import React from 'react';
 import { notification as AntdNotification } from 'antd';
 
-export default AntdNotification;
+const notification: typeof AntdNotification = AntdNotification;
+
+export default notification;

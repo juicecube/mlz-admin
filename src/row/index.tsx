@@ -1,2 +1,6 @@
 import React from 'react';
-export { Row as default } from 'antd';
+import { Row as AntdRow } from 'antd';
+
+const Row: typeof AntdRow = AntdRow;
+
+export default Row;
