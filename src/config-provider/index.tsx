@@ -8,17 +8,17 @@ const ConfigProvider = (props: { children: React.ReactNode; locale?: Locale; def
   const { locale, defaultTheme } = props;
   useEffect(() => {
     if (defaultTheme !== true) {
-      appendScript('https://cdn.bootcdn.net/ajax/libs/less.js/3.9.0/less.min.js');
-      appendScript(
-        null,
-        `
-        less.modifyVars({
-          '@primary-color': '#cacaca',
-          '@link-color': '#1890ff',
-          '@success-color': '#52c41a',
-        });
-      `,
-      );
+      // appendScript('https://cdn.bootcdn.net/ajax/libs/less.js/3.9.0/less.min.js');
+      // appendScript(
+      //   null,
+      //   `
+      //   less.modifyVars({
+      //     '@primary-color': '#cacaca',
+      //     '@link-color': '#1890ff',
+      //     '@success-color': '#52c41a',
+      //   });
+      // `,
+      // );
     }
   }, []);
   return <AntdConfigProvider locale={locale || zhLocale}>{props.children}</AntdConfigProvider>;
