@@ -1,6 +1,6 @@
 /**
  * title: 搜索项
- * desc: 通过传入 `data` 来展示表格，通过 `onChange`和 `onSearch` 等参数控制交互。
+ * desc: 通过为column设置 `searchable` 来开启搜索栏，值可以是boolean或number，并且按照number类型的大小降序排列。
  */
 import React from 'react';
 import { Table } from '@mlz/admin';
