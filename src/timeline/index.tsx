@@ -1,2 +1,6 @@
 import React from 'react';
-export { Timeline as default } from 'antd';
+import { TimePicker as AntdTimeline } from 'antd';
+
+const TimePicker: typeof AntdTimeline = AntdTimeline;
+
+export default TimePicker;

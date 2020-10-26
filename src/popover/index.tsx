@@ -1,4 +1,6 @@
 import React from 'react';
 import { Popover as AntdPopover } from 'antd';
 
-export default AntdPopover;
+const Popover: typeof AntdPopover = AntdPopover;
+
+export default Popover;

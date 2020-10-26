@@ -1,4 +1,6 @@
 import React from 'react';
 import { message as AntdMessage } from 'antd';
 
-export default AntdMessage;
+const message: typeof AntdMessage = AntdMessage;
+
+export default message;

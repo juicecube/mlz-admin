@@ -1,4 +1,6 @@
 import React from 'react';
 import { Dropdown as AntdDropdown } from 'antd';
 
-export default AntdDropdown;
+const Dropdown: typeof AntdDropdown = AntdDropdown;
+
+export default Dropdown;

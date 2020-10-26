@@ -1,4 +1,6 @@
 import React from 'react';
 import { Progress as AntdProgress } from 'antd';
 
-export default AntdProgress;
+const Progress: typeof AntdProgress = AntdProgress;
+
+export default Progress;

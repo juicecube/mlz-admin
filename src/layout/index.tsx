@@ -1,4 +1,6 @@
 import React from 'react';
 import { Layout as AntdLayout } from 'antd';
 
-export default AntdLayout;
+const Layout: typeof AntdLayout = AntdLayout;
+
+export default Layout;

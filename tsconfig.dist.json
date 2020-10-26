@@ -11,7 +11,7 @@
     "es",
     "lib",
     "tests",
-    "**/__test__",
+    "**/__tests__",
     "docs"
   ]
 }

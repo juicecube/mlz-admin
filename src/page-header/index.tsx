@@ -1,4 +1,6 @@
 import React from 'react';
 import { PageHeader as AntdPageHeader } from 'antd';
 
-export default AntdPageHeader;
+const PageHeader: typeof AntdPageHeader = AntdPageHeader;
+
+export default PageHeader;

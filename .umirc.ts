@@ -16,7 +16,7 @@ export default defineConfig({
   title: '@mlz/admin',
   mode: 'site',
   favicon: 'https://img.alicdn.com/tfs/TB1YHEpwUT1gK0jSZFhXXaAtVXa-28-27.svg',
-  locales: [['zh-CN', '中文']],
+  locales: [['中文']],
   menus: {
     '/components': [
       {
@@ -60,4 +60,9 @@ export default defineConfig({
       path: '/others',
     },
   ],
+  theme: {
+    '@c-primary': '#1890FF',
+    '@c-link': '#1890FF',
+    '@s-nav-height': '76px',
+  },
 });

@@ -1,4 +1,6 @@
 import React from 'react';
 import { List as AntdList } from 'antd';
 
-export default AntdList;
+const List: typeof AntdList = AntdList;
+
+export default List;

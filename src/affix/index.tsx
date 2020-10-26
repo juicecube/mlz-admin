@@ -1,4 +1,6 @@
 import React from 'react';
 import { Affix as AntdAffix } from 'antd';
 
-export default AntdAffix;
+const Affix: typeof AntdAffix = AntdAffix;
+
+export default Affix;

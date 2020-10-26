@@ -1,2 +1,6 @@
 import React from 'react';
-export { Spin as default } from 'antd';
+import { Spin as AntdSpin } from 'antd';
+
+const Spin: typeof AntdSpin = AntdSpin;
+
+export default Spin;

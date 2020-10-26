@@ -1,2 +1,6 @@
 import React from 'react';
-export { Skeleton as default } from 'antd';
+import { Skeleton as AntdSkeleton } from 'antd';
+
+const Skeleton: typeof AntdSkeleton = AntdSkeleton;
+
+export default Skeleton;

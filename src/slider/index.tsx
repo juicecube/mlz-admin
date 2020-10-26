@@ -1,2 +1,6 @@
 import React from 'react';
-export { Slider as default } from 'antd';
+import { Slider as AntdSlider } from 'antd';
+
+const Slider: typeof AntdSlider = AntdSlider;
+
+export default Slider;

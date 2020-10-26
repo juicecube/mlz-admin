@@ -1,6 +1,6 @@
 {
   "name": "@mlz/admin",
-  "version": "0.5.66",
+  "version": "0.5.68",
   "description": "一套编程猫设计规范下的管理系统React组件库，基于Antd",
   "license": "MIT",
   "keywords": [
@@ -119,7 +119,7 @@
     "type": "git",
     "url": "https://github.com/juicecube/mlz-admin"
   },
-  "homepage": "https://milobluebell.github.io/mytils",
+  "homepage": "https://mlz-admin.now.sh/",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   }

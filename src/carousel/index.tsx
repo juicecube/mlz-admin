@@ -1,4 +1,6 @@
 import React from 'react';
 import { Carousel as AntdCarousel } from 'antd';
 
-export default AntdCarousel;
+const Carousel: typeof AntdCarousel = AntdCarousel;
+
+export default Carousel;

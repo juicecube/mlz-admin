@@ -1,4 +1,6 @@
 import React from 'react';
 import { Alert as AntdAlert } from 'antd';
 
-export default AntdAlert;
+const Alert: typeof AntdAlert = AntdAlert;
+
+export default Alert;

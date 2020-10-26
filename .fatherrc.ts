@@ -13,11 +13,12 @@ export default {
   },
   cjs: 'babel',
   extractCSS: false,
+  lessInBabelMode: true,
   runtimeHelpers: true,
   extraRollupPlugins: [
     typescript({
       useTsconfigDeclarationDir: true,
-      tsconfig: 'tsconfig.json',
+      tsconfig: 'tsconfig.dist.json',
     }),
   ],
   extraBabelPlugins: [['import', { libraryName: 'antd', style: true }]],

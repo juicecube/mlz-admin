@@ -1,4 +1,6 @@
 import React from 'react';
 import { AutoComplete as AntdAutoComplete } from 'antd';
 
-export default AntdAutoComplete;
+const Complete: typeof AntdAutoComplete = AntdAutoComplete;
+
+export default Complete;

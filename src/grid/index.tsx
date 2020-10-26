@@ -1,4 +1,6 @@
 import React from 'react';
 import { Grid as AntdGrid } from 'antd';
 
-export default AntdGrid;
+const Grid: typeof AntdGrid = AntdGrid;
+
+export default Grid;

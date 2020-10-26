@@ -5,3 +5,7 @@
 ### 基本使用
 
 <code src="./../../demo/config-provider/normal-usage.demo.tsx" />
+
+### 更换系统主题
+
+<code src="./../../demo/config-provider/theming.demo.tsx" />

@@ -1,2 +1,6 @@
 import React from 'react';
-export { Tooltip as default } from 'antd';
+import { Tooltip as AntdTooltip } from 'antd';
+
+const Tooltip: typeof AntdTooltip = AntdTooltip;
+
+export default Tooltip;
