@@ -15,7 +15,8 @@ export default defineConfig({
   hash: true,
   title: '@mlz/admin',
   mode: 'site',
-  favicon: 'https://img.alicdn.com/tfs/TB1YHEpwUT1gK0jSZFhXXaAtVXa-28-27.svg',
+  favicon: '/assets/logo.36.png',
+  logo: '/assets/logo.360.png',
   locales: [['中文']],
   menus: {
     '/components': [
