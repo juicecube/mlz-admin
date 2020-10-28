@@ -27,7 +27,7 @@
     "test:update": "npm run clean && node ./scripts/genIndex.js && dumi test --cache=false -u",
     "check-coverage": "npx istanbul check-coverage --statement 85",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
-    "version": "node ./scripts/versioning",¸
+    "version": "node ./scripts/versioning",
     "clean": "rm -rf es lib dist .tsc-check coverage src/index.tsx",
     "reset-project": "npm run clean && rm -rf node_modules package-lock.json yarn.lock src/.umi && npm install"
   },
