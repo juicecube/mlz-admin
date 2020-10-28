@@ -10,7 +10,7 @@ const pkg = require(path.resolve(cwd, 'package.json'));
 const git = simpleGit(cwd);
 const { version } = pkg;
 const tagPrefix = 'v';
-const canPublishBranches = ['release'];
+const canPublishBranches = ['HEAD', 'release'];
 
 const checkVersion = async () => {
   let { versions } = await fetch('http://registry.npmjs.org/@mlz/admin').then((res) => res.json());
