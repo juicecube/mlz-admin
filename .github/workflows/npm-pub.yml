@@ -8,7 +8,7 @@ on:
       - 'release/*'
 
 jobs:
-  validations: 
+  publish: 
     runs-on: ubuntu-latest
     strategy:
       matrix:
