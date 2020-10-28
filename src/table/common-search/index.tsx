@@ -92,7 +92,6 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
       ) %
         24)
     : perColspan + collapsingButtonColspan;
-  console.log(calcTotalColspan(searchings, perColspan), sparedColSpan);
   const shouldMergeSubmitButton = searchings?.length % colCount === 0;
 
   const { dispatch, payload } = useContext(KAContext);

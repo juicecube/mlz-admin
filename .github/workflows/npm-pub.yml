@@ -1,12 +1,14 @@
 name: publish
 
 on:
-  push:
-    tags:
-      - 'v*'
+  pull_request:
+    types: [closed]
+    branches:
+      - release
+      - 'release/*'
 
 jobs:
-  publish: 
+  validations: 
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -42,6 +44,11 @@ jobs:
 
       - name: build dist
         run: npm run dist
+        env:
+          CI: true
+      
+      - name: tag a tag
+        run: npm run version
         env:
           CI: true
 
