@@ -17,7 +17,7 @@ export default defineConfig({
   mode: 'site',
   favicon: '/assets/logo.36.png',
   logo: '/assets/logo.360.png',
-  locales: [['中文']],
+  locales: [['zh-CN', '中文']],
   menus: {
     '/components': [
       {

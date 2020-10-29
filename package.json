@@ -1,6 +1,6 @@
 {
   "name": "@mlz/admin",
-  "version": "0.5.71",
+  "version": "0.5.72",
   "description": "一套编程猫设计规范下的管理系统React组件库，基于Antd",
   "license": "MIT",
   "keywords": [
@@ -25,7 +25,7 @@
     "lint:style": "stylelint 'src/**/*.less' --syntax less",
     "test": "npm run clean && node ./scripts/genIndex.js && dumi test --coverage",
     "test:update": "npm run clean && node ./scripts/genIndex.js && dumi test --cache=false -u",
-    "check-coverage": "npx istanbul check-coverage --statement 85",
+    "check-coverage": "npx istanbul check-coverage --statement 90 --branch -80",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "version": "node ./scripts/versioning",
     "clean": "rm -rf es lib dist .tsc-check coverage src/index.tsx",
@@ -35,6 +35,9 @@
   "main": "lib/index.js",
   "unpkg": "unpkg/mlz-admin.min.js",
   "typings": "lib/index.d.ts",
+  "sideEffects": [
+    "./docs/**"
+  ],
   "files": [
     "lib",
     "es",

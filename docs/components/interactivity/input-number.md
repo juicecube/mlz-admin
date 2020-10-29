@@ -9,3 +9,13 @@
 ### 基本使用
 
 <code src="./../../demo/input-number/normal-usage.demo.tsx" />
+
+```tsx
+/**
+ * inline: true
+ */
+import React from 'react';
+import Commiters from '../_site/committers';
+
+export default () => <Commiters />;
+```

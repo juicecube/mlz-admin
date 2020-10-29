@@ -40,14 +40,14 @@ const checkBranch = async ({ current }) => {
 const generateTag = async (tag) => {
   git.addTag(tag, () => {
     console.log(`Success: 🏷 ${tag} generated successfully`, `\r\n`);
-  })
-}
+  });
+};
 
 const pushTag = async () => {
-  git.addRemote('origin', 'https://github.com/juicecube/mlz-admin.git').pushTags('origin', () => {
+  git.pushTags('origin', () => {
     console.log(`Success✅: ag推送成功`, `\r\n`);
-  })
-}
+  });
+};
 
 (async () => {
   const status = await git.status();

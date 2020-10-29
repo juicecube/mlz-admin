@@ -86,7 +86,7 @@ describe('🧪 CommonSearch', () => {
           close: { text: '售罄', color: 'red' },
         },
         assert: (wrapper) => wrapper.find('form.admini-common-search__form').find('input.ant-select-selection-search-input').length,
-        exp: 2,
+        exp: 3,
       },
       {
         title: 'enum类型也用Select',
@@ -98,7 +98,19 @@ describe('🧪 CommonSearch', () => {
           close: { text: '售罄', color: 'red' },
         },
         assert: (wrapper) => wrapper.find('form.admini-common-search__form').find('input.ant-select-selection-search-input').length,
-        exp: 2,
+        exp: 3,
+      },
+      {
+        title: 'enum类型也用Select，但是enums是string类型，而非object',
+        dataIndex: 'enum',
+        type: 'enum',
+        searchable: true,
+        enums: {
+          all: '全部',
+          close: '售罄',
+        },
+        assert: (wrapper) => wrapper.find('form.admini-common-search__form').find('input.ant-select-selection-search-input').length,
+        exp: 3,
       },
     ];
 
@@ -186,5 +198,44 @@ describe('🧪 CommonSearch', () => {
       .simulate('click');
     expect(resetHandler).toBeCalledTimes(1);
     expect(searchHandler).toBeCalledTimes(1);
+  });
+
+  test('设置搜索项数目上限正确', () => {
+    const columns = [
+      {
+        title: 'normal',
+        dataIndex: 'normal',
+        type: 'normal',
+        searchable: true,
+      },
+      {
+        title: 'number',
+        dataIndex: 'number',
+        type: 'number',
+        searchable: true,
+      },
+      {
+        title: 'ratio',
+        dataIndex: 'ratio',
+        type: 'ratio',
+        searchable: true,
+      },
+    ];
+    const wrapper = mount(<CommonSearch columns={columns} searchCollapsedThreshold={2} />);
+    const theToggleBtn = wrapper.find('button.toggle-search-count-btn');
+    expect(wrapper.find('form.admini-common-search__form').find('input').length).toBe(3);
+    theToggleBtn.simulate('click');
+    expect(
+      (wrapper
+        .find('.admini-common-search__search-item')
+        .first()
+        .getDOMNode() as any).style.display,
+    ).toBe('block');
+    expect(
+      (wrapper
+        .find('.admini-common-search__search-item')
+        .last()
+        .getDOMNode() as any).style.display,
+    ).toBe('none');
   });
 });

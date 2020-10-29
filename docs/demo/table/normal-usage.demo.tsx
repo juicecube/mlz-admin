@@ -88,7 +88,7 @@ class App extends React.PureComponent {
       },
     });
     this.setState({
-      data: JSON.parse(data).items,
+      data: data && JSON.parse(data).items,
       loading: false,
     });
   };

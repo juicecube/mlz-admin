@@ -1,6 +1,7 @@
 /**
  * title: 工具栏
  * desc: 通过传入 `tools` 组件数组，来展示对应的交互工具。
+ * background: '#f0f2f5'
  */
 import React from 'react';
 import { Table, Button, Icon } from '@mlz/admin';
@@ -95,18 +96,19 @@ class App extends React.PureComponent {
       },
     });
     this.setState({
-      data: JSON.parse(data),
+      data: data && JSON.parse(data),
       loading: false,
     });
   };
 
   render() {
+    const { data } = this.state;
     return (
       <Table
         columns={columns}
-        dataSource={this.state.data.items}
+        dataSource={data?.items}
         loading={this.state.loading}
-        pagination={{ pageSize: 10, total: this.state.data.total || 50, showSizeChanger: true, showQuickJumper: true }}
+        pagination={{ pageSize: 10, total: data?.total || 50, showSizeChanger: true, showQuickJumper: true }}
         onChange={(png) => {
           this.setState(
             {
