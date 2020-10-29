@@ -10,14 +10,12 @@ const columns = [
   {
     title: 'Name',
     dataIndex: 'name',
-    searchable: 6,
     primary: true,
   },
   {
     title: 'Id',
     dataIndex: 'id',
     type: 'number',
-    searchable: 5,
     width: 60,
   },
   {
@@ -30,13 +28,11 @@ const columns = [
     title: 'Cost',
     dataIndex: 'money',
     type: 'price',
-    searchable: 4,
   },
   {
     title: 'Forwards',
     dataIndex: 'status',
     type: 'tag',
-    searchable: 2,
     enums: {
       all: { text: '全部', color: 'magenta' },
       close: { text: '售罄', color: 'red' },
@@ -130,15 +126,18 @@ class App extends React.PureComponent {
           );
         }}
         tools={[
-          <a key={1}>上传</a>,
-          <Button type="primary" key={2}>
-            同步
+          <a key={1}>导出数据</a>,
+          <Button type="primary" icon={<Icon type="upload_l" />} key={2}>
+            批量上传
           </Button>,
         ]}
         operations={[
           <Button disabled={!this.state.selected.length} type="primary" key={2} onClick={() => message.success(`选中了：${this.state.selected.join(' 和 ')}`)}>
             批量通知
           </Button>,
+          <span>
+            选择了：<span style={{ color: 'red', fontWeight: 600, marginRight: 6 }}>{this.state.selected.length}</span>项
+          </span>,
         ]}
         rowSelection={{
           type: this.state.selectionType,
