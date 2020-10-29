@@ -93,6 +93,7 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
         24)
     : perColspan + collapsingButtonColspan;
   const shouldMergeSubmitButton = searchings?.length % colCount === 0;
+  const hasMoreInteractionArea = tools.length || operations.length;
 
   const { dispatch, payload } = useContext(KAContext);
   let keepAliveHandler;
@@ -105,9 +106,9 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
   const collapsedHandler = () => toggleCollapsed(!collapsed);
 
   const formSubmitters = searchings.length ? (
-    <Col span={sparedColSpan < perColspan + collapsingButtonColspan ? 24 : sparedColSpan} style={{ textAlign: 'right', marginBottom: 16 }} flex="1">
+    <Col span={sparedColSpan < perColspan + collapsingButtonColspan ? 24 : sparedColSpan} style={{ textAlign: 'right', marginBottom: hasMoreInteractionArea ? 16 : 0 }} flex="1">
       {searchCollapsedThreshold ? (
-        <Button type="link" icon={<Icon type="arrow_down" rotate={collapsed ? 0 : 180} />} onClick={collapsedHandler}>
+        <Button className="toggle-search-count-btn" type="link" icon={<Icon type="arrow_down" rotate={collapsed ? 0 : 180} />} onClick={collapsedHandler}>
           {collapsed ? '展开' : '收起'}
         </Button>
       ) : null}
@@ -141,11 +142,18 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
       }}
       onFinishFailed={props?.onSearchFailed}
       initialValues={props.initialSearchValues}
-      style={tools.length || operations.length ? { marginBottom: 18 } : {}}>
+      style={
+        !searchings.length && hasMoreInteractionArea
+          ? {
+              marginBottom: 0,
+            }
+          : {}
+      }>
       <Row gutter={24}>
         {searchings?.map((row, index: number) => {
           return (
             <Col
+              className={bem('search-item')}
               sm={row.searchColSpan || perColspan * 3}
               lg={row.searchColSpan || perColspan * 2}
               xl={row.searchColSpan || perColspan}
@@ -158,9 +166,8 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
         {shouldMergeSubmitButton ? null : formSubmitters}
       </Row>
       {shouldMergeSubmitButton ? <Row justify="end">{formSubmitters}</Row> : null}
-      {tools?.length || operations?.length ? (
+      {hasMoreInteractionArea ? (
         <>
-          {searchings.length ? <hr className={bem('hr')} /> : null}
           <section className={bem('extra')}>
             <div className={`bar-area ${bem('operations-area')}`}>
               <Row justify="start" align="middle" gutter={16}>
