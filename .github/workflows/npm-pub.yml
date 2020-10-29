@@ -52,9 +52,6 @@ jobs:
         env:
           CI: true
 
-      - name: github pkg 
-        run: npm login --registry=https://npm.pkg.github.com/
-
       - name: npm publish
         uses: JS-DevTools/npm-publish@v1
         with:
