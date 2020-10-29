@@ -21,7 +21,6 @@ export default () => {
   }, []);
   return (
     <div className="committers-wrapper">
-      <Divider />
       <Affix offsetBottom={66}>
         <Button className="joinus-btn" type="primary" onClick={() => window.open(antdDocPath)} icon={<Icon type="file_search_l" />}>
           在 Ant Design 中查看

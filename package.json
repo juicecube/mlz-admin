@@ -36,7 +36,8 @@
   "unpkg": "unpkg/mlz-admin.min.js",
   "typings": "lib/index.d.ts",
   "sideEffects": [
-    "./docs/**"
+    "./docs/**",
+    "./src/table/**"
   ],
   "files": [
     "lib",
