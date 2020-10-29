@@ -92,7 +92,6 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
       ) %
         24)
     : perColspan + collapsingButtonColspan;
-  console.log(calcTotalColspan(searchings, perColspan), sparedColSpan);
   const shouldMergeSubmitButton = searchings?.length % colCount === 0;
 
   const { dispatch, payload } = useContext(KAContext);
@@ -105,7 +104,7 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
   const [collapsed, toggleCollapsed] = useState(false);
   const collapsedHandler = () => toggleCollapsed(!collapsed);
 
-  const formSubmitters = (
+  const formSubmitters = searchings.length ? (
     <Col span={sparedColSpan < perColspan + collapsingButtonColspan ? 24 : sparedColSpan} style={{ textAlign: 'right', marginBottom: 16 }} flex="1">
       {searchCollapsedThreshold ? (
         <Button type="link" icon={<Icon type="arrow_down" rotate={collapsed ? 0 : 180} />} onClick={collapsedHandler}>
@@ -129,7 +128,7 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
         查询
       </Button>
     </Col>
-  );
+  ) : null;
 
   return (
     <Form
@@ -161,7 +160,7 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
       {shouldMergeSubmitButton ? <Row justify="end">{formSubmitters}</Row> : null}
       {tools?.length || operations?.length ? (
         <>
-          <hr className={bem('hr')} />
+          {searchings.length ? <hr className={bem('hr')} /> : null}
           <section className={bem('extra')}>
             <div className={`bar-area ${bem('operations-area')}`}>
               <Row justify="start" align="middle" gutter={16}>
