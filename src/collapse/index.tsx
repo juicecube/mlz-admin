@@ -1,4 +1,2 @@
 import React from 'react';
-import { Collapse as AntdCollapse } from 'antd';
-
-export default AntdCollapse;
+export { Collapse as default } from 'antd';

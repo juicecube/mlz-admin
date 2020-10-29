@@ -1,4 +1,2 @@
 import React from 'react';
-import { Checkbox as AntdCheckbox } from 'antd';
-
-export default AntdCheckbox;
+export { Checkbox as default } from 'antd';

@@ -1,4 +1,2 @@
 import React from 'react';
-import { Pagination as AntdPagination } from 'antd';
-
-export default AntdPagination;
+export { Pagination as default } from 'antd';

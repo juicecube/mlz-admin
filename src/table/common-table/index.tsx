@@ -78,11 +78,15 @@ const CommonTable = (props: ITableTypes<any>) => {
   return (
     <ConfigProvider locale={zhCN}>
       {props?.cacheKey ? (
-        <KeepAlive name={props.cacheKey} onCacheHitted={props.onCacheHitted}>
-          <InternalCommonTable {...props} />
-        </KeepAlive>
+        <div className={bem('wrapper')}>
+          <KeepAlive name={props.cacheKey} onCacheHitted={props.onCacheHitted}>
+            <InternalCommonTable {...props} />
+          </KeepAlive>
+        </div>
       ) : (
-        <InternalCommonTable {...props} />
+        <div className={bem('wrapper')}>
+          <InternalCommonTable {...props} />
+        </div>
       )}
     </ConfigProvider>
   );

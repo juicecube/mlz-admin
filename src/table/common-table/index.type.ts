@@ -32,12 +32,8 @@ export interface IColumnTypes<T> extends ColumnProps<T> {
 }
 export type IExtraSearchType = Omit<IColumnTypes<unknown>, 'primary' | 'searchable'>;
 
-export interface ITableTypes<T> extends ICommonSearch<T> {
+export interface ITableTypes<T> extends TableProps<T>, ICommonSearch<T> {
   columns: IColumnTypes<T>[];
-  // keep-alive功能缓存的key
-  cacheKey?: KeepAliveProps['name'];
-  // 当keep-alive对应的key被命中时触发
-  onCacheHitted?: KeepAliveProps['onCacheHitted'];
 }
 
 export type SupporttedColumnTypes = keyof typeof typeValueRefers;

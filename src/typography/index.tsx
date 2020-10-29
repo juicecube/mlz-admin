@@ -1,4 +1,2 @@
 import React from 'react';
-import { Typography as AntdTypography } from 'antd';
-
-export default AntdTypography;
+export { Typography as default } from 'antd';

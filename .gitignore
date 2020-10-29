@@ -13,6 +13,7 @@ yarn.lock
 
 # production
 /dist
+/unpkg
 /es
 /lib
 /build

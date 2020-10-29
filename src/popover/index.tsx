@@ -1,4 +1,2 @@
 import React from 'react';
-import { Popover as AntdPopover } from 'antd';
-
-export default AntdPopover;
+export { Popover as default } from 'antd';

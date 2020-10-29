@@ -1,4 +1,2 @@
 import React from 'react';
-import { Badge as AntdBadge } from 'antd';
-
-export default AntdBadge;
+export { Badge as default } from 'antd';

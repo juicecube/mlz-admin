@@ -26,7 +26,7 @@ const CardTitle = (props): React.ReactElement => {
 
 const bem = createBem('detail');
 const DetailCard = (props: IDetailCardProps) => {
-  const { dataSource = {}, columns = [], displayType, linkable, noDataResult = null, ...others } = props;
+  const { dataSource, columns, displayType, linkable, noDataResult = null, ...others } = props;
   return displayType !== 'table' ? (
     <Card {...others} bordered={false} className={bem('card')} title={<CardTitle {...{ title: props.title, linkable }} />}>
       {columns && dataSource ? (

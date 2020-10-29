@@ -15,7 +15,8 @@ export default defineConfig({
   hash: true,
   title: '@mlz/admin',
   mode: 'site',
-  favicon: 'https://img.alicdn.com/tfs/TB1YHEpwUT1gK0jSZFhXXaAtVXa-28-27.svg',
+  favicon: '/assets/logo.36.png',
+  logo: '/assets/logo.360.png',
   locales: [['zh-CN', '中文']],
   menus: {
     '/components': [
@@ -34,6 +35,10 @@ export default defineConfig({
     ],
   },
   navs: [
+    {
+      title: '设计规范',
+      path: '/regularity',
+    },
     {
       title: '组件',
       path: '/components',
@@ -56,4 +61,9 @@ export default defineConfig({
       path: '/others',
     },
   ],
+  theme: {
+    '@c-primary': '#1890FF',
+    '@c-link': '#1890FF',
+    '@s-nav-height': '76px',
+  },
 });

@@ -1,4 +1,2 @@
 import React from 'react';
-import { BackTop as AntdBackTop } from 'antd';
-
-export default AntdBackTop;
+export { BackTop as default } from 'antd';

@@ -5,10 +5,9 @@ on:
     branches:
       - master
       - 'sprint/*'
-      - 'feat/*'
       - 'hotfix/*'
   pull_request:
-    types: [opened,reopened]
+    types: [opened, reopened, edited]
 
 jobs:
   install: 
@@ -47,6 +46,7 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-cached-node-modules-${{ hashFiles('**/package-lock.json') }}
+
       - name: execute code lint
         run: npm run lint
 

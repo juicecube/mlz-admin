@@ -1,4 +1,2 @@
 import React from 'react';
-import { Cascader as AntdCascader } from 'antd';
-
-export default AntdCascader;
+export { Cascader as default } from 'antd';

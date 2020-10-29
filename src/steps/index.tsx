@@ -1,4 +1,2 @@
 import React from 'react';
-import { Steps as AntdSteps } from 'antd';
-
-export default AntdSteps;
+export { Steps as default } from 'antd';

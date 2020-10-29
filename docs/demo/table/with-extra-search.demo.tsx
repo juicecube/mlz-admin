@@ -1,3 +1,6 @@
+/**
+ * background: '#f0f2f5'
+ */
 import React, { useState, useEffect } from 'react';
 import { Table, Slider } from '@mlz/admin';
 import axios from 'axios';
@@ -61,18 +64,19 @@ class App extends React.PureComponent {
       },
     });
     this.setState({
-      data: data && JSON.parse(data),
+      data: data && data && JSON.parse(data),
       loading: false,
     });
   };
 
   render() {
+    const { data } = this.state;
     return (
       <Table
         columns={columns}
-        dataSource={this.state.data.items}
+        dataSource={data?.items}
         loading={this.state.loading}
-        pagination={{ pageSize: 10, total: this.state.data.total || 50, showSizeChanger: true, showQuickJumper: true }}
+        pagination={{ pageSize: 10, total: data?.total || 50, showSizeChanger: true, showQuickJumper: true }}
         onChange={(png) => {
           this.setState(
             {

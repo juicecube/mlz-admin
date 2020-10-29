@@ -7,5 +7,6 @@ module.exports = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
-  testPathIgnorePatterns: ['/node_modules/'],
+  coveragePathIgnorePatterns: ['/node_modules/', '/src/shared/utils/'],
+  testPathIgnorePatterns: ['/node_modules/', '/src/shared/utils/'],
 };
