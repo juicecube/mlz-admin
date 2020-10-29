@@ -93,7 +93,6 @@ class App extends React.PureComponent {
         pageSize: 10,
       },
     });
-    console.log(JSON.parse(data).items);
     this.setState({
       data: JSON.parse(data).items,
       loading: false,
