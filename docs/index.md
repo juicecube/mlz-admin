@@ -11,7 +11,7 @@ group:
 
 🌈 @mlz/admin 是遵循编程猫后台管理系统设计规范的 React 组件库。基于[Antd](https://ant.design/index-cn)封装。
 
-![codecov](https://codecov.io/gh/juicecube/mlz-admin/branch/master/graph/badge.svg?token=ZNPL3AMQ7Z) ![Codacy](https://app.codacy.com/project/badge/Grade/999d89d9099e41ef81b9af94c98a8726) ![Action Checkers](https://github.com/juicecube/mlz-admin/workflows/checker/badge.svg) ![Npm Version](https://img.shields.io/npm/v/@mlz/admin?color=42b983&label=%40mlz%2Fadmin&logo=42b983&logoColor=42b983)
+![codecov](https://codecov.io/gh/juicecube/mlz-admin/branch/master/graph/badge.svg?token=ZNPL3AMQ7Z) ![codacy](https://app.codacy.com/project/badge/Grade/4fe6e8e25e00469d8973f63320fa77c0) ![action checkers](https://github.com/juicecube/mlz-admin/workflows/checker/badge.svg) ![npm version](https://img.shields.io/npm/v/@mlz/admin?color=42b983&label=%40mlz%2Fadmin&logo=42b983&logoColor=42b983)
 
 ---
 
@@ -66,6 +66,15 @@ npm install @mlz/pack -D
 ---
 
 ## 贡献指南
+
+```tsx
+/**
+ * inline: true
+ */
+import React from 'react';
+import CommunitalCommitsCalculator from './components/_site/communital-commits-calculator';
+export default () => <CommunitalCommitsCalculator />;
+```
 
 欢迎贡献代码，但请先参阅：https://github.com/juicecube/mlz-admin/blob/master/CONTRIBUTING.md
 
