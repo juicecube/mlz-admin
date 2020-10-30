@@ -24,7 +24,7 @@
     "lint:ts": "tsc --project ./tsconfig.lint.json",
     "lint:style": "stylelint 'src/**/*.less' --syntax less",
     "test": "npm run clean && node ./scripts/genIndex.js && dumi test --coverage",
-    "test:update": "npm run clean && node ./scripts/genIndex.js && dumi test --cache=false -u",
+    "test:update": "npm run clean && node ./scripts/genIndex.js && dumi test --cache=false -u --coverage",
     "check-coverage": "npx istanbul check-coverage --statement 90 --branch -80",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "version": "node ./scripts/versioning",
