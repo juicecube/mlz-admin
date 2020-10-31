@@ -1,4 +1,2 @@
 import React from 'react';
-import { Popconfirm as AntdPopconfirm } from 'antd';
-
-export default AntdPopconfirm;
+export { Popconfirm as default } from 'antd';

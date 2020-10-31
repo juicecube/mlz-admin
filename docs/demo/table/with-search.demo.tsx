@@ -1,6 +1,7 @@
 /**
  * title: 搜索项
- * desc: 通过传入 `data` 来展示表格，通过 `onChange`和 `onSearch` 等参数控制交互。
+ * desc: 通过为column设置 `searchable` 来开启搜索栏，值可以是boolean或number，并且按照number类型的大小降序排列。
+ * background: '#f0f2f5'
  */
 import React from 'react';
 import { Table } from '@mlz/admin';
@@ -84,18 +85,19 @@ class App extends React.PureComponent {
       },
     });
     this.setState({
-      data: data && JSON.parse(data),
+      data: data && data && JSON.parse(data),
       loading: false,
     });
   };
 
   render() {
+    const { data } = this.state;
     return (
       <Table
-        dataSource={this.state.data.items}
+        dataSource={data?.items}
         loading={this.state.loading}
         columns={columns}
-        pagination={{ pageSize: 10, total: this.state.data.total || 50, showSizeChanger: true, showQuickJumper: true }}
+        pagination={{ pageSize: 10, total: data?.total || 50, showSizeChanger: true, showQuickJumper: true }}
         onChange={(png) => this.fetchData({ ...this.state.searchParams, ...png })}
         onSearch={(e) => {
           this.fetchData({ ...this.state.searchParams, ...e });

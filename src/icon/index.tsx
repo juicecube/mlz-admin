@@ -1,5 +1,6 @@
 import React from 'react';
 import { createFromIconfontCN } from '@ant-design/icons/es';
+import { appendScript } from '../shared/utils';
 
 const __window_ = window as any;
 
@@ -11,15 +12,9 @@ const Icon = createFromIconfontCN({
 });
 export default Icon;
 
-// ⬇️ disregard side effects
-const appendScript = (url) => {
-  const scriptElem = document.createElement('script');
-  scriptElem.src = `http:${url}`;
-  document.body.append(scriptElem);
-};
 export const createIconFontScript = (scriptUrls: URL['href'][]) => {
   // 创建script
-  scriptUrls.forEach((url) => appendScript(url));
+  scriptUrls.forEach((url) => appendScript(`http:${url}`));
   // 同步当前数据
   __window_.IconScripts = __window_.IconScripts.concat(scriptUrls);
 };

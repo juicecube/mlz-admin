@@ -1,4 +1,2 @@
 import React from 'react';
-import { notification as AntdNotification } from 'antd';
-
-export default AntdNotification;
+export { notification as default } from 'antd';

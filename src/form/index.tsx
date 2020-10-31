@@ -1,4 +1,2 @@
 import React from 'react';
-import { Form as AntdForm } from 'antd';
-
-export default AntdForm;
+export { Form as default } from 'antd';

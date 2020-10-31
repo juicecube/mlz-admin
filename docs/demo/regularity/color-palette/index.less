@@ -1,0 +1,30 @@
+.color-palette-wrapper {
+  .palette-name {
+    min-height: 24px;
+  }
+  .color-container {
+    .color {
+      padding: 16px 20px;
+      color: white;
+      overflow: hidden;
+      transition: transform 0.2s ease;
+      cursor: pointer;
+      &:hover {
+        transform: scale(1.03, 1.03);
+      }
+      &.colorRevert {
+        color: black;
+      }
+      .color-name {
+        float: left;
+      }
+      .funcional-name {
+        float: right;
+        margin-right: 25px;
+      }
+      .code {
+        float: right;
+      }
+    }
+  }
+}

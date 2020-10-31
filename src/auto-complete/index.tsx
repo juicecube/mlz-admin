@@ -1,4 +1,2 @@
 import React from 'react';
-import { AutoComplete as AntdAutoComplete } from 'antd';
-
-export default AntdAutoComplete;
+export { AutoComplete as default } from 'antd';

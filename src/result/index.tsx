@@ -1,4 +1,2 @@
 import React from 'react';
-import { Result as AntdResult } from 'antd';
-
-export default AntdResult;
+export { Result as default } from 'antd';

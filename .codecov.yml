@@ -8,7 +8,7 @@
         "status": {
             "project": {
                 "default": {
-                    "threshold": 0.70
+                    "threshold": 20%
                 }
             }
         }

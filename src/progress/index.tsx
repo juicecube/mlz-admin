@@ -1,4 +1,2 @@
 import React from 'react';
-import { Progress as AntdProgress } from 'antd';
-
-export default AntdProgress;
+export { Progress as default } from 'antd';

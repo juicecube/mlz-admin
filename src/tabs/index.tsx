@@ -1,4 +1,2 @@
 import React from 'react';
-import { Tabs as AntdTabs } from 'antd';
-
-export default AntdTabs;
+export { Tabs as default } from 'antd';

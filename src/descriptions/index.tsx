@@ -1,4 +1,2 @@
 import React from 'react';
-import { Descriptions as AntdDescriptions } from 'antd';
-
-export default AntdDescriptions;
+export { Descriptions as default } from 'antd';
