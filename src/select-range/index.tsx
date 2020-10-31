@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { Select, Input, Form } from 'antd';
-
-import style from './index.less';
+import { createBem } from '../shared/utils';
+import './index.less';
 
 interface RangeSelectionOption {
   key: string | number;
   name: string;
-  courseName?: string;
   id?: string;
 }
 interface CourseProcessSelectProps {
   selectOptions: RangeSelectionOption[];
   currentValue?: number[];
-  onChange?: (value) => void;
+
+  onChange?: (value: [number | string, number | string]) => void;
 }
 const { Group: InputGroup } = Input;
 const { Option: SelectOption } = Select;
@@ -45,18 +45,21 @@ export const SelectRange = ({ selectOptions, currentValue = [], onChange }: Cour
     return indexArr;
   }
   const [beginI, endI] = findCurrentI();
+  const bem = createBem('range');
+  console.log(bem('input_item'));
+
   return (
-    <div className={style.wrap}>
-      <InputGroup compact className={style.group}>
-        <Select {...rangePickerProps} className={style.input_item} showArrow={false} onChange={(value) => handleChange(value, 'begin')} defaultValue={CurrentRange[0]} allowClear>
+    <div>
+      <InputGroup compact>
+        <Select {...rangePickerProps} className={bem('input_item')} showArrow={false} onChange={(value) => handleChange(value, 'begin')} defaultValue={CurrentRange[0]} allowClear>
           {selectOptions?.map((item, i) => (
             <SelectOption key={item.key} disabled={endI === -1 ? false : i > endI} value={item.key}>
               {item.name}
             </SelectOption>
           ))}
         </Select>
-        <Input className={style.input_item_disabled} value="~" />
-        <Select {...rangePickerProps} className={style.input_item} showArrow={false} onChange={(value) => handleChange(value, 'end')} defaultValue={CurrentRange[1]} allowClear>
+        <Input className={bem('input_item_disabled')} value="~" />
+        <Select {...rangePickerProps} className={bem('input_item')} showArrow={false} onChange={(value) => handleChange(value, 'end')} defaultValue={CurrentRange[1]} allowClear>
           {selectOptions?.map((item, i) => (
             <SelectOption key={item.key} disabled={beginI === -1 ? false : i < beginI} value={item.key}>
               {item.name}
@@ -69,7 +72,7 @@ export const SelectRange = ({ selectOptions, currentValue = [], onChange }: Cour
 };
 SelectRange.defaultProps = {
   currentValue: [],
-  onChange: (value) => ({}),
+  onChange: () => ({}),
 };
 
 export default SelectRange;

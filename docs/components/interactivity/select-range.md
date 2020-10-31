@@ -10,6 +10,21 @@
 - 当需要模糊筛选下拉项。
 - 数据需要先排好序传入
 
+### Api 说明
+
+| 参数          | 说明                                        | 类型                                             | 默认值     |
+| ------------- | ------------------------------------------- | ------------------------------------------------ | ---------- |
+| selectOptions | 下拉项数据                                  | [RangeOption](#RangeOption)\[]                   | []         |
+| currentValue  | 默认选中的值(相当于 Select 的 defaultValue) | [number\|string, number\|string]                 | []         |
+| onChange      | 选中变化时触发                              | (value:[number\|string, number\|string]) => void | () => void |
+
+### RangeOption
+
+| 参数 | 说明                   | 类型           | 默认值 |
+| ---- | ---------------------- | -------------- | ------ |
+| key  | Select 的唯一 value 值 | number\|string | -      |
+| name | Select 下拉项的展示值  | number\|string | -      |
+
 ### 基本使用
 
 <code src="./../../demo/select-range/normal-usage.demo.tsx" />
