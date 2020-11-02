@@ -1,23 +1,26 @@
-.admini-range {
-  // &__wrap {
-  // }
-  //     &__group {
-  //     }
-  &__input_item {
-    width: 160px;
-  }
-  & :nth-child(3) {
-    :global {
-      .ant-select-selection {
-        border-left: none;
+:global {
+  .admini-range {
+    // &__wrap {
+    // }
+    //     &__group {
+    //     }
+
+    &__input_item {
+      width: 160px;
+    }
+    & :nth-child(3) {
+      :global {
+        .ant-select-selection {
+          border-left: none;
+        }
       }
     }
-  }
-  &__input_item_disabled {
-    width: 30px;
-    text-align: center;
-    background-color: #fff;
-    border-left: none;
-    pointer-events: none;
+    &__input_item_disabled {
+      width: 30px;
+      text-align: center;
+      background-color: #fff;
+      border-left: none;
+      pointer-events: none;
+    }
   }
 }

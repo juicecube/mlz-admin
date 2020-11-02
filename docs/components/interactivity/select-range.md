@@ -16,6 +16,7 @@
 | ------------- | ------------------------------------------- | ------------------------------------------------ | ---------- |
 | selectOptions | 下拉项数据                                  | [RangeOption](#RangeOption)\[]                   | []         |
 | currentValue  | 默认选中的值(相当于 Select 的 defaultValue) | [number\|string, number\|string]                 | []         |
+| width         | 一个展示框的宽度，前后选择框宽度一致        | number                                           | 160        |
 | onChange      | 选中变化时触发                              | (value:[number\|string, number\|string]) => void | () => void |
 
 ### RangeOption

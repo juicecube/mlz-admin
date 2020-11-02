@@ -11,7 +11,7 @@ interface RangeSelectionOption {
 interface CourseProcessSelectProps {
   selectOptions: RangeSelectionOption[];
   currentValue?: number[];
-
+  width?: number;
   onChange?: (value: [number | string, number | string]) => void;
 }
 const { Group: InputGroup } = Input;
@@ -22,7 +22,7 @@ const rangePickerProps = {
   notFoundContent: '',
   placeholder: '请选择',
 };
-export const SelectRange = ({ selectOptions, currentValue = [], onChange }: CourseProcessSelectProps) => {
+export const SelectRange = ({ selectOptions, currentValue = [], width, onChange }: CourseProcessSelectProps) => {
   const [CurrentRange, setCurrentRange] = useState(currentValue);
   function handleChange(value, label) {
     const [begin, end] = CurrentRange;
@@ -51,7 +51,14 @@ export const SelectRange = ({ selectOptions, currentValue = [], onChange }: Cour
   return (
     <div>
       <InputGroup compact>
-        <Select {...rangePickerProps} className={bem('input_item')} showArrow={false} onChange={(value) => handleChange(value, 'begin')} defaultValue={CurrentRange[0]} allowClear>
+        <Select
+          {...rangePickerProps}
+          className={bem('input_item')}
+          style={{ width: width ?? 'auto' }}
+          showArrow={false}
+          onChange={(value) => handleChange(value, 'begin')}
+          defaultValue={CurrentRange[0]}
+          allowClear>
           {selectOptions?.map((item, i) => (
             <SelectOption key={item.key} disabled={endI === -1 ? false : i > endI} value={item.key}>
               {item.name}
@@ -59,7 +66,14 @@ export const SelectRange = ({ selectOptions, currentValue = [], onChange }: Cour
           ))}
         </Select>
         <Input className={bem('input_item_disabled')} value="~" />
-        <Select {...rangePickerProps} className={bem('input_item')} showArrow={false} onChange={(value) => handleChange(value, 'end')} defaultValue={CurrentRange[1]} allowClear>
+        <Select
+          {...rangePickerProps}
+          className={bem('input_item')}
+          style={{ width: width ?? 'auto' }}
+          showArrow={false}
+          onChange={(value) => handleChange(value, 'end')}
+          defaultValue={CurrentRange[1]}
+          allowClear>
           {selectOptions?.map((item, i) => (
             <SelectOption key={item.key} disabled={beginI === -1 ? false : i < beginI} value={item.key}>
               {item.name}
