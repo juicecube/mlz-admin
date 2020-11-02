@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Avatar, Divider, Tooltip, Typography, Spin, Button, Icon, Affix } from '@mlz/admin';
+import { Avatar, Tooltip, Typography, Spin, Button, Icon, Affix } from '@mlz/admin';
 import { uniqBy } from 'lodash-es';
 import { getPaths } from '../../../../src/shared/utils';
 import './index.less';
@@ -43,7 +43,7 @@ export default () => {
                     {(commiters.length &&
                       commiters.map((item: any) => {
                         return item ? (
-                          <Tooltip title={item.login} placement={index === 0 ? 'top' : 'bottom'}>
+                          <Tooltip title={item.login} placement={index === 0 ? 'top' : 'bottom'} key={item.login}>
                             <a href={item.html_url} target="_blank">
                               <Avatar src={item.avatar_url} style={{ marginRight: 3 }} />
                             </a>
