@@ -1,26 +1,14 @@
-:global {
-  .admini-range {
-    // &__wrap {
-    // }
-    //     &__group {
-    //     }
-
-    &__input_item {
-      width: 160px;
+.admini-range {
+  &__input {
+    .ant-select-selector {
+      border-left: none !important;
     }
-    & :nth-child(3) {
-      :global {
-        .ant-select-selection {
-          border-left: none;
-        }
-      }
-    }
-    &__input_item_disabled {
-      width: 30px;
-      text-align: center;
-      background-color: #fff;
-      border-left: none;
-      pointer-events: none;
-    }
+  }
+  &__input_disabled {
+    width: 30px !important;
+    text-align: center;
+    background-color: #fff;
+    border-left: none;
+    pointer-events: none;
   }
 }

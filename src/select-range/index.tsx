@@ -46,30 +46,23 @@ export const SelectRange = ({ selectOptions, currentValue = [], width, onChange 
   }
   const [beginI, endI] = findCurrentI();
   const bem = createBem('range');
-  console.log(bem('input_item'));
+  console.log(bem('input_disabled'));
 
   return (
     <div>
       <InputGroup compact>
-        <Select
-          {...rangePickerProps}
-          className={bem('input_item')}
-          style={{ width: width ?? 'auto' }}
-          showArrow={false}
-          onChange={(value) => handleChange(value, 'begin')}
-          defaultValue={CurrentRange[0]}
-          allowClear>
+        <Select {...rangePickerProps} style={{ width: width ?? 160 }} showArrow={false} onChange={(value) => handleChange(value, 'begin')} defaultValue={CurrentRange[0]} allowClear>
           {selectOptions?.map((item, i) => (
             <SelectOption key={item.key} disabled={endI === -1 ? false : i > endI} value={item.key}>
               {item.name}
             </SelectOption>
           ))}
         </Select>
-        <Input className={bem('input_item_disabled')} value="~" />
+        <Input className={bem('input_disabled')} value="~" />
         <Select
           {...rangePickerProps}
-          className={bem('input_item')}
-          style={{ width: width ?? 'auto' }}
+          className={bem('input')}
+          style={{ width: width ?? 160 }}
           showArrow={false}
           onChange={(value) => handleChange(value, 'end')}
           defaultValue={CurrentRange[1]}

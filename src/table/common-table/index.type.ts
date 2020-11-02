@@ -12,7 +12,7 @@ export interface IColumnTypes<T> extends ColumnProps<T> {
   // 当type=enums|tags时的枚举
   enums?: EnumsType | TagEnumsType;
   // 指定为primary的column的dataIndex会被设置为Table.rowKey
-  primary?: number | boolean;
+  primary?: boolean;
   // 是否在table.search中隐藏该列
   hidden?: boolean;
   // 是否添加该项的搜索到commonSearchForm中
