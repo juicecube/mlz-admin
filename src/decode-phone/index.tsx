@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { TooltipProps, RenderFunction } from 'antd/lib/tooltip';
 import { Tooltip } from 'antd';
-import Http from './../service';
-import { DECODE_URL } from './../service/constants';
+import Http from '../../service';
+import { DECODE_URL } from '../../service/constants';
 
 const INIT_TITLE = '加载中';
 
