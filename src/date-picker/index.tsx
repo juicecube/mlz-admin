@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import moment from 'moment';
+import moment, { Moment } from 'moment';
 import { DatePicker as AntdDatePicker } from 'antd';
 import { IDatePickerProps } from './index.type';
 
 const DatePicker = (props: IDatePickerProps) => {
-  const { value: propsValue, onChange, startOf, ...rest } = props;
-  const [value, setValue] = useState<number | null>(null);
+  const { value: propsValue, onChange, startOf, returnUnixValue = false, ...rest } = props;
+  const [value, setValue] = useState<number | null | Moment>(null);
   useEffect(() => {
     setValue(propsValue || null);
   }, [propsValue]);
@@ -14,9 +14,11 @@ const DatePicker = (props: IDatePickerProps) => {
       {...rest}
       value={value ? moment(value) : null}
       onChange={(date, dateString) => {
-        const dateValue = moment(date)
-          .startOf(startOf || 'ms')
-          .valueOf();
+        const dateValue = returnUnixValue
+          ? moment(date)
+              .startOf(startOf || 'ms')
+              .valueOf()
+          : date;
         setValue(dateValue);
         onChange(dateValue, dateString);
       }}
