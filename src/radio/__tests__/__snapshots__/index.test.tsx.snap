@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`🧪 Radio snapshot test snapshot comparing 1`] = `"<label class=\\"ant-radio-wrapper\\"><span class=\\"ant-radio\\"><input type=\\"radio\\" class=\\"ant-radio-input\\" value><span class=\\"ant-radio-inner\\"></span></span></label>"`;

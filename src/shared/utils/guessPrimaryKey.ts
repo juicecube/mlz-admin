@@ -26,9 +26,6 @@ const guessPrimaryKey = ($columns: any[]): string | undefined => {
         return matched;
       });
     });
-    if (__DEV__ && getDataType(indexa) === null) {
-      return undefined;
-    }
     return $columns[indexa]?.dataIndex;
   }
 };

@@ -1,0 +1,31 @@
+.search-area {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 12px 0;
+}
+.icon-classes-wrapper {
+  display: grid;
+  grid-template-columns: repeat(6, 16.67%);
+  overflow: hidden;
+  .icon-class-container {
+    padding: 16px;
+    margin: 1.5%;
+    cursor: pointer;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    transition: 0.2s;
+    span {
+      margin-left: 8px;
+    }
+    &:hover {
+      background-color: #40a8ff;
+      transform: scale(1.05, 1.05);
+      * {
+        color: white;
+      }
+    }
+  }
+  .mask {
+  }
+}

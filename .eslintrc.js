@@ -17,9 +17,7 @@ module.exports = {
     {
       files: ['*.tsx'],
       rules: {
-        'react/destructuring-assignment': 0,
         'react/jsx-filename-extension': 0,
-        'react/destructuring-assignment': 1,
         'react/prop-types': 0,
         'react/jsx-props-no-spreading': 0,
         'react/state-in-constructor': 0,
@@ -59,9 +57,11 @@ module.exports = {
     'no-unused-vars': 0,
     'no-console': 0,
     'jsx-a11y/anchor-is-valid': 0,
+    'react/jsx-props-no-spreading': 0,
     'consistent-return': 0,
     'no-throw-literal': 1,
     'no-restricted-globals': 1,
     'no-return-assign': 0,
+    'no-plusplus': 1,
   },
 };

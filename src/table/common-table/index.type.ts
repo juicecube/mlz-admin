@@ -12,7 +12,7 @@ export interface IColumnTypes<T> extends ColumnProps<T> {
   // 当type=enums|tags时的枚举
   enums?: EnumsType | TagEnumsType;
   // 指定为primary的column的dataIndex会被设置为Table.rowKey
-  primary?: number | boolean;
+  primary?: boolean;
   // 是否在table.search中隐藏该列
   hidden?: boolean;
   // 是否添加该项的搜索到commonSearchForm中
@@ -32,12 +32,8 @@ export interface IColumnTypes<T> extends ColumnProps<T> {
 }
 export type IExtraSearchType = Omit<IColumnTypes<unknown>, 'primary' | 'searchable'>;
 
-export interface ITableTypes<T> extends ICommonSearch<T> {
+export interface ITableTypes<T> extends TableProps<T>, ICommonSearch<T> {
   columns: IColumnTypes<T>[];
-  // keep-alive功能缓存的key
-  cacheKey?: KeepAliveProps['name'];
-  // 当keep-alive对应的key被命中时触发
-  onCacheHitted?: KeepAliveProps['onCacheHitted'];
 }
 
 export type SupporttedColumnTypes = keyof typeof typeValueRefers;

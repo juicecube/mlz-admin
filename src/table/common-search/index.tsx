@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Form, Input, Row, Col, InputNumber, Select, DatePicker } from 'antd';
 import Button from '../../button';
 import { ICommonSearch } from './index.type';
@@ -24,7 +24,7 @@ const renderSelection = (opts: TagEnumsType | EnumsType) => (
       const [key, value] = kv;
       const text = typeof value === 'string' ? value : value.text;
       return (
-        <Select.Option value={key}>
+        <Select.Option value={key} key={key}>
           {value.color ? (
             <div
               className={bem('form__select__tag')}
@@ -50,14 +50,14 @@ const regularOptions = {
 };
 export const typeFormItemRefers = {
   normal: () => <Input />,
-  number: () => <InputNumber style={regularOptions.style} />,
+  number: () => <InputNumber style={fullWidthStyle} />,
   enum: ({ enums }) => renderSelection(enums),
   tag: ({ enums }) => renderSelection(enums),
   date: ({ searchItemProps }) => <MDatePicker picker="date" startOf="day" {...regularOptions} {...searchItemProps} />,
-  datetime: ({ searchItemProps }) => <MDatePicker showtime {...regularOptions} {...searchItemProps} />,
+  datetime: ({ searchItemProps }) => <MDatePicker showTime {...regularOptions} {...searchItemProps} />,
   dateRange: ({ searchItemProps }) => <MDatePicker.RangePicker picker="date" startOf="day" {...regularOptions} {...searchItemProps} />,
   datetimeRange: ({ searchItemProps }) => <MDatePicker.RangePicker showTime {...regularOptions} {...searchItemProps} />,
-  price: () => <InputNumber style={fullWidthStyle} />,
+  price: () => <InputNumber style={fullWidthStyle} formatter={(value) => `¥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')} parser={(value: any) => value.replace(/¥\s?|(,*)/g, '')} min={0} />,
   ratio: () => <InputNumber formatter={(value) => `${value ? value + ' %' : ''}`} parser={(value) => value?.replace(' %', '') as string} style={fullWidthStyle} />,
 };
 
@@ -73,15 +73,27 @@ const renderCol = ($column) => {
   );
 };
 
-const calcTotalColspan = ($items, perColspan = 4) => $items.reduce((prev, curr) => (prev += curr.searchColSpan || perColspan), 0);
+const calcTotalColspan = ($items, perColspan) => $items.reduce((prev, curr) => (prev += curr.searchColSpan || perColspan), 0);
 
 const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
   const [form] = Form.useForm();
   const { columns = [], tools = [], operations = [], colCount = 4, cacheKey } = props;
+  const searchCollapsedThreshold = Number(props.searchCollapsedThreshold);
   const searchings = columns?.filter((item) => item.searchable || item.searchable === 0).sort((prev, curr) => Number(curr?.['searchable']) - Number(prev?.['searchable']));
   const perColspan = 24 / colCount;
-  const sparedLastColSpan = searchings ? 24 - (calcTotalColspan(searchings, perColspan) % 24) : perColspan;
-  const shouldMergeSubmitButton = searchings && searchings?.length % colCount === 0;
+  const collapsingButtonColspan = 2;
+  const sparedColSpan = searchings?.length
+    ? 24 -
+      (calcTotalColspan(
+        searchings.filter((_, index: number) => {
+          return index < searchCollapsedThreshold;
+        }),
+        perColspan,
+      ) %
+        24)
+    : perColspan + collapsingButtonColspan;
+  const shouldMergeSubmitButton = searchings?.length % colCount === 0;
+  const hasMoreInteractionArea = tools.length || operations.length;
 
   const { dispatch, payload } = useContext(KAContext);
   let keepAliveHandler;
@@ -90,8 +102,16 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
     form.setFieldsValue(payload ? omitProps(commonPaginationKeys, payload) : {});
   }
 
-  const formSubmitters = (
-    <Col span={sparedLastColSpan < perColspan ? 24 : sparedLastColSpan} style={{ textAlign: 'right', marginBottom: 16 }}>
+  const [collapsed, toggleCollapsed] = useState(false);
+  const collapsedHandler = () => toggleCollapsed(!collapsed);
+
+  const formSubmitters = searchings.length ? (
+    <Col span={sparedColSpan < perColspan + collapsingButtonColspan ? 24 : sparedColSpan} style={{ textAlign: 'right', marginBottom: hasMoreInteractionArea ? 16 : 0 }} flex="1">
+      {searchCollapsedThreshold ? (
+        <Button className="toggle-search-count-btn" type="link" icon={<Icon type="arrow_down" rotate={collapsed ? 0 : 180} />} onClick={collapsedHandler}>
+          {collapsed ? '展开' : '收起'}
+        </Button>
+      ) : null}
       <Button
         style={{ marginRight: 12 }}
         onClick={(e): void & React.MouseEventHandler<HTMLElement> => {
@@ -109,7 +129,7 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
         查询
       </Button>
     </Col>
-  );
+  ) : null;
 
   return (
     <Form
@@ -122,19 +142,32 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
       }}
       onFinishFailed={props?.onSearchFailed}
       initialValues={props.initialSearchValues}
-      style={tools.length ? { marginBottom: 18 } : {}}>
+      style={
+        !searchings.length && hasMoreInteractionArea
+          ? {
+              marginBottom: 0,
+            }
+          : {}
+      }>
       <Row gutter={24}>
-        {searchings?.map((row, index) => (
-          <Col sm={row.searchColSpan || perColspan * 3} lg={row.searchColSpan || perColspan * 2} xl={row.searchColSpan || perColspan} key={(row.title as string) || index}>
-            {renderCol(row)}
-          </Col>
-        ))}
+        {searchings?.map((row, index: number) => {
+          return (
+            <Col
+              className={bem('search-item')}
+              sm={row.searchColSpan || perColspan * 3}
+              lg={row.searchColSpan || perColspan * 2}
+              xl={row.searchColSpan || perColspan}
+              key={(row.title as string) || index}
+              style={{ display: index >= searchCollapsedThreshold && collapsed ? 'none' : 'block' }}>
+              {renderCol(row)}
+            </Col>
+          );
+        })}
         {shouldMergeSubmitButton ? null : formSubmitters}
       </Row>
       {shouldMergeSubmitButton ? <Row justify="end">{formSubmitters}</Row> : null}
-      {tools?.length || operations?.length ? (
+      {hasMoreInteractionArea ? (
         <>
-          <hr className={bem('hr')} />
           <section className={bem('extra')}>
             <div className={`bar-area ${bem('operations-area')}`}>
               <Row justify="start" align="middle" gutter={16}>
@@ -156,12 +189,13 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
     </Form>
   );
 };
-const CommonSearchForm = (props: ICommonSearch<unknown>) =>
-  props?.cacheKey ? (
+const CommonSearchForm = (props: ICommonSearch<unknown>) => {
+  return props?.cacheKey ? (
     <KeepAlive name={props.cacheKey} onCacheHitted={props.onCacheHitted}>
       <InternalCommonSearch {...props} />
     </KeepAlive>
   ) : (
     <InternalCommonSearch {...props} />
   );
+};
 export default CommonSearchForm;

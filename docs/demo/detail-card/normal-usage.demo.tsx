@@ -72,7 +72,7 @@ class App extends React.PureComponent {
       url: 'http://rap2api.taobao.org/app/mock/252468/admini/detail-demo',
     });
     this.setState({
-      data: JSON.parse(data),
+      data: data && JSON.parse(data),
     });
   };
 

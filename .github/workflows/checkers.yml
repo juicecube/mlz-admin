@@ -4,12 +4,10 @@ on:
   push:
     branches:
       - master
-      - staging
       - 'sprint/*'
-      - 'feat/*'
       - 'hotfix/*'
   pull_request:
-    types: [opened,reopened]
+    types: [opened, reopened, edited]
 
 jobs:
   install: 
@@ -48,6 +46,7 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-cached-node-modules-${{ hashFiles('**/package-lock.json') }}
+
       - name: execute code lint
         run: npm run lint
 
@@ -94,11 +93,11 @@ jobs:
         run: npm run test
 
       - name: check coverage limitation of coverage
-        run: npm run test:pageSize
+        run: npm run check-coverage
 
       - name: run codecov reporter
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           name: mlz-admin
-          fail_ci_if_error: true
+          fail_ci_if_error: false

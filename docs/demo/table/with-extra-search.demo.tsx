@@ -1,3 +1,6 @@
+/**
+ * background: '#f0f2f5'
+ */
 import React, { useState, useEffect } from 'react';
 import { Table, Slider } from '@mlz/admin';
 import axios from 'axios';
@@ -39,7 +42,7 @@ const CustomedSlider: React.FC<any> = ({ value, onChange }) => {
 
 class App extends React.PureComponent {
   state = {
-    data: [],
+    data: {} as any,
     loading: true,
     searchParams: {
       current: 1,
@@ -61,18 +64,19 @@ class App extends React.PureComponent {
       },
     });
     this.setState({
-      data: JSON.parse(data).items,
+      data: data && data && JSON.parse(data),
       loading: false,
     });
   };
 
   render() {
+    const { data } = this.state;
     return (
       <Table
         columns={columns}
-        dataSource={this.state.data}
+        dataSource={data?.items}
         loading={this.state.loading}
-        pagination={{ total: 50, showSizeChanger: true, showQuickJumper: true }}
+        pagination={{ pageSize: 10, total: data?.total || 50, showSizeChanger: true, showQuickJumper: true }}
         onChange={(png) => {
           this.setState(
             {

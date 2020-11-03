@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 
 const testMount = (Component, props = {}) => {
-  describe(`common test - mounting`, () => {
+  describe(`full rendering test`, () => {
     //
     test(`正确地挂载/卸载`, () => {
       const wrapper = mount(<Component />);

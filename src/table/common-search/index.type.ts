@@ -2,12 +2,12 @@ import { TableProps } from 'antd/lib/table';
 import { IColumnTypes } from '../common-table/index.type';
 import { KeepAliveProps } from '../../shared/keep-alive/keep-alive.type';
 
-export interface ICommonSearch<T> extends TableProps<T> {
+export interface ICommonSearch<T> {
   // 搜索表单的配置数据
   columns: IColumnTypes<T>[];
   // 开始搜索 时触发
   onSearch?: (e) => void;
-  // 搜索表单提交失败 时触发
+  // 搜索表单提交失败时触发
   onSearchFailed?: (e) => void;
   // 点击重置按钮 时触发
   onReset?: (e) => void;
@@ -23,4 +23,6 @@ export interface ICommonSearch<T> extends TableProps<T> {
   cacheKey?: KeepAliveProps['name'];
   // 当keep-alive对应的key被命中时触发
   onCacheHitted?: KeepAliveProps['onCacheHitted'];
+  // 隐藏过多搜索内容后，剩余的搜索item数量
+  searchCollapsedThreshold?: number;
 }

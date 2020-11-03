@@ -16,8 +16,7 @@
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"],
-      "@@/*": ["src/.umi/*"],
-      "@mlz/admin/*": ["src/*"]
+      "@@/*": ["src/.umi/*"]
     }
   },
   "exclude": [

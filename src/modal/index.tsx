@@ -1,6 +1,2 @@
 import React from 'react';
-import { Modal as AntdModal } from 'antd';
-
-const Modal = AntdModal;
-
-export default Modal;
+export { Modal as default } from 'antd';
