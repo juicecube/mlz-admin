@@ -7,7 +7,7 @@ export interface ICommonSearch<T> {
   columns: IColumnTypes<T>[];
   // 开始搜索 时触发
   onSearch?: (e) => void;
-  // 搜索表单提交失败 时触发
+  // 搜索表单提交失败时触发
   onSearchFailed?: (e) => void;
   // 点击重置按钮 时触发
   onReset?: (e) => void;

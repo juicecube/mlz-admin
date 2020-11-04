@@ -4,7 +4,7 @@ import { createBem } from '../shared/utils';
 import { getDataType } from 'mytils';
 import Icon from '../icon';
 import CommonTable, { renderNode } from '../table/common-table';
-import { Card, Descriptions } from 'antd';
+import { Card, Descriptions, Skeleton } from 'antd';
 import './index.less';
 
 const CardTitle = (props): React.ReactElement => {
@@ -26,21 +26,23 @@ const CardTitle = (props): React.ReactElement => {
 
 const bem = createBem('detail');
 const DetailCard = (props: IDetailCardProps) => {
-  const { dataSource = {}, columns = [], displayType, linkable, noDataResult = null, ...others } = props;
+  const { dataSource, columns, displayType, linkable, noDataResult = null, ...others } = props;
   return displayType !== 'table' ? (
     <Card {...others} bordered={false} className={bem('card')} title={<CardTitle {...{ title: props.title, linkable }} />}>
-      {columns && dataSource ? (
-        <Descriptions bordered {...others.descriptionProps}>
-          {(columns as any).map((column, index: number) => {
-            const { dataIndex, title, render, span, type } = column;
-            const data = dataSource?.[dataIndex];
-            return data ? (
-              <Descriptions.Item label={title} span={span} key={data}>
-                {render ? render(data, dataSource, index) : data ? renderNode(type, data, column) : ''}
-              </Descriptions.Item>
-            ) : null;
-          })}
-        </Descriptions>
+      {dataSource ? (
+        <Skeleton active loading={props.loading}>
+          <Descriptions bordered {...others.descriptionProps}>
+            {(columns as any).map((column, index: number) => {
+              const { dataIndex, title, render, span, type } = column;
+              const data = dataSource?.[dataIndex];
+              return data ? (
+                <Descriptions.Item label={title} span={span} key={data}>
+                  {render ? render(data, dataSource, index) : data ? renderNode(type, data, column) : ''}
+                </Descriptions.Item>
+              ) : null;
+            })}
+          </Descriptions>
+        </Skeleton>
       ) : (
         noDataResult
       )}

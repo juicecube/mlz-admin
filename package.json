@@ -1,6 +1,6 @@
 {
   "name": "@mlz/admin",
-  "version": "0.5.69",
+  "version": "0.5.73",
   "description": "一套编程猫设计规范下的管理系统React组件库，基于Antd",
   "license": "MIT",
   "keywords": [
@@ -9,12 +9,9 @@
     "codemao",
     "antd"
   ],
-  "contributors": [
-    "juicecube"
-  ],
   "scripts": {
-    "start": "npm run clean && node ./scripts/genIndex.js && dumi dev",
-    "build": "node ./scripts/genIndex.js && dumi build",
+    "start": "npm run clean && node ./scripts/genIndex.js && NODE_ENV=development dumi dev",
+    "build": "node ./scripts/genIndex.js && NODE_ENV=production dumi build",
     "dist": "npm run clean && node ./scripts/genIndex.js && father-build",
     "dist:es": "npx ttsc --project ./tsconfig.dist.json -d -m esnext --outDir es --sourceMap false --inlineSources false",
     "dist:cjs": "npx ttsc --project ./tsconfig.dist.json -d -m commonjs --outDir lib --sourceMap false --inlineSources false",
@@ -27,24 +24,22 @@
     "lint:ts": "tsc --project ./tsconfig.lint.json",
     "lint:style": "stylelint 'src/**/*.less' --syntax less",
     "test": "npm run clean && node ./scripts/genIndex.js && dumi test --coverage",
-    "test:update": "npm run clean && node ./scripts/genIndex.js && dumi test --cache=false -u",
-    "check-coverage": "npx istanbul check-coverage --statement 85",
+    "test:update": "npm run clean && node ./scripts/genIndex.js && dumi test --cache=false -u --coverage",
+    "check-coverage": "npx istanbul check-coverage --statement 90 --branch -80",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "version": "node ./scripts/versioning",
     "clean": "rm -rf es lib dist .tsc-check coverage src/index.tsx",
-    "reset": "npm run clean && rm -rf node_modules package-lock.json yarn.lock src/.umi && npm install"
+    "reset-project": "npm run clean && rm -rf node_modules package-lock.json yarn.lock src/.umi && npm install"
   },
   "module": "es/index.js",
   "main": "lib/index.js",
-  "unpkg": "dist/mlz-admin.min.js",
+  "unpkg": "unpkg/mlz-admin.min.js",
   "typings": "lib/index.d.ts",
   "files": [
     "lib",
     "es",
+    "unpkg",
     "LICENSE"
-  ],
-  "sideEffects": [
-    "./docs/demo/**"
   ],
   "gitHooks": {
     "pre-commit": "npx lint-staged && npx pretty-quick --staged"
@@ -60,7 +55,7 @@
   "dependencies": {
     "@babel/runtime": "^7.10.2",
     "antd": "^4.7.0",
-    "axios": "^0.19.2",
+    "axios": "^0.20.0",
     "compression": "^1.7.4",
     "express": "^4.17.1",
     "lodash-es": "^4.17.15",
@@ -96,7 +91,7 @@
     "pretty-quick": "^2.0.1",
     "react-copy-to-clipboard": "^5.0.2",
     "rollup-plugin-typescript2": "^0.27.1",
-    "simple-git": "^2.5.0",
+    "simple-git": "^2.21.0",
     "stylelint": "^13.7.0",
     "stylelint-config-prettier": "^8.0.1",
     "stylelint-config-rational-order": "^0.1.2",

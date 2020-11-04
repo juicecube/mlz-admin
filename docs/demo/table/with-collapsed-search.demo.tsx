@@ -1,6 +1,7 @@
 /**
  * title: 带可收起/展开的搜索项
  * desc: 通过传入 `searchCollapsedThreshold` 来设置最少展示搜索项条数，多于这个数字时会显示隐藏按钮。并在点击后隐藏（不是unmount，而是隐藏）。
+ * background: '#f0f2f5'
  */
 import React from 'react';
 import { Table } from '@mlz/admin';
@@ -93,9 +94,8 @@ class App extends React.PureComponent {
         pageSize: 10,
       },
     });
-    console.log(JSON.parse(data).items);
     this.setState({
-      data: JSON.parse(data).items,
+      data: data && JSON.parse(data).items,
       loading: false,
     });
   };

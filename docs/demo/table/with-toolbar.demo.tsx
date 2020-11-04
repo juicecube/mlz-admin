@@ -1,6 +1,7 @@
 /**
  * title: 工具栏
  * desc: 通过传入 `tools` 组件数组，来展示对应的交互工具。
+ * background: '#f0f2f5'
  */
 import React from 'react';
 import { Table, Button, Icon } from '@mlz/admin';
@@ -10,14 +11,12 @@ const columns = [
   {
     title: 'Name',
     dataIndex: 'name',
-    searchable: 6,
     primary: true,
   },
   {
     title: 'Id',
     dataIndex: 'id',
     type: 'number',
-    searchable: 5,
     width: 60,
   },
   {
@@ -30,13 +29,11 @@ const columns = [
     title: 'Cost',
     dataIndex: 'money',
     type: 'price',
-    searchable: 4,
   },
   {
     title: 'CreatedAt',
     dataIndex: 'createdAt',
     type: 'date',
-    searchable: true,
     searchType: 'datetimeRange',
     searchColSpan: 10,
   },
@@ -44,7 +41,6 @@ const columns = [
     title: 'Status',
     dataIndex: 'status',
     type: 'enum',
-    searchable: 3,
     enums: {
       all: '全部',
       close: '售罄',
@@ -57,7 +53,6 @@ const columns = [
     title: 'Forwards',
     dataIndex: 'status',
     type: 'tag',
-    searchable: 2,
     enums: {
       all: { text: '全部', color: 'magenta' },
       close: { text: '售罄', color: 'red' },
@@ -101,18 +96,19 @@ class App extends React.PureComponent {
       },
     });
     this.setState({
-      data: JSON.parse(data),
+      data: data && JSON.parse(data),
       loading: false,
     });
   };
 
   render() {
+    const { data } = this.state;
     return (
       <Table
         columns={columns}
-        dataSource={this.state.data.items}
+        dataSource={data?.items}
         loading={this.state.loading}
-        pagination={{ pageSize: 10, total: this.state.data.total || 50, showSizeChanger: true, showQuickJumper: true }}
+        pagination={{ pageSize: 10, total: data?.total || 50, showSizeChanger: true, showQuickJumper: true }}
         onChange={(png) => {
           this.setState(
             {

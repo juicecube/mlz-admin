@@ -19,7 +19,7 @@ const camelizeFolderName = (foldername) => {
 const donotCamelizes = ['message', 'notification'];
 
 // 不打包的文件夹
-const donotCompiles = ['shared'];
+const donotCompiles = ['shared', 'style'];
 
 // 额外打包的内容
 const extraContents = [`export { default as createIconFontScript } from './create-icon-font-script'`];
@@ -39,7 +39,7 @@ const genExports = () => {
   exportsContents += extraContents.reduce((prev, curr) => {
     return (prev += `${gutter}${curr}`);
   });
-  return `/**   you SHOULD NOT delete this file and         *
+  return `/**   ⚠️you should NOT DELETE this file AND         *
            *    keep it stay in your .GITIGNORE cause       *
            *    it is generated automatically and useful    *
           **/${gutter}${exportsContents}`;

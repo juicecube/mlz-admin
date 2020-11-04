@@ -2,7 +2,7 @@
 
 **`📦 布局`进行页面级整体布局。**
 
-## 1. 顶部导航布局
+## 顶部导航布局
 
 ```tsx
 /**
@@ -15,8 +15,8 @@ import { Menu, Layout, Button } from '@mlz/admin';
 const HeaderContent = () => (
   <div style={{ overflow: 'hidden' }}>
     <div style={{ float: 'left', color: 'white' }}>
-      <img src="http://p7moe8jtz.bkt.clouddn.com/cashier/assets/favicon.png" width="26" height="26" />
-      <span style={{ padding: '0 16px' }}>统一交易管理系统</span>
+      <img src="https://static-platform.codemao.cn/logo" width="26" height="26" />
+      <span style={{ padding: '0 16px' }}>Libra投放平台</span>
     </div>
     <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} style={{ float: 'left' }}>
       <Menu.Item key="1">nav 1</Menu.Item>
@@ -42,7 +42,7 @@ export default () => (
 );
 ```
 
-## 2. 侧边导航布局
+## 侧边导航布局
 
 ```tsx
 /**
@@ -81,8 +81,8 @@ class App extends React.PureComponent {
         <Layout>
           <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
             <div style={{ float: 'left', color: 'white', height: 32, margin: '16px 0', textAlign: 'center', width: '100%' }}>
-              <img src="http://p7moe8jtz.bkt.clouddn.com/cashier/assets/favicon.png" width="26" height="26" />
-              {this.state.collapsed ? null : <span style={{ padding: '0 8px' }}>统一交易管理系统</span>}
+              <img src="https://static-platform.codemao.cn/logo" width="26" height="26" />
+              {this.state.collapsed ? null : <span style={{ padding: '0 8px' }}>Libra投放平台</span>}
             </div>
             <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
               <Menu.Item key="1" icon={<Icon type="user" />}>
@@ -123,7 +123,7 @@ class App extends React.PureComponent {
 export default App;
 ```
 
-## 3. 组件概述
+## 组件概述
 
 - Layout：布局容器，其下可嵌套 Header Sider Content Footer 或 Layout 本身，可以放在任何父容器中。
 - Header：顶部布局，自带默认样式，其下可嵌套任何元素，只能放在 Layout 中。
@@ -131,6 +131,12 @@ export default App;
 - Content：内容部分，自带默认样式，其下可嵌套任何元素，只能放在 Layout 中。
 - Footer：底部布局，自带默认样式，其下可嵌套任何元素，只能放在 Layout 中。
 
-## 说明
+```tsx
+/**
+ * inline: true
+ */
+import React from 'react';
+import Commiters from '../_site/committers';
 
-## APIs
+export default () => <Commiters />;
+```

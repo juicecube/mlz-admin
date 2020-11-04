@@ -1,5 +1,5 @@
 export default (url, content?: string) => {
-  return new Promise(() => {
+  return new Promise((rsl, rej) => {
     const scriptElem = document.createElement('script');
     if (content) {
       scriptElem.innerHTML = content;
@@ -8,6 +8,8 @@ export default (url, content?: string) => {
     }
     scriptElem.setAttribute('type', 'text/javascript');
     scriptElem.setAttribute('charset', 'utf-8');
-    document.body.append(scriptElem);
+    scriptElem.onload = rsl;
+    scriptElem.onerror = rej;
+    document.head!.appendChild(scriptElem);
   });
 };

@@ -15,8 +15,9 @@ export default defineConfig({
   hash: true,
   title: '@mlz/admin',
   mode: 'site',
-  favicon: 'https://img.alicdn.com/tfs/TB1YHEpwUT1gK0jSZFhXXaAtVXa-28-27.svg',
-  locales: [['中文']],
+  favicon: '/assets/logo.36.png',
+  logo: '/assets/logo.360.png',
+  locales: [['zh-CN', '中文']],
   menus: {
     '/components': [
       {
@@ -48,7 +49,7 @@ export default defineConfig({
         { title: 'Libra投放系统', path: 'https://libra.codemao.cn/' },
         { title: '行政综合支撑平台', path: 'https://support-admin.codemao.cn/' },
         { title: 'LuckyCat营销管理系统', path: 'https://luckycat-admin.codemao.cn/' },
-        // { title: '供应链管理', path: 'coming' },
+        { title: '供应链管理系统', path: 'https://supply-chain-manage-admin.codemao.cn/' },
       ],
     },
     {
