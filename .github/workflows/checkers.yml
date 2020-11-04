@@ -1,9 +1,10 @@
-name: checker
+name: checkers
 
 on: 
   push:
     branches:
       - master
+      - hotfix
       - 'sprint/*'
       - 'hotfix/*'
   pull_request:
