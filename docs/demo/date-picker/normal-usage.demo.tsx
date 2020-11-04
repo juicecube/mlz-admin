@@ -1,5 +1,5 @@
 import React from 'react';
-import { Space } from 'antd';
+import { Space } from '@mlz/admin';
 import DatePicker from '../../../src/date-picker';
 
 export default () => {

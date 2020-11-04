@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import moment, { Moment } from 'moment';
 import { DatePicker as AntdDatePicker } from 'antd';
 import { IDatePickerProps } from './index.type';
+import RangePicker from './range-picker';
 
 const DatePicker = (props: IDatePickerProps) => {
   const { value: propsValue, onChange, startOf, returnUnixValue = false, ...rest } = props;
@@ -25,5 +26,7 @@ const DatePicker = (props: IDatePickerProps) => {
     />
   );
 };
+
+DatePicker.RangePicker = RangePicker;
 
 export default DatePicker;

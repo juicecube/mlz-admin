@@ -23,7 +23,7 @@ Http.setResInterceptor(
       case 200:
         return res.data;
       default:
-        message.error('位置异同异常');
+        message.error('手机号解码失败');
         return Promise.reject(res);
     }
   },
