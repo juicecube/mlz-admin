@@ -1,21 +1,9 @@
 import Http from '@mlz/axios';
 import { message } from 'antd';
-import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { DECODE_HOST } from './constants';
 
-Http.setReqInterceptor(
-  (config: AxiosRequestConfig) => {
-    // console.log('请求前-config', config);
-    return config;
-  },
-  (err) => {
-    // console.error(err);
-    message.error(err);
-  },
-);
-
 Http.setResInterceptor(
-  (res: AxiosResponse) => {
+  (res) => {
     switch (res.status) {
       case 200:
         return res.data;
@@ -30,7 +18,7 @@ Http.setResInterceptor(
 );
 
 Http.setResInterceptor(
-  (res: AxiosResponse) => {
+  (res) => {
     switch (res.status) {
       case 200:
         return res.data;
