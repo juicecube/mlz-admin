@@ -67,7 +67,7 @@ export default () => {
                                 </a>
                               ) : (
                                 <span>
-                                  <TheAvatar {...{ rand, alternatives, item }} style={{ opacity: 0.5 }} />
+                                  <TheAvatar {...{ rand, alternatives, item }} />
                                 </span>
                               )}
                             </Tooltip>
