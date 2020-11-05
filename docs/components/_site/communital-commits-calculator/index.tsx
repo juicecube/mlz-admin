@@ -13,7 +13,7 @@ export default () => {
       setRatio(commitsCountsFromCommunity / 100);
     });
   }, []);
-  const interactiveLevel = ratio < 0.15 ? '低' : ratio < 0.4 && ratio >= 0.15 ? '中' : '高';
+  const interactiveLevel = ratio < 0.2 ? '低' : ratio < 0.5 && ratio >= 0.2 ? '中' : '高';
   return (
     <>
       <Typography.Text type="secondary" style={{ marginRight: 6 }}>

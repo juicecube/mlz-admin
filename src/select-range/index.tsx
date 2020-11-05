@@ -45,12 +45,10 @@ export const SelectRange = ({ selectOptions, currentValue = [], width, onChange 
     return indexArr;
   }
   const [beginI, endI] = findCurrentI();
-  const bem = createBem('range');
-  console.log(bem('input_disabled'));
-
+  const bem = createBem('select-range');
   return (
     <div>
-      <InputGroup compact>
+      <InputGroup compact className={bem('wrapper')}>
         <Select {...rangePickerProps} style={{ width: width ?? 160 }} showArrow={false} onChange={(value) => handleChange(value, 'begin')} defaultValue={CurrentRange[0]} allowClear>
           {selectOptions?.map((item, i) => (
             <SelectOption key={item.key} disabled={endI === -1 ? false : i > endI} value={item.key}>
