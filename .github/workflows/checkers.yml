@@ -6,8 +6,9 @@ on:
       - master
       - 'sprint/*'
       - 'hotfix/*'
+      - 'feat/*'
   pull_request:
-    types: [opened, reopened, edited]
+    types: [opened,reopened,edited]
 
 jobs:
   install: 
