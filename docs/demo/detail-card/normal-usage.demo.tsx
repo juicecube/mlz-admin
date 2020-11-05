@@ -61,6 +61,7 @@ const columnsForCustomer = [
 class App extends React.PureComponent {
   state = {
     data: [],
+    loading: true,
   };
 
   componentDidMount() {
@@ -73,13 +74,14 @@ class App extends React.PureComponent {
     });
     this.setState({
       data: data && JSON.parse(data),
+      loading: false,
     });
   };
 
   render() {
     return (
       <>
-        <DetailCard title="基本信息" dataSource={this.state.data} columns={columnsForDetail} />
+        <DetailCard loading={this.state.loading} title="基本信息" dataSource={this.state.data} columns={columnsForDetail} />
         <DetailCard title="客户信息" dataSource={this.state.data?.['customer']} columns={columnsForCustomer} />
       </>
     );

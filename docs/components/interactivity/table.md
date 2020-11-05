@@ -60,18 +60,18 @@
 
 ### Table.columns.column
 
-| 参数名              | 描述                                                    | 类型                                      | 默认值                            | 更多内容                             |
-| ------------------- | ------------------------------------------------------- | ----------------------------------------- | --------------------------------- | ------------------------------------ |
-| **type**            | 选择直接渲染的 table 单元格或搜索项节点类型             | [TypeValueRefers](#tablecolumnstype)      | `normal`                          |                                      |
-| **primary**         | 设置该 column 的 key 是否为 Table 组件的 rowKey         | boolean                                   | `undefined`                       |                                      |
-| **hidden**          | 设置是否在 Table 组件中隐藏                             | boolean                                   | `undefined`                       |                                      |
-| **searchable**      | 设置是否在 Table 组件中的搜索项中显示                   | boolean ｜ number                         | `undefined`                       | 当为 number 类型时，从大到小倒序排列 |
-| **searchLabel**     | 搜索项的 label                                          | string                                    | 该 column.item 的 title           |                                      |
-| **searchKey**       | 设置该 column 在搜索 form 中的 name（提交表单时的 key） | string                                    | 该 column.item 的 dataIndex       |                                      |
-| **searchType**      | 设置该 column 在搜索视区的渲染节点类型                  | [TypeFormItemRefers](#typeFormItemRefers) | `normal`                          |                                      |
-| **searchColSpan**   | 搜索项占据的 col span 宽度                              | number                                    | `6`                               |                                      |
-| **searchRender**    | 指定该 column 在搜索视区的渲染组件内容                  | () => ReactNode                           | 该 column.item 的 type 的对应组件 |                                      |
-| **searchItemProps** | 为该 column 对应在搜索区的 渲染组件设置更多属性         | object                                    | `undefined`                       |                                      |
+| 参数名 | 描述 | 类型 | 默认值 | 更多内容 |
+| --- | --- | --- | --- | --- |
+| **type** | 选择直接渲染的 table 单元格或搜索项节点类型 | [TypeValueRefers](#columnscolumntype) | `normal` |  |
+| **primary** | 设置该 column 的 key 是否为 Table 组件的 rowKey | boolean | `undefined` |  |
+| **hidden** | 设置是否在 Table 组件中隐藏 | boolean | `undefined` |  |
+| **searchable** | 设置是否在 Table 组件中的搜索项中显示 | boolean ｜ number | `undefined` | 当为 number 类型时，从大到小倒序排列 |
+| **searchLabel** | 搜索项的 label | string | 该 column.item 的 title |  |
+| **searchKey** | 设置该 column 在搜索 form 中的 name（提交表单时的 key） | string | 该 column.item 的 dataIndex |  |
+| **searchType** | 设置该 column 在搜索视区的渲染节点类型 | [TypeFormItemRefers](#columnscolumnsearchtype) | `normal` |  |
+| **searchColSpan** | 搜索项占据的 col span 宽度 | number | `6` |  |
+| **searchRender** | 指定该 column 在搜索视区的渲染组件内容 | () => ReactNode | 该 column.item 的 type 的对应组件 | 相当于 Table.columns 的 render，只不过后者负责渲染 Table 视区对应的组件，而 searchRender 渲染的是搜索区 |
+| **searchItemProps** | 为该 column 对应在搜索区的 渲染组件设置更多属性 | object | `undefined` |  |
 
 ### columns.column.type
 
