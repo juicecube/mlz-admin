@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Form, Input, Row, Col, InputNumber, Select, DatePicker } from 'antd';
+import { Form, Input, Row, Col, InputNumber, Select, DatePicker } from '@mlz/admin';
 import Button from '../../button';
 import { ICommonSearch } from './index.type';
 import { TagEnumsType, EnumsType } from '../../table/common-table/index.type';
@@ -9,7 +9,6 @@ import locale from 'antd/es/date-picker/locale/zh_CN';
 import Icon from '../../icon';
 import { createBem } from '../../shared/utils';
 import KeepAlive, { KAContext } from '../../shared/keep-alive';
-import MDatePicker, { MDateRangePicker } from '../date-picker';
 import './index.less';
 
 const fullWidthStyle = { width: '100%' } as const;
@@ -53,10 +52,10 @@ export const typeFormItemRefers = {
   number: () => <InputNumber style={fullWidthStyle} />,
   enum: ({ enums }) => renderSelection(enums),
   tag: ({ enums }) => renderSelection(enums),
-  date: ({ searchItemProps }) => <MDatePicker picker="date" startOf="day" {...regularOptions} {...searchItemProps} />,
-  datetime: ({ searchItemProps }) => <MDatePicker showTime {...regularOptions} {...searchItemProps} />,
-  dateRange: ({ searchItemProps }) => <MDatePicker.RangePicker picker="date" startOf="day" {...regularOptions} {...searchItemProps} />,
-  datetimeRange: ({ searchItemProps }) => <MDatePicker.RangePicker showTime {...regularOptions} {...searchItemProps} />,
+  date: ({ searchItemProps }) => <DatePicker {...regularOptions} {...searchItemProps} />,
+  datetime: ({ searchItemProps }) => <DatePicker showTime {...regularOptions} {...searchItemProps} />,
+  dateRange: ({ searchItemProps }) => <DatePicker.RangePicker {...regularOptions} {...searchItemProps} />,
+  datetimeRange: ({ searchItemProps }) => <DatePicker.RangePicker showTime {...regularOptions} {...searchItemProps} />,
   price: () => <InputNumber style={fullWidthStyle} formatter={(value) => `¥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')} parser={(value: any) => value.replace(/¥\s?|(,*)/g, '')} min={0} />,
   ratio: () => <InputNumber formatter={(value) => `${value ? value + ' %' : ''}`} parser={(value) => value?.replace(' %', '') as string} style={fullWidthStyle} />,
 };

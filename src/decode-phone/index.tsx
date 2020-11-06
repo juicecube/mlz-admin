@@ -29,7 +29,7 @@ const DecodePhone = (props: IProps) => {
   };
 
   return (
-    <Tooltip title={title} {...rest} onVisibleChange={(visible) => visible && title === INIT_TITLE && handleRequest()}>
+    <Tooltip title={title} trigger="click" {...rest} onVisibleChange={(visible) => visible && title === INIT_TITLE && handleRequest()}>
       {children}
     </Tooltip>
   );
