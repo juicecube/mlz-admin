@@ -1,10 +1,12 @@
 name: publish
 
 on:
-  pull_request:
-    types: [closed]
+  push:
     branches:
-      - release
+      - forceRelease
+      - master
+    tags:
+      - 'v*'
 
 jobs:
   publish: 
@@ -43,11 +45,6 @@ jobs:
 
       - name: build dist
         run: npm run dist
-        env:
-          CI: true
-      
-      - name: tag a tag
-        run: npm run version
         env:
           CI: true
 
