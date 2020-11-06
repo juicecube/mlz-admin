@@ -1,5 +1,6 @@
 import React from 'react';
-import { DatePicker, Space } from 'antd';
+import { Space } from '@mlz/admin';
+import DatePicker from '../../../src/date-picker';
 
 export default () => {
   const onChange = (date, dateString) => {
