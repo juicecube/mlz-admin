@@ -11,13 +11,13 @@ const MlzRangePicker = (props: IRangePickerProps) => {
   useEffect(() => {
     setValue(propsValue || null);
   }, [propsValue]);
-  const handleMomentValue = (value, startOf): [number, number] => {
+  const handleMomentValue = (values, startOfValue): [number, number] => {
     return [
-      moment(value[0])
-        .startOf(startOf || 'ms')
+      moment(values[0])
+        .startOf(startOfValue || 'ms')
         .valueOf(),
-      moment(value[1])
-        .startOf(startOf || 'ms')
+      moment(values[1])
+        .startOf(startOfValue || 'ms')
         .valueOf(),
     ];
   };
