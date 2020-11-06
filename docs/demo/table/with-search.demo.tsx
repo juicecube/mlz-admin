@@ -35,7 +35,11 @@ const columns = [
     dataIndex: 'createdAt',
     type: 'date',
     searchType: 'dateRange',
+    searchable: true,
     searchColSpan: 10,
+    searchItemProps: {
+      returnUnixValue: true,
+    },
   },
   {
     title: 'Forwards',

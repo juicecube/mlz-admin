@@ -17,8 +17,8 @@ const BlockedForm = (props: IFormProps): React.ReactNode => {
     ),
   );
 
+  const hasSettled = initialValues && Object.keys(initialValues).length;
   useEffect(() => {
-    const hasSettled = initialValues && Object.keys(initialValues).length;
     if (hasSettled) {
       form.setFieldsValue(initialValues);
       toggleForceRefresh(!forceRefresh);
@@ -53,11 +53,15 @@ const BlockedForm = (props: IFormProps): React.ReactNode => {
               htmlType="reset"
               style={{ marginRight: 8 }}
               onClick={() => {
-                const resettedValues = {};
-                Object.keys(initialValues || {}).forEach((key) => {
-                  resettedValues[key] = '';
-                });
-                form.setFieldsValue(resettedValues);
+                if (hasSettled) {
+                  const resettedValues = {};
+                  Object.keys(initialValues || {}).forEach((key) => {
+                    resettedValues[key] = '';
+                  });
+                  form.setFieldsValue(resettedValues);
+                } else {
+                  form.resetFields();
+                }
                 toggleForceRefresh(!forceRefresh);
                 props.onReset?.(initialValues || {});
               }}>

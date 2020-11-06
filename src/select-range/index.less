@@ -1,0 +1,19 @@
+.admini-select-range__wrapper {
+  .admini-select-range {
+    &__input {
+      .ant-select-selector {
+        &:hover,
+        &:focus {
+          border-left-width: 1px;
+        }
+        border-left-width: 0;
+      }
+      &_disabled {
+        width: 30px;
+        text-align: center;
+        border-left: none;
+        pointer-events: none;
+      }
+    }
+  }
+}
