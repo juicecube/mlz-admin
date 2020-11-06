@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
-import { Form, Input, Row, Col, InputNumber, Select, DatePicker } from '@mlz/admin';
+import { Form, Input, Row, Col, InputNumber, Select } from 'antd';
 import Button from '../../button';
+import DatePicker from '../../date-picker';
 import { ICommonSearch } from './index.type';
 import { TagEnumsType, EnumsType } from '../../table/common-table/index.type';
 import { commonPaginationKeys } from '../../table/common-table';
