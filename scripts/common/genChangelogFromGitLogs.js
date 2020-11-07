@@ -28,7 +28,7 @@ const commitLogIterator = (prev, curr, indent = false) => {
   const { subject, hash, type, author_name } = curr;
   return (prev +=
     validation && type
-      ? `${' '.repeat(indentNumber)}- ${subject} [${hash.substr(0, 7)}](${ghcommitHtmlPrefix}${hash})` +
+      ? `${' '.repeat(indentNumber)}- ${subject} [#${hash.substr(0, 7)}](${ghcommitHtmlPrefix}${hash})` +
         (author_name && !administrators.includes(author_name) ? ` 👤 ${upperFirst(author_name)} 👍` : '') +
         '\r\n'
       : ``);
