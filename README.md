@@ -44,7 +44,7 @@ $ npm start
 
 也可以加入我们的钉钉群，与我们分享你的想法和建议：
 
-<img src="https://raw.githubusercontent.com/milobluebell/imgs-repo/master/WechatIMG9.jpeg" width="346" alt="Dingtalk Qrcode"/>
+<img src="https://raw.githubusercontent.com/milobluebell/imgs-repo/master/WechatIMG9.jpeg" width="316" alt="Dingtalk Qrcode"/>
 
 ---
 
