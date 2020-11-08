@@ -35,7 +35,11 @@ const columns = [
     dataIndex: 'createdAt',
     type: 'date',
     searchType: 'dateRange',
+    searchable: true,
     searchColSpan: 10,
+    searchItemProps: {
+      returnUnixValue: true,
+    },
   },
   {
     title: 'Forwards',
@@ -85,7 +89,7 @@ class App extends React.PureComponent {
       },
     });
     this.setState({
-      data: data && data && JSON.parse(data),
+      data: data && JSON.parse(data),
       loading: false,
     });
   };

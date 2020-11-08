@@ -39,7 +39,7 @@ const genExports = () => {
   exportsContents += extraContents.reduce((prev, curr) => {
     return (prev += `${gutter}${curr}`);
   });
-  return `/**   you SHOULD NOT delete this file and         *
+  return `/**   ⚠️you should NOT DELETE this file AND         *
            *    keep it stay in your .GITIGNORE cause       *
            *    it is generated automatically and useful    *
           **/${gutter}${exportsContents}`;

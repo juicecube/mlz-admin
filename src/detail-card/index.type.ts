@@ -24,4 +24,6 @@ export interface IDetailCardProps extends CardProps {
   linkable?: boolean;
   // description的配置
   descriptionProps?: DescriptionsProps;
+  // 加载中
+  loading?: boolean;
 }

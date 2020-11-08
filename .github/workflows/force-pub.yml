@@ -1,0 +1,54 @@
+name: publish
+
+on:
+  push:
+    branches:
+      - forceRelease
+      - master
+    tags:
+      - 'v*'
+
+jobs:
+  publish: 
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.20.x]
+    steps:
+      - name: checkout
+        uses: actions/checkout@master
+
+      - name: setup zh-cn timezone
+        uses: zcong1993/setup-timezone@master
+        with:
+          timezone: Asia/Shanghai
+          
+      - name: setup node ${{ matrix.node-version }}
+        uses: actions/setup-node@master
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: install dependencies
+        run: npm install
+        env:
+          CI: true
+
+      - name: execute test
+        run: npm run test
+        env: 
+          CI: true
+
+      - name: lint code
+        run: npm run lint
+        env: 
+          CI: true
+
+      - name: build dist
+        run: npm run dist
+        env:
+          CI: true
+
+      - name: npm publish
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
