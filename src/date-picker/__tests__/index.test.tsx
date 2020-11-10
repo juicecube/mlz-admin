@@ -11,14 +11,17 @@ describe('🧪 DatePicker', () => {
   it('return unix value', () => {
     class Test extends Component {
       state = {
+        // eslint-disable-next-line react/no-unused-state
         value: null,
       };
+
       render() {
         return (
           <DatePicker
-            returnUnixValue={true}
+            returnUnixValue
             onChange={(dateValue, dateString) => {
               this.setState({
+                // eslint-disable-next-line react/no-unused-state
                 value: dateValue || new Date().getTime(),
               });
             }}

@@ -12,14 +12,17 @@ describe('🧪 RangePicker', () => {
   it('return unix value', () => {
     class Test extends Component {
       state = {
+        // eslint-disable-next-line react/no-unused-state
         value: null,
       };
+
       render() {
         return (
           <DatePicker.RangePicker
-            returnUnixValue={true}
+            returnUnixValue
             onChange={(dateValue, dateString) => {
               this.setState({
+                // eslint-disable-next-line react/no-unused-state
                 value: dateValue || [null, null],
               });
             }}
