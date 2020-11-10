@@ -1,19 +1,17 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-/**
- * 测试组件挂载成功与否
- * @param {*} Component
- */
-const testMount = (Component) => {
-  describe(`common test - mounting`, () => {
+const testMount = (Component, props = {}) => {
+  describe(`full rendering test`, () => {
     //
-    test(`正确地挂载`, () => {
+    test(`正确地挂载/卸载`, () => {
       const wrapper = mount(<Component />);
       expect(() => {
+        wrapper.setProps(props);
         wrapper.unmount();
       }).not.toThrow();
     });
   });
 };
+
 export default testMount;

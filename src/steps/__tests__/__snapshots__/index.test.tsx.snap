@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`🧪 Steps snapshot test snapshot comparing 1`] = `"<div class=\\"ant-steps ant-steps-horizontal ant-steps-label-horizontal\\"></div>"`;

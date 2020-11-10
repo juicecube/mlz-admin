@@ -1,9 +1,10 @@
 name: publish
 
 on:
-  push:
-    tags:
-      - 'v*'
+  pull_request:
+    types: [closed]
+    branches:
+      - release
 
 jobs:
   publish: 
@@ -15,6 +16,11 @@ jobs:
       - name: checkout
         uses: actions/checkout@master
 
+      - name: setup zh-cn timezone
+        uses: zcong1993/setup-timezone@master
+        with:
+          timezone: Asia/Shanghai
+          
       - name: setup node ${{ matrix.node-version }}
         uses: actions/setup-node@master
         with:
@@ -37,6 +43,11 @@ jobs:
 
       - name: build dist
         run: npm run dist
+        env:
+          CI: true
+      
+      - name: tag a tag
+        run: npm run version
         env:
           CI: true
 
