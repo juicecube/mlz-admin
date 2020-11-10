@@ -28,7 +28,7 @@ const MlzRangePicker = (props: IRangePickerProps) => {
       onChange={(date, dateString) => {
         const dateValue = returnUnixValue ? handleMomentValue(date, startOf) : date;
         setValue(dateValue);
-        onChange(dateValue, dateString);
+        onChange && onChange(dateValue, dateString);
       }}
     />
   );

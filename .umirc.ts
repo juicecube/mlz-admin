@@ -49,7 +49,7 @@ export default defineConfig({
         { title: 'Libra投放系统', path: 'https://libra.codemao.cn/' },
         { title: '行政综合支撑平台', path: 'https://support-admin.codemao.cn/' },
         { title: 'LuckyCat营销管理系统', path: 'https://luckycat-admin.codemao.cn/' },
-        { title: '供应链管理系统', path: 'https://supply-chain-manage-admin.codemao.cn/' },
+        { title: 'SCM供应链管理系统', path: 'https://supply-chain-manage-admin.codemao.cn/' },
       ],
     },
     {

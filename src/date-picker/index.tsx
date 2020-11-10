@@ -21,7 +21,7 @@ const DatePicker = (props: IDatePickerProps) => {
               .valueOf()
           : date;
         setValue(dateValue);
-        onChange(dateValue, dateString);
+        onChange && onChange(dateValue, dateString);
       }}
     />
   );
