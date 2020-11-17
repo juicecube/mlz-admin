@@ -7,11 +7,10 @@ import { formatPrice, guessPrimaryKey, createBem } from '../../shared/utils';
 import { IColumnTypes, ITableTypes, recordedType, EnumsType, TagEnumsType, SupporttedColumnTypes } from './index.type';
 import './index.less';
 
-export const checkValValidated = ($val) => $val || $val === 0 || $val === false;
 export const commonPaginationKeys = ['pagination', 'sorter', 'filters'];
 export const typeValueRefers = {
-  normal: (value: any) => (checkValValidated(value) ? value : '--'),
-  number: (value: number) => (checkValValidated(value) ? value : '--'),
+  normal: (value: any) => value ?? '--',
+  number: (value: number) => value ?? '--',
   price: (value: number) => formatPrice(value),
   date: (value: number) => formatUnixTime(value, 'YYYY/MM/DD'),
   datetime: (value: number) => formatUnixTime(value),
