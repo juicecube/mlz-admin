@@ -1,10 +1,10 @@
 ---
 title: 后台系统图标规范
 toc: 'menu'
+order: 3
 group:
   title: 设计规范
   path: /
-  order: 2
 ---
 
 ```tsx
