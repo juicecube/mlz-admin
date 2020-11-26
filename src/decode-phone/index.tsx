@@ -16,7 +16,6 @@ const DecodePhone = (props: IProps) => {
   const _URL = new URL(url);
   const [title, setTitle] = useState<RenderFunction | React.ReactNode>(INIT_TITLE);
   const handleRequest = () => {
-    console.log('1');
     new Http(_URL.origin)
       .post(_URL.pathname, {
         cipher_text: params,
