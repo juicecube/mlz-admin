@@ -65,10 +65,10 @@ export const typeFormItemRefers = {
  * @func 根据column.search[xx]字段渲染对应的搜索组件
  */
 const renderCol = ($column) => {
-  const { title, dataIndex, searchLabel, type, enums, searchType, searchKey } = $column;
+  const { title, dataIndex, searchLabel, type, enums, searchType, searchKey, form } = $column;
   return (
     <Form.Item name={searchKey || dataIndex} label={searchLabel || title} key={$column.dataIndex}>
-      {$column.searchRender?.() || typeFormItemRefers[searchType || type || 'normal']?.($column)}
+      {$column.searchRender?.({ form }) || typeFormItemRefers[searchType || type || 'normal']?.($column)}
     </Form.Item>
   );
 };
@@ -159,7 +159,7 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
               xl={row.searchColSpan || perColspan}
               key={(row.title as string) || index}
               style={{ display: index >= searchCollapsedThreshold && collapsed ? 'none' : 'block' }}>
-              {renderCol(row)}
+              {renderCol({ ...row, form })}
             </Col>
           );
         })}
