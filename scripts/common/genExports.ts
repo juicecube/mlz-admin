@@ -1,10 +1,9 @@
 #!/usr/bin/env node
-/* eslint-disable */
 const fs = require('fs');
 const path = require('path');
 const { capitalize } = require('lodash');
 
-const { SRC_PATH } = require('./constants');
+const { SRC_PATH } = require('./constants.ts');
 
 const camelizeFolderName = (foldername) => {
   return foldername

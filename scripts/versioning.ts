@@ -1,14 +1,12 @@
 #!/usr/bin/env node
-/* eslint-disable import/no-dynamic-require */
 const path = require('path');
 const fetch = require('node-fetch');
 const simpleGit = require('simple-git/promise');
 const changelog = require('./changelog');
 
-const cwd = process.cwd();
-const pkg = require(path.resolve(cwd, 'package.json'));
+const pkg = require('../package.json');
 
-const git = simpleGit(cwd);
+const git = simpleGit(process.cwd());
 const { version } = pkg;
 const tagPrefix = 'v';
 const canPublishBranches = ['HEAD', 'release'];

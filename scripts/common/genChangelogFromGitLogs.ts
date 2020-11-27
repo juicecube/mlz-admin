@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-/* eslint-disable */
 const { groupBy, upperFirst } = require('lodash');
 
 const ghPrefix = 'https://github.com/';
@@ -25,11 +24,11 @@ const msgValidate = ($str) => {
 const commitLogIterator = (prev, curr, indent = false) => {
   const indentNumber = indent ? 2 : 0;
   const validation = msgValidate(curr.subject);
-  const { subject, hash, type, author_name } = curr;
+  const { subject, hash, type, authorName } = curr;
   return (prev +=
     validation && type
       ? `${' '.repeat(indentNumber)}- ${subject} [${hash.substr(0, 7)}](${ghcommitHtmlPrefix}${hash})` +
-        (author_name && !administrators.includes(author_name) ? ` 👤 ${upperFirst(author_name)} 👍` : '') +
+        (authorName && !administrators.includes(authorName) ? ` 👤 ${upperFirst(authorName)} 👍` : '') +
         '\r\n'
       : ``);
 };
