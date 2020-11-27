@@ -10,25 +10,26 @@
     "antd"
   ],
   "scripts": {
-    "start": "npm run clean && node ./scripts/genIndex.js && NODE_ENV=development dumi dev",
-    "build": "node ./scripts/genIndex.js && NODE_ENV=production dumi build",
-    "dist": "npm run clean && node ./scripts/genIndex.js && father-build",
+    "start": "npm run clean && node ./scripts/genIndex && NODE_ENV=development dumi dev",
+    "build": "node ./scripts/genIndex && NODE_ENV=production dumi build",
+    "dist": "npm run clean && node ./scripts/genIndex && father-build",
     "dist:es": "npx ttsc --project ./tsconfig.dist.json -d -m esnext --outDir es --sourceMap false --inlineSources false",
     "dist:cjs": "npx ttsc --project ./tsconfig.dist.json -d -m commonjs --outDir lib --sourceMap false --inlineSources false",
     "dist:tsc": "rm -rf es lib dist && npm run dist:cjs && npm run dist:es",
-    "serve": "node scripts/serve.js",
+    "serve": "node ./scripts/serve",
     "lint": "npm run lint:ts && npm run lint:es",
     "lint:fix": "npm run lint:ts && npm run lint:es --fix",
     "lint:esFix": "npx eslint --ext tsx,ts,js src --fix",
     "lint:es": "npx eslint --ext tsx,ts,js src docs/demo",
     "lint:ts": "tsc --project ./tsconfig.lint.json",
     "lint:style": "stylelint 'src/**/*.less' --syntax less",
-    "test": "npm run clean && node ./scripts/genIndex.js && dumi test --coverage",
-    "test:update": "npm run clean && node ./scripts/genIndex.js && dumi test --cache=false -u --coverage",
+    "test": "npm run clean && node ./scripts/genIndex && dumi test --coverage",
+    "test:update": "npm run clean && node ./scripts/genIndex && dumi test --cache=false -u --coverage",
     "check-coverage": "npx istanbul check-coverage --statement 90 --branch -80",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
-    "version": "node ./scripts/versioning",
+    "version": "AUTO=1 node ./scripts/versioning",
     "clean": "rm -rf es lib dist .tsc-check coverage src/index.tsx",
+    "changelog": "node ./scripts/changelog",
     "reset-project": "npm run clean && rm -rf node_modules package-lock.json yarn.lock src/.umi && npm install"
   },
   "module": "es/index.js",
@@ -58,6 +59,7 @@
     "antd": "^4.7.0",
     "axios": "^0.20.0",
     "compression": "^1.7.4",
+    "eslint": "^7.14.0",
     "express": "^4.17.1",
     "lodash-es": "^4.17.15",
     "mytils": "^1.3.21",
@@ -84,6 +86,7 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react-hooks": "^4.0.2",
     "father-build": "^1.18.4",
+    "inquirer": "^7.3.3",
     "istanbul": "^0.4.5",
     "jest": "^26.0.1",
     "lint-staged": "^10.3.0",
@@ -115,7 +118,7 @@
     "type": "git",
     "url": "https://github.com/juicecube/mlz-admin"
   },
-  "homepage": "https://mlz-admin.now.sh/",
+  "homepage": "https://mlz-admin.com",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   }

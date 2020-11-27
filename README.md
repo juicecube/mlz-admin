@@ -2,7 +2,7 @@
 @mlz/admin，遵循编程猫后台管理系统设计规范的 React 组件库。
 </p>
 <p align="center" style="font-size: 32px">
-🌈 https://mlz-admin.now.sh
+🌈 https://mlz-admin.com
 </p>
 <div align="center">
 

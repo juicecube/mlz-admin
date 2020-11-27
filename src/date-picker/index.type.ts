@@ -2,7 +2,7 @@ import { DatePickerProps, RangePickerProps } from 'antd/lib/date-picker';
 import { unitOfTime, Moment } from 'moment';
 
 export interface IDatePickerProps extends Omit<DatePickerProps, 'onChange' | 'value'> {
-  value?: number;
+  value?: valueProps;
   startOf?: unitOfTime.StartOf;
   onChange?: (date: valueProps, dateString: string) => void;
   returnUnixValue?: boolean;

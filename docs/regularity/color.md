@@ -1,10 +1,10 @@
 ---
 title: 后台产品级颜色规范
 toc: 'menu'
+order: 2
 group:
   title: 设计规范
   path: /
-  order: 1
 ---
 
 ```tsx

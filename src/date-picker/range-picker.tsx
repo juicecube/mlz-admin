@@ -11,15 +11,17 @@ const MlzRangePicker = (props: IRangePickerProps) => {
   useEffect(() => {
     setValue(propsValue || null);
   }, [propsValue]);
-  const handleMomentValue = (values, startOfValue): [number, number] => {
-    return [
-      moment(values[0])
-        .startOf(startOfValue || 'ms')
-        .valueOf(),
-      moment(values[1])
-        .startOf(startOfValue || 'ms')
-        .valueOf(),
-    ];
+  const handleMomentValue = (values, startOfValue): [number, number] | null => {
+    return values
+      ? [
+          moment(values[0])
+            .startOf(startOfValue || 'ms')
+            .valueOf(),
+          moment(values[1])
+            .startOf(startOfValue || 'ms')
+            .valueOf(),
+        ]
+      : null;
   };
   return (
     <RangePicker
@@ -28,7 +30,9 @@ const MlzRangePicker = (props: IRangePickerProps) => {
       onChange={(date, dateString) => {
         const dateValue = returnUnixValue ? handleMomentValue(date, startOf) : date;
         setValue(dateValue);
-        onChange && onChange(dateValue, dateString);
+        if (onChange) {
+          onChange(dateValue, dateString);
+        }
       }}
     />
   );
