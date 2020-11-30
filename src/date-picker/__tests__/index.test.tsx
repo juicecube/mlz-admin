@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { testMount, testSnapshot } from '../../../tests';
 import { mount } from 'enzyme';
 import DatePicker from '..';
-import { openPicker, selectDate } from './utils';
+import { openPicker, selectDate } from './utils.test';
 
 describe('🧪 DatePicker', () => {
   testMount(DatePicker);

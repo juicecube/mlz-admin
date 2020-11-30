@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-/* eslint-disable */
 const { groupBy, upperFirst } = require('lodash');
 
 const ghPrefix = 'https://github.com/';
@@ -25,11 +24,11 @@ const msgValidate = ($str) => {
 const commitLogIterator = (prev, curr, indent = false) => {
   const indentNumber = indent ? 2 : 0;
   const validation = msgValidate(curr.subject);
-  const { subject, hash, type, author_name } = curr;
+  const { subject, hash, type, authorName } = curr;
   return (prev +=
     validation && type
       ? `${' '.repeat(indentNumber)}- ${subject} [${hash.substr(0, 7)}](${ghcommitHtmlPrefix}${hash})` +
-        (author_name && !administrators.includes(author_name) ? ` 👤 ${upperFirst(author_name)} 👍` : '') +
+        (authorName && !administrators.includes(authorName) ? ` 👤 ${upperFirst(authorName)} 👍` : '') +
         '\r\n'
       : ``);
 };
@@ -48,9 +47,9 @@ const genLogs = ($gitLogs) => {
     const scopedResult = scopes
       .filter((scope) => !!scope)
       .reduce((prev, curr) => {
-        return (prev += `- 📦 ${upperFirst(curr)}\r\n` + groupedLogs[curr].reduce((commit, currCommit) => commitLogIterator(commit, currCommit, 2), '') + '\r\n');
+        return (prev += `- 📦 ${upperFirst(curr)}\r\n` + groupedLogs[curr].reduce((commit, currCommit) => commitLogIterator(commit, currCommit, !!2), '') + '\r\n');
       }, '');
-    const unscopedResult = scopes.filter((scope) => !scope).reduce((prev, curr) => (prev += groupedLogs[curr].reduce((commit, currCommit) => commitLogIterator(commit, currCommit, 0), '')), '');
+    const unscopedResult = scopes.filter((scope) => !scope).reduce((prev, curr) => (prev += groupedLogs[curr].reduce((commit, currCommit) => commitLogIterator(commit, currCommit, !!0), '')), '');
     return scopedResult + unscopedResult;
   } else return [];
 };
