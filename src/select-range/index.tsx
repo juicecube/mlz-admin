@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Select, Input, Form } from 'antd';
 import { createBem } from '../shared/utils';
 import './index.less';
-
 interface RangeSelectionOption {
   key: string | number;
   name: string;
@@ -79,6 +78,7 @@ export const SelectRange = ({ selectOptions, currentValue = [], width, onChange 
 };
 SelectRange.defaultProps = {
   currentValue: [],
+  width: 160,
   onChange: () => ({}),
 };
 
