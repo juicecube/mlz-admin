@@ -1,6 +1,7 @@
 import Http from '@mlz/axios';
 import { message } from 'antd';
 import { DECODE_HOST } from './constants';
+import { AxiosRequestConfig } from 'axios';
 
 Http.setResInterceptor(
   (res) => {

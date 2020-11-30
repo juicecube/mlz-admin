@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { testMount, testSnapshot } from '../../../tests';
 import { mount } from 'enzyme';
+import moment from 'moment';
 import DatePicker from '..';
-import { openPicker, selectDate } from './utils.test';
+import { openPicker, selectCell, closePicker } from './utils.test';
 
-describe('🧪 DatePicker', () => {
-  testMount(DatePicker);
-  testSnapshot(DatePicker);
+describe('🧪 RangePicker', () => {
+  testMount(DatePicker.RangePicker);
+  testSnapshot(DatePicker.RangePicker);
 
   it('return unix value', () => {
     class Test extends Component {
@@ -17,12 +18,12 @@ describe('🧪 DatePicker', () => {
 
       render() {
         return (
-          <DatePicker
+          <DatePicker.RangePicker
             returnUnixValue
             onChange={(dateValue, dateString) => {
               this.setState({
                 // eslint-disable-next-line react/no-unused-state
-                value: dateValue || new Date().getTime(),
+                value: dateValue || [null, null],
               });
             }}
           />
@@ -31,8 +32,11 @@ describe('🧪 DatePicker', () => {
     }
     const wrapper = mount(<Test />);
     openPicker(wrapper);
-    selectDate(wrapper);
+    selectCell(wrapper, '3');
+    openPicker(wrapper, 1);
+    selectCell(wrapper, '5');
+    closePicker(wrapper, 1);
     const { value } = wrapper.state() as any;
-    expect(typeof value === 'number').toBe(true);
+    value && expect(typeof value[0] === 'number' && typeof value[1] === 'number').toBe(true);
   });
 });

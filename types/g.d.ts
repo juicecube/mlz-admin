@@ -1,3 +1,5 @@
 declare interface Window {
-  IconScripts: string[];
+  IconScripts: URL['href'][];
+  requestIdleCallback: (callback: function, options: any) => void;
+  __DEV__: 'development' | 'production';
 }

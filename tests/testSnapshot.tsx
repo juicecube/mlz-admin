@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, mount } from 'enzyme';
 
-const testSnapshot = (Component, props = {}) => {
-  const { staticRendered, ...others } = props;
+const testSnapshot = (Component, props?: { staticRendered?: boolean; [key: string]: any }) => {
+  const { staticRendered, ...others } = props || {};
   describe(`snapshot test`, () => {
     //
     test(`snapshot comparing`, () => {

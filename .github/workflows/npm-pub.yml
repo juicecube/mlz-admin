@@ -51,11 +51,6 @@ jobs:
         env:
           CI: true
 
-      - name: generate changelog
-        run: npm run changelog
-        env:
-          CI: true
-
       - name: npm publish
         uses: JS-DevTools/npm-publish@v1
         with:

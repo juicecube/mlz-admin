@@ -39,7 +39,23 @@ npm install @mlz/pack -D
 
 **二、使用 webpack**
 
-与 Ant design 的使用和配置（包括 `babel-import-plugin` 按需导入）方式完全一致。
+与 Ant design 的使用和配置（包括 `babel-import-plugin` 按需导入）方式几乎一致，但不引入 style。
+
+```js
+module.exports = {
+  plugins: [
+    [
+      'import',
+      {
+        libraryName: '@mlz/admin',
+        libraryDirectory: 'es',
+        style: false,
+      },
+      '@mlz/admin',
+    ],
+  ],
+};
+```
 
 ---
 
