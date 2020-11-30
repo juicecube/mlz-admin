@@ -47,9 +47,9 @@ const genLogs = ($gitLogs) => {
     const scopedResult = scopes
       .filter((scope) => !!scope)
       .reduce((prev, curr) => {
-        return (prev += `- 📦 ${upperFirst(curr)}\r\n` + groupedLogs[curr].reduce((commit, currCommit) => commitLogIterator(commit, currCommit, 2), '') + '\r\n');
+        return (prev += `- 📦 ${upperFirst(curr)}\r\n` + groupedLogs[curr].reduce((commit, currCommit) => commitLogIterator(commit, currCommit, !!2), '') + '\r\n');
       }, '');
-    const unscopedResult = scopes.filter((scope) => !scope).reduce((prev, curr) => (prev += groupedLogs[curr].reduce((commit, currCommit) => commitLogIterator(commit, currCommit, 0), '')), '');
+    const unscopedResult = scopes.filter((scope) => !scope).reduce((prev, curr) => (prev += groupedLogs[curr].reduce((commit, currCommit) => commitLogIterator(commit, currCommit, !!0), '')), '');
     return scopedResult + unscopedResult;
   } else return [];
 };

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint-disable */
 const simpleGit = require('simple-git/promise');
 const inquirer = require('inquirer');
 const genLogs = require('./common/genChangelogFromGitLogs');

@@ -25,7 +25,7 @@
     "lint:style": "stylelint 'src/**/*.less' --syntax less",
     "test": "npm run clean && node ./scripts/genIndex && dumi test --coverage",
     "test:update": "npm run clean && node ./scripts/genIndex && dumi test --cache=false -u --coverage",
-    "check-coverage": "npx istanbul check-coverage --statement 90 --branch -80",
+    "check-coverage": "npx istanbul check-coverage --statement 85 --branch -75",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "version": "AUTO=1 node ./scripts/versioning",
     "clean": "rm -rf es lib dist .tsc-check coverage src/index.tsx",
@@ -71,6 +71,8 @@
     "antd": ">=4.6.2"
   },
   "devDependencies": {
+    "@sentry/browser": "^5.27.6",
+    "@sentry/tracing": "^5.27.6",
     "@types/enzyme": "^3.10.5",
     "@types/jest": "^26.0.13",
     "@types/lodash-es": "^4.17.3",
@@ -93,6 +95,7 @@
     "lint-staged": "^10.3.0",
     "node-fetch": "^2.6.0",
     "prettier": "^1.19.1",
+    "pretty": "^2.0.0",
     "pretty-quick": "^2.0.1",
     "react": "^16.9.0",
     "react-copy-to-clipboard": "^5.0.2",
