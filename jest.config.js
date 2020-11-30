@@ -1,11 +1,14 @@
 const path = require('path');
 
+const ignoredPaths = ['/node_modules/', '/src/shared/utils/'];
 module.exports = {
   verbose: false,
   rootDir: path.join(__dirname, ''),
   setupFilesAfterEnv: ['<rootDir>/tests/setup.js'],
+  testTimeout: 8000,
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
-  testPathIgnorePatterns: ['/node_modules/'],
+  coveragePathIgnorePatterns: ignoredPaths,
+  testPathIgnorePatterns: ignoredPaths,
 };

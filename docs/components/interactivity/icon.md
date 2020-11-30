@@ -9,7 +9,7 @@
  * inline: true
  */
 import React from 'react';
-import IconClasses from './../../demo/icon/icon-classes';
+import IconClasses from '../_site/icon-classes';
 
 export default () => <IconClasses />;
 ```
@@ -25,7 +25,3 @@ export default () => <IconClasses />;
 ## 多个 iconfont 源
 
 <code src="./../../demo/icon/with-more-repo.demo.tsx"/>
-
-## 说明
-
-## APIs

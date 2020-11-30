@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
-import { Form, Input, Row, Col, InputNumber, Select, DatePicker } from 'antd';
+import { Form, Input, Row, Col, InputNumber, Select } from 'antd';
 import Button from '../../button';
+import DatePicker from '../../date-picker';
 import { ICommonSearch } from './index.type';
 import { TagEnumsType, EnumsType } from '../../table/common-table/index.type';
 import { commonPaginationKeys } from '../../table/common-table';
@@ -9,7 +10,6 @@ import locale from 'antd/es/date-picker/locale/zh_CN';
 import Icon from '../../icon';
 import { createBem } from '../../shared/utils';
 import KeepAlive, { KAContext } from '../../shared/keep-alive';
-import MDatePicker, { MDateRangePicker } from '../date-picker';
 import './index.less';
 
 const fullWidthStyle = { width: '100%' } as const;
@@ -53,10 +53,10 @@ export const typeFormItemRefers = {
   number: () => <InputNumber style={fullWidthStyle} />,
   enum: ({ enums }) => renderSelection(enums),
   tag: ({ enums }) => renderSelection(enums),
-  date: ({ searchItemProps }) => <MDatePicker picker="date" startOf="day" {...regularOptions} {...searchItemProps} />,
-  datetime: ({ searchItemProps }) => <MDatePicker showTime {...regularOptions} {...searchItemProps} />,
-  dateRange: ({ searchItemProps }) => <MDatePicker.RangePicker picker="date" startOf="day" {...regularOptions} {...searchItemProps} />,
-  datetimeRange: ({ searchItemProps }) => <MDatePicker.RangePicker showTime {...regularOptions} {...searchItemProps} />,
+  date: ({ searchItemProps }) => <DatePicker {...regularOptions} {...searchItemProps} />,
+  datetime: ({ searchItemProps }) => <DatePicker showTime {...regularOptions} {...searchItemProps} />,
+  dateRange: ({ searchItemProps }) => <DatePicker.RangePicker {...regularOptions} {...searchItemProps} />,
+  datetimeRange: ({ searchItemProps }) => <DatePicker.RangePicker showTime {...regularOptions} {...searchItemProps} />,
   price: () => <InputNumber style={fullWidthStyle} formatter={(value) => `¥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')} parser={(value: any) => value.replace(/¥\s?|(,*)/g, '')} min={0} />,
   ratio: () => <InputNumber formatter={(value) => `${value ? value + ' %' : ''}`} parser={(value) => value?.replace(' %', '') as string} style={fullWidthStyle} />,
 };
@@ -65,10 +65,10 @@ export const typeFormItemRefers = {
  * @func 根据column.search[xx]字段渲染对应的搜索组件
  */
 const renderCol = ($column) => {
-  const { title, dataIndex, searchLabel, type, enums, searchType, searchKey } = $column;
+  const { title, dataIndex, searchLabel, type, enums, searchType, searchKey, form } = $column;
   return (
     <Form.Item name={searchKey || dataIndex} label={searchLabel || title} key={$column.dataIndex}>
-      {$column.searchRender?.() || typeFormItemRefers[searchType || type || 'normal']?.($column)}
+      {$column.searchRender?.({ form }) || typeFormItemRefers[searchType || type || 'normal']?.($column)}
     </Form.Item>
   );
 };
@@ -93,6 +93,7 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
         24)
     : perColspan + collapsingButtonColspan;
   const shouldMergeSubmitButton = searchings?.length % colCount === 0;
+  const hasMoreInteractionArea = tools.length || operations.length;
 
   const { dispatch, payload } = useContext(KAContext);
   let keepAliveHandler;
@@ -105,9 +106,9 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
   const collapsedHandler = () => toggleCollapsed(!collapsed);
 
   const formSubmitters = searchings.length ? (
-    <Col span={sparedColSpan < perColspan + collapsingButtonColspan ? 24 : sparedColSpan} style={{ textAlign: 'right', marginBottom: 16 }} flex="1">
+    <Col span={sparedColSpan < perColspan + collapsingButtonColspan ? 24 : sparedColSpan} style={{ textAlign: 'right', marginBottom: hasMoreInteractionArea ? 16 : 0 }} flex="1">
       {searchCollapsedThreshold ? (
-        <Button type="link" icon={<Icon type="arrow_down" rotate={collapsed ? 0 : 180} />} onClick={collapsedHandler}>
+        <Button className="toggle-search-count-btn" type="link" icon={<Icon type="arrow_down" rotate={collapsed ? 0 : 180} />} onClick={collapsedHandler}>
           {collapsed ? '展开' : '收起'}
         </Button>
       ) : null}
@@ -141,26 +142,32 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
       }}
       onFinishFailed={props?.onSearchFailed}
       initialValues={props.initialSearchValues}
-      style={tools.length || operations.length ? { marginBottom: 18 } : {}}>
+      style={
+        !searchings.length && hasMoreInteractionArea
+          ? {
+              marginBottom: 0,
+            }
+          : {}
+      }>
       <Row gutter={24}>
         {searchings?.map((row, index: number) => {
           return (
             <Col
+              className={bem('search-item')}
               sm={row.searchColSpan || perColspan * 3}
               lg={row.searchColSpan || perColspan * 2}
               xl={row.searchColSpan || perColspan}
               key={(row.title as string) || index}
               style={{ display: index >= searchCollapsedThreshold && collapsed ? 'none' : 'block' }}>
-              {renderCol(row)}
+              {renderCol({ ...row, form })}
             </Col>
           );
         })}
         {shouldMergeSubmitButton ? null : formSubmitters}
       </Row>
       {shouldMergeSubmitButton ? <Row justify="end">{formSubmitters}</Row> : null}
-      {tools?.length || operations?.length ? (
+      {hasMoreInteractionArea ? (
         <>
-          {searchings.length ? <hr className={bem('hr')} /> : null}
           <section className={bem('extra')}>
             <div className={`bar-area ${bem('operations-area')}`}>
               <Row justify="start" align="middle" gutter={16}>

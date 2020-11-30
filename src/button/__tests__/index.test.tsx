@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { mount } from 'enzyme';
 import Button from '..';
-import { testMount } from '../../../tests';
+import { testMount, testSnapshot } from '../../../tests';
 const groupList = [
   {
     key: 1,
@@ -25,9 +25,10 @@ const groupList = [
 
 describe('🧪 Button', () => {
   /**
-   * @FIRST 挂载
+   * @FIRST 挂载 / 快照测试（一定程度上防止圣诞节彩蛋等底层dom修改..）
    */
   testMount(Button);
+  testSnapshot(Button);
 
   testMount(() => (
     <Button.Group>

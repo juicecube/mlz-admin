@@ -21,10 +21,10 @@ export default {
       tsconfig: 'tsconfig.dist.json',
     }),
   ],
-  extraBabelPlugins: [['import', { libraryName: 'antd', style: false }]],
+  extraBabelPlugins: [['import', { libraryName: 'antd', style: true }]],
   target: 'browser',
   inject: {
-    'window.__DEV__': 'false',
+    'window.__DEV__': false,
   },
   replace: {
     VERSION: JSON.stringify(require('./package').version),

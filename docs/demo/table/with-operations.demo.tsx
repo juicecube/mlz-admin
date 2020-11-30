@@ -1,6 +1,7 @@
 /**
  * title: 操作栏
  * desc: 通过传入 `operations` 组件数组，来展示对应的操作栏。它与tools api最直观的区别就是它位于Table的左侧，而后者在右侧。
+ * background: '#f0f2f5'
  */
 import React from 'react';
 import { Table, Button, Icon, message } from '@mlz/admin';
@@ -92,12 +93,13 @@ class App extends React.PureComponent {
   };
 
   render() {
+    const { data } = this.state;
     return (
       <Table
         columns={columns}
-        dataSource={this.state.data.items}
+        dataSource={data?.items}
         loading={this.state.loading}
-        pagination={{ pageSize: 10, total: this.state.data.total || 50, showSizeChanger: true, showQuickJumper: true }}
+        pagination={{ pageSize: 10, total: data?.total || 50, showSizeChanger: true, showQuickJumper: true }}
         onChange={(png) => {
           this.setState(
             {

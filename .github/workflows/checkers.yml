@@ -1,13 +1,15 @@
-name: checker
+name: checkers
 
 on: 
   push:
     branches:
       - master
+      - hotfix
       - 'sprint/*'
       - 'hotfix/*'
+      - 'feat/*'
   pull_request:
-    types: [opened, reopened, edited]
+    types: [opened,reopened,edited,synchronize]
 
 jobs:
   install: 

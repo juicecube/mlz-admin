@@ -61,6 +61,7 @@ const columnsForCustomer = [
 class App extends React.PureComponent {
   state = {
     data: [],
+    loading: true,
   };
 
   componentDidMount() {
@@ -72,14 +73,15 @@ class App extends React.PureComponent {
       url: 'http://rap2api.taobao.org/app/mock/252468/admini/detail-demo',
     });
     this.setState({
-      data: JSON.parse(data),
+      data: data && JSON.parse(data),
+      loading: false,
     });
   };
 
   render() {
     return (
       <>
-        <DetailCard title="基本信息" dataSource={this.state.data} columns={columnsForDetail} />
+        <DetailCard loading={this.state.loading} title="基本信息" dataSource={this.state.data} columns={columnsForDetail} />
         <DetailCard title="客户信息" dataSource={this.state.data?.['customer']} columns={columnsForCustomer} />
       </>
     );

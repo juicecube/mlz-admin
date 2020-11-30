@@ -11,13 +11,41 @@ const getMds = ($relativedFromDoc) => {
   return files;
 };
 
+const { SENTRY_DSN, VERCEL_ENV } = process.env;
+const productionConf =
+  VERCEL_ENV === 'production'
+    ? {
+        externals: {
+          '@sentry/browser': 'window.sentry',
+          '@sentry/tracing': 'window.sentryTracing',
+        },
+        scripts: ['https://unpkg.com/browse/react@16.12.0/umd/react.production.min.js'],
+        headScripts: [
+          {
+            content: `window.process.env = ${process.env}`,
+            charset: 'utf-8',
+          },
+          {
+            content: `sentry.init({
+  dsn: ${SENTRY_DSN},
+  integrations: [
+    new sentryTracing.BrowserTracing(),
+  ],
+  tracesSampleRate: 1.0,
+})`,
+            charset: 'utf-8',
+          },
+        ],
+      }
+    : {};
+
 export default defineConfig({
   hash: true,
   title: '@mlz/admin',
   mode: 'site',
   favicon: '/assets/logo.36.png',
   logo: '/assets/logo.360.png',
-  locales: [['中文']],
+  locales: [['zh-CN', '中文']],
   menus: {
     '/components': [
       {
@@ -49,7 +77,7 @@ export default defineConfig({
         { title: 'Libra投放系统', path: 'https://libra.codemao.cn/' },
         { title: '行政综合支撑平台', path: 'https://support-admin.codemao.cn/' },
         { title: 'LuckyCat营销管理系统', path: 'https://luckycat-admin.codemao.cn/' },
-        // { title: '供应链管理', path: 'coming' },
+        { title: 'SCM供应链管理系统', path: 'https://supply-chain-manage-admin.codemao.cn/' },
       ],
     },
     {
@@ -66,4 +94,15 @@ export default defineConfig({
     '@c-link': '#1890FF',
     '@s-nav-height': '76px',
   },
+  metas: [
+    {
+      name: 'keywords',
+      content: 'react, components, 编程猫, antd',
+    },
+    {
+      name: 'description',
+      content: '一套编程猫设计规范下的管理系统React组件库，基于Antd',
+    },
+  ],
+  ...productionConf,
 });
