@@ -3,7 +3,7 @@ import { testMount, testSnapshot } from '../../../tests';
 import { mount } from 'enzyme';
 import moment from 'moment';
 import DatePicker from '..';
-import { openPicker, selectCell, closePicker } from './utils';
+import { openPicker, selectCell, closePicker } from './utils.test';
 
 describe('🧪 RangePicker', () => {
   testMount(DatePicker.RangePicker);
