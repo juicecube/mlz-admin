@@ -13,6 +13,7 @@ interface ConfigProviderType extends ConfigProviderProps {
   defaultTheme?: boolean;
 }
 let shown = false;
+Window.__MLZ_ADMIN_ENV__ = process.env.NODE_ENV;
 const ConfigProvider = (props: ConfigProviderType): JSX.Element => {
   const consoleVersion = () => console.table({ [`@mlz/admin version`]: version });
   if (!shown) {

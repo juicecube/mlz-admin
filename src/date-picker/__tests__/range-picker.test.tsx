@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { testMount, testSnapshot } from '../../../tests';
 import { mount } from 'enzyme';
-import moment from 'moment';
 import DatePicker from '..';
-import { openPicker, selectCell, closePicker } from './utils.test';
+import { openPicker, selectCell, closePicker } from '../../shared/test-utils';
 
 describe('🧪 RangePicker', () => {
   testMount(DatePicker.RangePicker);

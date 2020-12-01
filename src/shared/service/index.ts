@@ -1,7 +1,6 @@
 import Http from '@mlz/axios';
 import { message } from 'antd';
-import { DECODE_HOST } from './constants';
-import { AxiosRequestConfig } from 'axios';
+import { DECODE_HOST } from './decode-phone/model';
 
 Http.setResInterceptor(
   (res) => {
@@ -24,7 +23,6 @@ Http.setResInterceptor(
       case 200:
         return res.data;
       default:
-        message.error('手机号解码失败');
         return Promise.reject(res);
     }
   },

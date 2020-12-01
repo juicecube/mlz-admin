@@ -63,5 +63,6 @@ module.exports = {
     'no-restricted-globals': 1,
     'no-return-assign': 0,
     'no-plusplus': 0,
+    camelcase: 1,
   },
 };
