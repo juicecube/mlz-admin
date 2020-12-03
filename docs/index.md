@@ -25,23 +25,24 @@ $ npm install @mlz/admin --save
 
 ## 最佳实践
 
-**一、使用`@mlz-pack`或`yummi`托管项目，比如@mlz/pack：**
+**一、使用 `@mlz-pack`**
 
 ```shell
 npm install @mlz/pack -D
 ```
 
-它们内置了针对必要的配置和优化，有方便且丰富的编程猫业务开发的底层配置，是我们的推荐方式。如果您是猫厂人员，不出意外这是强制的。
+它内置了必要的配置和优化，有方便且丰富的编程猫业务开发的底层配置。如果你是猫厂开发人员，不出意外的话这将是强制使用的。
 
 > @mlz/pack：https://github.com/juicecube/mlz-pack
 >
-> yummi：https://phab.srv.codemao.cn/source/yuumi/
+> 或使用 CLI yummi：https://phab.srv.codemao.cn/source/yuumi/
 
-**二、使用 webpack**
+**二、使用 `webpack`**
 
 与 Ant design 的使用和配置（包括 `babel-import-plugin` 按需导入）方式几乎一致，但不引入 style。
 
 ```js
+// babel设置
 module.exports = {
   plugins: [
     [

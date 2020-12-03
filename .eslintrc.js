@@ -24,6 +24,7 @@ module.exports = {
         'react/no-access-state-in-setstate': 0,
         'react/destructuring-assignment': 0,
         'react/sort-comp': 0,
+        'react/no-array-index-key': 1,
         'spaced-comment': 0,
       },
     },

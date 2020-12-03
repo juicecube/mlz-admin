@@ -54,6 +54,7 @@ export default (props: { refered?: boolean | string }) => {
             const rand = parseInt(Math.random() * alternatives.length + '', 10);
             return commits.map((commitType, index) => {
               const commiters = uniqBy(commitType, 'id');
+              console.log(commitType, 55);
               return (
                 <li key={index}>
                   <span className="commit-title">
@@ -66,7 +67,7 @@ export default (props: { refered?: boolean | string }) => {
                           return item ? (
                             <Tooltip title={item.name} placement={index === 0 ? 'top' : 'bottom'} key={item.login}>
                               {item.html_url ? (
-                                <a href={item.html_url} target="_blank">
+                                <a href={item.html_url} target="_blank" rel="noopener noreferrer">
                                   <TheAvatar {...{ rand, alternatives, item }} />
                                 </a>
                               ) : (
