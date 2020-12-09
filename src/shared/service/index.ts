@@ -1,36 +1,7 @@
-import Http from '@mlz/axios';
-import { message } from 'antd';
-import { DECODE_HOST } from './decode-phone/model';
+import { supporttingTypes, env } from './constants';
 
-Http.setResInterceptor(
-  (res) => {
-    switch (res.status) {
-      case 200:
-        return res.data;
-      default:
-        return res;
-    }
-  },
-  (err) => {
-    message.error(err);
-    return Promise.reject(err);
-  },
-);
+// utils
+export const envTransformer = (NODE_ENV: supporttingTypes) => env[NODE_ENV];
 
-Http.setResInterceptor(
-  (res) => {
-    switch (res.status) {
-      case 200:
-        return res.data;
-      default:
-        return Promise.reject(res);
-    }
-  },
-  (err) => {
-    message.error(err);
-    return Promise.reject(err);
-  },
-  DECODE_HOST,
-);
-
-export default Http;
+// services
+export { default as decodePhone } from './decode-phone';

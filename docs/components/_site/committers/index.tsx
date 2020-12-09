@@ -54,7 +54,6 @@ export default (props: { refered?: boolean | string }) => {
             const rand = parseInt(Math.random() * alternatives.length + '', 10);
             return commits.map((commitType, index) => {
               const commiters = uniqBy(commitType, 'id');
-              console.log(commitType, 55);
               return (
                 <li key={index}>
                   <span className="commit-title">
