@@ -5,7 +5,7 @@ const testSnapshot = (Component, props?: { staticRendered?: boolean; [key: strin
   const { staticRendered, ...others } = props || {};
   describe(`snapshot test`, () => {
     //
-    test(`snapshot comparing`, () => {
+    test(`快照匹配`, () => {
       const wrapper = staticRendered === true ? render(<Component {...others} />) : mount(<Component {...others} />).render();
       expect(wrapper.toString()).toMatchSnapshot();
     });

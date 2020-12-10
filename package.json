@@ -15,7 +15,6 @@
     "dist": "npm run clean && node ./scripts/genIndex && NODE_ENV=production father-build",
     "dist:es": "npx ttsc --project ./tsconfig.dist.json -d -m esnext --outDir es --sourceMap false --inlineSources false",
     "dist:cjs": "npx ttsc --project ./tsconfig.dist.json -d -m commonjs --outDir lib --sourceMap false --inlineSources false",
-    "dist:tsc": "rm -rf es lib dist && npm run dist:cjs && npm run dist:es",
     "serve": "node ./scripts/serve",
     "lint": "npm run lint:ts && npm run lint:es",
     "lint:fix": "npm run lint:ts && npm run lint:es --fix",
@@ -23,23 +22,23 @@
     "lint:es": "npx eslint --ext tsx,ts,js src docs/demo",
     "lint:ts": "tsc --project ./tsconfig.lint.json",
     "lint:style": "stylelint 'src/**/*.less' --syntax less",
-    "test": "NODE_ENV=test npm run clean && node ./scripts/genIndex && dumi test --coverage",
-    "test:update": "npm run clean && node ./scripts/genIndex && dumi test --cache=false -u --coverage",
-    "check-coverage": "npx istanbul check-coverage --statement 85 --branch -75",
+    "test": "npm run clean && node ./scripts/genIndex && NODE_ENV=test dumi test",
+    "test:coverage": "npm run clean && node ./scripts/genIndex && NODE_ENV=test dumi test --coverage",
+    "test:update": "npm run clean && node ./scripts/genIndex && jest --clearCache && NODE_ENV=test dumi test --cache=false -u --coverage",
+    "check-coverage": "npx istanbul check-coverage --statement 85 --branch -80",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "version": "AUTO=1 node ./scripts/versioning",
     "clean": "rm -rf es lib dist .tsc-check coverage src/index.tsx",
     "changelog": "node ./scripts/changelog",
-    "reset-project": "npm run clean && rm -rf node_modules package-lock.json yarn.lock src/.umi && npm install"
+    "reset-project": "npm run clean && rm -rf node_modules package-lock.json yarn.lock src/.umi && npm install",
+    "rapper": "rapper --type normal --rapperPath \"/rapper\" --apiUrl \"http://rap2api.taobao.org/repository/get?id=252468&token=KBZdG9oC-vKXr8_cyJuF0IGs40ag5EQ9\" --rapUrl \"http://rap2.taobao.org\""
   },
   "module": "es/index.js",
   "main": "lib/index.js",
-  "unpkg": "unpkg/mlz-admin.min.js",
   "typings": "lib/index.d.ts",
   "files": [
     "lib",
     "es",
-    "unpkg",
     "LICENSE",
     "service"
   ],
@@ -98,6 +97,7 @@
     "prettier": "^1.19.1",
     "pretty": "^2.0.0",
     "pretty-quick": "^2.0.1",
+    "rap": "^1.1.5",
     "react": "^16.9.0",
     "react-copy-to-clipboard": "^5.0.2",
     "rollup-plugin-typescript2": "^0.27.1",
@@ -114,12 +114,6 @@
   "bugs": {
     "url": "https://github.com/juicecube/mlz-admin/issues"
   },
-  "browserslist": [
-    "last 2 versions",
-    "Firefox ESR",
-    "> 1%",
-    "ie >= 11"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/juicecube/mlz-admin"

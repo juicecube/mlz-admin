@@ -1,6 +1,4 @@
-export type supporttingTypes = 'production' | 'development' | 'test' | 'staging' | 'dev';
-
-export enum env {
+export enum Eenv {
   'production' = '',
   'development' = 'dev',
   'test' = 'test',

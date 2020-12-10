@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`🧪 Menu snapshot test snapshot comparing 1`] = `"<ul class=\\"ant-menu ant-menu-light ant-menu-root ant-menu-vertical\\" role=\\"menu\\"></ul>"`;
+exports[`🧪 Menu snapshot test 快照匹配 1`] = `"<ul class=\\"ant-menu ant-menu-light ant-menu-root ant-menu-vertical\\" role=\\"menu\\"></ul>"`;

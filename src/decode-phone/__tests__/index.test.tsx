@@ -1,38 +1,63 @@
 import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { mount } from 'enzyme';
-import { testMount, getCurrentRef, sleep } from '../../../tests';
+import { testMount, sleep } from '../../../tests';
 import DecodePhone, { INIT_TITLE } from '..';
 import { decodePhone } from '../../shared/service';
 
 jest.mock('../../shared/service/index.ts', () => {
   return {
-    decodePhone: jest.fn(),
+    decodePhone: jest.fn().mockImplementationOnce(() => Promise.resolve(`13820003000`)),
   };
 });
 
 const params = 'jZgOvsexafxJUlU3WHaMfA==';
 const testee = '155****1234';
-describe('🧪  DecodePhone', () => {
+describe('🧪 DecodePhone', () => {
   testMount(DecodePhone);
 
-  it('render content corrrectly', async (done) => {
-    decodePhone.mockResolvedValueOnce('ok');
-    const onReadyHandler = jest.fn();
-    const onErrorHandler = jest.fn();
-    const wrapper = mount(
-      <DecodePhone params={params} onReady={onReadyHandler}>
+  let wrapper;
+  let target;
+  let onReadyHandler;
+  let onErrorHandler;
+  beforeEach(() => {
+    onReadyHandler = jest.fn();
+    onErrorHandler = jest.fn();
+    wrapper = mount(
+      <DecodePhone params={params}>
         <span id="phone">{testee}</span>
       </DecodePhone>,
     );
+    target = wrapper.find('#phone').at(0);
+  });
 
-    wrapper
-      .find('#phone')
-      .at(0)
-      .simulate('click');
-    await act(() => sleep(1500));
+  afterEach(() => {
+    expect(onErrorHandler).not.toHaveBeenCalled();
+  });
+
+  it('点击时发送解码请求', async () => {
+    wrapper.setProps({ onReady: onReadyHandler, onError: onErrorHandler });
+    await act(async () => {
+      target.simulate('click');
+    });
+    sleep(200);
+    expect(document.getElementsByClassName('ant-tooltip-inner')[0].innerHTML).toBe('13820003000');
     expect(onReadyHandler).toHaveBeenCalledTimes(1);
-    expect(onErrorHandler).toHaveBeenCalledTimes(0);
-    expect(getCurrentRef(wrapper, '.ant-tooltip-inner').innerHTML).not.toBe(INIT_TITLE);
+  });
+
+  it('点击更多的时候，不会再发送多余请求', async () => {
+    wrapper.setProps({ onReady: onReadyHandler, onError: onErrorHandler });
+    await act(async () => {
+      target.simulate('click');
+    });
+    await act(async () => {
+      target.simulate('click');
+    });
+    await act(async () => {
+      target.simulate('click');
+    });
+    sleep(200);
+    expect(document.getElementsByClassName('ant-tooltip-inner')[0].innerHTML).toBe('13820003000');
+    expect(onReadyHandler).toHaveBeenCalledTimes(1);
   });
 });

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Form as AntdForm, Spin, Button, Row } from 'antd';
 import { NamePath } from 'rc-field-form/es/interface';
-import { IFormProps, IFormColumnType, IDependencyItem } from './index.type';
+import { IFormProps, IFormColumnType, IDependencyItem, CompoundedForm } from './index.type';
 
-const BlockedForm = (props: IFormProps): React.ReactNode => {
-  const { loading, initialValues, columns } = props;
+const Form: CompoundedForm = AntdForm;
+Form.Block = (props: IFormProps) => {
+  const { loading, initialValues, columns, style, onFinish } = props;
   const [form] = AntdForm.useForm();
   const [forceRefresh, toggleForceRefresh] = useState(false);
   // 所有表单项的所有依赖内容
@@ -28,14 +29,13 @@ const BlockedForm = (props: IFormProps): React.ReactNode => {
   return (
     <Spin spinning={Boolean(loading)}>
       <AntdForm
-        form={form}
         onFieldsChange={(changedValues) => {
           // ⚠️ DO NOT RETURN, JUST void
           if (changedValues.length && allRelyOnKeys.includes(changedValues[0]?.name?.[0])) {
             toggleForceRefresh(!forceRefresh);
           }
         }}
-        style={props.style}
+        {...{ form, style }}
         {...props}>
         {columns.map((item: IFormColumnType) => {
           const { relyOn, name, label, render } = item;
@@ -51,6 +51,7 @@ const BlockedForm = (props: IFormProps): React.ReactNode => {
           {props.resetText !== '' ? (
             <Button
               htmlType="reset"
+              className="form-block-reset-btn"
               style={{ marginRight: 8 }}
               onClick={() => {
                 if (hasSettled) {
@@ -69,7 +70,7 @@ const BlockedForm = (props: IFormProps): React.ReactNode => {
             </Button>
           ) : null}
           {props.confirmText !== '' ? (
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" htmlType="submit" className="form-block-submit-btn">
               提交
             </Button>
           ) : null}
@@ -79,10 +80,4 @@ const BlockedForm = (props: IFormProps): React.ReactNode => {
   );
 };
 
-type AntdFormType = typeof AntdForm;
-interface compositedForm extends AntdFormType {
-  Block: React.ReactNode;
-}
-const Form: AntdFormType = AntdForm;
-(Form as compositedForm).Block = BlockedForm;
-export default Form as compositedForm;
+export default Form;

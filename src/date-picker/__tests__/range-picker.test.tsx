@@ -8,7 +8,7 @@ describe('🧪 RangePicker', () => {
   testMount(DatePicker.RangePicker);
   testSnapshot(DatePicker.RangePicker);
 
-  it('return unix value', () => {
+  it('返回一个UNIX时间戳', () => {
     class Test extends Component {
       state = {
         // eslint-disable-next-line react/no-unused-state

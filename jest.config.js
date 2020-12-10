@@ -1,6 +1,6 @@
 const path = require('path');
 
-const ignoredPaths = ['/node_modules/', '/src/shared/utils/', '/src/shared/test-utils/'];
+const ignoredPaths = ['/node_modules/', '/src/shared/utils/', '/src/shared/test-utils/', '/src/shared/service/'];
 module.exports = {
   verbose: false,
   rootDir: path.join(__dirname, ''),

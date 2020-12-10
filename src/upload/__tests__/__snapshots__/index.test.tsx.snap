@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`🧪 Upload snapshot test snapshot comparing 1`] = `"<span class><div class=\\"ant-upload ant-upload-select ant-upload-select-text\\"><span tabindex=\\"0\\" class=\\"ant-upload\\" role=\\"button\\"><input type=\\"file\\" style=\\"display: none;\\" accept><button type=\\"button\\" class=\\"ant-btn\\"><span>Click to Upload</span></button></span></div><div class=\\"ant-upload-list ant-upload-list-text\\"></div></span>"`;
+exports[`🧪 Upload snapshot test 快照匹配 1`] = `"<span class><div class=\\"ant-upload ant-upload-select ant-upload-select-text\\"><span tabindex=\\"0\\" class=\\"ant-upload\\" role=\\"button\\"><input type=\\"file\\" style=\\"display: none;\\" accept><button type=\\"button\\" class=\\"ant-btn\\"><span>Click to Upload</span></button></span></div><div class=\\"ant-upload-list ant-upload-list-text\\"></div></span>"`;

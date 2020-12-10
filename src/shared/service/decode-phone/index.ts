@@ -1,8 +1,11 @@
-import { supporttingTypes } from '../constants';
-import { envTransformer } from '..';
+import { Eenv } from '../constants';
 import Http from '../$http';
 
-let prefix = envTransformer(process.env.NODE_ENV as supporttingTypes);
+export type supporttingTypes = 'production' | 'development' | 'test' | 'staging' | 'dev';
+
+const { NODE_ENV } = process.env;
+
+let prefix = Eenv[NODE_ENV as supporttingTypes];
 prefix = prefix ? `${prefix}-` : '';
 
 export const DECODE_HOST = `https://${prefix}open-service.codemao.cn`;
@@ -11,7 +14,7 @@ const PROXIER_URL = 'https://service-81ozmkay-1252070958.gz.apigw.tencentcs.com/
 const MOCK_URL = `http://rap2api.taobao.org/app/mock/252468/admini/decode-phone`;
 
 const isProduction = process.env.NODE_ENV === 'production';
-export default async ($encodedPhone, $url = isProduction ? DECODE_HOST : PROXIER_URL) => {
+const decodePhoneService = async ($encodedPhone, $url = isProduction ? DECODE_HOST : PROXIER_URL): Promise<any> => {
   const url = new URL($url);
   let res = {};
   res = await new Http(url.origin).post(
@@ -24,5 +27,6 @@ export default async ($encodedPhone, $url = isProduction ? DECODE_HOST : PROXIER
           url: MOCK_URL,
         },
   );
-  return res;
+  return isProduction ? res : JSON.parse(res as string)?.phone_number;
 };
+export default decodePhoneService;

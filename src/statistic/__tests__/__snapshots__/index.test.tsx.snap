@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`🧪 Statistic snapshot test snapshot comparing 1`] = `"<div class=\\"ant-statistic\\"><div class=\\"ant-statistic-content\\"><span class=\\"ant-statistic-content-value\\"><span class=\\"ant-statistic-content-value-int\\">0</span></span></div></div>"`;
+exports[`🧪 Statistic snapshot test 快照匹配 1`] = `"<div class=\\"ant-statistic\\"><div class=\\"ant-statistic-content\\"><span class=\\"ant-statistic-content-value\\"><span class=\\"ant-statistic-content-value-int\\">0</span></span></div></div>"`;

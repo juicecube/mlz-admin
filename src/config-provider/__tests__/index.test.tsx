@@ -3,7 +3,7 @@ import { testMount, testSnapshot } from '../../../tests';
 import enUS from 'antd/es/locale/en_US';
 import ConfigProvider from '..';
 
-describe('📦  ConfigProvider', () => {
+describe('🧪 ConfigProvider', () => {
   testMount(ConfigProvider, {
     locale: enUS,
   });

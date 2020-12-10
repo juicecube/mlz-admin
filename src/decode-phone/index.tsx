@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { TooltipProps, RenderFunction } from 'antd/lib/tooltip';
 import { Tooltip, message } from 'antd';
 import { decodePhone } from '../shared/service';
 
-export const INIT_TITLE = '加载中';
 interface DecodePhoneProps extends Omit<TooltipProps, 'title'> {
   // 待解手机号码
   params: string;
@@ -15,6 +14,7 @@ interface DecodePhoneProps extends Omit<TooltipProps, 'title'> {
   url?: string;
 }
 
+export const INIT_TITLE = '加载中';
 const DecodePhone = (props: DecodePhoneProps) => {
   const { children, params, url, onReady, onError, ...rest } = props;
   const [title, setTitle] = useState<RenderFunction | React.ReactNode>(INIT_TITLE);
@@ -25,12 +25,11 @@ const DecodePhone = (props: DecodePhoneProps) => {
       onReady?.(tel);
     } catch (err) {
       onError?.(err);
-      message.error('network error', err);
     }
   };
   return (
     <Tooltip {...rest} title={title} trigger="click" onVisibleChange={(visible) => visible && title === INIT_TITLE && handleRequest()}>
-      {children}
+      <span>{children}</span>
     </Tooltip>
   );
 };
