@@ -7,9 +7,7 @@ export interface IDatePickerProps extends Omit<DatePickerProps, 'onChange' | 'va
   onChange?: (date: valueProps, dateString: string) => void;
   returnUnixValue?: boolean;
 }
-
 export type valueProps = number | Moment | null;
-
 export interface IRangePickerProps extends Omit<RangePickerProps, 'onChange' | 'value'> {
   value?: [valueProps, valueProps] | null;
   startOf?: unitOfTime.StartOf;

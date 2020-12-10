@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
-import { TooltipProps, RenderFunction } from 'antd/lib/tooltip';
-import { Tooltip, message } from 'antd';
+import { RenderFunction } from 'antd/lib/tooltip';
+import { DecodePhoneProps } from './index.type';
+import { Tooltip } from 'antd';
 import { EncodePhoneModel } from './model';
 
 const INIT_TITLE = '加载中';
-interface DecodePhoneProps extends Omit<TooltipProps, 'title'> {
-  params: string;
-  onReady?(tel): void;
-  onError?(err): void;
-}
-
 const DecodePhone = (props: DecodePhoneProps) => {
   const { children, params: cipherText, onReady, onError, ...rest } = props;
   const [title, setTitle] = useState<RenderFunction | React.ReactNode>(INIT_TITLE);
@@ -21,7 +16,6 @@ const DecodePhone = (props: DecodePhoneProps) => {
       onReady?.(tel);
     } catch (err) {
       onError?.(err);
-      message.error('network error', err);
     }
   };
   return (

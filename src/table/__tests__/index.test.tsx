@@ -43,7 +43,11 @@ describe('🧪 Table', () => {
           },
         ]}
         dataSource={[]}
-        tools={[<span id="test">test</span>]}
+        tools={[
+          <span id="test" key={1}>
+            test
+          </span>,
+        ]}
       />,
     );
     const wrapperWithOperations = mount(
@@ -56,7 +60,11 @@ describe('🧪 Table', () => {
           },
         ]}
         dataSource={[]}
-        operations={[<span id="test">test</span>]}
+        operations={[
+          <span id="test" key={1}>
+            test
+          </span>,
+        ]}
       />,
     );
     expect(
