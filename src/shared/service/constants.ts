@@ -1,8 +1,7 @@
 // eslint-disable-next-line no-shadow
-enum ENV {
+export enum ENV {
   'production' = '',
   'development' = 'dev',
   'test' = 'test',
   'staging' = 'staging',
 }
-export default ENV;

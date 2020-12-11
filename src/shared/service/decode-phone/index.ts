@@ -1,4 +1,4 @@
-import ENV from '../constants';
+import { ENV } from '../constants';
 import Http from '../$http';
 
 export type supporttingTypes = 'production' | 'development' | 'test' | 'staging' | 'dev';

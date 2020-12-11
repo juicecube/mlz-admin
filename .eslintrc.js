@@ -57,7 +57,7 @@ module.exports = {
   ],
   rules: {
     'no-else-return': 0,
-    'import/prefer-default-export': 1,
+    'import/prefer-default-export': 0,
     'no-nested-ternary': 1,
     'import/no-unresolved': 0,
     'import/extensions': 0,
@@ -86,5 +86,6 @@ module.exports = {
     'arrow-body-style': 0,
     'import/no-cycle': 0,
     'import/no-useless-path-segments': 0,
+    camelcase: 2,
   },
 };

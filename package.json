@@ -24,12 +24,12 @@
     "test": "npm run clean && node ./scripts/genIndex && NODE_ENV=test dumi test",
     "test:coverage": "npm run clean && node ./scripts/genIndex && NODE_ENV=test dumi test --coverage",
     "test:update": "npm run clean && node ./scripts/genIndex && jest --clearCache && NODE_ENV=test dumi test --cache=false -u --coverage",
-    "check-coverage": "npx istanbul check-coverage --statement 85 --branch -80",
+    "check-coverage": "npx istanbul check-coverage --statement 85 --branch -75",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "version": "AUTO=1 node ./scripts/versioning",
     "changelog": "node ./scripts/changelog",
     "clean": "rm -rf es lib dist .tsc-check coverage src/index.tsx",
-    "relaunch": "npm run clean && rm -rf node_modules package-lock.json yarn.lock src/.umi && yarn install",
+    "relaunch": "npm run clean && rm -rf node_modules package-lock.json yarn.lock src/.umi && npm install",
     "rapper": "rapper --type normal --rapperPath \"/rapper\" --apiUrl \"http://rap2api.taobao.org/repository/get?id=252468&token=KBZdG9oC-vKXr8_cyJuF0IGs40ag5EQ9\" --rapUrl \"http://rap2.taobao.org\""
   },
   "module": "es/index.js",
@@ -72,8 +72,8 @@
     "@types/enzyme": "^3.10.5",
     "@types/jest": "^26.0.13",
     "@types/lodash-es": "^4.17.3",
-    "@typescript-eslint/eslint-plugin": "latest",
-    "@typescript-eslint/parser": "latest",
+    "@typescript-eslint/eslint-plugin": "^4.6.0",
+    "@typescript-eslint/parser": "^4.6.0",
     "@umijs/preset-react": "^1.6.4",
     "@umijs/test": "^3.2.19",
     "bundlesize": "^0.18.0",
@@ -81,7 +81,7 @@
     "dumi": "^1.0.6",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.4",
-    "eslint": "latest",
+    "eslint": "^7.15.0",
     "eslint-config-airbnb": "latest",
     "eslint-config-prettier": "latest",
     "eslint-plugin-babel": "latest",
@@ -106,7 +106,7 @@
     "react": "^16.9.0",
     "react-copy-to-clipboard": "^5.0.2",
     "rollup-plugin-typescript2": "^0.27.1",
-    "simple-git": "^2.21.0",
+    "simple-git": "^2.27.0",
     "stylelint": "^13.7.0",
     "stylelint-config-prettier": "^8.0.1",
     "stylelint-config-rational-order": "^0.1.2",
@@ -126,5 +126,9 @@
   "homepage": "https://mlz-admin.com",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
+  },
+  "resolutions": {
+    "**/@typescript-eslint/eslint-plugin": "^4.6.0",
+    "**/@typescript-eslint/parser": "^4.6.0"
   }
 }
