@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['airbnb', 'prettier', 'prettier/react'],
+  extends: ['airbnb', 'prettier', 'prettier/react', 'plugin:jest/recommended', 'plugin:import/typescript'],
   env: {
     browser: true,
     node: true,
@@ -12,7 +12,7 @@ module.exports = {
     },
   },
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'react', 'react-hooks', 'prettier'],
+  plugins: ['babel', 'react', 'jest', '@typescript-eslint', 'react-hooks', 'prettier'],
   overrides: [
     {
       files: ['*.tsx', '*.jsx'],
@@ -29,13 +29,29 @@ module.exports = {
         'react/require-default-props': 0,
         'no-use-before-define': 0,
         'dot-notation': 1,
+        '@typescript-eslint/no-unused-vars': 0,
       },
     },
     {
-      files: ['*.ts'],
+      files: ['*.md'],
+      globals: {
+        React: true,
+        ReactDOM: true,
+        mountNode: true,
+      },
       rules: {
-        // 将mlz-admin/src/shared/utils/index.ts 13:5方法移出后可以重新开启验证
-        'no-restricted-syntax': 1,
+        indent: 0,
+        'no-console': 0,
+        'no-plusplus': 0,
+        'eol-last': 0,
+        'no-script-url': 0,
+        'prefer-rest-params': 0,
+        'react/no-access-state-in-setstate': 0,
+        'react/destructuring-assignment': 0,
+        'react/no-multi-comp': 0,
+        'jsx-a11y/href-no-hash': 0,
+        'import/no-extraneous-dependencies': 0,
+        'jsx-a11y/control-has-associated-label': 0,
       },
     },
   ],
@@ -67,7 +83,8 @@ module.exports = {
     'no-restricted-globals': 2,
     'no-return-assign': 0,
     'no-plusplus': 0,
-    camelcase: 2,
     'arrow-body-style': 0,
+    'import/no-cycle': 0,
+    'import/no-useless-path-segments': 0,
   },
 };

@@ -6,8 +6,6 @@
 
 **/_vendor/**/*
 
-**/*/*.test.*
 /tests/
 
-**/*.md
 **/*.demo.*

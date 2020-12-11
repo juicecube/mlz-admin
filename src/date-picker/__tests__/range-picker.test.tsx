@@ -36,6 +36,6 @@ describe('🧪 RangePicker', () => {
     selectCell(wrapper, '5');
     closePicker(wrapper, 1);
     const { value } = wrapper.state() as any;
-    value && expect(typeof value[0] === 'number' && typeof value[1] === 'number').toBe(true);
+    expect(typeof value[0] === 'number' && typeof value[1] === 'number').toBe(true);
   });
 });

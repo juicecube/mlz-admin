@@ -214,7 +214,7 @@ describe('🧪 CommonTable', () => {
   ];
 
   tests.forEach(($test, $index) => {
-    test($test.desc, () => {
+    test($test.desc + ``, () => {
       const wrapper = mount(<CommonTable columns={columnsOnturns[$index]} dataSource={dataOnturns} rowKey="name" />);
       const theCell = wrapper
         .find('tbody')

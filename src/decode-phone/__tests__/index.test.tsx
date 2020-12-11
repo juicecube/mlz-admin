@@ -19,10 +19,8 @@ describe('🧪 DecodePhone', () => {
   let wrapper;
   let target;
   let onReadyHandler;
-  let onErrorHandler;
   beforeEach(() => {
     onReadyHandler = jest.fn();
-    onErrorHandler = jest.fn();
     wrapper = mount(
       <DecodePhone params={params}>
         <span id="phone">{testee}</span>
@@ -31,12 +29,8 @@ describe('🧪 DecodePhone', () => {
     target = wrapper.find('#phone').at(0);
   });
 
-  afterEach(() => {
-    expect(onErrorHandler).not.toHaveBeenCalled();
-  });
-
   it('点击时发送解码请求', async () => {
-    wrapper.setProps({ onReady: onReadyHandler, onError: onErrorHandler });
+    wrapper.setProps({ onReady: onReadyHandler });
     await act(async () => {
       target.simulate('click');
     });
@@ -46,7 +40,7 @@ describe('🧪 DecodePhone', () => {
   });
 
   it('点击更多的时候，不会再发送多余请求', async () => {
-    wrapper.setProps({ onReady: onReadyHandler, onError: onErrorHandler });
+    wrapper.setProps({ onReady: onReadyHandler });
     await act(async () => {
       target.simulate('click');
     });
