@@ -1,4 +1,3 @@
-const React = require('react');
 const Enzyme = require('enzyme');
 const Adapter = require('enzyme-adapter-react-16');
 
@@ -8,10 +7,13 @@ global.console.warn = (message) => {
 global.console.error = (message) => {
   throw message;
 };
+global.console.table = global.console.log = (info) => {
+  return info;
+};
 
 /**
  * https://jestjs.io/docs/en/manual-mocks#mocking-methods-which-are-not-implemented-in-jsdom
- * @desc 现在如果需要渲染js原生dom，则需要添加如下代码：
+ * 现在如果需要渲染js原生dom，要添加如下代码：
  */
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
@@ -24,6 +26,7 @@ Object.defineProperty(window, 'matchMedia', {
     addEventListener: jest.fn(),
     removeEventListener: jest.fn(),
     dispatchEvent: jest.fn(),
+    requestIdleCallback: jest.fn(),
   })),
 });
 

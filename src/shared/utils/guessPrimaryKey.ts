@@ -1,6 +1,6 @@
 import { getDataType } from 'mytils';
 
-const __DEV__ = (window as any).__DEV__ !== 'false';
+const __DEV__ = window.__DEV__ !== 'production';
 
 const guessPrimaryKey = ($columns: any[]): string | undefined => {
   if (!$columns) {
