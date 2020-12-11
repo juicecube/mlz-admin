@@ -27,6 +27,7 @@ const decodePhoneService = async ($encodedPhone, $url = isProduction ? DECODE_HO
           url: MOCK_URL,
         },
   );
+  /* eslint-disable camelcase */
   return isProduction ? res : JSON.parse(res as string)?.phone_number;
 };
 export default decodePhoneService;
