@@ -86,6 +86,6 @@ module.exports = {
     'arrow-body-style': 0,
     'import/no-cycle': 0,
     'import/no-useless-path-segments': 0,
-    camelcase: 2,
+    camelcase: 1,
   },
 };
