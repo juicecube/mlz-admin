@@ -3,6 +3,11 @@
 /es/
 /lib/
 /build/
+
 **/_vendor/**/*
+
+**/*/*.test.*
 /tests/
+
 **/*.md
+**/*.demo.*

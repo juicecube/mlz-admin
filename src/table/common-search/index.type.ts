@@ -1,4 +1,4 @@
-import { TableProps } from 'antd/lib/table';
+import React from 'react';
 import { IColumnTypes } from '../common-table/index.type';
 import { KeepAliveProps } from '../../shared/keep-alive/keep-alive.type';
 

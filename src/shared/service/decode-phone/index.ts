@@ -1,11 +1,11 @@
-import { Eenv } from '../constants';
+import ENV from '../constants';
 import Http from '../$http';
 
 export type supporttingTypes = 'production' | 'development' | 'test' | 'staging' | 'dev';
 
 const { NODE_ENV } = process.env;
 
-let prefix = Eenv[NODE_ENV as supporttingTypes];
+let prefix = ENV[NODE_ENV as supporttingTypes];
 prefix = prefix ? `${prefix}-` : '';
 
 export const DECODE_HOST = `https://${prefix}open-service.codemao.cn`;

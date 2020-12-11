@@ -15,7 +15,7 @@ module.exports = {
   plugins: ['@typescript-eslint', 'react', 'react-hooks', 'prettier'],
   overrides: [
     {
-      files: ['*.tsx'],
+      files: ['*.tsx', '*.jsx'],
       rules: {
         'react/jsx-filename-extension': 0,
         'react/prop-types': 0,
@@ -26,6 +26,9 @@ module.exports = {
         'react/sort-comp': 0,
         'react/no-array-index-key': 1,
         'spaced-comment': 0,
+        'react/require-default-props': 0,
+        'no-use-before-define': 0,
+        'dot-notation': 1,
       },
     },
     {
@@ -38,7 +41,7 @@ module.exports = {
   ],
   rules: {
     'no-else-return': 0,
-    'import/prefer-default-export': 0,
+    'import/prefer-default-export': 1,
     'no-nested-ternary': 1,
     'import/no-unresolved': 0,
     'import/extensions': 0,
@@ -56,7 +59,7 @@ module.exports = {
     'react/display-name': 0,
     'no-param-reassign': 0,
     'no-unused-vars': 0,
-    'no-console': 1,
+    'no-console': 2,
     'jsx-a11y/anchor-is-valid': 1,
     'react/jsx-props-no-spreading': 0,
     'consistent-return': 1,
@@ -64,6 +67,6 @@ module.exports = {
     'no-restricted-globals': 1,
     'no-return-assign': 0,
     'no-plusplus': 0,
-    camelcase: 1,
+    camelcase: 2,
   },
 };
