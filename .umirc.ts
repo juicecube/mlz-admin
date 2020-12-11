@@ -11,33 +11,33 @@ const getMds = ($relativedFromDoc) => {
   return files;
 };
 
-const { SENTRY_DSN, VERCEL_ENV } = process.env;
-const productionConf =
-  VERCEL_ENV === 'production'
-    ? {
-        externals: {
-          '@sentry/browser': 'window.sentry',
-          '@sentry/tracing': 'window.sentryTracing',
-        },
-        scripts: ['https://unpkg.com/browse/react@16.12.0/umd/react.production.min.js'],
-        headScripts: [
-          {
-            content: `window.process.env = ${process.env}`,
-            charset: 'utf-8',
-          },
-          {
-            content: `sentry.init({
-  dsn: ${SENTRY_DSN},
-  integrations: [
-    new sentryTracing.BrowserTracing(),
-  ],
-  tracesSampleRate: 1.0,
-})`,
-            charset: 'utf-8',
-          },
-        ],
-      }
-    : {};
+// const { SENTRY_DSN, VERCEL_ENV } = process.env;
+// const productionConf =
+//   VERCEL_ENV === 'production'
+//     ? {
+//         externals: {
+//           '@sentry/browser': 'window.sentry',
+//           '@sentry/tracing': 'window.sentryTracing',
+//         },
+//         scripts: ['https://unpkg.com/browse/react@16.12.0/umd/react.production.min.js'],
+//         headScripts: [
+//           {
+//             content: `window.process.env = ${process.env}`,
+//             charset: 'utf-8',
+//           },
+//           {
+//             content: `sentry.init({
+//   dsn: ${SENTRY_DSN},
+//   integrations: [
+//     new sentryTracing.BrowserTracing(),
+//   ],
+//   tracesSampleRate: 1.0,
+// })`,
+//             charset: 'utf-8',
+//           },
+//         ],
+//       }
+//     : {};
 
 export default defineConfig({
   hash: true,
@@ -101,8 +101,8 @@ export default defineConfig({
     },
     {
       name: 'description',
-      content: '一套编程猫设计规范下的管理系统React组件库，基于Antd',
+      content: '一套遵循编程猫组件使用规范的管理系统React组件库，基于Antd',
     },
   ],
-  ...productionConf,
+  // ...productionConf,
 });

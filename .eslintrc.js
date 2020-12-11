@@ -64,9 +64,10 @@ module.exports = {
     'react/jsx-props-no-spreading': 0,
     'consistent-return': 1,
     'no-throw-literal': 1,
-    'no-restricted-globals': 1,
+    'no-restricted-globals': 2,
     'no-return-assign': 0,
     'no-plusplus': 0,
     camelcase: 2,
+    'arrow-body-style': 0,
   },
 };

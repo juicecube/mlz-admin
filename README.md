@@ -1,5 +1,5 @@
 <p align="center">
-@mlz/admin，遵循编程猫后台管理系统设计规范的 React 组件库。
+@mlz/admin，一套遵循编程猫组件使用规范的管理系统React组件库。
 </p>
 <p align="center" style="font-size: 32px">
 🌈 https://mlz-admin.com
@@ -28,15 +28,9 @@ import { Button } from '@mlz/admin';
 const App = () => <Button type="primary">❤️❤️❤️</Button>;
 ```
 
-## 💻 开发
+## 文档
 
-```js
-$ npm install
-
-$ npm start
-```
-
-默认启动段口为：`8000`。使用浏览器查看http://localhost:8000/
+[📖 @mlz/admin](https://www.mlz-admin.com/)
 
 ## 贡献指南
 
