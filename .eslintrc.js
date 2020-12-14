@@ -1,6 +1,6 @@
 const isProduction = process.env.NODE_NEV === 'production';
 module.exports = {
-  extends: ['airbnb', 'prettier', 'prettier/react', 'plugin:jest/recommended', 'plugin:import/typescript'],
+  extends: ['airbnb', 'prettier', 'prettier/react', 'plugin:jest/recommended'],
   env: {
     browser: true,
     node: true,

@@ -15,17 +15,16 @@
     "dist:es": "npx ttsc --project ./tsconfig.dist.json -d -m esnext --outDir es --sourceMap false --inlineSources false",
     "dist:cjs": "npx ttsc --project ./tsconfig.dist.json -d -m commonjs --outDir lib --sourceMap false --inlineSources false",
     "serve": "node ./scripts/serve",
-    "lint": "node ./scripts/genIndex && npm run lint:ts && npm run lint:es",
-    "lint:fix": "npm run lint:ts && npm run lint:es --fix",
-    "lint:esFix": "npx eslint --ext tsx,jsx,ts src docs/demo --fix",
-    "lint:es": "npx eslint --ext tsx,jsx,ts src docs/demo",
+    "lint": "node ./scripts/genIndex && npm run lint:ts && npm run lint:es && npm run lint:style",
+    "lint:es": "npx eslint --ext tsx,js,ts src docs",
+    "lint:style": "npx stylelint 'src/**/*.less' --syntax less",
     "lint:ts": "tsc --project ./tsconfig.lint.json",
-    "lint:style": "stylelint 'src/**/*.less' --syntax less",
+    "lint:fix": "npm run lint:ts && npm run lint:es --fix",
     "test": "npm run clean && node ./scripts/genIndex && NODE_ENV=test dumi test",
     "test:coverage": "npm run clean && node ./scripts/genIndex && NODE_ENV=test dumi test --coverage",
     "test:update": "npm run clean && node ./scripts/genIndex && jest --clearCache && NODE_ENV=test dumi test --cache=false -u --coverage",
-    "check-coverage": "npx istanbul check-coverage --statement 85 --branch -77",
-    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
+    "check-coverage": "npx istanbul check-coverage --statement 85 --branch -75",
+    "prettier": "prettier --write '**/*.{js,tsx,ts,less,md,json}'",
     "version": "AUTO=1 node ./scripts/versioning",
     "changelog": "node ./scripts/changelog",
     "clean": "rm -rf es lib dist .tsc-check coverage src/index.tsx",
@@ -45,7 +44,7 @@
     "pre-commit": "npx lint-staged && npx pretty-quick --staged"
   },
   "lint-staged": {
-    "*.{js,jsx,less,md,json}": [
+    "*.{js,less,md,json}": [
       "prettier --write"
     ],
     "*.ts?(x)": [
@@ -85,7 +84,6 @@
     "eslint-config-airbnb": "latest",
     "eslint-config-prettier": "latest",
     "eslint-plugin-babel": "latest",
-    "eslint-plugin-import": "latest",
     "eslint-plugin-jest": "latest",
     "eslint-plugin-jsx-a11y": "latest",
     "eslint-plugin-markdown": "latest",
