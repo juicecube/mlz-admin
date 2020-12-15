@@ -117,7 +117,7 @@ $ npm link @mlz/admin
 ```jsx
 import { Button } from '@mlz/admin'; // cjs引用
 //or
-import Button from '@mlz/admin/es/Button/Button'; // esm按需引用
+import Button from '@mlz/admin/es/button'; // esm按需引用
 ```
 
 之后你直接修改@mlz/admin 中的代码，并且重新执行 dist（不建议直接引用 src），在 projA 刷新就可以实时看到变化。
@@ -146,5 +146,5 @@ $ npm install ./mlz-admin-0.0.9.tgz
 ```jsx
 import { Button } from '@mlz/admin'; // cjs引用
 //or
-import Button from '@mlz/admin/es/Button/Button'; // esm按需引用
+import Button from '@mlz/admin/es/button'; // esm按需引用
 ```

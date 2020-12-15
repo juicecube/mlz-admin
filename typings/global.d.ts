@@ -1,5 +1,4 @@
-type SupportingEnv = 'development' | 'production' | 'test';
-
+type SupportingEnv = 'development' | 'production' | 'test' | 'staging' | 'preview' | 'deploying';
 declare interface Window extends global.Window {
   IconScripts: URL['href'][];
   __DEV__: SupportingEnv | undefined;

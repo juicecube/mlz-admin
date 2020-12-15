@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { TooltipProps, RenderFunction } from 'antd/lib/tooltip';
-import { Tooltip, message } from 'antd';
+import { Tooltip } from 'antd';
 import { decodePhone } from '../shared/service';
 
 interface DecodePhoneProps extends Omit<TooltipProps, 'title'> {
@@ -15,14 +15,19 @@ interface DecodePhoneProps extends Omit<TooltipProps, 'title'> {
 }
 
 export const INIT_TITLE = '加载中';
+const isProduction = process.env.NODE_ENV === 'production';
 const DecodePhone = (props: DecodePhoneProps) => {
-  const { children, params, url, onReady, onError, ...rest } = props;
+  const { children, params: encodedTel, url, onReady, onError, ...rest } = props;
   const [title, setTitle] = useState<RenderFunction | React.ReactNode>(INIT_TITLE);
+  console.table([isProduction, process.env.NODE_ENV]);
   const handleRequest = async () => {
     try {
-      const tel = await decodePhone(params, url);
-      setTitle(tel);
-      onReady?.(tel);
+      let decodedTel = {};
+      const res = await decodePhone(encodedTel, url);
+      /* eslint-disable camelcase */
+      decodedTel = isProduction ? res : JSON.parse(res as string)?.phone_number;
+      setTitle(decodedTel);
+      onReady?.(decodedTel);
     } catch (err) {
       onError?.(err);
     }

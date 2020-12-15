@@ -39,7 +39,7 @@ const genExports = () => {
   exportsContents += extraContents.reduce((prev, curr) => {
     return (prev += `${gutter}${curr}`);
   });
-  return `/**  you should NOT DELETE this file and keep it       *\r\n*    stay in your .gitignore cause it was generated      *\r\n*    with necessities automatically      *\r\n**/${gutter}${exportsContents}`;
+  return `/**  you SHOULD NOT delete this file ,  keep it       *\r\n*    stay in your .gitignore cause it was generated      *\r\n*    with necessities automatically❗️      *\r\n**/${gutter}${exportsContents}`;
 };
 
 module.exports = genExports;

@@ -4,4 +4,5 @@ export enum ENV {
   'development' = 'dev',
   'test' = 'test',
   'staging' = 'staging',
+  'deploying' = 'deploying',
 }

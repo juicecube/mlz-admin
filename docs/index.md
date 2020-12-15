@@ -93,7 +93,7 @@ import CommunitalCommitsCalculator from './components/_site/communital-commits-c
 export default () => <CommunitalCommitsCalculator />;
 ```
 
-欢迎贡献代码，但请先参阅：https://github.com/juicecube/mlz-admin/blob/master/CONTRIBUTING.md
+欢迎贡献代码，但请先参阅：[《贡献指南 CONTRIBUTING.md》](https://github.com/juicecube/mlz-admin/blob/master/CONTRIBUTING.md)
 
 也可以加入我们的钉钉群，与我们分享你的想法和建议：
 
