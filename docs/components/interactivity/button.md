@@ -204,6 +204,16 @@ export default App;
 - Button.Group 在 Antd 4.0 之后已经被官方建议移除(参见https://github.com/ant-design/ant-design/issues/21278)，但是实际上该需求被高频使用，所以我们基于原有 api 将他复原了回来。
 - 按照 Antd 官方的「菜单按钮」和「组合按钮」案例，需要 Dropdown、Menu、Button.Group 等各种组件联合使用才能实现。对此两种需求，我们分别添加`menu`和`group`属性，大大简化了实现路径。现在你可以通过下述方法实践：
 
-```
+```js
 <Button menu={oneMenuColumns}/>和<Button group={oneGroupColumns}/>
+```
+
+```tsx
+/**
+ * inline: true
+ */
+import React from 'react';
+import Commiters from '../_site/committers';
+
+export default () => <Commiters />;
 ```

@@ -10,19 +10,9 @@ const Window = window as any;
 const { requestIdleCallback } = Window;
 interface ConfigProviderType extends ConfigProviderProps {
   locale?: Locale;
-  defaultTheme?: boolean;
 }
-let shown = false;
-const ConfigProvider = (props: ConfigProviderType): JSX.Element => {
-  const consoleVersion = () => console.table({ [`@mlz/admin version`]: version });
-  if (!shown) {
-    if (requestIdleCallback) {
-      requestIdleCallback(() => consoleVersion(), { timeout: 3000 });
-    } else {
-      consoleVersion();
-    }
-    shown = true;
-  }
+const ConfigProvider = (props: ConfigProviderType) => {
+  (window as any).__MLZ_ADMIN_VERSION__ = version;
   return <AntdConfigProvider locale={props.locale || zhLocale}>{props.children}</AntdConfigProvider>;
 };
 export default ConfigProvider;

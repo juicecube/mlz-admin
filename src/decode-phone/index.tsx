@@ -6,8 +6,10 @@ import { EncodePhoneModel } from './model';
 
 const INIT_TITLE = '加载中';
 const DecodePhone = (props: DecodePhoneProps) => {
+  const env = process.env.NODE_ENV;
   const { children, params: cipherText, onReady, onError, ...rest } = props;
   const [title, setTitle] = useState<RenderFunction | React.ReactNode>(INIT_TITLE);
+  const [Env] = useState();
   const handleRequest = async () => {
     try {
       const decodePhone = new EncodePhoneModel(cipherText);
