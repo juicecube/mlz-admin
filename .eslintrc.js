@@ -31,7 +31,6 @@ module.exports = {
     {
       files: ['*.ts'],
       rules: {
-        // 将mlz-admin/src/shared/utils/index.ts 13:5方法移出后可以重新开启验证
         'no-restricted-syntax': 1,
       },
     },
@@ -43,6 +42,8 @@ module.exports = {
     'import/no-unresolved': 0,
     'import/extensions': 0,
     'import/no-extraneous-dependencies': 0,
+    'import/no-named-as-default': 0,
+    'import/no-named-as-default-member': 0,
     'no-control-regex': 1,
     'prefer-object-spread': 0,
     'prefer-template': 0,
@@ -58,7 +59,7 @@ module.exports = {
     'react/display-name': 0,
     'no-param-reassign': 0,
     'no-unused-vars': 0,
-    'no-console': process.env.NODE_ENV === 'production' ? 2 : 1,
+    'no-console': 2,
     'jsx-a11y/anchor-is-valid': 1,
     'react/jsx-props-no-spreading': 0,
     'consistent-return': 1,

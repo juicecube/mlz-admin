@@ -8,3 +8,4 @@
 /tests/
 **/*.test.js
 **/*.md
+**/*.demo.*
