@@ -113,7 +113,7 @@ class App extends React.PureComponent {
                 View Contents
               </div>
             </Content>
-            <Footer style={{ textAlign: 'center' }}>后台管理系统设计规范组件库 &copy; 2020</Footer>
+            <Footer style={{ textAlign: 'center', zIndex: 1 }}>后台管理系统设计规范组件库 &copy; 2020</Footer>
           </Layout>
         </Layout>
       </div>

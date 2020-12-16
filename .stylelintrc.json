@@ -20,6 +20,7 @@
     ],
     "no-invalid-double-slash-comments": null,
     "no-descending-specificity": null,
-    "declaration-empty-line-before": null
+    "declaration-empty-line-before": null,
+    "order/properties-order": null
   }
 }

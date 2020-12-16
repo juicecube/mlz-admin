@@ -25,6 +25,7 @@ module.exports = {
         'react/destructuring-assignment': 0,
         'react/sort-comp': 0,
         'spaced-comment': 0,
+        'react/require-default-props': 0,
       },
     },
     {
@@ -51,7 +52,7 @@ module.exports = {
     'import/order': 0,
     'import/first': 1,
     'import/newline-after-import': 0,
-    'no-use-before-define': 2,
+    'no-use-before-define': 0,
     'react/display-name': 0,
     'no-param-reassign': 0,
     'no-unused-vars': 0,
