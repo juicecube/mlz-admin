@@ -6,6 +6,9 @@ module.exports = {
     es6: true,
     jest: true,
   },
+  globals: {
+    MOCK_PROXY_HOST: 'readonly',
+  },
   settings: {
     react: {
       version: '16.9',

@@ -21,13 +21,23 @@ export default {
       tsconfig: 'tsconfig.dist.json',
     }),
   ],
-  extraBabelPlugins: [['import', { libraryName: 'antd', style: true }]],
+  extraBabelPlugins: [
+    ['import', { libraryName: 'antd', style: true }],
+    [
+      'search-and-replace',
+      {
+        rules: [
+          {
+            search: '%THIS_WILL_BE_EMPTY_AFTER_DIST%',
+            replace: process.env.NODE_ENV,
+          },
+          {
+            search: '%MOCK_PROXY_HOST%',
+            replace: process.env.NODE_ENV,
+          },
+        ],
+      },
+    ],
+  ],
   target: 'browser',
-  inject: {
-    'window.__DEV__': false,
-  },
-  replace: {
-    VERSION: JSON.stringify(require('./package').version),
-    __DEV__: process.env.NODE_ENV,
-  },
 };

@@ -11,7 +11,7 @@
  */
 import React from 'react';
 import { Button } from '@mlz/admin';
-import { Space } from 'antd';
+import { Space } from '@mlz/admin';
 
 export default () => (
   <Space size={50}>
@@ -35,7 +35,7 @@ export default () => (
  */
 import React from 'react';
 import { Button } from '@mlz/admin';
-import { Space } from 'antd';
+import { Space } from '@mlz/admin';
 
 export default () => (
   <Space size={50}>
@@ -67,7 +67,7 @@ export default () => (
  */
 import React from 'react';
 import { Button, Icon } from '@mlz/admin';
-import { Space, Divider } from 'antd';
+import { Space, Divider } from '@mlz/admin';
 
 class App extends React.PureComponent {
   state = {
@@ -108,7 +108,7 @@ export default App;
  */
 import React from 'react';
 import { Button, Icon } from '@mlz/admin';
-import { Space, Divider } from 'antd';
+import { Space, Divider } from '@mlz/admin';
 
 const App = () => {
   return (
@@ -146,7 +146,7 @@ export default App;
  */
 import React from 'react';
 import { Icon, Button } from '@mlz/admin';
-import { Divider, Dropdown, message, Space } from 'antd';
+import { Divider, Dropdown, message, Space } from '@mlz/admin';
 
 const group = [
   {

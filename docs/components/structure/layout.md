@@ -52,7 +52,7 @@ export default () => (
  */
 import React from 'react';
 import { Menu, Layout, Button, Icon } from '@mlz/admin';
-import { Divider } from 'antd';
+import { Divider } from '@mlz/admin';
 
 const HeaderContent = () => (
   <div style={{ overflow: 'hidden', padding: '0 16px' }}>
