@@ -24,25 +24,28 @@ const TheAvatar = (props: { item: any; alternatives: string[]; rand: number; sty
     </Avatar>
   );
 };
-export default () => {
+export default (props: { [key: string]: any }) => {
   const [commits, setCommits] = useState<any[]>([]);
   const [loading, toggoleLoading] = useState(true);
   const { docPath, componentPath, antdDocPath } = getPaths();
   useEffect(() => {
     Promise.all([getDocCommits(docPath), getCompCommits(componentPath)])
       .then((res: any[]) => {
-        setCommits(res.map((res_i) => res_i.data.map((commit) => getAuthorFromData(commit))));
+        setCommits(res.map((resI) => resI.data.map((commit) => getAuthorFromData(commit))));
         toggoleLoading(false);
       })
       .catch(() => toggoleLoading(false));
   }, []);
   return (
     <div className="committers-wrapper">
-      <Affix offsetBottom={66}>
-        <Button className="joinus-btn" type="primary" onClick={() => window.open(antdDocPath)} icon={<Icon type="file_search_l" />}>
-          在 Ant Design 中查看
-        </Button>
-      </Affix>
+      {props.refered !== false ? (
+        <Affix offsetBottom={66}>
+          <Button className="joinus-btn" type="primary" onClick={() => window.open(antdDocPath)} icon={<Icon type="file_search_l" />}>
+            在 Ant Design 中查看
+          </Button>
+        </Affix>
+      ) : null}
+
       <Spin spinning={loading}>
         <ul>
           {(() => {
@@ -62,7 +65,7 @@ export default () => {
                           return item ? (
                             <Tooltip title={item.name} placement={index === 0 ? 'top' : 'bottom'} key={item.login}>
                               {item.html_url ? (
-                                <a href={item.html_url} target="_blank">
+                                <a href={item.html_url} target="_blank" rel="noopener noreferrer">
                                   <TheAvatar {...{ rand, alternatives, item }} />
                                 </a>
                               ) : (

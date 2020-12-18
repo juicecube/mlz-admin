@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, Button } from 'antd';
+import { Modal, Button } from '@mlz/admin';
 
 export default () => {
   const [visible, setVisible] = useState(false);

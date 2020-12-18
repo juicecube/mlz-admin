@@ -15,7 +15,7 @@ import { Menu, Layout, Button } from '@mlz/admin';
 const HeaderContent = () => (
   <div style={{ overflow: 'hidden' }}>
     <div style={{ float: 'left', color: 'white' }}>
-      <img src="https://static-platform.codemao.cn/logo" width="26" height="26" />
+      <img src="https://static-platform.codemao.cn/logo" width="26" height="26" alt="codemao-logo" />
       <span style={{ padding: '0 16px' }}>Libra投放平台</span>
     </div>
     <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} style={{ float: 'left' }}>
@@ -37,7 +37,7 @@ export default () => (
         View Contents
       </div>
     </Content>
-    <Footer style={{ textAlign: 'center' }}>后台管理系统设计规范组件库 &copy; 2020</Footer>
+    <Footer style={{ textAlign: 'center' }}>@mlz/admin &copy; 2020</Footer>
   </Layout>
 );
 ```
@@ -81,7 +81,7 @@ class App extends React.PureComponent {
         <Layout>
           <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
             <div style={{ float: 'left', color: 'white', height: 32, margin: '16px 0', textAlign: 'center', width: '100%' }}>
-              <img src="https://static-platform.codemao.cn/logo" width="26" height="26" />
+              <img src="https://static-platform.codemao.cn/logo" width="26" height="26" alt="codemao-logo" />
               {this.state.collapsed ? null : <span style={{ padding: '0 8px' }}>Libra投放平台</span>}
             </div>
             <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
@@ -108,12 +108,12 @@ class App extends React.PureComponent {
               <HeaderContent />
               <Divider />
             </Header>
-            <Content style={{ margin: '0 16px', minHeight: '130%' }}>
-              <div className="site-layout-background" style={{ padding: 24, minHeight: 420 }}>
+            <Content style={{ margin: '16px 16px 0 16px' }}>
+              <div className="site-layout-background" style={{ padding: 24, minHeight: 460 }}>
                 View Contents
               </div>
             </Content>
-            <Footer style={{ textAlign: 'center', zIndex: 1 }}>后台管理系统设计规范组件库 &copy; 2020</Footer>
+            <Footer style={{ textAlign: 'center', zIndex: 1 }}>@mlz/admin &copy; 2020</Footer>
           </Layout>
         </Layout>
       </div>

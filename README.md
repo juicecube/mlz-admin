@@ -14,7 +14,7 @@
 
 基于 antd 开发。经扩展后，分为两种 api：
 
-1. 完全兼容`antd^4.x` 的部分，请参考：https://ant.design/components/overview-cn
+1. 完全兼容`ant-design 4.x` 的部分，请参考：https://ant.design/components/overview-cn
 2. 基于实际后台系统业务做了大量深入优化的部分，请参考：https://mlz-admin.now.sh
 
 # 🌈 使用方法
