@@ -10,9 +10,11 @@
 
 <code src="./../../demo/multi-tab-layout/with-homepage.demo.tsx"/>
 
-## 监听更新
+## 路由响应
 
 <code src="./../../demo/multi-tab-layout/with-observer.demo.tsx"/>
+
+## APIs
 
 ```tsx
 /**

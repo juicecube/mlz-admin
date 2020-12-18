@@ -1,6 +1,6 @@
 /**
- * title: 监听更新
- * desc: 默认监听`window.location.history`。可以通过设置为空来取消监听任何事件。被观察者（被监听者）必须带有`listen`方法作为调用钩子
+ * title: 路由响应
+ * desc: 通过向`observer`属性传入react-router-history、向`routers`属性传入路由配置，即可实现针对react-router路由的自动响应式更新。
  * transform: true
  */
 import React, { useState } from 'react';
@@ -65,7 +65,7 @@ export default () => {
           </Header>
           <Content style={{ margin: '16px 16px 0 16px' }}>
             <div className="site-layout-background" style={{ padding: 24, minHeight: 420, background: 'white' }}>
-              <MultiTabLayoutHelmet dataSource={dataSource} hideAdd />
+              <MultiTabLayoutHelmet dataSource={dataSource} hideAdd responsive />
             </div>
           </Content>
           <Footer style={{ textAlign: 'center', zIndex: 1 }}>@mlz/admin &copy; 2020</Footer>

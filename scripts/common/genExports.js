@@ -22,7 +22,11 @@ const donotCamelizes = ['message', 'notification'];
 const donotCompiles = ['shared', 'style'];
 
 // 额外打包的内容
-const extraContents = [`export { default as createIconFontScript } from './create-icon-font-script'`];
+const extraContents = [
+  `
+  export { default as createIconFontScript } from './create-icon-font-script';\r\n
+`,
+];
 
 const genExports = () => {
   const gutter = '\r\n\r\n';

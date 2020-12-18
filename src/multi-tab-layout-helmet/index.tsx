@@ -1,10 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Tabs, Button, Tooltip } from 'antd';
 import Icon from '../icon';
-import { MultiTabLayoutProps, DataSourceType } from './index.type';
+import { MultiTabLayoutProps, DataSourceType, RouterType } from './index.type';
 import { cloneDeep } from 'lodash-es';
-import Dispatcher from './model';
+import * as H from 'history';
+import { useRouteMatch, useLocation, useHistory } from 'react-router';
+import { createBem } from '../shared/utils';
+import './index.less';
 
+const { TabPane } = Tabs;
+const bem = createBem('multi-tab');
+
+//
 const findTabInfoByTargetKey = ($targetKey, $dataSource, $rowKey = 'key') => {
   let index = 0;
   let tabInfo = {};
@@ -22,11 +29,17 @@ const findTabInfoByTargetKey = ($targetKey, $dataSource, $rowKey = 'key') => {
   };
 };
 
-const { TabPane } = Tabs;
+//
+const transformRouteDataIntoDatasource = (route: RouterType): DataSourceType => {
+  const { path, component } = route;
+  return { component, label: path, key: path + '' };
+};
+
 // 显示辅助功能的tab数量边界
 const gap = 6;
+
 const MultiTabLayoutHelmet = (props: MultiTabLayoutProps) => {
-  const { dispatcher, onChange, indexPage, dataSource, rowKey, ...others } = props;
+  const { onChange, indexPage, dataSource, rowKey, observer, routers, ...others } = props;
 
   const theIndexKey = rowKey || 'key';
   const hasHome = !!indexPage;
@@ -34,16 +47,32 @@ const MultiTabLayoutHelmet = (props: MultiTabLayoutProps) => {
   const [showHome, toggleShowhome] = useState(hasHome);
   const [activeKey, setActiveKey] = useState(hasHome && showHome ? 'admini-home' : dataSource?.[0]?.[theIndexKey]);
 
-  const hasOberserved = !!dispatcher;
-  const realDispatcher =
-    dispatcher && Dispatcher.checkValid(dispatcher)
-      ? dispatcher
-      : {
-          listen: () => false,
-        };
+  const matcher = useRouteMatch({
+    path: window.location.pathname,
+    strict: true,
+    sensitive: true,
+  });
+
+  const routerLocation = useLocation();
+  const history = useHistory();
+
+  observer &&
+    observer.listen((loc: H.Location<unknown>) => {
+      if (matcher?.path) {
+        // 如果是匹配到了route
+        setActiveKey(matcher.path);
+      } else {
+        const routeData = routers.filter((item) => item.path === loc.pathname)[0];
+        setTabs([...tabs, ...[transformRouteDataIntoDatasource(routeData)]]);
+      }
+      // 实际上observer在大部分情况下就是history，但是为了这个功能
+      // 的扩展性，所以再引入useHistory
+      history.push(routerLocation.pathname);
+    });
 
   return (
     <Tabs
+      className={bem('wrapper')}
       activeKey={activeKey}
       type="editable-card"
       tabBarExtraContent={
@@ -96,7 +125,7 @@ const MultiTabLayoutHelmet = (props: MultiTabLayoutProps) => {
       ) : null}
       {tabs?.map((tabInfo: DataSourceType) => {
         return (
-          <TabPane tab={tabInfo.label || '--'} key={tabInfo.key} closable={tabInfo.closable || true}>
+          <TabPane tab={tabInfo.label || '--'} key={tabInfo?.[theIndexKey]} closable={tabInfo.closable || true}>
             {tabInfo.component}
           </TabPane>
         );
@@ -104,4 +133,5 @@ const MultiTabLayoutHelmet = (props: MultiTabLayoutProps) => {
     </Tabs>
   );
 };
+
 export default MultiTabLayoutHelmet;
