@@ -36,7 +36,7 @@ const transformRouteDataIntoDatasource = (route: RouterType): DataSourceType => 
 };
 
 // 显示辅助功能的tab数量边界
-const gap = 6;
+const gap = 8;
 
 const MultiTabLayoutHelmet = (props: MultiTabLayoutProps) => {
   const { onChange, indexPage, dataSource, rowKey, observer, routers, ...others } = props;
