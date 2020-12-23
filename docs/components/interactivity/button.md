@@ -10,8 +10,7 @@
  * desc: 按钮有四种类型：主按钮、次按钮、虚线按钮、危险按钮。主按钮在同一个操作区域最多出现一次。
  */
 import React from 'react';
-import { Button } from '@mlz/admin';
-import { Space } from '@mlz/admin';
+import { Button, Space } from '@mlz/admin';
 
 export default () => (
   <Space size={50}>

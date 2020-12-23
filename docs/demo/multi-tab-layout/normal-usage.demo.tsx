@@ -6,39 +6,15 @@
 import React, { useState } from 'react';
 import { Layout, Menu, Button, MultiTabLayoutHelmet } from '@mlz/admin';
 
-const dataSource = [
-  {
-    component: <div>Tab 1 content</div>,
+const dataSource = new Array(10).fill(1).map((_, index) => {
+  return {
+    component: <div>Tab {index + 1} content</div>,
     closable: false,
-    label: 'Tab 1',
-    key: 'Tab 1',
-  },
-  {
-    component: <div>Tab 2 content</div>,
-    label: 'Tab 2',
-    key: 'Tab 2',
-  },
-  {
-    component: <div>Tab 3 content</div>,
-    label: 'Tab 3',
-    key: 'Tab 3',
-  },
-  {
-    component: <div>Tab 4 content</div>,
-    label: 'Tab 4',
-    key: 'Tab 4',
-  },
-  {
-    component: <div>Tab 5 content</div>,
-    label: 'Tab 5',
-    key: 'Tab 5',
-  },
-  {
-    component: <div>Tab 6 content</div>,
-    label: 'Tab 6',
-    key: 'Tab 6',
-  },
-];
+    label: `Tab ${index + 1}`,
+    key: `Tab ${index + 1}`,
+  };
+});
+
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 export default () => {

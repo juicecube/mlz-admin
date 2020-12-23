@@ -70,5 +70,6 @@ module.exports = {
     'no-restricted-globals': 1,
     'no-return-assign': 0,
     'no-plusplus': 0,
+    'max-classes-per-file': 0,
   },
 };
