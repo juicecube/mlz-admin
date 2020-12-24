@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { Table, Tooltip, Tag, ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
-import KeepAlive, { KAContext } from '../../shared/keep-alive';
 import { formatUnixTime, omitProps, getRatioFromNum } from 'mytils';
 import { formatPrice, guessPrimaryKey, createBem, tableValueValidationJudger } from '../../shared/utils';
 import { IColumnTypes, ITableTypes, recordedType, EnumsType, TagEnumsType, SupporttedColumnTypes } from './index.type';
@@ -78,17 +77,9 @@ const InternalCommonTable = (props: ITableTypes<any>) => {
 const CommonTable = (props: ITableTypes<any>) => {
   return (
     <ConfigProvider locale={zhCN}>
-      {props?.cacheKey ? (
-        <div className={bem('wrapper')}>
-          <KeepAlive name={props.cacheKey} onCacheHitted={props.onCacheHitted}>
-            <InternalCommonTable {...props} />
-          </KeepAlive>
-        </div>
-      ) : (
-        <div className={bem('wrapper')}>
-          <InternalCommonTable {...props} />
-        </div>
-      )}
+      <div className={bem('wrapper')}>
+        <InternalCommonTable {...props} />
+      </div>
     </ConfigProvider>
   );
 };

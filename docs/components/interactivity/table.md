@@ -54,8 +54,8 @@
 | **onReset** | 当搜索项发起重置时触发 | (initialFormValues) => void | (initialFormValues) => void | 后续将移除，请尽量使用空参 onSearch 实现 |
 | **colCount** | 每行展示搜索项的数量 | number | `4` |  |
 | **initialSearchValues** | 初始搜索项 | object | `undefined` |  |
-| **tools** | 位于右侧的工具栏，用于 table 附加操作，比如新增、上传等 | ReactNode[] | [] |  |
-| **operations** | 位于左侧的操作栏，，一般用于对 table 的批量操作、操作提示、归纳等 | ReactNode[] | [] |  |
+| **tools** | 位于右侧的工具栏，用于 table 附加操作，比如新增、上传等 | ReactNode | [] |  |
+| **operations** | 位于左侧的操作栏，，一般用于对 table 的批量操作、操作提示、归纳等 | ReactNode | [] |  |
 | **searchCollapsedThreshold** | 隐藏过多搜索内容后，剩余的搜索项数量 | number | `undefined` | 为 0 或不设置，则不开启过量隐藏功能 |
 
 ### Table.columns.column

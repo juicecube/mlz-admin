@@ -1,13 +1,5 @@
 import React from 'react';
-
-interface AliveCacheType {
-  value: React.ReactElement | any;
-  [key: string]: any;
-}
-interface AliveCacheOptionType {
-  maximum?: number;
-  ttl?: number;
-}
+import { AliveCacheType, AliveCacheOptionType } from './index.type';
 
 const errorGenerator = ($type: 'type error' | 'maximum', $actual: unknown) => {
   switch ($type) {
@@ -21,7 +13,7 @@ const errorGenerator = ($type: 'type error' | 'maximum', $actual: unknown) => {
 };
 
 /**
- * 单条缓存的类
+ * 单条缓存
  */
 export class AliveItem {
   //

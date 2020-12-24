@@ -9,7 +9,6 @@ import { omitProps, purgeData } from 'mytils';
 import locale from 'antd/es/date-picker/locale/zh_CN';
 import Icon from '../../icon';
 import { createBem } from '../../shared/utils';
-import KeepAlive, { KAContext } from '../../shared/keep-alive';
 import './index.less';
 
 const fullWidthStyle = { width: '100%' } as const;
@@ -95,13 +94,6 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
   const shouldMergeSubmitButton = searchings?.length % colCount === 0;
   const hasMoreInteractionArea = tools.length || operations.length;
 
-  const { dispatch, payload } = useContext(KAContext);
-  let keepAliveHandler;
-  if (cacheKey) {
-    keepAliveHandler = (fields) => dispatch(fields);
-    form.setFieldsValue(payload ? omitProps(commonPaginationKeys, payload) : {});
-  }
-
   const [collapsed, toggleCollapsed] = useState(false);
   const collapsedHandler = () => toggleCollapsed(!collapsed);
 
@@ -117,7 +109,6 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
         onClick={(e): void & React.MouseEventHandler<HTMLElement> => {
           form.resetFields();
           const currFieldsValues = form.getFieldsValue();
-          !!keepAliveHandler && keepAliveHandler(currFieldsValues);
           // ⚠️TODO: 建议不要再使用onReset了，后面会去掉。onReset只是一种特殊的onSearch
           props.onReset?.(currFieldsValues);
           props.onSearch?.(currFieldsValues);
@@ -138,7 +129,6 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
       onFinish={(params) => {
         const results = purgeData(params);
         props.onSearch?.(results);
-        !!keepAliveHandler && keepAliveHandler(results);
       }}
       onFinishFailed={props?.onSearchFailed}
       initialValues={props.initialSearchValues}

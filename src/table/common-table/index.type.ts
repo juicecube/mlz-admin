@@ -24,7 +24,7 @@ export interface IColumnTypes<T> extends ColumnProps<T> {
   // 占据的格栅宽度
   searchColSpan?: number;
   // 渲染form块
-  searchRender?: React.ReactNode | React.ReactNode[];
+  searchRender?: React.ReactNode | React.ReactNode;
   // 自定义搜索formName，即搜索条件中的key
   searchKey?: string | symbol;
   // 拓展属性

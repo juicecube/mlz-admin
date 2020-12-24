@@ -16,9 +16,9 @@ export interface ICommonSearch<T> {
   // 搜索表单的默认值
   initialSearchValues?: Record<string, any>;
   // 工具栏，用于table附加操作，比如新增、上传etc,
-  tools?: React.ReactNode[];
+  tools?: React.ReactNode;
   // 左侧操作栏，一般用于对table的批量操作
-  operations?: React.ReactNode[];
+  operations?: React.ReactNode;
   // keep-alive功能缓存的key
   cacheKey?: KeepAliveProps['name'];
   // 当keep-alive对应的key被命中时触发
