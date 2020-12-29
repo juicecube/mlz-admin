@@ -35,14 +35,6 @@
 
 <code src="./../../demo/table/with-operations.demo.tsx"/>
 
-<!-- ## keepAlive 数据缓存
-
-由 Table 组件所在页面向其它路由页面的跳转时，比如"查看详情"。这个交互一旦完成，再返回上一页，之前在 Table 中的搜索和分页参数会被清空。但在特定需求下，我们须要做数据缓存，保证之前的搜索条件继续可用。
-
-> 当然你也可以通过外接 ahooks 的 useAntdTable 的“数据缓存”来完成这个操作或实现更多数据的缓存，这自然要求必须是 function component + hooks。参考： https://ahooks.js.org/zh-CN/hooks/table/use-antd-table#%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98
-
--->
-
 ## APIs
 
 ### Table props

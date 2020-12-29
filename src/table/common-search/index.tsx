@@ -76,7 +76,7 @@ const calcTotalColspan = ($items, perColspan) => $items.reduce((prev, curr) => (
 
 const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
   const [form] = Form.useForm();
-  const { columns = [], tools = [], operations = [], colCount = 4, cacheKey } = props;
+  const { columns = [], tools = [], operations = [], colCount = 4 } = props;
   const searchCollapsedThreshold = Number(props.searchCollapsedThreshold);
   const searchings = columns?.filter((item) => item.searchable || item.searchable === 0).sort((prev, curr) => Number(curr?.['searchable']) - Number(prev?.['searchable']));
   const perColspan = 24 / colCount;
@@ -179,13 +179,5 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
     </Form>
   );
 };
-const CommonSearchForm = (props: ICommonSearch<unknown>) => {
-  return props?.cacheKey ? (
-    <KeepAlive name={props.cacheKey} onCacheHitted={props.onCacheHitted}>
-      <InternalCommonSearch {...props} />
-    </KeepAlive>
-  ) : (
-    <InternalCommonSearch {...props} />
-  );
-};
+const CommonSearchForm = (props: ICommonSearch<unknown>) => <InternalCommonSearch {...props} />;
 export default CommonSearchForm;

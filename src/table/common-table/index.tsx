@@ -50,25 +50,24 @@ export const formatColumns = ($columns: IColumnTypes<unknown>[]) =>
     });
 
 const InternalCommonTable = (props: ITableTypes<any>) => {
-  const { columns = [], rowKey, pagination, cacheKey, ...others } = props;
-  const { dispatch, payload } = useContext(KAContext);
+  const { columns = [], rowKey, pagination, ...others } = props;
   return (
     <Table
       {...others}
       rowKey={rowKey || guessPrimaryKey(columns) || 'id'}
       columns={formatColumns(columns)}
-      pagination={payload?.pagination || pagination || false}
+      pagination={pagination || false}
       onChange={(png, ...rests) => {
         const pageResults = omitProps(['showSizeChanger', 'showQuickJumper'], png);
         props.onChange?.(pageResults, ...rests);
         // TODO: keep-alive现在只支持table组件，按理说keep-alive应该
         // 是一个组件，可以包裹任何可受控组件，并且通过triggerEvent的事件
         // 触发更新缓存。
-        if (cacheKey) {
-          const [filters, sorter] = rests;
-          //
-          dispatch({ pagination: pageResults, filters, sorter });
-        }
+        // if (cacheKey) {
+        //   const [filters, sorter] = rests;
+        //
+        // dispatch({ pagination: pageResults, filters, sorter });
+        // }
       }}
     />
   );

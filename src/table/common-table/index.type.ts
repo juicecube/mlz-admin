@@ -2,7 +2,6 @@ import { ColumnProps, TableProps } from 'antd/lib/table';
 import { PresetColorType, PresetStatusColorType } from 'antd/lib/_util/colors';
 import { LiteralUnion } from 'antd/lib/_util/type';
 import { typeValueRefers } from '.';
-import { KeepAliveProps } from '../../shared/keep-alive/keep-alive.type';
 import { typeFormItemRefers } from '../common-search';
 import { ICommonSearch } from '../common-search/index.type';
 

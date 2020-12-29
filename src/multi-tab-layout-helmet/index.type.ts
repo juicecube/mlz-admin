@@ -19,7 +19,7 @@ export interface DataSourceType {
   closable?: boolean;
   // 是否开启keepAlive功能，以优化性能
   // remark: 1. MultiTabLayoutProps.keepAlive的权重比较高
-  keepAlive?: boolean;
+  // keepAlive?: boolean;
 }
 export interface MultiTabLayoutProps extends Omit<TabsProps, 'type'> {
   // 推送到组件内，为Tab标签提供渲染的数据
@@ -35,5 +35,5 @@ export interface MultiTabLayoutProps extends Omit<TabsProps, 'type'> {
   // 主页组件
   indexPage?: React.ReactNode;
   // 是否开启keepAlive功能，以优化性能
-  keepAlive?: boolean;
+  // keepAlive?: boolean;
 }
