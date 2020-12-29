@@ -8,6 +8,7 @@
 /**
  * title: 顶部导航布局
  * desc: 最基本的『上-中-下』布局。网站路由由位于顶部的导航进行主控，没有侧边导航栏。
+ * compact: true
  */
 import React from 'react';
 import { Menu, Layout, Button } from '@mlz/admin';
@@ -49,6 +50,7 @@ export default () => (
  * title: 侧边导航布局
  * desc: 侧边两列式布局，在页面布局上采用的是『左-右』的结构。页面横向空间有限时，侧边导航可收起。
  * transform: true
+ * compact: true
  */
 import React from 'react';
 import { Menu, Layout, Button, Icon } from '@mlz/admin';
@@ -128,8 +130,10 @@ export default App;
 - Layout：布局容器，其下可嵌套 Header Sider Content Footer 或 Layout 本身，可以放在任何父容器中。
 - Header：顶部布局，自带默认样式，其下可嵌套任何元素，只能放在 Layout 中。
 - Sider：侧边栏，自带默认样式及基本功能，其下可嵌套任何元素，只能放在 Layout 中。
-- Content：内容部分，自带默认样式，其下可嵌套任何元素，只能放在 Layout 中。内置了 ErrorBoundary，默认开启。
+- Content：内容部分，自带默认样式，其下可嵌套任何元素，只能放在 Layout 中。`内置了 ErrorBoundary，默认开启`；可以通过 Layout.errorBoundary 设置为 false 来关闭。
 - Footer：底部布局，自带默认样式，其下可嵌套任何元素，只能放在 Layout 中。
+
+## APIs
 
 ```tsx
 /**

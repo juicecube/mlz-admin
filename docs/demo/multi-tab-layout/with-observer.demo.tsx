@@ -1,7 +1,6 @@
 /**
  * title: 路由响应
- * desc: 通过向`observer`属性传入react-router-history、向`routers`属性传入路由配置，即可实现针对react-router路由的自动响应式更新。
- * transform: true
+ * desc: 通过向`observer`属性传入react-router-history、向`routers`属性传入路由配置，即可实现针对react-router路由的自动响应式更新
  */
 import React, { useState } from 'react';
 import { Layout, Menu, Button, MultiTabLayoutHelmet } from '@mlz/admin';

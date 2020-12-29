@@ -1,7 +1,6 @@
 /**
  * title: 带"首页"标签
- * desc: "首页"标签是默认展示项。在没有任何标签页的情况不允许关闭。
- * transform: true
+ * desc: "首页"标签是默认展示项。在没有任何标签页的情况不允许关闭
  */
 import React, { useState } from 'react';
 import { Layout, Menu, Icon, Button, MultiTabLayoutHelmet } from '@mlz/admin';
