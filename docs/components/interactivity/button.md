@@ -10,8 +10,7 @@
  * desc: 按钮有四种类型：主按钮、次按钮、虚线按钮、危险按钮。主按钮在同一个操作区域最多出现一次。
  */
 import React from 'react';
-import { Button } from '@mlz/admin';
-import { Space } from 'antd';
+import { Button, Space } from '@mlz/admin';
 
 export default () => (
   <Space size={50}>
@@ -34,8 +33,7 @@ export default () => (
  * desc: 添加 disabled 属性即可让按钮处于不可用状态，同时按钮样式也会改变。
  */
 import React from 'react';
-import { Button } from '@mlz/admin';
-import { Space } from 'antd';
+import { Button, Space } from '@mlz/admin';
 
 export default () => (
   <Space size={50}>
@@ -66,8 +64,7 @@ export default () => (
  * desc: 添加 loading 属性即可让按钮处于加载状态。
  */
 import React from 'react';
-import { Button, Icon } from '@mlz/admin';
-import { Space, Divider } from 'antd';
+import { Button, Icon, Space, Divider } from '@mlz/admin';
 
 class App extends React.PureComponent {
   state = {
@@ -107,8 +104,7 @@ export default App;
  * desc: 当需要在 Button 内嵌入 Icon 时，可以设置 icon 属性，或者直接在 Button 内使用 Icon 组件。如果想控制 Icon 具体的位置，只能直接使用 Icon 组件，而非 icon 属性。
  */
 import React from 'react';
-import { Button, Icon } from '@mlz/admin';
-import { Space, Divider } from 'antd';
+import { Button, Icon, Space, Divider } from '@mlz/admin';
 
 const App = () => {
   return (
@@ -145,8 +141,7 @@ export default App;
  * desc: 可以将多个 Button 放入 Button.Group 的容器中。通过设置 size 为 large small 分别把按钮组合设为大、小尺寸。若不设置 size，则尺寸为中。🚗可以通过两种方式使用`组合按钮`功能，一种是使用Button.Group，另一种是为Button组件传入group属性。
  */
 import React from 'react';
-import { Icon, Button } from '@mlz/admin';
-import { Divider, Dropdown, message, Space } from 'antd';
+import { Icon, Button, Divider, Dropdown, message, Space } from '@mlz/admin';
 
 const group = [
   {
