@@ -1,6 +1,5 @@
 import React from 'react';
 import { IColumnTypes } from '../common-table/index.type';
-import { KeepAliveProps } from '../../shared/keep-alive/keep-alive.type';
 
 export interface ICommonSearch<T> {
   // 搜索表单的配置数据
@@ -19,10 +18,6 @@ export interface ICommonSearch<T> {
   tools?: React.ReactNode[];
   // 左侧操作栏，一般用于对table的批量操作
   operations?: React.ReactNode[];
-  // keep-alive功能缓存的key
-  cacheKey?: KeepAliveProps['name'];
-  // 当keep-alive对应的key被命中时触发
-  onCacheHitted?: KeepAliveProps['onCacheHitted'];
   // 隐藏过多搜索内容后，剩余的搜索item数量
   searchCollapsedThreshold?: number;
 }

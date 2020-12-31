@@ -7,5 +7,4 @@
 **/_vendor/**/*
 
 /tests/
-
-**/*.demo.*
+**/*.test.js

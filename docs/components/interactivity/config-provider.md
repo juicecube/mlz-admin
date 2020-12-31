@@ -7,3 +7,13 @@
 ### 基本使用
 
 <code src="./../../demo/config-provider/normal-usage.demo.tsx" />
+
+```tsx
+/**
+ * inline: true
+ */
+import React from 'react';
+import Commiters from '../_site/committers';
+
+export default () => <Commiters />;
+```

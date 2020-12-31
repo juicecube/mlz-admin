@@ -11,7 +11,7 @@ export default () => {
     },
     onChange(info) {
       if (info.file.status !== 'uploading') {
-        console.log(info.file, info.fileList);
+        message.success(`${info.file.name}`);
       }
       if (info.file.status === 'done') {
         message.success(`${info.file.name} file uploaded successfully`);

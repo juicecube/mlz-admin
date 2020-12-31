@@ -21,7 +21,10 @@ const ColorPalette = (props: { title?: string; colorList: IPaletteList[] }) => (
     <div className="color-container">
       {props.colorList.map((color) => {
         return (
-          <CopyToClipboard text={color.code[0].startsWith('#') ? color.code : `rgba(${color.originRGB}, 0.2)`} onCopy={() => message.success(`复制成功`)}>
+          <CopyToClipboard
+            text={color.code[0].startsWith('#') ? color.code : `rgba(${color.originRGB}, 0.2)`}
+            onCopy={() => message.success(`复制成功`)}
+            key={`${color.name}${color.code}${color.functionalName}`}>
             <div
               className={`color ${color.fontColorRevert && 'colorRevert'}`}
               style={{ backgroundColor: color.code[0] === '#' ? color.code : `rgba(${color.originRGB}, ${Number(color.code.split('%')[0]) / 100})`, paddingTop: color.isPrimary ? 64 : 16 }}>

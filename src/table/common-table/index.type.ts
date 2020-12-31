@@ -3,7 +3,6 @@ import { ColumnProps, TableProps } from 'antd/lib/table';
 import { PresetColorType, PresetStatusColorType } from 'antd/lib/_util/colors';
 import { LiteralUnion } from 'antd/lib/_util/type';
 import { typeValueRefers } from '.';
-import { KeepAliveProps } from '../../shared/keep-alive/keep-alive.type';
 import { typeFormItemRefers } from '../common-search';
 import { ICommonSearch } from '../common-search/index.type';
 
@@ -30,7 +29,7 @@ export interface IColumnTypes<T> extends ColumnProps<T> {
   // 占据的格栅宽度
   searchColSpan?: number;
   // 渲染form块
-  searchRender?: React.ReactNode | React.ReactNode[];
+  searchRender?: React.ReactNode | React.ReactNode;
   // 自定义搜索formName，即搜索条件中的key
   searchKey?: string | symbol;
   // 拓展属性

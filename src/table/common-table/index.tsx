@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { Table, Tooltip, Tag, ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
-import KeepAlive, { KAContext } from '../../shared/keep-alive';
 import { formatUnixTime, omitProps, getRatioFromNum } from 'mytils';
 import { formatPrice, guessPrimaryKey, createBem, tableValueValidationJudger } from '../../shared/utils';
 import { IColumnTypes, ITableTypes, recordedType, EnumsType, TagEnumsType, SupporttedColumnTypes } from './index.type';
@@ -51,25 +50,24 @@ export const formatColumns = ($columns: IColumnTypes<unknown>[]) =>
     });
 
 const InternalCommonTable = (props: ITableTypes<any>) => {
-  const { columns = [], rowKey, pagination, cacheKey, ...others } = props;
-  const { dispatch, payload } = useContext(KAContext);
+  const { columns = [], rowKey, pagination, ...others } = props;
   return (
     <Table
       {...others}
       rowKey={rowKey || guessPrimaryKey(columns) || 'id'}
       columns={formatColumns(columns)}
-      pagination={payload?.pagination || pagination || false}
+      pagination={pagination || false}
       onChange={(png, ...rests) => {
         const pageResults = omitProps(['showSizeChanger', 'showQuickJumper'], png);
         props.onChange?.(pageResults, ...rests);
         // TODO: keep-alive现在只支持table组件，按理说keep-alive应该
         // 是一个组件，可以包裹任何可受控组件，并且通过triggerEvent的事件
         // 触发更新缓存。
-        if (cacheKey) {
-          const [filters, sorter] = rests;
-          //
-          dispatch({ pagination: pageResults, filters, sorter });
-        }
+        // if (cacheKey) {
+        //   const [filters, sorter] = rests;
+        //
+        // dispatch({ pagination: pageResults, filters, sorter });
+        // }
       }}
     />
   );
@@ -78,17 +76,9 @@ const InternalCommonTable = (props: ITableTypes<any>) => {
 const CommonTable = (props: ITableTypes<any>) => {
   return (
     <ConfigProvider locale={zhCN}>
-      {props?.cacheKey ? (
-        <div className={bem('wrapper')}>
-          <KeepAlive name={props.cacheKey} onCacheHitted={props.onCacheHitted}>
-            <InternalCommonTable {...props} />
-          </KeepAlive>
-        </div>
-      ) : (
-        <div className={bem('wrapper')}>
-          <InternalCommonTable {...props} />
-        </div>
-      )}
+      <div className={bem('wrapper')}>
+        <InternalCommonTable {...props} />
+      </div>
     </ConfigProvider>
   );
 };

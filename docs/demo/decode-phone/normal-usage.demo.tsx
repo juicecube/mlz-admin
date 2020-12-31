@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DecodePhone from '../../../src/decode-phone';
 
-export default () => {
+const Index = () => {
   return (
     <>
       <DecodePhone params="jZgOvsexafxJUlU3WHaMfA==">
@@ -10,3 +10,5 @@ export default () => {
     </>
   );
 };
+
+export default Index;

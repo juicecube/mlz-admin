@@ -1,11 +1,7 @@
 import React from 'react';
-import { Select, Space } from 'antd';
-import { SelectRange } from '@mlz/admin';
+import { SelectRange, message, Select, Space } from '@mlz/admin';
 
 export default () => {
-  const onChange = ([begin, end]) => {
-    console.log([begin, end]);
-  };
   // 下拉项数据
   const courseRangeOptions = [
     {
@@ -24,7 +20,7 @@ export default () => {
   const currentValue = [2, 2];
   return (
     <Space direction="vertical">
-      <SelectRange selectOptions={courseRangeOptions} currentValue={currentValue} onChange={onChange} />
+      <SelectRange selectOptions={courseRangeOptions} currentValue={currentValue} />
     </Space>
   );
 };

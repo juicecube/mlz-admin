@@ -37,17 +37,16 @@ const checkBranch = async ({ current }) => {
   }
 };
 
-const generateTag = async (tag) => {
+const tagTag = async (tag) => {
   const tagMessage = await changelog(process.env.AUTO === '1');
-  git.addAnnotatedTag(tag, tagMessage, () => {
-    console.log(`Success: 🏷 ${tag} generated successfully,with message\r\n ${tagMessage}`, `\r\n`);
-  });
+  console.log(tagMessage);
+  git.addAnnotatedTag(tag, tagMessage);
 };
 
 const pushTag = async () => {
-  // git.pushTags('origin', () => {
-  //   console.log(`Success✅: ag推送成功`, `\r\n`);
-  // });
+  git.pushTags('origin', () => {
+    console.log(`Success✅: ag推送成功`, `\r\n`);
+  });
 };
 
 (async () => {
@@ -56,7 +55,7 @@ const pushTag = async () => {
   await checkVersion();
   const tag = await checkTag();
   if (tag) {
-    await generateTag(tag);
+    await tagTag(tag);
     await pushTag();
   }
 })();

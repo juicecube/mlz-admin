@@ -6,26 +6,14 @@ import { default as zhLocale } from 'antd/es/locale-provider/zh_CN';
 import { version } from '..';
 import './style/index.less';
 
-const { requestIdleCallback } = window;
 interface ConfigProviderType extends ConfigProviderProps {
   locale?: Locale;
 }
-let shown = false;
-window.__MLZ_ADMIN_ENV__ = process.env.NODE_ENV as any;
-const ConfigProvider = (props: ConfigProviderType) => {
-  // eslint-disable-next-line no-console
-  const consoleVersion = () => {
-    console.table({ [`@mlz/admin version`]: version });
-    window.__MLZ_ADMIN_VERSION__ = version;
-  };
-  if (!shown) {
-    if (requestIdleCallback) {
-      requestIdleCallback(() => consoleVersion(), { timeout: 3000 });
-    } else {
-      consoleVersion();
-    }
-    shown = true;
-  }
-  return <AntdConfigProvider locale={props.locale || zhLocale}>{props.children}</AntdConfigProvider>;
-};
+
+const Window = window as any;
+Window.__MLZ_ADMIN_VERSION__ = version;
+Window.__MLZ_ADMIN_RUNTIME_ENV__ = process.env.NODE_ENV;
+Window.__MLZ_ADMIN_BUILD_ENV__ = '$THIS_WILL_BE_EMPTY_AFTER_DIST$' ? 'development' : 'production';
+
+const ConfigProvider = (props: ConfigProviderType) => <AntdConfigProvider locale={props.locale || zhLocale}>{props.children}</AntdConfigProvider>;
 export default ConfigProvider;

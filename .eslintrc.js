@@ -1,11 +1,14 @@
 const isProduction = process.env.NODE_NEV === 'production';
 module.exports = {
-  extends: ['airbnb', 'prettier', 'prettier/react', 'plugin:jest/recommended'],
+  extends: ['airbnb', 'prettier', 'prettier/react', 'plugin:jest/recommended', 'plugin:react/recommended', 'plugin:import/typescript'],
   env: {
     browser: true,
     node: true,
     es6: true,
     jest: true,
+  },
+  globals: {
+    $MOCK_PROXY_HOST$: 'readonly',
   },
   settings: {
     react: {
@@ -13,7 +16,7 @@ module.exports = {
     },
   },
   parser: '@typescript-eslint/parser',
-  plugins: ['babel', 'react', 'jest', '@typescript-eslint', 'react-hooks', 'prettier'],
+  plugins: ['@typescript-eslint', 'react', 'react-hooks', 'prettier', 'markdown'],
   overrides: [
     {
       files: ['*.tsx', '*.jsx'],
@@ -28,9 +31,6 @@ module.exports = {
         'react/no-array-index-key': 1,
         'spaced-comment': 0,
         'react/require-default-props': 0,
-        'no-use-before-define': 0,
-        'dot-notation': 1,
-        '@typescript-eslint/no-unused-vars': 0,
       },
     },
     {
@@ -62,6 +62,8 @@ module.exports = {
     'import/no-unresolved': 0,
     'import/extensions': 0,
     'import/no-extraneous-dependencies': 0,
+    'import/no-named-as-default': 0,
+    'import/no-named-as-default-member': 0,
     'no-control-regex': 1,
     'prefer-object-spread': 0,
     'prefer-template': 0,
@@ -70,12 +72,14 @@ module.exports = {
     'no-underscore-dangle': 0,
     'import/order': 0,
     'import/first': 1,
+    'import/no-cycle': 0,
     'import/newline-after-import': 0,
-    'no-use-before-define': 2,
+    'import/no-useless-path-segments': 0,
+    'no-use-before-define': 0,
     'react/display-name': 0,
     'no-param-reassign': 0,
     'no-unused-vars': 0,
-    'no-console': isProduction ? 2 : 0,
+    'no-console': 2,
     'jsx-a11y/anchor-is-valid': 1,
     'react/jsx-props-no-spreading': 0,
     'consistent-return': 1,
@@ -86,6 +90,7 @@ module.exports = {
     'arrow-body-style': 0,
     'import/no-cycle': 0,
     'import/no-useless-path-segments': 0,
+    'max-classes-per-file': 0,
     camelcase: 1,
   },
 };

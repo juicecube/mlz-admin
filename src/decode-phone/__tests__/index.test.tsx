@@ -2,8 +2,18 @@ import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { mount } from 'enzyme';
 import { testMount, sleep } from '../../../tests';
-import DecodePhone, { INIT_TITLE } from '..';
-import { decodePhone } from '../../shared/service';
+import DecodePhone from '..';
+import EncodePhoneModel from '../model';
+import { decodeEncodedPhone } from '../../shared/service';
+
+const testee = '155****1234';
+const params = 'jZgOvsexafxJUlU3WHaMfA==';
+
+jest.mock('../../shared/service', () => {
+  return {
+    decodeEncodedPhone: jest.fn(),
+  };
+});
 
 jest.mock('../../shared/service/index.ts', () => {
   return {
@@ -11,36 +21,47 @@ jest.mock('../../shared/service/index.ts', () => {
   };
 });
 
-const params = 'jZgOvsexafxJUlU3WHaMfA==';
-const testee = '155****1234';
 describe('🧪 DecodePhone', () => {
   testMount(DecodePhone);
 
-  let wrapper;
-  let target;
-  let onReadyHandler;
-  beforeEach(() => {
-    onReadyHandler = jest.fn();
-    wrapper = mount(
-      <DecodePhone params={params}>
-        <span id="phone">{testee}</span>
-      </DecodePhone>,
-    );
-    target = wrapper.find('#phone').at(0);
+  it('EncodePhoneModel.decodeEncodedPhone方法mock正确', async () => {
+    (decodeEncodedPhone as jest.Mocked<any>).mockResolvedValue('13058003200');
+    const newPhone = new EncodePhoneModel(testee);
+    const result = await newPhone.decode();
+    sleep(100);
+    expect(result).toBe('13058003200');
   });
 
   it('点击时发送解码请求', async () => {
-    wrapper.setProps({ onReady: onReadyHandler });
+    (decodeEncodedPhone as jest.Mocked<any>).mockResolvedValue('{ "phone_number": "13058003200" }');
+    const onReady = jest.fn();
+    const wrapper = mount(
+      <DecodePhone params={params} onReady={onReady}>
+        <span id="phone">{testee}</span>
+      </DecodePhone>,
+    );
+
+    wrapper.setProps({ onReady });
     await act(async () => {
-      target.simulate('click');
+      wrapper
+        .find('#phone')
+        .at(0)
+        .simulate('click');
     });
-    sleep(200);
-    expect(document.getElementsByClassName('ant-tooltip-inner')[0].innerHTML).toBe('13820003000');
-    expect(onReadyHandler).toHaveBeenCalledTimes(1);
+    expect(onReady).toHaveBeenCalledWith('13058003200');
   });
 
   it('点击更多的时候，不会再发送多余请求', async () => {
-    wrapper.setProps({ onReady: onReadyHandler });
+    (decodeEncodedPhone as jest.Mocked<any>).mockResolvedValue('{ "phone_number": "13058003200" }');
+    const onReady = jest.fn();
+    const wrapper = mount(
+      <DecodePhone params={params} onReady={onReady}>
+        <span id="phone">{testee}</span>
+      </DecodePhone>,
+    );
+    const target = wrapper.find('#phone').at(0);
+
+    wrapper.setProps({ onReady });
     await act(async () => {
       target.simulate('click');
     });
@@ -50,8 +71,7 @@ describe('🧪 DecodePhone', () => {
     await act(async () => {
       target.simulate('click');
     });
-    sleep(200);
-    expect(document.getElementsByClassName('ant-tooltip-inner')[0].innerHTML).toBe('13820003000');
-    expect(onReadyHandler).toHaveBeenCalledTimes(1);
+    sleep(100);
+    expect(document.getElementsByClassName('ant-tooltip-inner')[0].innerHTML).toBe('13058003200');
   });
 });

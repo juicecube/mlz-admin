@@ -4,3 +4,4 @@ export { default as createBem } from './bem';
 export { default as appendScript } from './appendScript';
 export { default as getPaths } from './getPaths';
 export { default as tableValueValidationJudger } from './table-value-validation-judger';
+export { default as string2dom } from './string2dom';

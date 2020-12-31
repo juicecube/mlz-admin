@@ -25,5 +25,5 @@ const columns = [
 ];
 
 export default () => {
-  return <Form.Block columns={columns} style={{ padding: '0 180px' }} onFinish={(values) => console.log(values)} onReset={(initialValues) => console.log(initialValues)} />;
+  return <Form.Block columns={columns} style={{ padding: '0 180px' }} />;
 };

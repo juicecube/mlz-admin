@@ -9,7 +9,6 @@ import { omitProps, purgeData } from 'mytils';
 import locale from 'antd/es/date-picker/locale/zh_CN';
 import Icon from '../../icon';
 import { createBem } from '../../shared/utils';
-import KeepAlive, { KAContext } from '../../shared/keep-alive';
 import './index.less';
 
 const fullWidthStyle = { width: '100%' } as const;
@@ -77,7 +76,7 @@ const calcTotalColspan = ($items, perColspan) => $items.reduce((prev, curr) => (
 
 const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
   const [form] = Form.useForm();
-  const { columns = [], tools = [], operations = [], colCount = 4, cacheKey } = props;
+  const { columns = [], tools = [], operations = [], colCount = 4 } = props;
   const searchCollapsedThreshold = Number(props.searchCollapsedThreshold);
   const searchings = columns?.filter((item) => item.searchable || item.searchable === 0).sort((prev, curr) => Number(curr?.['searchable']) - Number(prev?.['searchable']));
   const perColspan = 24 / colCount;
@@ -95,13 +94,6 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
   const shouldMergeSubmitButton = searchings?.length % colCount === 0;
   const hasMoreInteractionArea = tools.length || operations.length;
 
-  const { dispatch, payload } = useContext(KAContext);
-  let keepAliveHandler;
-  if (cacheKey) {
-    keepAliveHandler = (fields) => dispatch(fields);
-    form.setFieldsValue(payload ? omitProps(commonPaginationKeys, payload) : {});
-  }
-
   const [collapsed, toggleCollapsed] = useState(false);
   const collapsedHandler = () => toggleCollapsed(!collapsed);
 
@@ -117,7 +109,6 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
         onClick={(e): void & React.MouseEventHandler<HTMLElement> => {
           form.resetFields();
           const currFieldsValues = form.getFieldsValue();
-          !!keepAliveHandler && keepAliveHandler(currFieldsValues);
           // ⚠️TODO: 建议不要再使用onReset了，后面会去掉。onReset只是一种特殊的onSearch
           props.onReset?.(currFieldsValues);
           props.onSearch?.(currFieldsValues);
@@ -138,7 +129,6 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
       onFinish={(params) => {
         const results = purgeData(params);
         props.onSearch?.(results);
-        !!keepAliveHandler && keepAliveHandler(results);
       }}
       onFinishFailed={props?.onSearchFailed}
       initialValues={props.initialSearchValues}
@@ -189,13 +179,5 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
     </Form>
   );
 };
-const CommonSearchForm = (props: ICommonSearch<unknown>) => {
-  return props?.cacheKey ? (
-    <KeepAlive name={props.cacheKey} onCacheHitted={props.onCacheHitted}>
-      <InternalCommonSearch {...props} />
-    </KeepAlive>
-  ) : (
-    <InternalCommonSearch {...props} />
-  );
-};
+const CommonSearchForm = (props: ICommonSearch<unknown>) => <InternalCommonSearch {...props} />;
 export default CommonSearchForm;

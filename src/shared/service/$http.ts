@@ -1,6 +1,4 @@
 import Http from '@mlz/axios';
-import { message } from 'antd';
-import { DECODE_HOST } from './decode-phone';
 
 Http.setResInterceptor(
   (res) => {
@@ -12,7 +10,6 @@ Http.setResInterceptor(
     }
   },
   (err) => {
-    message.error(err);
     return Promise.reject(err);
   },
 );
@@ -27,10 +24,8 @@ Http.setResInterceptor(
     }
   },
   (err) => {
-    message.error(err);
     return Promise.reject(err);
   },
-  DECODE_HOST,
 );
 
 export default Http;

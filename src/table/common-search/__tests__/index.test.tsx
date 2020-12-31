@@ -117,7 +117,7 @@ describe('🧪 CommonSearch', () => {
     const wrapper = mount(<CommonSearch columns={supporttings} />);
 
     supporttings.forEach((item) => {
-      expect(item.assert ? item.assert(wrapper) : true).toBe(item.assert ? item.exp : true);
+      expect(item.assert ? item.assert(wrapper) : 1).toBe(item.assert ? item.exp : 1);
     });
   });
 

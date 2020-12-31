@@ -32,7 +32,7 @@ export default (props: { refered?: boolean | string }) => {
   useEffect(() => {
     Promise.all([getDocCommits(docPath), getCompCommits(componentPath)])
       .then((res: any[]) => {
-        setCommits(res.map((res_i) => res_i.data.map((commit) => getAuthorFromData(commit))));
+        setCommits(res.map((resI) => resI.data.map((commit) => getAuthorFromData(commit))));
         toggoleLoading(false);
       })
       .catch(() => toggoleLoading(false));

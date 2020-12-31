@@ -137,7 +137,7 @@ class App extends React.PureComponent {
           <Button disabled={!this.state.selected.length} type="primary" key={2} onClick={() => message.success(`选中了：${this.state.selected.join(' 和 ')}`)}>
             批量通知
           </Button>,
-          <span>
+          <span key={3}>
             选择了：<span style={{ color: 'red', fontWeight: 600, marginRight: 6 }}>{this.state.selected.length}</span>项
           </span>,
         ]}
