@@ -1,8 +1,8 @@
 const path = require('path');
 
-const ignoredPaths = ['/node_modules/', '/src/shared/utils/'];
+const ignoredPaths = ['/node_modules/', '/src/shared/utils/', '/src/date-picker/__tests__/utils.test.ts'];
 module.exports = {
-  verbose: false,
+  verbose: true,
   rootDir: path.join(__dirname, ''),
   setupFilesAfterEnv: ['<rootDir>/tests/setup.js'],
   testTimeout: 8000,

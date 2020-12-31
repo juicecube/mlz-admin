@@ -5,18 +5,14 @@ import DatePicker from '../../../src/date-picker';
 const { RangePicker } = DatePicker;
 
 export default () => {
-  const onChange = (date, dateString) => {
-    console.log(date, dateString);
-  };
-
   return (
     <Space direction="vertical">
-      <DatePicker onChange={onChange} startOf="day" />
-      <DatePicker onChange={onChange} picker="week" startOf="week" />
-      <DatePicker onChange={onChange} picker="month" startOf="month" />
-      <DatePicker onChange={onChange} picker="quarter" startOf="quarter" />
-      <DatePicker onChange={onChange} picker="year" startOf="year" />
-      <RangePicker onChange={onChange} returnUnixValue />
+      <DatePicker startOf="day" />
+      <DatePicker picker="week" startOf="week" />
+      <DatePicker picker="month" startOf="month" />
+      <DatePicker picker="quarter" startOf="quarter" />
+      <DatePicker picker="year" startOf="year" />
+      <RangePicker returnUnixValue />
     </Space>
   );
 };

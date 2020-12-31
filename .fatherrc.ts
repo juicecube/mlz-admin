@@ -28,11 +28,7 @@ export default {
       {
         rules: [
           {
-            search: '%THIS_WILL_BE_EMPTY_AFTER_DIST%',
-            replace: process.env.NODE_ENV,
-          },
-          {
-            search: '%MOCK_PROXY_HOST%',
+            search: '$THIS_WILL_BE_EMPTY_AFTER_DIST$',
             replace: process.env.NODE_ENV,
           },
         ],

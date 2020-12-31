@@ -7,7 +7,7 @@ module.exports = {
     jest: true,
   },
   globals: {
-    MOCK_PROXY_HOST: 'readonly',
+    $MOCK_PROXY_HOST$: 'readonly',
   },
   settings: {
     react: {

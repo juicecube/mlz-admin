@@ -74,10 +74,11 @@ export default defineConfig({
     {
       title: '样板项目',
       children: [
-        { title: 'Libra投放系统', path: 'https://libra.codemao.cn/' },
+        { title: 'Libra投放管理平台', path: 'https://libra.codemao.cn/' },
         { title: '行政综合支撑平台', path: 'https://support-admin.codemao.cn/' },
         { title: 'LuckyCat营销管理系统', path: 'https://luckycat-admin.codemao.cn/' },
         { title: 'SCM供应链管理系统', path: 'https://supply-chain-manage-admin.codemao.cn/' },
+        { title: '猫小秘客服系统', path: 'https://secretary-cat.codemao.cn/' },
       ],
     },
     {
@@ -105,7 +106,7 @@ export default defineConfig({
     },
   ],
   define: {
-    MOCK_PROXY_HOST: 'https://service-81ozmkay-1252070958.gz.apigw.tencentcs.com/release/mock_redirect',
+    $MOCK_PROXY_HOST$: 'https://service-81ozmkay-1252070958.gz.apigw.tencentcs.com/release/mock_redirect',
   },
   styles: [
     `
@@ -127,7 +128,6 @@ export default defineConfig({
       position: absolute;
       right: 0;
       top: 0;
-      line-height: 2.6;
     }
     .__dumi-default-menu .__dumi-default-menu-inner ul.__dumi-default-menu-list li a::before {
       top: 0;
@@ -138,8 +138,9 @@ export default defineConfig({
       opacity: 0.25;
       background-image: linear-gradient(to right, #1890FF 0%,#E6F7FF 80%);
       transition: transform 0s, opacity 0.2s;
-      border-top-left-radius: 3px;
-      border-bottom-left-radius: 3px;
+    }
+    .__dumi-default-navbar nav > a > ul > li > a {
+      padding: 8px 0;
     }
   `,
   ],
