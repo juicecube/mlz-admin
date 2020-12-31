@@ -65,7 +65,7 @@ class App extends React.Component {
   }
 
   render() {
-    return <Form.Block columns={columns} initialValues={this.state.data} loading={this.state.loading} style={{ padding: '0 180px' }} onFinish={(e) => console.log(e)} />;
+    return <Form.Block columns={columns} initialValues={this.state.data} loading={this.state.loading} style={{ padding: '0 180px' }} />;
   }
 }
 

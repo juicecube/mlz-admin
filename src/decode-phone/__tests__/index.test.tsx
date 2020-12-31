@@ -4,12 +4,12 @@ import { mount } from 'enzyme';
 import { testMount, sleep } from '../../../tests';
 import DecodePhone from '..';
 import EncodePhoneModel from '../model';
-import { decodeEncodedPhone } from '../../shared/service/api';
+import { decodeEncodedPhone } from '../../shared/service';
 
 const testee = '155****1234';
 const params = 'jZgOvsexafxJUlU3WHaMfA==';
 
-jest.mock('../../shared/service/api', () => {
+jest.mock('../../shared/service', () => {
   return {
     decodeEncodedPhone: jest.fn(),
   };
@@ -21,8 +21,6 @@ jest.mock('../../shared/service/index.ts', () => {
   };
 });
 
-const params = 'jZgOvsexafxJUlU3WHaMfA==';
-const testee = '155****1234';
 describe('🧪 DecodePhone', () => {
   testMount(DecodePhone);
 

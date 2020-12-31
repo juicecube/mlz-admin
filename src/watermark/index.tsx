@@ -17,9 +17,9 @@ const drawText = (text: string, canvasContext: CanvasRenderingContext2D, wrapper
   const { fontSize = defaults.fontSize, fontFamily = defaults.fontFamily } = dimension.fontStyle || {};
   //参数说明
   //ctx：canvas的 2d 对象，t：绘制的文字，x,y:文字坐标，w：文字最大宽度
-  let textCharArr = text.split('');
+  const textCharArr = text.split('');
   let temp = '';
-  let row: string[] = [];
+  const row: string[] = [];
   const { startX = wrapperGap * defaults.startX, startY = defaults.startY, opacity, rotate = defaults.rotate, textAlign = 'center' } = dimension;
 
   for (let i = 0; i < textCharArr.length; i++) {
@@ -72,7 +72,7 @@ const Watermark = (props: WaterMarkProps) => {
         ...children?.props,
         style: { ...children?.props.style, background: bgData ? `url(${bgData})${childrenBgData ? ', ' + childrenBgData : ''}` : childrenBgData },
       })}
-      <canvas ref={watermarkCanvas} style={{ position: 'absolute', zIndex: -999, display: 'none' }} width={wrapGap * limitedLoose}></canvas>
+      <canvas ref={watermarkCanvas} style={{ position: 'absolute', zIndex: -999, display: 'none' }} width={wrapGap * limitedLoose} />
     </>
   );
 };
