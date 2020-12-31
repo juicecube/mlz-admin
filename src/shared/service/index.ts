@@ -1,31 +1,25 @@
-import Http from '@mlz/axios';
+import Http from './$http';
+import { isCompiled, OpenServiceHOST } from './constant';
 
-Http.setResInterceptor(
-  (res) => {
-    switch (res.status) {
-      case 200:
-        return res.data;
-      default:
-        return res;
-    }
-  },
-  (err) => {
-    return Promise.reject(err);
-  },
-);
+/**
+ * 根据环境分配请求参数的分流器
+ */
+const paramsDiverter = (productionParams: any, devParams: any) => (isCompiled ? productionParams : devParams);
 
-Http.setResInterceptor(
-  (res) => {
-    switch (res.status) {
-      case 200:
-        return res.data;
-      default:
-        return Promise.reject(res);
-    }
-  },
-  (err) => {
-    return Promise.reject(err);
-  },
-);
+export const decodeEncodedPhone = (encodedPhone: string, specifiedUrl?: URL['href']): Promise<any> => {
+  const DECODE_PHONE_MOCK_URL = 'http://rap2api.taobao.org/app/mock/252468/admini/decode-phone';
+  const DECODE_URL = isCompiled ? `${OpenServiceHOST}/decode/phone_number` : 'https://service-81ozmkay-1252070958.gz.apigw.tencentcs.com/release/mock_redirect';
+  const requestUrl = new URL(specifiedUrl || DECODE_URL);
 
-export default Http;
+  return new Http(requestUrl.origin, { timeout: 2000 }).post(
+    requestUrl.pathname,
+    paramsDiverter(
+      {
+        cipher_text: encodedPhone,
+      },
+      {
+        url: `${DECODE_PHONE_MOCK_URL}?cipher_text=${encodedPhone}`,
+      },
+    ),
+  );
+};

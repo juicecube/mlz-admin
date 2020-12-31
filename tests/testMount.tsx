@@ -1,11 +1,11 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-const testMount = (Component, props = {}) => {
+const testMount = (ElementName, props = {}) => {
   describe(`full rendering test`, () => {
     //
     test(`正确地挂载/卸载`, () => {
-      const wrapper = mount(<Component />);
+      const wrapper = mount(<ElementName />);
       expect(() => {
         wrapper.setProps(props);
         wrapper.unmount();

@@ -1,9 +1,10 @@
 /.build-cache/
 /dist/
-/unpkg/
 /es/
 /lib/
 /build/
+
 **/_vendor/**/*
+
 /tests/
 **/*.test.js

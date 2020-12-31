@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint-disable no-console */
 const path = require('path');
 const fetch = require('node-fetch');
 const simpleGit = require('simple-git/promise');

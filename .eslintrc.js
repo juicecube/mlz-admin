@@ -1,3 +1,4 @@
+const isProduction = process.env.NODE_NEV === 'production';
 module.exports = {
   extends: ['airbnb', 'prettier', 'prettier/react', 'plugin:jest/recommended', 'plugin:react/recommended', 'plugin:import/typescript'],
   env: {
@@ -18,7 +19,7 @@ module.exports = {
   plugins: ['@typescript-eslint', 'react', 'react-hooks', 'prettier', 'markdown'],
   overrides: [
     {
-      files: ['*.tsx'],
+      files: ['*.tsx', '*.jsx'],
       rules: {
         'react/jsx-filename-extension': 0,
         'react/prop-types': 0,
@@ -27,14 +28,30 @@ module.exports = {
         'react/no-access-state-in-setstate': 0,
         'react/destructuring-assignment': 0,
         'react/sort-comp': 0,
+        'react/no-array-index-key': 1,
         'spaced-comment': 0,
         'react/require-default-props': 0,
       },
     },
     {
-      files: ['*.ts'],
+      files: ['*.md'],
+      globals: {
+        React: true,
+        ReactDOM: true,
+        mountNode: true,
+      },
       rules: {
-        'no-restricted-syntax': 1,
+        indent: 0,
+        'no-plusplus': 0,
+        'eol-last': 0,
+        'no-script-url': 0,
+        'prefer-rest-params': 0,
+        'react/no-access-state-in-setstate': 0,
+        'react/destructuring-assignment': 0,
+        'react/no-multi-comp': 0,
+        'jsx-a11y/href-no-hash': 0,
+        'import/no-extraneous-dependencies': 0,
+        'jsx-a11y/control-has-associated-label': 0,
       },
     },
   ],
@@ -67,9 +84,13 @@ module.exports = {
     'react/jsx-props-no-spreading': 0,
     'consistent-return': 1,
     'no-throw-literal': 1,
-    'no-restricted-globals': 1,
+    'no-restricted-globals': 2,
     'no-return-assign': 0,
     'no-plusplus': 0,
+    'arrow-body-style': 0,
+    'import/no-cycle': 0,
+    'import/no-useless-path-segments': 0,
     'max-classes-per-file': 0,
+    camelcase: 1,
   },
 };

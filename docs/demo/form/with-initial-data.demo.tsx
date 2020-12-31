@@ -27,8 +27,8 @@ const columns = [
     ),
   },
   {
-    label: '美女？',
-    name: 'wow',
+    label: '单身',
+    name: 'single',
     render: <Checkbox>嗯</Checkbox>,
     itemProps: { valuePropName: 'checked' },
     relyOn: [{ name: 'gender', toContain: [0] }],
@@ -65,7 +65,7 @@ class App extends React.Component {
   }
 
   render() {
-    return <Form.Block columns={columns} initialValues={this.state.data} loading={this.state.loading} style={{ padding: '0 180px' }} />;
+    return <Form.Block columns={columns} initialValues={this.state.data} loading={this.state.loading} style={{ padding: '0 180px' }} onFinish={(e) => console.log(e)} />;
   }
 }
 

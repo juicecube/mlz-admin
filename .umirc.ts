@@ -102,7 +102,7 @@ export default defineConfig({
     },
     {
       name: 'description',
-      content: '一套编程猫设计规范下的管理系统React组件库，基于Antd',
+      content: '一套遵循编程猫组件使用规范的管理系统React组件库，基于Antd',
     },
   ],
   define: {

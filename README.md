@@ -1,5 +1,5 @@
 <p align="center">
-@mlz/admin，遵循编程猫后台管理系统设计规范的 React 组件库。
+@mlz/admin，一套遵循编程猫组件使用规范的管理系统React组件库。
 </p>
 <p align="center" style="font-size: 32px">
 🌈 https://mlz-admin.now.sh
@@ -33,6 +33,10 @@ import { Button } from '@mlz/admin';
 const App = () => <Button type="primary">❤️❤️❤️</Button>;
 ```
 
-# 贡献指南
+## 文档
+
+[📖 @mlz/admin](https://www.mlz-admin.com/)
+
+## 贡献指南
 
 本库的开发代码，至少建立但不限于 [《贡献指南》](https://github.com/juicecube/mlz-admin/blob/master/CONTRIBUTING.md) 之上，所以请先仔细阅读。

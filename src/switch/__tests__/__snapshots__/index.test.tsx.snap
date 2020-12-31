@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`🧪 Switch snapshot test snapshot comparing 1`] = `"<button type=\\"button\\" role=\\"switch\\" aria-checked=\\"false\\" class=\\"ant-switch\\"><div class=\\"ant-switch-handle\\"></div><span class=\\"ant-switch-inner\\"></span></button>"`;
+exports[`🧪 Switch snapshot test 快照匹配 1`] = `"<button type=\\"button\\" role=\\"switch\\" aria-checked=\\"false\\" class=\\"ant-switch\\"><div class=\\"ant-switch-handle\\"></div><span class=\\"ant-switch-inner\\"></span></button>"`;
