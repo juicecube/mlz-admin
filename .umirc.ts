@@ -1,6 +1,7 @@
 import { defineConfig } from 'dumi';
 import path from 'path';
 import fs from 'fs';
+import { extraStyles, extraScripts } from './scripts/genUmiExtraConf';
 
 // 根据dir获取其下的所有.md文件
 const getMds = ($relativedFromDoc) => {
@@ -10,34 +11,6 @@ const getMds = ($relativedFromDoc) => {
   });
   return files;
 };
-
-const { SENTRY_DSN, VERCEL_ENV } = process.env;
-// const productionConf =
-//   VERCEL_ENV === 'production'
-//     ? {
-//       externals: {
-//         '@sentry/browser': 'window.sentry',
-//         '@sentry/tracing': 'window.sentryTracing',
-//       },
-//       scripts: ['https://unpkg.com/browse/react@16.12.0/umd/react.production.min.js'],
-//       headScripts: [
-//         {
-//           content: `window.process.env = ${process.env}`,
-//           charset: 'utf-8',
-//         },
-//         {
-//           content: `sentry.init({
-//   dsn: ${SENTRY_DSN},
-//   integrations: [
-//     new sentryTracing.BrowserTracing(),
-//   ],
-//   tracesSampleRate: 1.0,
-// })`,
-//           charset: 'utf-8',
-//         },
-//       ],
-//     }
-//     : {};
 
 export default defineConfig({
   hash: true,
@@ -108,41 +81,7 @@ export default defineConfig({
   define: {
     $MOCK_PROXY_HOST$: 'https://service-81ozmkay-1252070958.gz.apigw.tencentcs.com/release/mock_redirect',
   },
-  styles: [
-    `
-    .__dumi-default-search .__dumi-default-search-input {
-      height: 38px;
-      font-weight: 500;
-      padding-left: 20px;
-    }
-    .__dumi-default-menu .__dumi-default-menu-inner ul.__dumi-default-menu-list li a{
-      min-height: 46px;
-      margin: 3px 0;
-      line-height: 2.8;
-    }
-    .__dumi-default-menu .__dumi-default-menu-inner ul.__dumi-default-menu-list li a.active::after{
-      width: 3px;
-      height: 100%;
-      content: '';
-      background: #1890FF;
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-    .__dumi-default-menu .__dumi-default-menu-inner ul.__dumi-default-menu-list li a::before {
-      top: 0;
-      left: -100%;
-      width: 200%;
-      height: 100%;
-      border-radius: 0;
-      opacity: 0.25;
-      background-image: linear-gradient(to right, #1890FF 0%,#E6F7FF 80%);
-      transition: transform 0s, opacity 0.2s;
-    }
-    .__dumi-default-navbar nav > a > ul > li > a {
-      padding: 8px 0;
-    }
-  `,
-  ],
+  headScripts: [...extraScripts],
+  styles: [...extraStyles],
   // ...productionConf,
 });

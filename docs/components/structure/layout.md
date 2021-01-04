@@ -34,7 +34,7 @@ export default () => (
       <HeaderContent />
     </Header>
     <Content style={{ padding: '18px 50px' }}>
-      <div className="site-layout-content" style={{ minHeight: 160 }}>
+      <div className="site-layout-content" style={{ padding: 24, minHeight: 160 }}>
         View Contents
       </div>
     </Content>

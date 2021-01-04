@@ -8,11 +8,9 @@ export interface GroupType {
   text: string;
   onClick?: React.MouseEventHandler<HTMLElement>;
   value?: ButtonGroupPropableValue;
-  leftIconType?: string;
-  rightIconType?: string;
   type?: ButtonType;
 }
-export type MenuType = { iconType?: string } & Exclude<GroupType, 'leftIconType' | 'rightIconType' | 'type' | 'onClick'>;
+export type MenuType = { iconType?: string } & Exclude<GroupType, 'type' | 'onClick'>;
 
 export interface IButtonProps extends ButtonProps {
   group?: readonly GroupType[];
