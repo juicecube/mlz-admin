@@ -29,8 +29,7 @@
     "changelog": "node ./scripts/changelog",
     "clean": "rm -rf es lib dist .tsc-check coverage src/index.tsx",
     "relaunch": "npm run clean && rm -rf node_modules package-lock.json yarn.lock src/.umi && npm install",
-    "color-less": "node ./scripts/genColorLess",
-    "dark-theme-less": "node ./scripts/genColorLess",
+    "theme-less": "node ./scripts/genAntdDarkTheme",
     "rapper": "rapper --type normal --rapperPath \"/rapper\" --apiUrl \"http://rap2api.taobao.org/repository/get?id=252468&token=KBZdG9oC-vKXr8_cyJuF0IGs40ag5EQ9\" --rapUrl \"http://rap2.taobao.org\""
   },
   "module": "es/index.js",
@@ -93,7 +92,6 @@
     "inquirer": "^7.3.3",
     "istanbul": "^0.4.5",
     "jest": "^26.0.1",
-    "less": "^4.0.0",
     "lint-staged": "^10.3.0",
     "lodash-es": "^4.17.15",
     "mytils": "^1.3.21",
