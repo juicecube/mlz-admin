@@ -3,4 +3,7 @@ const path = require('path');
 
 const pkg = require('../../package.json');
 
-module.exports = () => `export const version = '${pkg.version}';`;
+module.exports = () => `
+  export const version = '${pkg.version}';\n
+  export const AntdVersion = '${pkg.devDependencies.version.antd.replace(/(^|\~)/g, '')};\n
+`;

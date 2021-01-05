@@ -25,6 +25,7 @@ const donotCompiles = ['shared', 'style'];
 const extraContents = [
   `
   export { default as createIconFontScript } from './create-icon-font-script';\r\n
+  export { default as useDarkTheme } from './dark-theme-toggler/index.hooks';\r\n
 `,
 ];
 
