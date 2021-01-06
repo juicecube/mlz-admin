@@ -13,8 +13,8 @@ export default (nodeTagName: string, attributesConf: Record<any, any>) => {
         domNode.setAttribute(attrKey, attributesConf[attrKey]);
       }
     });
-    domNode.onload = rsl;
-    domNode.onerror = rej;
-    document.body!.appendChild(domNode);
+    domNode.onload = () => rsl(domNode);
+    domNode.onerror = () => rej(domNode);
+    document.head!.appendChild(domNode);
   });
 };

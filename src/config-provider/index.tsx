@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ConfigProvider as AntdConfigProvider } from 'antd';
 import { Locale } from 'antd/lib/locale-provider';
 import { ConfigProviderProps } from 'antd/lib/config-provider';

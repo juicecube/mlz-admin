@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 const extraStyles = [
   `
   .__dumi-default-search .__dumi-default-search-input {
@@ -31,7 +29,7 @@ const extraStyles = [
     background-image: linear-gradient(to right, #1890FF 0%,#E6F7FF 80%);
     transition: transform 0s, opacity 0.2s;
   }
-  .__dumi-default-navbar nav > a > ul > li > a {
+  .__dumi-default-layout .__dumi-default-navbar > nav ul > li > a {
     padding: 8px 0;
   }
 `,
