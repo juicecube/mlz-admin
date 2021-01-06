@@ -19,8 +19,8 @@ const errorStackGenerator = (errorStackString: Error['stack'] | ErrorInfo['compo
   );
 };
 
-const stackMetaTransformer = (metaData: metaData[] | undefined) => {
-  return metaData?.map((meta, index) => (
+const stackMetaTransformer = ($metaData: metaData[] | undefined) => {
+  return $metaData?.map((meta, index) => (
     // eslint-disable-next-line react/no-array-index-key
     <p key={index} style={{ marginBottom: 0, fontWeight: index === 0 ? 800 : 600 }}>
       {meta}

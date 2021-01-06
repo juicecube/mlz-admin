@@ -15,7 +15,7 @@ export interface DrawerParams {
   // 透明度
   opacity: number;
   // 文字对齐方式
-  textAlign: CanvasTextAlign;
+  textAlign: 'center' | 'end' | 'left' | 'right' | 'start';
   // 水印内容的文字样式
   fontStyle: FontStyle;
   // 顺时针旋转度数

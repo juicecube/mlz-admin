@@ -7,7 +7,7 @@ const useDarkTheme = (callback: Function, observed: any, conf?: { darkThemeCssRe
   const [theme, toggleTheme] = useState<'light' | 'dark'>('light');
   const { darkThemeCssResourceUrl = defaultCDNPath } = conf || {};
   useEffect(() => {
-    toggleTheme(!!observed ? 'dark' : 'light');
+    toggleTheme(observed ? 'dark' : 'light');
     callback?.(theme);
   }, observed);
   useLayoutEffect(() => {

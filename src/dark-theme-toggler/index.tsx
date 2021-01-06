@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Switch } from 'antd';
 import Icon from '../icon';
 import useDarkTheme from './index.hooks';
-import './style/index.less';
 
 const DarkThemeToggler = (props: { onChange?: Function }) => {
   const { onChange } = props;

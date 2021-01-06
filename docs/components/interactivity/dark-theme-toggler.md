@@ -1,12 +1,5 @@
-# Icon 图标
+# DarkThemeToggler 深色主题切换
 
-**通过指定 iconfont 的 html class 类名来显示对应的`📦 图标`**
+**`📦 深色主题切换` 来控制当前页面黑色主题的展示情况**
 
-## 内置 icon 列表
-
-```tsx
-import React from 'react';
-import { DarkThemeToggler } from '@mlz/admin';
-
-export default () => <DarkThemeToggler />;
-```
+## 基本使用
