@@ -1,6 +1,8 @@
 import React, { ErrorInfo } from 'react';
 import { Result, Typography } from 'antd';
 import { ResultProps } from 'antd/lib/result';
+import { createBem } from '../shared/utils';
+import './index.less';
 
 type metaData = string;
 interface IErrorBoundaryState {
@@ -30,6 +32,7 @@ const stackMetaTransformer = ($metaData: metaData[] | undefined) => {
 
 const shouldDisplayErrorDetail = ['dev', 'development', 'test'].includes(process.env.NODE_ENV || 'development');
 
+const bem = createBem('error-boundary');
 const { Paragraph, Text } = Typography;
 class ErrorBoundary extends React.Component<ResultProps, IErrorBoundaryState> {
   constructor(props) {
@@ -56,8 +59,8 @@ class ErrorBoundary extends React.Component<ResultProps, IErrorBoundaryState> {
           title={`${error.name}: ${error.message}`}
           subTitle={`sorry，${this.state.reactMetaStacks?.[0]?.replace('in', '') || '当前页面'}发生了错误`}
           {...this.props}
-          style={{ background: '#fdf9f9' }}>
-          <Paragraph style={{ background: '#FFF1F0', padding: 24 }}>
+          className={bem('wrapper')}>
+          <Paragraph className={bem('paragraph')}>
             {shouldDisplayErrorDetail ? (
               <>
                 <Text strong>{stackMetaTransformer(this.state.browserMetaStacks)}</Text>

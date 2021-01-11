@@ -10,7 +10,8 @@ interface ContentProps extends AntdContentProsp {
 const { Content: AntdContent } = AntdLayout;
 const Content = (props: ContentProps): typeof Content => {
   const { children, errorBoundary } = props;
-  return errorBoundary !== false ? <ErrorBoundary>{children}</ErrorBoundary> : children;
+  const child = React.cloneElement(children, props);
+  return errorBoundary !== false ? <ErrorBoundary>{child}</ErrorBoundary> : child;
 };
 AntdLayout.Content = Content;
 export default AntdLayout;

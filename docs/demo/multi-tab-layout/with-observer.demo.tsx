@@ -64,7 +64,7 @@ export default () => {
           </Header>
           <Content style={{ margin: '16px 16px 0 16px' }}>
             <div className="site-layout-background" style={{ padding: 24, minHeight: 420, background: 'white' }}>
-              <MultiTabLayoutHelmet dataSource={dataSource} hideAdd responsive />
+              <MultiTabLayoutHelmet dataSource={dataSource} hideAdd />
             </div>
           </Content>
           <Footer style={{ textAlign: 'center', zIndex: 1 }}>@mlz/admin &copy; 2020</Footer>

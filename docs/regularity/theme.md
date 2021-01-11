@@ -34,7 +34,7 @@ class App extends React.Component {
     return (
       <DarkThemeToggler
         onChange={(e: 'dark' | 'light') => {
-          e === 'dark' && message.info(`文档无法保证样式正常，只用于展示效果`);
+          e === 'dark' && message.info(`文档无法保证样式正常，在组件中不会出现异常`);
         }}
       />
     );

@@ -1,6 +1,6 @@
 import appendScript from './appendScript';
 
-export default (nodeTagName: string, attributesConf: Record<any, any>) => {
+export default (nodeTagName: string, attributesConf: Record<any, any>, rewriteTarget?: 'body' | 'head' | 'html') => {
   if (nodeTagName === 'script') {
     return appendScript(attributesConf.innerHML);
   }
@@ -15,6 +15,6 @@ export default (nodeTagName: string, attributesConf: Record<any, any>) => {
     });
     domNode.onload = () => rsl(domNode);
     domNode.onerror = () => rej(domNode);
-    document.head!.appendChild(domNode);
+    rewriteTarget === 'head' ? document.head!.appendChild(domNode) : document.body.appendChild(domNode);
   });
 };
