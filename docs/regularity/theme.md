@@ -20,7 +20,9 @@ group:
 
 ## 切换 light/dark 模式
 
-在灯光环境较暗的情况下，我们推荐使用深色模式，以降低色彩饱和度和对比度，保护用户的视力，同时使用户更容易沉浸于设计当中。静态切换的方式参照 [Ant Design#使用暗黑主题和紧凑主题](https://ant.design/docs/react/customize-theme-cn#%E4%BD%BF%E7%94%A8%E6%9A%97%E9%BB%91%E4%B8%BB%E9%A2%98%E5%92%8C%E7%B4%A7%E5%87%91%E4%B8%BB%E9%A2%98)；有时为提升用户体验，很多产品提供动态切换深色主题的功能，@mlz/admin 为此提供了方便的手动切换功能：
+在灯光环境较暗的情况下，我们推荐使用深色模式，以降低色彩饱和度和对比度，保护用户的视力，同时使用户更容易沉浸于业务场景中，拥有更好的用户体验感和留存。静态切换的方式参照 [Ant Design#使用暗黑主题和紧凑主题](https://ant.design/docs/react/customize-theme-cn#%E4%BD%BF%E7%94%A8%E6%9A%97%E9%BB%91%E4%B8%BB%E9%A2%98%E5%92%8C%E7%B4%A7%E5%87%91%E4%B8%BB%E9%A2%98)；有时为提升用户体验，很多产品提供动态切换深色主题的功能，@mlz/admin 为此提供了方便的手动切换功能：
+
+> 动态切换深色主题的线上产品案例可以查看：[猫小秘客服系统](https://secretary-cat.codemao.cn/) - [DEV](https://dev-secretary-cat.codemao.cn/)
 
 ```tsx
 /**
