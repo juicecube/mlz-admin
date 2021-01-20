@@ -5,7 +5,7 @@ export interface UseDarkThemeOptions {
   darkThemeCssResourceUrl?: URL['href'];
   initialTheme?: ThemeKeyNameTypes;
 }
-export interface DarkThemeTogglerProps extends Omit<SwitchProps, 'onChange'> {
+export interface DarkThemeTogglerProps extends Omit<SwitchProps, 'onChange'>, UseDarkThemeOptions {
   onChange?(darkness: ThemeKeyNameTypes): void;
-  initialTheme?: ThemeKeyNameTypes;
+  preload?: number;
 }

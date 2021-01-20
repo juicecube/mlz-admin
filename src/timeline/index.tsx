@@ -1,2 +1,2 @@
 import React from 'react';
-export { TimePicker as default } from 'antd';
+export { Timeline as default } from 'antd';

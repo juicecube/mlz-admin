@@ -24,9 +24,11 @@ group:
 
 > 动态切换深色主题的线上产品案例可以查看：[猫小秘客服系统](https://secretary-cat.codemao.cn/) - [DEV](https://dev-secretary-cat.codemao.cn/)
 
+更多主题切换按钮的详情，请参见组件：[DarkThemeToggler](/components/interactivity/dark-theme-toggler)
+
 ```tsx
 /**
- * desc: 可以通过`darkThemeCssResourceUrl`属性修改深色主题样式资源的地址
+ * desc: 可以通过`darkThemeCssResourceUrl`属性修改深色主题样式资源的地址。
  */
 import React, { useState, useEffect } from 'react';
 import { DarkThemeToggler, message } from '@mlz/admin';

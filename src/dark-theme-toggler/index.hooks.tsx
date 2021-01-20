@@ -7,15 +7,20 @@ import { AntdVersion, version, BuildTime } from '..';
 const styleLinkId = simpleHash('admini-dark-theme-styles');
 const darkThemePalette = {
   '--theme-bg': '#000',
-  '--theme-sub-bg': '#1f1f1f',
+  '--theme-sub-bg': '#1d1c1c',
+  '--theme-menu-bg': '#1f1f1f',
 };
 const lightThemePalette = {
   '--theme-bg': '#fff',
-  '--theme-sub-bg': '#041c40',
+  '--theme-sub-bg': '#f0f2f5',
+  '--theme-menu-bg': '#041c40',
 };
 
+export const calcDefaultCDNPath = ($antdVersion: string, $version: string, $BuildTime: string) =>
+  `https://cdn.bootcdn.net/ajax/libs/antd/${$antdVersion}/antd.dark.min.css?version=${$version}&t=${$BuildTime}`;
+
 const useDarkTheme = (callback: Function, observed?: any, conf?: UseDarkThemeOptions) => {
-  const defaultCDNPath = `https://cdn.bootcdn.net/ajax/libs/antd/${AntdVersion}/antd.dark.min.css?version=${version}&t=${BuildTime}`;
+  const defaultCDNPath = calcDefaultCDNPath(AntdVersion, version, BuildTime);
   const { darkThemeCssResourceUrl = defaultCDNPath, initialTheme = 'light' } = conf || {};
 
   const [theme, toggleTheme] = useState<ThemeKeyNameTypes>(initialTheme);

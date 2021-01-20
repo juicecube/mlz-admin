@@ -15,11 +15,11 @@ jest.mock('../../shared/service', () => {
   };
 });
 
-jest.mock('../../shared/service/index.ts', () => {
-  return {
-    decodePhone: jest.fn().mockImplementationOnce(() => Promise.resolve(`13820003000`)),
-  };
-});
+// jest.mock('../../shared/service/index.ts', () => {
+//   return {
+//     decodePhone: jest.fn().mockImplementationOnce(() => Promise.resolve(`13820003000`)),
+//   };
+// });
 
 describe('🧪 DecodePhone', () => {
   testMount(DecodePhone);

@@ -33,7 +33,7 @@ export default () => (
     <Header style={{ overflow: 'hidden' }}>
       <HeaderContent />
     </Header>
-    <Content style={{ padding: '18px 50px' }}>
+    <Content style={{ padding: '18px 50px' }} errorBoundary="false">
       <div className="site-layout-content" style={{ padding: 24, minHeight: 160 }}>
         View Contents
       </div>
