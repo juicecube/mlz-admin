@@ -5,10 +5,16 @@
         }
     },
     "coverage": {
+        "range": 60..85,
         "status": {
             "project": {
                 "default": {
-                    "threshold": 20%
+                    "threshold": 25%
+                }
+            },
+            "patch": {
+                "default": {
+                    "threshold": 25%,
                 }
             }
         }
