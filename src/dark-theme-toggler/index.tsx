@@ -4,8 +4,7 @@ import Icon from '../icon';
 import useDarkTheme, { calcDefaultCDNPath } from './index.hooks';
 import { DarkThemeTogglerProps } from './index.type';
 import { appendNode2Body } from '../shared/utils';
-import { isCompiled } from '../shared/service/constant';
-import { AntdVersion, version, BuildTime, EScences } from '..';
+import { AntdVersion, version, BuildTime, EScences } from '../index';
 
 export const preloadDarkThemeCss = (cssUrl: URL['href']) =>
   appendNode2Body('link', {

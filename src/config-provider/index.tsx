@@ -3,7 +3,7 @@ import { ConfigProvider as AntdConfigProvider } from 'antd';
 import { Locale } from 'antd/lib/locale-provider';
 import { ConfigProviderProps } from 'antd/lib/config-provider';
 import { default as zhLocale } from 'antd/es/locale-provider/zh_CN';
-import { version } from '..';
+import { version } from '../index';
 import './style/index.less';
 
 interface ConfigProviderType extends ConfigProviderProps {
