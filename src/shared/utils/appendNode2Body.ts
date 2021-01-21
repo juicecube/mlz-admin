@@ -1,6 +1,6 @@
 import appendScript from './appendScript';
 
-export default (nodeTagName: string, attributesConf: Record<any, any>, rewriteTarget?: 'body' | 'head' | 'html') => {
+export default (nodeTagName: string, attributesConf: Record<any, any>, rewriteTarget?: 'body' | 'head' | 'html'): any => {
   if (nodeTagName === 'script') {
     return appendScript(attributesConf.innerHML);
   }

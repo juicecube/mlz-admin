@@ -3,8 +3,7 @@ import { RenderFunction } from 'antd/lib/tooltip';
 import { DecodePhoneProps } from './index.type';
 import { Tooltip } from 'antd';
 import { default as Phone } from './model';
-
-const isCompiled = !'$THIS_WILL_BE_EMPTY_AFTER_DIST$';
+import { isCompiled } from '../shared/service/constant';
 
 export const INIT_TITLE = '加载中';
 const DecodePhone = (props: DecodePhoneProps) => {

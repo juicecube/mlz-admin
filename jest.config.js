@@ -1,14 +1,16 @@
 const path = require('path');
 
-const ignoredPaths = ['/node_modules/', '/src/shared/utils/', '/src/shared/test-utils/', '/src/date-picker/__tests__/utils.test.ts', '/src/shared/service/', '/src/error-boundary/'];
+const extraIgnoredPaths = ['/src/shared/utils/', '/src/shared/test-utils/', '/src/date-picker/__tests__/utils.test.ts', '/src/shared/service/', '/src/error-boundary/', '/src/watermark/canvas.ts'];
+
 module.exports = {
   verbose: true,
   rootDir: path.join(__dirname, ''),
-  setupFilesAfterEnv: ['<rootDir>/tests/setup.js'],
-  testTimeout: 8000,
+  setupFiles: ['<rootDir>/tests/setup.js', 'jest-canvas-mock'],
+  testTimeout: 5000,
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
-  coveragePathIgnorePatterns: ignoredPaths,
-  testPathIgnorePatterns: ignoredPaths,
+  coveragePathIgnorePatterns: ['/node_modules/', ...extraIgnoredPaths],
+  testPathIgnorePatterns: ['/node_modules/', ...extraIgnoredPaths],
+  snapshotSerializers: ['enzyme-to-json/serializer'],
 };

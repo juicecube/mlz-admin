@@ -27,33 +27,30 @@ if (typeof window !== 'undefined') {
       matches: false,
       media: qy,
       onchange: null,
-      // addListener: jest.fn(), // deprecated
-      // removeListener: jest.fn(), // deprecated
+      addListener: jest.fn(),
+      removeListener: jest.fn(),
       addEventListener: jest.fn(),
-      // removeEventListener: jest.fn(),
+      removeEventListener: jest.fn(),
       // 有些组件的优化需求需要
       requestIdleCallback: jest.fn(),
     })),
   });
-  Object.defineProperty(window, 'document', {
-    writable: true,
-    value: {
-      appendChild: jest.fn(),
-      getElementsByTagName: jest.fn().mockImplementation((domNodes) => {}),
-    },
-  });
+  // Object.defineProperty(window, 'document', {
+  //   writable: true,
+  //   value: {
+  //     appendChild: jest.fn(),
+  //     getElementsByTagName: jest.fn().mockImplementation((domNodes) => domNodes),
+  //   },
+  // });
 }
-
-// 暂时不对React 17进行支持
-Enzyme.configure({ adapter: new Adapter() });
 
 // antd组件需要
 Object.assign(Enzyme.ReactWrapper.prototype, {
-  findObserver() {
-    return this.find('ResizeObserver');
-  },
   triggerResize() {
     const ob = this.findObserver();
     ob.instance().onResize([{ target: ob.getDOMNode() }]);
   },
 });
+
+// 暂时不对React 17进行支持
+Enzyme.configure({ adapter: new Adapter() });
