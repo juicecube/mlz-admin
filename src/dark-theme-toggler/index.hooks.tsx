@@ -2,7 +2,7 @@ import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { appendNode2Body, simpleHash } from '../shared/utils';
 import { UseDarkThemeOptions, ThemeKeyNameTypes } from './index.type';
 // import * as darkColors from 'antd/lib/style/themes/dark.less';
-import { AntdVersion, version, BuildTime } from '../index';
+import { AntdVersion, version, BuildTime } from '..';
 
 const styleLinkId = simpleHash('admini-dark-theme-styles');
 const darkThemePalette = {
