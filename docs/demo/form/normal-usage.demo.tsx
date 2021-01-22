@@ -2,22 +2,12 @@ import React from 'react';
 import { Form, Input, Button } from '@mlz/admin';
 
 export default () => {
-  const onFinish = (values) => {
-    console.log('Success:', values);
-  };
-
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
-
   return (
     <Form
       name="basic"
       initialValues={{
         remember: true,
-      }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}>
+      }}>
       <Form.Item
         label="Username"
         name="username"

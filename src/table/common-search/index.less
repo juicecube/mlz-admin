@@ -1,8 +1,10 @@
+@import '~antd/lib/style/themes/default.less';
+
 .admini-common-search {
   &__form {
     margin-bottom: 16px;
-    background: white;
-    padding: 18px 12px;
+    background: var(--theme-bg, white);
+    padding: 16px 16px 0 16px !important;
     border-radius: 2px;
     &__select__tag {
       width: 8px;
@@ -14,7 +16,7 @@
   }
   &__hr {
     margin: 12px 0;
-    height: 0px;
+    height: 0;
     border: none;
     border-top: dashed 1px #cacaca;
   }
@@ -28,6 +30,6 @@
     float: right;
   }
   .ant-pagination .ant-table-pagination .ant-table-pagination-right {
-    background: white;
+    background: var(--theme-bg, white);
   }
 }

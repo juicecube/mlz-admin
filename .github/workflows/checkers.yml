@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [10.20.x] 
+        node-version: [14.x] 
     steps:
       - name: checkout
         uses: actions/checkout@master
@@ -92,7 +92,7 @@ jobs:
           timezone: Asia/Shanghai
 
       - name: unit(component) test
-        run: npm run test
+        run: npm run test:coverage
 
       - name: check coverage limitation of coverage
         run: npm run check-coverage

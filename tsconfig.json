@@ -5,9 +5,9 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "jsx": "react",
-    "esModuleInterop": true,
     "sourceMap": true,
     "strict": true,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "removeComments": true,
     "skipLibCheck": true,
@@ -17,14 +17,12 @@
     "paths": {
       "@/*": ["src/*"],
       "@@/*": ["src/.umi/*"]
-    }
+    },
   },
   "exclude": [
     "node_modules",
     "es",
     "lib",
     "dist",
-    "tests",
-    "**/__tests__"
   ]
 }

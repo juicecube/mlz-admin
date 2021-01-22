@@ -37,5 +37,5 @@
 import React from 'react';
 import Commiters from '../_site/committers';
 
-export default () => <Commiters />;
+export default () => <Commiters refered={false} />;
 ```

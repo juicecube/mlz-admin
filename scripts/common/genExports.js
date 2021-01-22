@@ -22,7 +22,12 @@ const donotCamelizes = ['message', 'notification'];
 const donotCompiles = ['shared', 'style'];
 
 // 额外打包的内容
-const extraContents = [`export { default as createIconFontScript } from './create-icon-font-script'`];
+const extraContents = [
+  `
+  export { default as createIconFontScript } from './create-icon-font-script';\r\n
+  export { default as useDarkTheme } from './dark-theme-toggler/index.hooks';\r\n
+`,
+];
 
 const genExports = () => {
   const gutter = '\r\n\r\n';
@@ -39,10 +44,7 @@ const genExports = () => {
   exportsContents += extraContents.reduce((prev, curr) => {
     return (prev += `${gutter}${curr}`);
   });
-  return `/**   ⚠️you should NOT DELETE this file AND         *
-           *    keep it stay in your .GITIGNORE cause       *
-           *    it is generated automatically and useful    *
-          **/${gutter}${exportsContents}`;
+  return `/**  you SHOULD NOT delete this file ,  keep it       *\r\n*    stay in your .gitignore cause it was generated      *\r\n*    with necessities automatically❗️      *\r\n**/${gutter}${exportsContents}`;
 };
 
 module.exports = genExports;

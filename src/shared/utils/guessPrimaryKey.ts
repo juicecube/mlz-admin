@@ -1,6 +1,7 @@
 import { getDataType } from 'mytils';
 
-const __DEV__ = (window as any).__DEV__ !== 'false';
+const Window = window as any;
+const __DEV__ = Window.__DEV__ !== 'production';
 
 const guessPrimaryKey = ($columns: any[]): string | undefined => {
   if (!$columns) {
@@ -10,6 +11,7 @@ const guessPrimaryKey = ($columns: any[]): string | undefined => {
   if (probables.length > 0) {
     // 如果columns有指定了primary:boolean则使用它
     if (__DEV__ && probables.length > 1) {
+      // eslint-disable-next-line no-console
       console.warn(`[${guessPrimaryKey.name}]Table.columns只允许指定${1}列为primary，现在${probables.reduce((prev, curr) => prev.concat([curr.dataIndex]), []).join(',')}都是`);
     }
     return probables[0].dataIndex;

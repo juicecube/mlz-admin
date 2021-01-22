@@ -1,2 +1,5 @@
 import React from 'react';
-export { Tabs as default } from 'antd';
+import { Tabs as AntdTabs } from 'antd';
+import './index.less';
+
+export default AntdTabs;

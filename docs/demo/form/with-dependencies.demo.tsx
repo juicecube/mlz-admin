@@ -19,7 +19,7 @@ const columns = [
     name: 'afford',
     itemProps: { rules: [{ required: true, message: '必须填写"短信数量"' }] },
     render: (
-      <Select>
+      <Select defaultOpen>
         <Select.Option value={1}>按投放效果付费</Select.Option>
         <Select.Option value={2}>先行付费</Select.Option>
       </Select>

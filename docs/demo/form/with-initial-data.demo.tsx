@@ -27,8 +27,8 @@ const columns = [
     ),
   },
   {
-    label: '美女？',
-    name: 'wow',
+    label: '单身',
+    name: 'single',
     render: <Checkbox>嗯</Checkbox>,
     itemProps: { valuePropName: 'checked' },
     relyOn: [{ name: 'gender', toContain: [0] }],

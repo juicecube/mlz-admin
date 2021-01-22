@@ -30,6 +30,10 @@
 > 2. PR 表单请如实认真填写。
 > 3. 非编程猫官方的人员维护此库时只须遵循 antd 的贡献指南： [《ant-design 新特性提交规范》](https://github.com/ant-design/ant-design/wiki/PR-%E8%A7%84%E8%8C%83#ant-design-%E6%96%B0%E7%89%B9%E6%80%A7%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83)
 
+## 🐢 依赖管理
+
+为了避免一些意外的 bug 影响你的开发进度和体验，请尽量使用`npm`进行依赖管理[Dumi Issue#117 bug: 包冲突](https://github.com/umijs/dumi/issues/117)
+
 ## 🏭 Git.flow 管理
 
 @mlz/admin 要求采用编程猫现有的 git flow 管理规范对 GIT.Flow 进行管理：[《编程猫前端 Git Flow》](https://shimo.im/docs/aBAYV4XJdXfn8d3j)
@@ -117,7 +121,7 @@ $ npm link @mlz/admin
 ```jsx
 import { Button } from '@mlz/admin'; // cjs引用
 //or
-import Button from '@mlz/admin/es/Button/Button'; // esm按需引用
+import Button from '@mlz/admin/es/button'; // esm按需引用
 ```
 
 之后你直接修改@mlz/admin 中的代码，并且重新执行 dist（不建议直接引用 src），在 projA 刷新就可以实时看到变化。
@@ -146,5 +150,5 @@ $ npm install ./mlz-admin-0.0.9.tgz
 ```jsx
 import { Button } from '@mlz/admin'; // cjs引用
 //or
-import Button from '@mlz/admin/es/Button/Button'; // esm按需引用
+import Button from '@mlz/admin/es/button'; // esm按需引用
 ```

@@ -35,14 +35,6 @@
 
 <code src="./../../demo/table/with-operations.demo.tsx"/>
 
-<!-- ## keepAlive 数据缓存
-
-由 Table 组件所在页面向其它路由页面的跳转时，比如"查看详情"。这个交互一旦完成，再返回上一页，之前在 Table 中的搜索和分页参数会被清空。但在特定需求下，我们须要做数据缓存，保证之前的搜索条件继续可用。
-
-> 当然你也可以通过外接 ahooks 的 useAntdTable 的“数据缓存”来完成这个操作或实现更多数据的缓存，这自然要求必须是 function component + hooks。参考： https://ahooks.js.org/zh-CN/hooks/table/use-antd-table#%E6%95%B0%E6%8D%AE%E7%BC%93%E5%AD%98
-
--->
-
 ## APIs
 
 ### Table props
@@ -54,8 +46,8 @@
 | **onReset** | 当搜索项发起重置时触发 | (initialFormValues) => void | (initialFormValues) => void | 后续将移除，请尽量使用空参 onSearch 实现 |
 | **colCount** | 每行展示搜索项的数量 | number | `4` |  |
 | **initialSearchValues** | 初始搜索项 | object | `undefined` |  |
-| **tools** | 位于右侧的工具栏，用于 table 附加操作，比如新增、上传等 | ReactNode[] | [] |  |
-| **operations** | 位于左侧的操作栏，，一般用于对 table 的批量操作、操作提示、归纳等 | ReactNode[] | [] |  |
+| **tools** | 位于右侧的工具栏，用于 table 附加操作，比如新增、上传等 | ReactNode | [] |  |
+| **operations** | 位于左侧的操作栏，，一般用于对 table 的批量操作、操作提示、归纳等 | ReactNode | [] |  |
 | **searchCollapsedThreshold** | 隐藏过多搜索内容后，剩余的搜索项数量 | number | `undefined` | 为 0 或不设置，则不开启过量隐藏功能 |
 
 ### Table.columns.column

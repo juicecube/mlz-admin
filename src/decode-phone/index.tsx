@@ -1,36 +1,29 @@
 import React, { useState } from 'react';
-import { TooltipProps, RenderFunction } from 'antd/lib/tooltip';
+import { RenderFunction } from 'antd/lib/tooltip';
+import { DecodePhoneProps } from './index.type';
 import { Tooltip } from 'antd';
-import Http from '../../service';
-import { DECODE_URL } from '../../service/constants';
+import { default as Phone } from './model';
+import { isCompiled } from '../shared/service/constant';
 
-const INIT_TITLE = '加载中';
-
-interface IProps extends Omit<TooltipProps, 'title'> {
-  url?: string;
-  params: string;
-}
-
-const DecodePhone = (props: IProps) => {
-  const { children, params, url = DECODE_URL, ...rest } = props;
-  const _URL = new URL(url);
+export const INIT_TITLE = '加载中';
+const DecodePhone = (props: DecodePhoneProps) => {
+  const { children, params: cipherText, onReady, onError, ...rest } = props;
   const [title, setTitle] = useState<RenderFunction | React.ReactNode>(INIT_TITLE);
-  const handleRequest = () => {
-    new Http(_URL.origin)
-      .post(_URL.pathname, {
-        cipher_text: params,
-      })
-      .then((res: any) => {
-        setTitle(res);
-      })
-      .catch((err) => {
-        console.error('error', err);
-      });
+  const handleRequest = async () => {
+    try {
+      const encodedPhone = Phone.create(cipherText);
+      const tel = await encodedPhone.decode();
+      const result = isCompiled ? tel : JSON.parse(tel).phone_number;
+      setTitle(result);
+      onReady?.(result);
+    } catch (err) {
+      onError?.(err);
+      throw new Error(err);
+    }
   };
-
   return (
-    <Tooltip title={title} trigger="click" {...rest} onVisibleChange={(visible) => visible && title === INIT_TITLE && handleRequest()}>
-      {children}
+    <Tooltip {...rest} title={title} trigger="click" onVisibleChange={(visible) => visible && title === INIT_TITLE && handleRequest()}>
+      <span>{children}</span>
     </Tooltip>
   );
 };

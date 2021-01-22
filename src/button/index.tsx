@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button as AntdButton } from 'antd';
 import { omitProps } from 'mytils';
-import Icon from '../icon';
 import { GroupType, IButtonProps } from './index.type';
 
 const InternalButton: React.ForwardRefRenderFunction<unknown, IButtonProps> = (props: IButtonProps, ref): React.ReactElement => {
@@ -17,9 +16,7 @@ const InternalButton: React.ForwardRefRenderFunction<unknown, IButtonProps> = (p
             {...omitProps(['size', 'style', 'className', 'prefixCls', 'group', 'onClick'], props)}
             onClick={(e) => props.onClick?.({ ...e, ...{ value: group[index].value } })}
             type={item.type || props.type}>
-            {item.leftIconType ? <Icon type={item?.leftIconType} /> : null}
             {item.text}
-            {item.rightIconType ? <Icon type={item?.rightIconType} /> : null}
           </AntdButton>
         );
       })}

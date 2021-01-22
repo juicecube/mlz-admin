@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, Button } from 'antd';
+import { Modal, Button } from '@mlz/admin';
 
 export default () => {
   const [visible, setVisible] = useState(false);
@@ -8,22 +8,12 @@ export default () => {
     setVisible(true);
   };
 
-  const handleOk = (e) => {
-    console.log(e);
-    setVisible(false);
-  };
-
-  const handleCancel = (e) => {
-    console.log(e);
-    setVisible(false);
-  };
-
   return (
     <div>
       <Button type="primary" onClick={showModal}>
         Open Modal
       </Button>
-      <Modal title="Basic Modal" visible={visible} onOk={handleOk} onCancel={handleCancel}>
+      <Modal title="Basic Modal" visible={visible}>
         <p>Some contents...</p>
         <p>Some contents...</p>
         <p>Some contents...</p>

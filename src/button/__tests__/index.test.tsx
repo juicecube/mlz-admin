@@ -25,7 +25,7 @@ const groupList = [
 
 describe('🧪 Button', () => {
   /**
-   * @FIRST 挂载 / 快照测试（一定程度上防止圣诞节彩蛋等底层dom修改..）
+   * 挂载 / 快照测试（一定程度上防止圣诞节彩蛋等底层dom修改..）
    */
   testMount(Button);
   testSnapshot(Button);
@@ -39,7 +39,7 @@ describe('🧪 Button', () => {
   ));
 
   /**
-   * @SECOND 扩展属性
+   * 扩展属性
    */
   // type属性是否还可以控制按钮样式
   test('props.type rendered correctly', () => {
@@ -59,7 +59,7 @@ describe('🧪 Button', () => {
   });
 
   /**
-   * @THIRD 事件/属性正确地触发/生效
+   * 事件/属性正确地触发/生效
    */
   test('onClick should be called within a composed params when using group prop', () => {
     const onClickFn = jest.fn();

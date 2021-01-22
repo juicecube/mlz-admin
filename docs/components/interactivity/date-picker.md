@@ -16,9 +16,9 @@
 
 ### APIS
 
-| 参数            | 说明                              | 类型                                       | 默认值 | 版本 |
-| --------------- | --------------------------------- | ------------------------------------------ | ------ | ---- |
-| value           | 日期                              | number(时间戳)                             | -      |      |
-| startOf         | 返回时间单位的开头                | unitOfTime.StartOf                         | ms     |      |
-| onChange        | 时间发生变化的回调                | function(date: number, dateString: string) | -      |      |
-| returnUnixValue | onChange 是否返回 unix 类型的时间 | boolean                                    | false  |      |
+| 参数            | 说明                              | 类型                                                 | 默认值 | 版本 |
+| --------------- | --------------------------------- | ---------------------------------------------------- | ------ | ---- |
+| value           | 日期                              | number(时间戳) \| moment                             | -      |      |
+| startOf         | 返回时间单位的开头                | unitOfTime.StartOf                                   | ms     |      |
+| onChange        | 时间发生变化的回调                | function(date: number \| moment, dateString: string) | -      |      |
+| returnUnixValue | onChange 是否返回 unix 类型的时间 | boolean                                              | false  |      |

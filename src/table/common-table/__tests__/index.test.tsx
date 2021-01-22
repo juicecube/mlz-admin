@@ -12,13 +12,13 @@ const data = [
   },
   {
     name: 'joyce',
-    score: undefined,
-    ranked: 0.95,
+    score: 0,
+    ranked: undefined,
     moodStatus: 'blue',
   },
   {
     name: '',
-    score: 60,
+    score: 75,
     ranked: 0.6,
     moodStatus: 'green',
   },
@@ -27,54 +27,61 @@ const data = [
 describe('🧪 CommonTable', () => {
   testMount(CommonTable);
 
-  test('如果一个值为空或不存在，则返回"--"', () => {
-    const columns = [
-      {
-        title: '姓名',
-        dataIndex: 'name',
-      },
-      {
-        title: '得分',
-        dataIndex: 'score',
-        type: 'number',
-      },
-      {
-        title: '排名',
-        dataIndex: 'ranked',
-        type: 'ratio',
-      },
-      {
-        title: '心情状态',
-        dataIndex: 'moodStatus',
-        type: 'tag',
-        enums: {
-          red: { color: 'red', desc: '火辣的' },
-          blue: { color: 'blue', desc: '深沉的' },
-          green: { color: 'green', desc: '清凉的' },
-        },
-      },
-    ];
-    const wrapper = mount(<CommonTable columns={columns} dataSource={data} rowKey="name" />);
+  test('如果一个值为null或undefined，则返回"--"', () => {
+    const wrapper = mount(
+      <CommonTable
+        columns={[
+          {
+            title: '姓名',
+            dataIndex: 'name',
+          },
+          {
+            title: '得分',
+            dataIndex: 'score',
+            type: 'number',
+          },
+          {
+            title: '排名',
+            dataIndex: 'ranked',
+            type: 'ratio',
+          },
+          {
+            title: '心情状态',
+            dataIndex: 'moodStatus',
+            type: 'tag',
+            enums: {
+              red: { color: 'red', desc: '火辣的' },
+              blue: { color: 'blue', desc: '深沉的' },
+              green: { color: 'green', desc: '清凉的' },
+            },
+          },
+        ]}
+        dataSource={data}
+        rowKey="name"
+      />,
+    );
     const tbody = wrapper.find('tbody');
     expect(tbody.find('tr').length).toBe(data.length);
     [
       {
         trLine: 1,
         tdLine: 1,
-        expectation: '--',
-        assertion: undefined,
+        expectation: '0',
       },
       {
         trLine: 2,
         tdLine: 0,
         expectation: '--',
-        assertion: undefined,
       },
       {
         trLine: 1,
         tdLine: 2,
-        expectation: '95.00%',
-        assertion: undefined,
+        expectation: '--',
+      },
+      {
+        trLine: 0,
+        tdLine: 2,
+        expectation: '5.00%',
       },
       {
         assertion: () => {
@@ -102,18 +109,23 @@ describe('🧪 CommonTable', () => {
 
   test('如果column指定了render函数，则渲染该render', () => {
     const renderedMounter = <div className="tester-container">some_value</div>;
-    const columns = [
-      {
-        title: '姓名',
-        dataIndex: 'name',
-        render: () => renderedMounter,
-      },
-      {
-        title: '得分',
-        dataIndex: 'score',
-      },
-    ];
-    const wrapper = mount(<CommonTable columns={columns} dataSource={data} rowKey="name" />);
+    const wrapper = mount(
+      <CommonTable
+        columns={[
+          {
+            title: '姓名',
+            dataIndex: 'name',
+            render: () => renderedMounter,
+          },
+          {
+            title: '得分',
+            dataIndex: 'score',
+          },
+        ]}
+        dataSource={data}
+        rowKey="name"
+      />,
+    );
     const tbody = wrapper.find('tbody');
     tbody.find('tr').forEach(($tr) => {
       const firstTd = $tr.find('td').at(0);
@@ -202,7 +214,7 @@ describe('🧪 CommonTable', () => {
   ];
 
   tests.forEach(($test, $index) => {
-    test($test.desc, () => {
+    test($test.desc + '', () => {
       const wrapper = mount(<CommonTable columns={columnsOnturns[$index]} dataSource={dataOnturns} rowKey="name" />);
       const theCell = wrapper
         .find('tbody')

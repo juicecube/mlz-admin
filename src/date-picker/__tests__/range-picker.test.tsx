@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { testMount, testSnapshot } from '../../../tests';
 import { mount } from 'enzyme';
-import moment from 'moment';
 import DatePicker from '..';
-import { openPicker, selectCell, closePicker } from './utils';
+import { openPicker, selectCell, closePicker } from '../../shared/test-utils';
 
 describe('🧪 RangePicker', () => {
   testMount(DatePicker.RangePicker);
   testSnapshot(DatePicker.RangePicker);
 
-  it('return unix value', () => {
+  it('返回一个UNIX时间戳', () => {
     class Test extends Component {
       state = {
         // eslint-disable-next-line react/no-unused-state
@@ -37,6 +36,6 @@ describe('🧪 RangePicker', () => {
     selectCell(wrapper, '5');
     closePicker(wrapper, 1);
     const { value } = wrapper.state() as any;
-    value && expect(typeof value[0] === 'number' && typeof value[1] === 'number').toBe(true);
+    expect(typeof value[0] === 'number' && typeof value[1] === 'number').toBe(true);
   });
 });
