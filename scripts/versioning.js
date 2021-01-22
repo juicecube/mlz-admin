@@ -22,7 +22,7 @@ const checkVersion = async () => {
 };
 
 const checkTag = async () => {
-  await git.pull();
+  await git.pull('origin', 'master', ['--tags']);
   const { taggedTags } = await git.tags();
   if (taggedTags && taggedTags.includes(`${tagPrefix}${version}`)) {
     console.error(`Error: 🏷 ${tagPrefix}${version}已经存在了`, `\r\n`);
