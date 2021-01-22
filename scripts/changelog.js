@@ -10,6 +10,9 @@ const git = simpleGit(cwd);
 const changelog = async ($auto) => {
   const tags = await git.tags();
   const { latest } = tags;
+  const tagList = tags.all.reverse();
+  console.log(`previous tags shown here: `);
+  console.table(tagList);
   const { fromVersion } =
     $auto === false
       ? await inquirer.prompt([
@@ -19,11 +22,12 @@ const changelog = async ($auto) => {
             message: `latest version is ${latest}, choose a version to generate changelogs`,
             choices: tags.all
               .reverse()
-              .map((tag) => tag.replace('v', ''))
+              .map((tag) => tag && tag.replace('v', ''))
               .slice(1, 6),
           },
         ])
-      : { fromVersion: tags.all.reverse()[1].replace('v', '') };
+      : { fromVersion: tagList[1].replace('v', '') };
+  console.log(`latest tag was ${fromVersion} \r\n`);
   const logs = await git.log({ from: `v${fromVersion}`, to: latest });
   return genLogs(logs);
 };

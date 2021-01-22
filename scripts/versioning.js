@@ -22,6 +22,7 @@ const checkVersion = async () => {
 };
 
 const checkTag = async () => {
+  await git.pull();
   const { taggedTags } = await git.tags();
   if (taggedTags && taggedTags.includes(`${tagPrefix}${version}`)) {
     console.error(`Error: 🏷 ${tagPrefix}${version}已经存在了`, `\r\n`);
@@ -33,29 +34,32 @@ const checkTag = async () => {
 const checkBranch = async ({ current }) => {
   if (!canPublishBranches.includes(current)) {
     console.error(`Error: 没有在${canPublishBranches.join('或')}分支发布，而是${current}分支`, `\r\n`);
-    process.exit(1);
+    // process.exit(1);
   }
 };
 
 const tagTag = async (tag) => {
   const tagMessage = await changelog(process.env.AUTO === '1');
-  console.log(tagMessage);
   git.addAnnotatedTag(tag, tagMessage);
+  console.log(`annotated successfully, tag message is :`);
+  console.log(tagMessage + '\r\n');
 };
 
-const pushTag = async () => {
-  git.pushTags('origin', () => {
-    console.log(`Success✅: ag推送成功`, `\r\n`);
-  });
-};
+const pushTag = git.pushTags('origin');
 
 (async () => {
   const status = await git.status();
   await checkBranch(status);
   await checkVersion();
+
+  // 打tag
   const tag = await checkTag();
   if (tag) {
+    console.log('🚗 taging... \r\n');
     await tagTag(tag);
     await pushTag();
+    console.log('✅ push tag successfutlly');
+  } else {
+    throw new Error(`no tag detected`);
   }
 })();
