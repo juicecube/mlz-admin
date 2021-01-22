@@ -8,6 +8,7 @@ on:
 
 jobs:
   publish: 
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -28,23 +29,15 @@ jobs:
 
       - name: install dependencies
         run: npm install
-        env:
-          CI: true
 
       - name: execute test
         run: npm run test:coverage
-        env: 
-          CI: true
 
       - name: lint code
         run: npm run lint
-        env: 
-          CI: true
 
       - name: build dist
         run: npm run dist
-        env:
-          CI: true
       
       - name: tag a tag
         run: npm run version
