@@ -13,7 +13,7 @@ const tagPrefix = 'v';
 const canPublishBranches = ['HEAD', 'release'];
 
 const checkVersion = async () => {
-  let { versions } = await fetch('http://registry.npmjs.org/@mlz/admin').then((res) => res.json());
+  let { versions } = await fetch('https://registry.npmjs.org/@mlz/admin').then((res) => res.json());
   versions = Object.keys(versions);
   if (versions && versions.includes(version)) {
     console.error(`Error: 版本${version}已经发布过了`, `\r\n`);
