@@ -6,7 +6,7 @@
 </p>
 <div align="center">
 
-[![codecov](https://codecov.io/gh/juicecube/mlz-admin/branch/master/graph/badge.svg?token=ZNPL3AMQ7Z)](undefined) ![Codacy](https://app.codacy.com/project/badge/Grade/999d89d9099e41ef81b9af94c98a8726) ![Action Checkers](https://github.com/juicecube/mlz-admin/workflows/checker/badge.svg) ![Npm Version](https://img.shields.io/npm/v/@mlz/admin?color=42b983&label=%40mlz%2Fadmin&logo=42b983&logoColor=42b983)
+[![codecov](https://codecov.io/gh/juicecube/mlz-admin/branch/master/graph/badge.svg?token=ZNPL3AMQ7Z)](undefined) ![Codacy](https://app.codacy.com/project/badge/Grade/999d89d9099e41ef81b9af94c98a8726) ![Action Checkers](https://github.com/juicecube/mlz-admin/workflows/checkers/badge.svg) ![Npm Version](https://img.shields.io/npm/v/@mlz/admin?color=42b983&label=%40mlz%2Fadmin&logo=42b983&logoColor=42b983)
 
 </div>
 
