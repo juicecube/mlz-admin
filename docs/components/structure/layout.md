@@ -1,6 +1,6 @@
 # Layout 布局
 
-**`📦 布局`进行页面级整体布局。**
+> `📦 布局`进行页面级整体布局，通常决定了一款产品设计的基础样式结构。
 
 ## 顶部导航布局
 
@@ -130,10 +130,18 @@ export default App;
 - Layout：布局容器，其下可嵌套 Header Sider Content Footer 或 Layout 本身，可以放在任何父容器中。
 - Header：顶部布局，自带默认样式，其下可嵌套任何元素，只能放在 Layout 中。
 - Sider：侧边栏，自带默认样式及基本功能，其下可嵌套任何元素，只能放在 Layout 中。
-- Content：内容部分，自带默认样式，其下可嵌套任何元素，只能放在 Layout 中。`内置了 ErrorBoundary，默认开启`；可以通过 Layout.errorBoundary 设置为 false 来关闭。
+- Content：内容部分，自带默认样式，其下可嵌套任何元素，只能放在 Layout 中。`内置了 ErrorBoundary，默认开启`；可以通过 Layout.Content.errorBoundary 设置为 false 来关闭。
 - Footer：底部布局，自带默认样式，其下可嵌套任何元素，只能放在 Layout 中。
 
+---
+
 ## APIs
+
+### Layout.Content.props
+
+| 类型 Key          | 描述                              | 类型值               |
+| ----------------- | --------------------------------- | -------------------- |
+| **errorBoundary** | 是否开启内置的 ErrorBoundary 组件 | boolean ｜ undefined |
 
 ```tsx
 /**

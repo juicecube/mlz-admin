@@ -6,7 +6,7 @@
 </p>
 <div align="center">
 
-[![npm version](https://img.shields.io/npm/v/@mlz/admin?color=42b983&label=%40mlz%2Fadmin&logo=42b983&logoColor=42b983)](https://github.com/juicecube/mlz-admin) [![codecov](https://codecov.io/gh/juicecube/mlz-admin/branch/master/graph/badge.svg?token=ZNPL3AMQ7Z)](https://app.codecov.io/gh/juicecube/mlz-admin/) [![license](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/juicecube/mlz-admin/blob/master/CONTRIBUTING.md) [![static](https://img.shields.io/npm/dy/@mlz/admin)](https://www.npmjs.com/package/@mlz/admin) ![actions](https://github.com/juicecube/mlz-admin/workflows/checkers/badge.svg)
+[![npm version](https://img.shields.io/npm/v/@mlz/admin?color=blue&label=%40mlz%2Fadmin)](https://github.com/juicecube/mlz-admin) [![codecov](https://codecov.io/gh/juicecube/mlz-admin/branch/master/graph/badge.svg?token=ZNPL3AMQ7Z)](https://app.codecov.io/gh/juicecube/mlz-admin/) ![actions](https://github.com/juicecube/mlz-admin/workflows/checkers/badge.svg) [![license](https://img.shields.io/badge/license-MIT-green.svg?color=lightgreen)](https://github.com/juicecube/mlz-admin/blob/master/CONTRIBUTING.md) [![static](https://img.shields.io/npm/dy/@mlz/admin?color=lightgreen)](https://www.npmjs.com/package/@mlz/admin)
 
 </div>
 
