@@ -1,6 +1,6 @@
 import React, { useState, useEffect, CSSProperties } from 'react';
 import axios from 'axios';
-import { Avatar, Tooltip, Typography, Spin, Button, Icon, Affix } from '@mlz/admin';
+import { Avatar, Tooltip, Typography, Spin, Button, Icon, Affix, BackTop } from '@mlz/admin';
 import { uniqBy } from 'lodash-es';
 import { getPaths } from '../../../../src/shared/utils';
 import './index.less';
@@ -86,6 +86,7 @@ export default (props: { refered?: boolean | string }) => {
           })()}
         </ul>
       </Spin>
+      <BackTop />
     </div>
   );
 };

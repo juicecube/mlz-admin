@@ -37,15 +37,15 @@ export default defineConfig({
   },
   navs: [
     {
-      title: '设计规范',
+      title: '规范',
       path: '/regularity',
     },
     {
-      title: '组件',
+      title: '📦 组件',
       path: '/components',
     },
     {
-      title: '样板项目',
+      title: '案例',
       children: [
         { title: 'Libra投放管理平台', path: 'https://libra.codemao.cn/' },
         { title: '行政综合支撑平台', path: 'https://support-admin.codemao.cn/' },
@@ -55,13 +55,13 @@ export default defineConfig({
       ],
     },
     {
-      title: '❤️ Star Us',
+      title: 'Github',
       path: 'https://github.com/juicecube/mlz-admin',
     },
-    {
-      title: '编程猫其它项目',
-      path: '/others',
-    },
+    // {
+    //   title: '更新日志',
+    //   path: '/changelogs',
+    // },
   ],
   theme: {
     '@c-primary': '#1890FF',

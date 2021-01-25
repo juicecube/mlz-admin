@@ -47,7 +47,6 @@ const IconClasses = () => {
           <div className="mask" />
         </div>
       </Spin>
-      <BackTop />
     </>
   );
 };

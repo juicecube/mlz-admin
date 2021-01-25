@@ -133,15 +133,19 @@ export default App;
 - Content：内容部分，自带默认样式，其下可嵌套任何元素，只能放在 Layout 中。`内置了 ErrorBoundary，默认开启`；可以通过 Layout.Content.errorBoundary 设置为 false 来关闭。
 - Footer：底部布局，自带默认样式，其下可嵌套任何元素，只能放在 Layout 中。
 
+## 优化内容
+
+- 在 Layout.Content 中嵌入了错误边界 ErrorBoundary，默认开启，可以通过参数关闭。
+
 ---
 
 ## APIs
 
-### Layout.Content.props
+### Layout.Content props
 
-| 类型 Key          | 描述                              | 类型值               |
-| ----------------- | --------------------------------- | -------------------- |
-| **errorBoundary** | 是否开启内置的 ErrorBoundary 组件 | boolean ｜ undefined |
+| 类型 Key          | 描述                              | 默认值      | 类型值  |
+| ----------------- | --------------------------------- | ----------- | ------- |
+| **errorBoundary** | 是否开启内置的 ErrorBoundary 组件 | `undefined` | boolean |
 
 ```tsx
 /**

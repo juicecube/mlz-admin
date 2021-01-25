@@ -2,13 +2,13 @@
 import React from 'react';
 import { ButtonProps, ButtonType } from 'antd/lib/button';
 
-export type ButtonGroupPropableValue = any;
+export type ButtonGroupPropableValue = unknown;
 export interface GroupType {
   key: string | number;
   text: string;
-  onClick?: React.MouseEventHandler<HTMLElement>;
   value?: ButtonGroupPropableValue;
   type?: ButtonType;
+  onClick?: React.MouseEventHandler<HTMLElement>;
 }
 export type MenuType = { iconType?: string } & Exclude<GroupType, 'type' | 'onClick'>;
 

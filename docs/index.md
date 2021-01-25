@@ -11,7 +11,7 @@ group:
 
 ##### 🌈 遵循 编程猫后台管理系统设计和使用规范 的 React 组件库。
 
-[![npm version](https://img.shields.io/npm/v/@mlz/admin?color=blue&label=%40mlz%2Fadmin)](https://github.com/juicecube/mlz-admin) [![codecov](https://codecov.io/gh/juicecube/mlz-admin/branch/master/graph/badge.svg?token=ZNPL3AMQ7Z)](https://app.codecov.io/gh/juicecube/mlz-admin/) [![codacy](https://app.codacy.com/project/badge/Grade/4fe6e8e25e00469d8973f63320fa77c0)](https://app.codacy.com/gh/juicecube/mlz-admin/dashboard) [![license](https://img.shields.io/badge/license-MIT-green.svg?color=lightgreen)](https://github.com/juicecube/mlz-admin/blob/master/CONTRIBUTING.md) [![static](https://img.shields.io/npm/dm/@mlz/admin?label=downloads&color=lightgreen)](https://www.npmjs.com/package/@mlz/admin)
+[![npm version](https://img.shields.io/npm/v/@mlz/admin?color=lightblue&label=%40mlz%2Fadmin)](https://github.com/juicecube/mlz-admin) [![codecov](https://codecov.io/gh/juicecube/mlz-admin/branch/master/graph/badge.svg?token=ZNPL3AMQ7Z)](https://app.codecov.io/gh/juicecube/mlz-admin/) [![codacy](https://app.codacy.com/project/badge/Grade/4fe6e8e25e00469d8973f63320fa77c0)](https://app.codacy.com/gh/juicecube/mlz-admin/dashboard) [![license](https://img.shields.io/badge/license-MIT-green.svg?color=lightblue)](https://github.com/juicecube/mlz-admin/blob/master/CONTRIBUTING.md) [![static](https://img.shields.io/npm/dm/@mlz/admin?label=downloads&color=lightblue)](https://www.npmjs.com/package/@mlz/admin)
 
 ---
 
@@ -80,7 +80,7 @@ module.exports = {
 
 ## 贡献指南
 
-[![closed issues](https://img.shields.io/github/issues-closed/juicecube/mlz-admin?color=lightgreen&label=issues)](https://github.com/juicecube/mlz-admin/issues?q=is%3Aissue+is%3Aclosed) / [![issues](https://img.shields.io/github/issues/juicecube/mlz-admin?color=red&label=pending%20issues)](https://github.com/juicecube/mlz-admin/issues)
+[![closed issues](https://img.shields.io/github/issues-closed/juicecube/mlz-admin?color=lightgreen&label=issues)](https://github.com/juicecube/mlz-admin/issues?q=is%3Aissue+is%3Aclosed) / [![issues](https://img.shields.io/github/issues/juicecube/mlz-admin?color=orange&label=pending%20issues)](https://github.com/juicecube/mlz-admin/issues)
 
 ```tsx
 /**
