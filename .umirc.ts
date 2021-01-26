@@ -58,10 +58,10 @@ export default defineConfig({
       title: 'Github',
       path: 'https://github.com/juicecube/mlz-admin',
     },
-    // {
-    //   title: '更新日志',
-    //   path: '/changelogs',
-    // },
+    {
+      title: '日志',
+      path: '/changelogs',
+    },
   ],
   theme: {
     '@c-primary': '#1890FF',

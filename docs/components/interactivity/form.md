@@ -1,6 +1,6 @@
 # Form 表单
 
-**`📦 表单`自带数据域管理。包含数据录入、校验以及对应样式。**
+> `📦 表单`自带数据域管理。包含数据录入、校验以及对应样式。
 
 ## 基本使用
 
@@ -22,7 +22,7 @@
 
 ## 优化内容
 
-- 新增 Form 的静态方法 Block（即 `Form.Block`组件）。
+- 新增 Form 的静态方法 Block（即 `Form.Block`组件），其内容是一个通用表单块。
 - Form.Block 通过开放`columns`属性，对 FormItem 进行动态批量地渲染；节约代码量的同时，实现表单的动态配置化。
 - 通过`initialValues`为表单注入与`defaultValue`表现相同的初始内容，区别在于后者在 reset 时仅能回复到 default 值，而非空值，这在不少场景下是需要的；其外，initialValues 是全 Form 的维度，以 name 为索引来进行初始化的，高于原子维度，因此应对不太复杂的表单、普适性的需求更从容轻松。配合`columns` 使用，非常便捷（当然可以通过`itemProps`透传 Form.FormItem 的属性，重新实现原子化配置）。
 
