@@ -27,8 +27,7 @@
     "version": "AUTO=1 node ./scripts/versioning",
     "changelog": "node ./scripts/changelog",
     "clean": "rm -rf es lib dist .tsc-check coverage src/index.tsx",
-    "relaunch": "npm run clean && rm -rf node_modules package-lock.json yarn.lock src/.umi && npm install",
-    "theme-less": "node ./scripts/genAntdDarkTheme"
+    "relaunch": "npm run clean && rm -rf node_modules package-lock.json yarn.lock src/.umi && npm install"
   },
   "module": "es/index.js",
   "main": "lib/index.js",

@@ -35,8 +35,6 @@
 
 <code src="./../../demo/table/with-operations.demo.tsx"/>
 
-## 优化内容
-
 ---
 
 ## APIs

@@ -1,6 +1,9 @@
 name: publish
 
 on:
+  push:
+    branches:
+      - 'feat/*'
   pull_request:
     types: [closed]
     branches:
@@ -43,8 +46,3 @@ jobs:
         run: npm run version
         env:
           CI: true
-
-      - name: npm publish
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ secrets.NPM_TOKEN }}

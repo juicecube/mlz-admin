@@ -10,7 +10,7 @@ const pkg = require('../package.json');
 const git = simpleGit(process.cwd());
 const { version } = pkg;
 const tagPrefix = 'v';
-const canPublishBranches = ['HEAD', 'release'];
+const canPublishBranches = ['release', 'master'];
 
 const checkVersion = async () => {
   let { versions } = await fetch('https://registry.npmjs.org/@mlz/admin').then((res) => res.json());
@@ -21,8 +21,11 @@ const checkVersion = async () => {
   }
 };
 
-const checkTag = async () => {
-  await git.pull('origin', 'master', ['--tags']);
+const checkTag = async ({ current }) => {
+  // 更新当前分支
+  console.log(`pulling branch is: ${current} \r\n`);
+  await git.pull('origin', current, { '--tags': null, '--no-rebase': null, '--ff-only': null });
+
   const { taggedTags } = await git.tags();
   if (taggedTags && taggedTags.includes(`${tagPrefix}${version}`)) {
     console.error(`Error: 🏷 ${tagPrefix}${version}已经存在了`, `\r\n`);
@@ -49,11 +52,11 @@ const pushTag = git.pushTags('origin');
 
 (async () => {
   const status = await git.status();
-  await checkBranch(status);
+  // await checkBranch(status);
   await checkVersion();
 
   // 打tag
-  const tag = await checkTag();
+  const tag = await checkTag(status);
   if (tag) {
     console.log('🚗 taging... \r\n');
     await tagTag(tag);
