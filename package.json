@@ -35,8 +35,7 @@
   "files": [
     "lib",
     "es",
-    "LICENSE",
-    "service"
+    "LICENSE"
   ],
   "gitHooks": {
     "pre-commit": "npx lint-staged && npx pretty-quick --staged"

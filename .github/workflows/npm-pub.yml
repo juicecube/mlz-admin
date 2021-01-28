@@ -40,8 +40,20 @@ jobs:
 
       - name: build dist
         run: npm run dist
+
+      - run: git config user.name ${{ secrets.GIT_USERNAME }}
+      - run: git config user.email ${{ secrets.GIT_EMAIL }}
       
       - name: tag a tag
         run: npm run version
         env:
           CI: true
+
+      - name: archive artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist-without-markdown
+          path: |
+            lib
+            es
+            LICENSE
