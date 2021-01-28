@@ -3,10 +3,12 @@ import { Button as AntdButton } from 'antd';
 import { omitProps } from 'mytils';
 import { GroupType, IButtonProps } from './index.type';
 
-const InternalButton: React.ForwardRefRenderFunction<unknown, IButtonProps> = (props: IButtonProps, ref): React.ReactElement => {
+const InternalButton: React.ForwardRefRenderFunction<HTMLElement | null, IButtonProps> = (props: IButtonProps, ref): React.ReactElement => {
   const { group } = props;
   return !group ? (
-    <AntdButton {...props}>{props.children}</AntdButton>
+    <AntdButton {...props} ref={ref}>
+      {props.children}
+    </AntdButton>
   ) : (
     <AntdButton.Group>
       {group?.map((item: GroupType, index: number) => {

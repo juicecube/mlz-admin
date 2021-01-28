@@ -26,11 +26,11 @@ export default defineConfig({
         children: getMds('components/structure').map((item) => 'components/structure/' + item),
       },
       {
-        title: '交互和展示组件',
+        title: '交互和展示',
         children: getMds('components/interactivity').map((item) => 'components/interactivity/' + item),
       },
       {
-        title: '业务组件',
+        title: '业务',
         children: getMds('components/composit').map((item) => 'components/composit/' + item),
       },
     ],
@@ -57,10 +57,6 @@ export default defineConfig({
     {
       title: 'Github',
       path: 'https://github.com/juicecube/mlz-admin',
-    },
-    {
-      title: '日志',
-      path: '/changelogs',
     },
   ],
   theme: {

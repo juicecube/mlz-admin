@@ -41,7 +41,7 @@ export default () => {
         <Sider collapsed={collapsed} onCollapse={onCollapsedHandler}>
           <div style={{ float: 'left', color: 'white', height: 32, margin: '16px 0', textAlign: 'center', width: '100%' }}>
             <img src="https://static-platform.codemao.cn/logo" width="26" height="26" alt="codemao-logo" />
-            {collapsed ? null : <span style={{ padding: '0 8px' }}>Libra投放平台</span>}
+            {collapsed ? null : <span style={{ padding: '0 8px' }}>Football Manager</span>}
           </div>
           <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
             <Menu.Item key="1">Option 1</Menu.Item>

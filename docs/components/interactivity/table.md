@@ -59,7 +59,7 @@
 
 ### ColumnTypes [type]
 
-| 参数名 | 描述 | 类型 | 默认值 | 更多内容 |
+| 类型 Key | 描述 | 类型 | 默认值 | 更多内容 |
 | --- | --- | --- | --- | --- |
 | **type** | 选择直接渲染的 table 单元格或搜索项节点类型 | [TypeValueRefers](#typevaluerefers-type) | `normal` |  |
 | **primary** | 设置该 column 的 key 是否为 Table 组件的 rowKey | boolean | `undefined` |  |

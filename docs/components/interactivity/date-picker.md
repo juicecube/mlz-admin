@@ -6,6 +6,10 @@
 
 <code src="./../../demo/date-picker/normal-usage.demo.tsx" />
 
+## 返回 timestamp
+
+<code src="./../../demo/date-picker/unixed-result.demo.tsx" />
+
 ## 返回时间的起始点
 
 <code src="./../../demo/date-picker/startof-usage.demo.tsx" />
@@ -26,7 +30,7 @@
 | value | 日期 | number(unix time) \| Moment | - |  |
 | startOf | 返回时间的阶段起始点 | Moment.unitOfTime.StartOf | `ms` | [Moment.unitOfTime.StartOf](https://github.com/moment/moment/blob/develop/ts3.1-typings/moment.d.ts#L315)；如`d`将返回的是选中时间的当日起始点 00:00:00，`w`将返回当周启始点 |
 | onChange | 发生变化时的回调 | (date: number \| moment, dateString: string)=>void | - |  |
-| returnUnixValue | 是否直接返回 unix time，而非 Moment 对象 | boolean | `false` | 精确到`mms` |
+| returnUnixValue | 是否直接返回 unix time，而非 Moment 对象 | boolean | `false` | 精确到`ms` |
 
 ```tsx
 /**

@@ -1,6 +1,6 @@
 /**
- * title: 返回时间起始点
- * desc: 返回`ms`级指定时间起始点
+ * title: 返回 timestamp
+ * desc: 返回`ms`级unix时间戳
  */
 import React from 'react';
 import { Space, message, DatePicker } from '@mlz/admin';
@@ -16,9 +16,9 @@ export default () => {
   return (
     <Space direction="vertical">
       {(['time', '', 'date', 'week', 'month', 'quarter', 'year'] as const).map((item) => {
-        return <DatePicker picker={item} startOf={item[0] || 'd'} showTime={!item} key={item} style={commonStyle} onChange={changeHandler} />;
+        return <DatePicker picker={item || 'time'} returnUnixValue showTime={!item} key={item} style={commonStyle} onChange={changeHandler} />;
       })}
-      <RangePicker returnUnixValue startOf="d" onChange={changeHandler} />
+      <RangePicker returnUnixValue onChange={changeHandler} />
     </Space>
   );
 };

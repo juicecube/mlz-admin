@@ -1,6 +1,6 @@
 {
   "name": "@mlz/admin",
-  "version": "0.8.5",
+  "version": "0.9.0",
   "description": "一套遵循编程猫组件使用规范的管理系统React组件库",
   "license": "MIT",
   "keywords": [

@@ -7,9 +7,9 @@ assignees: milobluebell
 
 ---
 
-- 💻 系统信息：`macOS Big Sur 11.12`
+- 💻 系统信息：`macOS Small Sur 11.12`
 
-- 🦊 浏览器环境：`Google Chrome 83.0.4103.61`
+- 🦊 浏览器环境：`Giaogiao Chrome 83.0.4103.61`
 
 - 🚛 Nodejs 版本： `v12.4.0`
 

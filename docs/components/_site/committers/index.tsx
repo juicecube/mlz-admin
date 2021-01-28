@@ -64,7 +64,7 @@ export default (props: { refered?: boolean | string }) => {
                       {(commiters.length &&
                         commiters.map((item: any) => {
                           return item ? (
-                            <Tooltip title={item.name} placement={index === 0 ? 'top' : 'bottom'} key={item.login}>
+                            <Tooltip title={item.name} placement={index === 0 ? 'top' : 'bottom'} key={item.login || item.id}>
                               {item.html_url ? (
                                 <a href={item.html_url} target="_blank" rel="noopener noreferrer">
                                   <TheAvatar {...{ rand, alternatives, item }} />

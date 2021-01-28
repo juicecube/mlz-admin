@@ -101,7 +101,7 @@ export default App;
 ```tsx
 /**
  * title: 图标按钮
- * desc: 当需要在 Button 内嵌入 Icon 时，可以设置 icon 属性，或者直接在 Button 内使用 Icon 组件。如果想控制 Icon 具体的位置，只能直接使用 Icon 组件，而非 icon 属性。
+ * desc: 当需要在 Button 内嵌入 Icon 时，可以设置 icon 属性，或者使用 Button 的 icon 属性。
  */
 import React from 'react';
 import { Button, Icon, Space, Divider } from '@mlz/admin';
@@ -192,7 +192,7 @@ export default App;
 
 ## 优化内容
 
-- Button.Group 在 ant design 4.x 之后已被官方移除[issue#21278](https://github.com/ant-design/ant-design/issues/21278)，我们复原了回来。
+- 组合按钮 Button.Group 在 ant design 4.x 之后已被官方移除[issue#21278](https://github.com/ant-design/ant-design/issues/21278)，我们复原了回来。
 - Button.Group 模式的使用，不仅局限于`Button.Group`的 jsx 声明式调用，还可以通过 Button 的 group 属性批量渲染基础按钮。
 
 ---
@@ -203,7 +203,7 @@ export default App;
 
 | 类型 Key  | 描述                              | 类型值                         | 更多内容 |
 | --------- | --------------------------------- | ------------------------------ | -------- |
-| **group** | Button Group 模式时传入的渲染配置 | [GroupType[]](#grouptype-type) |          |
+| **group** | Button Group 模式时传入的渲染配置 | [GroupType](#grouptype-type)[] |          |
 
 ### GroupType [type]
 
