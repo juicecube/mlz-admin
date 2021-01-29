@@ -43,10 +43,10 @@ jobs:
       - name: tag a tag
         run: npm run version
             
-      - name: npm publish
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
+      # - name: npm publish
+      #   uses: JS-DevTools/npm-publish@v1
+      #   with:
+      #     token: ${{ secrets.NPM_TOKEN }}
       
       - name: get current tag
         id: vars

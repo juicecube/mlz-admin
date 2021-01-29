@@ -43,7 +43,7 @@ const checkBranch = async ({ current }) => {
 
 const tagTag = async (tag) => {
   // 覆盖simple tag为tag
-  git.addAnnotatedTag(tag, `[](https://github.com/juicecube/mlz-admin/releases/tag/${tag})`);
+  git.addAnnotatedTag(tag, `https://github.com/juicecube/mlz-admin/releases/tag/${tag}`);
   console.log(`🏷 ${tag} successfutlly`);
 };
 
