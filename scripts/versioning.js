@@ -3,7 +3,7 @@
 const path = require('path');
 const fetch = require('node-fetch');
 const simpleGit = require('simple-git/promise');
-const changelog = require('./changelog');
+const genChangelog = require('./changelog');
 
 const pkg = require('../package.json');
 
@@ -17,10 +17,6 @@ const checkVersion = async () => {
   versions = Object.keys(versions);
   if (versions && versions.includes(version)) {
     console.error(`Error: 版本${version}已经发布过了`, `\r\n`);
-    process.exit(1);
-  }
-  if (!/^v.+?/.test(version)) {
-    console.error(`Error: 版本${version}必须以'v'开头`, `\r\n`);
     process.exit(1);
   }
 };
@@ -46,17 +42,8 @@ const checkBranch = async ({ current }) => {
 };
 
 const tagTag = async (tag) => {
-  // 先打simple tag
-  git.addTag(tag);
-
-  // 根据tag差，生成changelog内容
-  const tagMessage = await changelog(process.env.AUTO === '1');
-
-  console.log('ready for tag with changelog: \r\n', tagMessage);
-
   // 覆盖simple tag为tag
-  git.addAnnotatedTag(tag, tagMessage);
-
+  git.addAnnotatedTag(tag, `[](https://github.com/juicecube/mlz-admin/releases/tag/${tag})`);
   console.log(`🏷 ${tag} successfutlly`);
 };
 
@@ -66,15 +53,19 @@ const tagTag = async (tag) => {
   // await checkBranch(status);
 
   // 校验版本是否合法
-  // await checkVersion();
+  await checkVersion();
 
   // 打tag
   const tag = await checkTag(status);
 
   if (tag) {
+    // 根据tag差，生成changelog内容
+    const tagMessage = await genChangelog(process.env.AUTO === '1');
+
+    console.log('ready for tag with changelog: \r\n', tagMessage);
+
     await tagTag(tag);
     await git.pushTags('origin');
-    console.log(`🚀 ${tag} launched`);
   } else {
     throw new Error(`no tag detected`);
   }

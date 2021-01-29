@@ -54,9 +54,10 @@ const genLogs = ($gitLogs, $fileToPath = '') => {
       }, '');
     const unscopedResult = scopes.filter((scope) => !scope).reduce((prev, curr) => (prev += groupedLogs[curr].reduce((commit, currCommit) => commitLogIterator(commit, currCommit, !!0), '')), '');
 
-    // 如果传入了$fileToPath，则输出一个文件到指定位置并返回boolean，而非返回字符串。
+    // 如果传入了$fileToPath，则输出一个文件到指定位置并返回字符串。
     const logResult = scopedResult + unscopedResult;
-    return $fileToPath ? createFile('/release_messages.md', Buffer.from(logResult)) : logResult;
+    $fileToPath && createFile($fileToPath, Buffer.from(logResult));
+    return logResult;
   } else return [];
 };
 module.exports = genLogs;

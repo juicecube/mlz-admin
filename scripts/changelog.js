@@ -7,7 +7,7 @@ const genLogs = require('./common/genChangelogFromGitLogs');
 const cwd = process.cwd();
 const git = simpleGit(cwd);
 
-const changelog = async ($auto) => {
+const genChangelog = async ($auto) => {
   const tags = await git.tags();
   const { latest } = tags;
   const tagList = tags.all.reverse();
@@ -34,7 +34,7 @@ const changelog = async ($auto) => {
   console.log(`latest detected tag code was v${fromVersion} \r\n`);
 
   const logs = await git.log({ from: `v${fromVersion}`, to: latest });
-  return genLogs(logs);
+  return genLogs(logs, '/CHANGELOG.md');
 };
 
-module.exports = changelog;
+module.exports = genChangelog;
