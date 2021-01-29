@@ -60,7 +60,7 @@ jobs:
         with:
           tag_name: ${{ steps.vars.outputs.tag }}
           release_name: ${{ steps.vars.outputs.tag }}
-          bodyFile: "CHANGELOG.md"
+          body_path: "CHANGELOG.md"
           draft: false
           prerelease: false
           artifacts: "lib/*,es/*,LICENSE"
