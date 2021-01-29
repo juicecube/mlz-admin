@@ -35,13 +35,6 @@ if (typeof window !== 'undefined') {
       requestIdleCallback: jest.fn(),
     })),
   });
-  // Object.defineProperty(window, 'document', {
-  //   writable: true,
-  //   value: {
-  //     appendChild: jest.fn(),
-  //     getElementsByTagName: jest.fn().mockImplementation((domNodes) => domNodes),
-  //   },
-  // });
 }
 
 // antd组件需要

@@ -11,8 +11,10 @@ const changelog = async ($auto) => {
   const tags = await git.tags();
   const { latest } = tags;
   const tagList = tags.all.reverse();
-  console.log(`previous tags detected shown here: `);
+
+  console.log(`previous tags detected were here: `);
   console.table(tagList);
+
   const { fromVersion } =
     $auto === false
       ? await inquirer.prompt([
@@ -27,7 +29,10 @@ const changelog = async ($auto) => {
           },
         ])
       : { fromVersion: tagList[1].replace('v', '') };
-  console.log(`latest detected tag code was ${fromVersion} \r\n`);
+
+  $auto !== false && console.log(`current tag was: ${latest}`);
+  console.log(`latest detected tag code was v${fromVersion} \r\n`);
+
   const logs = await git.log({ from: `v${fromVersion}`, to: latest });
   return genLogs(logs);
 };

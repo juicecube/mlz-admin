@@ -2,7 +2,6 @@
 /* eslint-disable no-console */
 const fs = require('fs');
 const { groupBy, upperFirst } = require('lodash');
-const { SRC_PATH } = require('./constants');
 const createFile = require('./createFile');
 
 const ghPrefix = 'https://github.com/';

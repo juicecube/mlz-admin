@@ -11,8 +11,9 @@ on:
 
 jobs:
   publish: 
-    # if: github.event.pull_request.merged == true && 
+    # if: github.event.pull_request.merged == true && github.event.actions
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
         node-version: [14.x]
@@ -41,23 +42,9 @@ jobs:
 
       - name: tag a tag
         run: npm run version
-        env:
-          CI: true
             
       # - name: npm publish
       #   uses: JS-DevTools/npm-publish@v1
       #   with:
       #     token: ${{ secrets.NPM_TOKEN }}
-
-      - name: create release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          bodyFile: "release_messages.md"
-          draft: true
-          prerelease: false
-          artifacts: "lib/*,es/*,LICENSE"
+      
