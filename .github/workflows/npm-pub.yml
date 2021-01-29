@@ -1,9 +1,9 @@
 name: publish
 
-on:
+on:       
   push:
     branches:
-      - 'feat/*'
+      - 'feat/*'                
   pull_request:
     types: [closed]
     branches:
@@ -11,6 +11,7 @@ on:
 
 jobs:
   publish: 
+    # if: github.event.pull_request.merged == true && 
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -32,28 +33,31 @@ jobs:
       - name: install dependencies
         run: npm install
 
-      - name: execute test
-        run: npm run test:coverage
-
-      - name: lint code
-        run: npm run lint
-
       - name: build dist
         run: npm run dist
 
       - run: git config user.name ${{ secrets.GIT_USERNAME }}
       - run: git config user.email ${{ secrets.GIT_EMAIL }}
-      
+
       - name: tag a tag
         run: npm run version
         env:
           CI: true
+            
+      # - name: npm publish
+      #   uses: JS-DevTools/npm-publish@v1
+      #   with:
+      #     token: ${{ secrets.NPM_TOKEN }}
 
-      - name: archive artifact
-        uses: actions/upload-artifact@v2
+      - name: create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: dist-without-markdown
-          path: |
-            lib
-            es
-            LICENSE
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          bodyFile: "release_messages.md"
+          draft: true
+          prerelease: false
+          artifacts: "lib/*,es/*,LICENSE"

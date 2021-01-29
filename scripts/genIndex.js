@@ -7,12 +7,6 @@ const genVersion = require('./common/genVersion');
 const genBuildTime = require('./common/genBuildTime');
 const genSupporttingEnv = require('./common/genSupporttingEnv');
 const joinGeneratorsIntoBuffer = require('./common/joinGeneratorsIntoBuffer');
-const { SRC_PATH } = require('./common/constants');
+const createFile = require('./common/createFile');
 
-fs.writeFileSync(SRC_PATH + '/index.tsx', Buffer.from(`${joinGeneratorsIntoBuffer(genVersion, genBuildTime, genSupporttingEnv)}${genExports()}`), (err) => {
-  if (err) {
-    console.error(`❌ 发生错误：${err}`);
-  } else {
-    console.log(`✅ `, SRC_PATH + '/index.tsx');
-  }
-});
+createFile('/src/index.tsx', Buffer.from(`${joinGeneratorsIntoBuffer(genVersion, genBuildTime, genSupporttingEnv)}${genExports()}`));
