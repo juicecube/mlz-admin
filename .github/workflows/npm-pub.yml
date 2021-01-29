@@ -50,7 +50,7 @@ jobs:
       
       - name: get current tag
         id: vars
-        run: echo ::set-output name=tag::${GITHUB_REF#refs/tags/*/}
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
 
       - name: create release
         id: create_release
