@@ -36,5 +36,4 @@ const genChangelog = async ($auto) => {
   const logs = await git.log({ from: `v${fromVersion}`, to: latest });
   return genLogs(logs, '/CHANGELOG.md');
 };
-
 module.exports = genChangelog;
