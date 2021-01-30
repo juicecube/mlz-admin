@@ -47,9 +47,9 @@ jobs:
       #   uses: JS-DevTools/npm-publish@v1
       #   with:
       #     token: ${{ secrets.NPM_TOKEN }}
-      - name: Get tag
+      - name: Get the version
         id: vars
-        uses: dawidd6/action-get-tag@v1
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
 
       - name: create release
         id: create_release
@@ -57,8 +57,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.vars.outputs.tag }}
-          release_name: ${{ steps.vars.outputs.tag }}
+          tag_name: ${{ steps.vars.outputs.VERSION }}
+          release_name: ${{ steps.vars.outputs.VERSION }}
           body_path: "${{ github.workspace }}/CHANGELOG.md"
           draft: false
           prerelease: false
