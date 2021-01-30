@@ -47,10 +47,9 @@ jobs:
       #   uses: JS-DevTools/npm-publish@v1
       #   with:
       #     token: ${{ secrets.NPM_TOKEN }}
-      
-      - name: get current tag
+      - name: Get tag
         id: vars
-        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+        uses: dawidd6/action-get-tag@v1
 
       - name: create release
         id: create_release
