@@ -5,7 +5,7 @@ import { IDatePickerProps, valueProps } from './index.type';
 import RangePicker from './range-picker';
 
 const DatePicker = (props: IDatePickerProps) => {
-  const { value: propsValue, onChange, startOf, returnUnixValue = false, ...rest } = props;
+  const { value: propsValue, onChange, startOf = 'ms', returnUnixValue = false, ...rest } = props;
   const [value, setValue] = useState<valueProps>(null);
   useEffect(() => {
     setValue(propsValue || null);
@@ -14,16 +14,14 @@ const DatePicker = (props: IDatePickerProps) => {
     <AntdDatePicker
       {...rest}
       value={value ? moment(value) : null}
-      onChange={(date, dateString) => {
+      onChange={(momentObj, dateString) => {
         const dateValue = returnUnixValue
-          ? moment(date)
-              .startOf(startOf || 'ms')
+          ? moment(momentObj)
+              .startOf(startOf)
               .valueOf()
-          : date;
+          : moment(momentObj).startOf(startOf);
         setValue(dateValue);
-        if (onChange) {
-          onChange(dateValue, dateString);
-        }
+        onChange?.(dateValue, dateString);
       }}
     />
   );

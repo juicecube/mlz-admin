@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { RenderFunction } from 'antd/lib/tooltip';
 import { DecodePhoneProps } from './index.type';
-import { Tooltip } from 'antd';
+import { message, Tooltip } from 'antd';
 import { default as Phone } from './model';
 import { isCompiled } from '../shared/service/constant';
 
@@ -18,11 +18,17 @@ const DecodePhone = (props: DecodePhoneProps) => {
       onReady?.(result);
     } catch (err) {
       onError?.(err);
-      throw new Error(err);
+      // throw new Error(err);
     }
   };
   return (
-    <Tooltip {...rest} title={title} trigger="click" onVisibleChange={(visible) => visible && title === INIT_TITLE && handleRequest()}>
+    <Tooltip
+      {...rest}
+      title={title}
+      trigger="click"
+      onVisibleChange={(visible) => {
+        visible && title === INIT_TITLE && handleRequest();
+      }}>
       <span>{children}</span>
     </Tooltip>
   );

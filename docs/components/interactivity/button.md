@@ -1,6 +1,6 @@
 # Button 按钮
 
-** `📦 按钮`用于开始一个即时操作。标记了一个（或封装一组）操作命令，响应用户点击行为，触发相应的业务逻辑**
+> `📦 按钮`用于开始一个即时操作。标记了一个（或封装一组）操作命令，响应用户点击行为，触发相应的业务逻辑。
 
 ## 基本使用
 
@@ -101,7 +101,7 @@ export default App;
 ```tsx
 /**
  * title: 图标按钮
- * desc: 当需要在 Button 内嵌入 Icon 时，可以设置 icon 属性，或者直接在 Button 内使用 Icon 组件。如果想控制 Icon 具体的位置，只能直接使用 Icon 组件，而非 icon 属性。
+ * desc: 当需要在 Button 内嵌入 Icon 时，可以设置 icon 属性，或者使用 Button 的 icon 属性。
  */
 import React from 'react';
 import { Button, Icon, Space, Divider } from '@mlz/admin';
@@ -138,7 +138,7 @@ export default App;
 ```tsx
 /**
  * title: 按钮组合
- * desc: 可以将多个 Button 放入 Button.Group 的容器中。通过设置 size 为 large small 分别把按钮组合设为大、小尺寸。若不设置 size，则尺寸为中。🚗可以通过两种方式使用`组合按钮`功能，一种是使用Button.Group，另一种是为Button组件传入group属性。
+ * desc: 可以将多个 Button 放入 Button.Group 的容器中。可以通过两种方式使用`组合按钮`功能，一种是使用Button.Group，另一种是为Button组件传入group属性。
  */
 import React from 'react';
 import { Icon, Button, Divider, Dropdown, message, Space } from '@mlz/admin';
@@ -148,7 +148,6 @@ const group = [
     key: 1,
     text: '菜单1',
     value: '11',
-    leftIconType: 'round_left_g',
   },
   {
     key: 2,
@@ -160,13 +159,12 @@ const group = [
     key: 3,
     text: '菜单3',
     value: '33',
-    rightIconType: 'round_right_g',
   },
 ];
 const App = () => {
   return (
     <>
-      <h4>使用Antd的 Button.Group组件的方式：</h4>
+      <h4>使用Button.Group：</h4>
       <Button.Group>
         <Button type="primary" icon={<Icon type="round_left_g" />}>
           菜单1
@@ -178,7 +176,7 @@ const App = () => {
         </Button>
       </Button.Group>
       <Divider />
-      <h4>使用group属性的方式：</h4>
+      <h4>使用group属性：</h4>
       <Button
         group={group}
         onClick={(e) => {
@@ -192,16 +190,29 @@ const App = () => {
 export default App;
 ```
 
-## APIs
-
 ## 优化内容
 
-- Button.Group 在 Antd 4.0 之后已经被官方建议移除(参见https://github.com/ant-design/ant-design/issues/21278)，但是实际上该需求被高频使用，所以我们基于原有 api 将他复原了回来。
-- 按照 Antd 官方的「菜单按钮」和「组合按钮」案例，需要 Dropdown、Menu、Button.Group 等各种组件联合使用才能实现。对此两种需求，我们分别添加`menu`和`group`属性，大大简化了实现路径。现在你可以通过下述方法实践：
+- 组合按钮 Button.Group 在 ant design 4.x 之后已被官方移除[issue#21278](https://github.com/ant-design/ant-design/issues/21278)，我们复原了回来。
+- Button.Group 模式的使用，不仅局限于`Button.Group`的 jsx 声明式调用，还可以通过 Button 的 group 属性批量渲染基础按钮。
 
-```js
-<Button menu={oneMenuColumns}/>和<Button group={oneGroupColumns}/>
-```
+---
+
+## APIs
+
+### Button props
+
+| 类型 Key  | 描述                              | 类型值                         | 更多内容 |
+| --------- | --------------------------------- | ------------------------------ | -------- |
+| **group** | Button Group 模式时传入的渲染配置 | [GroupType](#grouptype-type)[] |          |
+
+### GroupType [type]
+
+| 类型 Key | 描述 | 类型值 | 更多内容 |
+| --- | --- | --- | --- |
+| **key** | 唯一 key 值 | string ｜ number |  |
+| **text** | 按钮文字 | string |  |
+| **value** | 点击时塞入点击事件 e:React.MouseEventHandler 中的 value 值 | unknown |  |
+| **type** | 按钮的类型 | 'default' ｜ 'primary'｜ 'ghost' ｜ 'dashed' ｜ 'link' ｜ 'text' | [按钮类型](https://ant.design/components/button-cn/#components-button-demo-basic) |
 
 ```tsx
 /**

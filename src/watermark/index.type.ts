@@ -3,9 +3,6 @@ import React from 'react';
 export interface FontStyle {
   fontSize?: number | string;
   fontFamily?: string;
-
-  // fontWeight?: number;
-  // fontColor?: string;
 }
 export interface DrawerParams {
   // 横坐标起始点
@@ -22,12 +19,14 @@ export interface DrawerParams {
   rotate: number;
 }
 export interface WaterMarkProps extends Partial<DrawerParams> {
+  //
+  children: React.ReactElement;
   // 水印内容
   text: string;
   // 文字换行的最大宽度
   wrapGap?: number;
   // 水印宽松度(在2到6之间)
   loose?: number;
-  //
-  children: React.ReactElement;
+  // 水印背景
+  backgroundColor?: string;
 }

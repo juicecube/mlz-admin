@@ -1,6 +1,6 @@
 # Layout 布局
 
-**`📦 布局`进行页面级整体布局。**
+> `📦 布局`进行页面级整体布局，通常决定了一款产品设计的基础样式结构。
 
 ## 顶部导航布局
 
@@ -17,7 +17,7 @@ const HeaderContent = () => (
   <div style={{ overflow: 'hidden' }}>
     <div style={{ float: 'left', color: 'white' }}>
       <img src="https://static-platform.codemao.cn/logo" width="26" height="26" alt="codemao-logo" />
-      <span style={{ padding: '0 16px' }}>Libra投放平台</span>
+      <span style={{ padding: '0 16px' }}>Football Manager</span>
     </div>
     <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} style={{ float: 'left' }}>
       <Menu.Item key="1">nav 1</Menu.Item>
@@ -84,7 +84,7 @@ class App extends React.PureComponent {
           <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
             <div style={{ float: 'left', color: 'white', height: 32, margin: '16px 0', textAlign: 'center', width: '100%' }}>
               <img src="https://static-platform.codemao.cn/logo" width="26" height="26" alt="codemao-logo" />
-              {this.state.collapsed ? null : <span style={{ padding: '0 8px' }}>Libra投放平台</span>}
+              {this.state.collapsed ? null : <span style={{ padding: '0 8px' }}>Football Manager</span>}
             </div>
             <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
               <Menu.Item key="1" icon={<Icon type="user" />}>
@@ -130,10 +130,22 @@ export default App;
 - Layout：布局容器，其下可嵌套 Header Sider Content Footer 或 Layout 本身，可以放在任何父容器中。
 - Header：顶部布局，自带默认样式，其下可嵌套任何元素，只能放在 Layout 中。
 - Sider：侧边栏，自带默认样式及基本功能，其下可嵌套任何元素，只能放在 Layout 中。
-- Content：内容部分，自带默认样式，其下可嵌套任何元素，只能放在 Layout 中。`内置了 ErrorBoundary，默认开启`；可以通过 Layout.errorBoundary 设置为 false 来关闭。
+- Content：内容部分，自带默认样式，其下可嵌套任何元素，只能放在 Layout 中。`内置了 ErrorBoundary，默认开启`；可以通过 Layout.Content.errorBoundary 设置为 false 来关闭。
 - Footer：底部布局，自带默认样式，其下可嵌套任何元素，只能放在 Layout 中。
 
+## 优化内容
+
+- 在 Layout.Content 中嵌入了错误边界 ErrorBoundary，默认开启，可以通过参数关闭。
+
+---
+
 ## APIs
+
+### Layout.Content props
+
+| 类型 Key          | 描述                              | 默认值      | 类型值  |
+| ----------------- | --------------------------------- | ----------- | ------- |
+| **errorBoundary** | 是否开启内置的 ErrorBoundary 组件 | `undefined` | boolean |
 
 ```tsx
 /**

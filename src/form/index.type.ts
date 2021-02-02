@@ -10,11 +10,12 @@ export interface IDependencyItem {
   toContain: Omit<NamePath, 'InternalNamePath'>[];
 }
 export interface IFormColumnType extends Omit<FormItemProps<unknown>, 'name'> {
+  name: NamePath;
+  // Item的文字描述
   label?: string;
   render?: React.ReactNode;
   itemProps?: FormItemProps;
   relyOn?: IDependencyItem[];
-  name: NamePath;
 }
 
 export interface IFormProps extends FormProps<unknown> {

@@ -7,7 +7,7 @@ import { Menu, Icon, Button } from '@mlz/admin';
 
 const { SubMenu } = Menu;
 class App extends React.PureComponent {
-  state = { collapsed: false, darken: false, mode: false };
+  state = { collapsed: false, darken: true, mode: false };
 
   toggleCollapsed = () =>
     this.setState({

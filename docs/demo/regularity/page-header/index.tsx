@@ -8,7 +8,7 @@ const PageHeader = (props: { title: string; showReminder?: boolean }) => (
     <Title className="title">{props.title}</Title>
     {props.showReminder !== false ? (
       <Text className="reminder" type="secondary">
-        @引用整理于Ant design 3.12.0，部分有所调整
+        {/* @引用整理于Ant design 3.12.0，部分有所调整 */}
       </Text>
     ) : null}
   </header>

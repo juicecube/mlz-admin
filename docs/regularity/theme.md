@@ -10,13 +10,13 @@ group:
 
 用于`在项目构建时期就决定项目的主题色彩配方`。通常不包含项目运行时的主题切换，主题配方完全由开发侧决定。
 
-由于本库完全兼容 Antd，所以请参阅 Ant Design 的主题定制方式：[Ant Design#定制主题](https://ant.design/docs/react/customize-theme-cn)
+对于 Antd 设计无法满足需求的项目，可以直接使用 Antd 的主题定制方法定制@mlz/admin 的主题。请参阅我们推荐的读物：[Ant Design#定制主题](https://ant.design/docs/react/customize-theme-cn) 以及 [Ant Design#主题调色板代码生成器](https://antdtheme.com/dark)
 
 ---
 
 ## 动态切换主题
 
-用于`在项目运行时，允许动态切换主题`，该行为的结果通常由用户侧决定。@mlz/admin 和 Ant Design 本身并不具备本功能，需要使用浏览器动态修改 less 变量的功能来实现，请自行摸索。
+用于`在项目运行时，允许动态切换主题`，该行为的结果通常由用户侧决定。@mlz/admin 和 Ant Design 本身均不原生支持本功能，需要使用浏览器动态修改 less 变量的功能来实现，请自行摸索。
 
 ## 切换 light/dark 模式
 
@@ -24,26 +24,4 @@ group:
 
 > 动态切换深色主题的线上产品案例可以查看：[猫小秘客服系统](https://secretary-cat.codemao.cn/) - [DEV](https://dev-secretary-cat.codemao.cn/)
 
-更多主题切换按钮的详情，请参见组件：[DarkThemeToggler](/components/interactivity/dark-theme-toggler)
-
-```tsx
-/**
- * desc: 可以通过`darkThemeCssResourceUrl`属性修改深色主题样式资源的地址。
- */
-import React, { useState, useEffect } from 'react';
-import { DarkThemeToggler, message } from '@mlz/admin';
-
-class App extends React.Component {
-  render() {
-    return (
-      <DarkThemeToggler
-        onChange={(e: 'dark' | 'light') => {
-          e === 'dark' && message.info(`文档无法保证样式正常，在组件中不会出现异常`);
-        }}
-      />
-    );
-  }
-}
-
-export default App;
-```
+更多主题切换按钮的详情，请参见组件：📦 [DarkThemeToggler](/components/interactivity/dark-theme-toggler)

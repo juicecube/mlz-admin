@@ -8,7 +8,7 @@ on:
 
 jobs:
   publish: 
-    if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true && github.event.actions
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -30,20 +30,34 @@ jobs:
       - name: install dependencies
         run: npm install
 
-      - name: execute test
-        run: npm run test:coverage
-
-      - name: lint code
+      - name: execute code lint
         run: npm run lint
+
+      - name: execute unit test
+        run: npm run test
 
       - name: build dist
         run: npm run dist
       
       - name: tag a tag
         run: npm run version
-        env:
-          CI: true
+      
+      - name: Get the version
+        id: vars
+        run: echo ::set-output name=ref::${GITHUB_REF#refs/*/}
 
+      - name: create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.vars.outputs.ref }}
+          release_name: ${{ steps.vars.outputs.ref }}
+          body_path: "${{ github.workspace }}/CHANGELOG.md"
+          draft: true
+          prerelease: false
+        
       - name: npm publish
         uses: JS-DevTools/npm-publish@v1
         with:

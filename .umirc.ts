@@ -26,26 +26,26 @@ export default defineConfig({
         children: getMds('components/structure').map((item) => 'components/structure/' + item),
       },
       {
-        title: '交互和展示组件',
+        title: '交互和展示',
         children: getMds('components/interactivity').map((item) => 'components/interactivity/' + item),
       },
       {
-        title: '业务组件',
+        title: '业务',
         children: getMds('components/composit').map((item) => 'components/composit/' + item),
       },
     ],
   },
   navs: [
     {
-      title: '设计规范',
+      title: '规范',
       path: '/regularity',
     },
     {
-      title: '组件',
+      title: '📦 组件',
       path: '/components',
     },
     {
-      title: '样板项目',
+      title: '案例',
       children: [
         { title: 'Libra投放管理平台', path: 'https://libra.codemao.cn/' },
         { title: '行政综合支撑平台', path: 'https://support-admin.codemao.cn/' },
@@ -55,12 +55,8 @@ export default defineConfig({
       ],
     },
     {
-      title: '❤️ Star Us',
+      title: 'Github',
       path: 'https://github.com/juicecube/mlz-admin',
-    },
-    {
-      title: '编程猫其它项目',
-      path: '/others',
     },
   ],
   theme: {
