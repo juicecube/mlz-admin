@@ -1,6 +1,6 @@
 {
   "name": "@mlz/admin",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "一套遵循编程猫组件使用规范的管理系统React组件库",
   "license": "MIT",
   "keywords": [
@@ -9,10 +9,10 @@
     "antd"
   ],
   "scripts": {
-    "start": "npm run clean && node ./scripts/genIndex && NODE_ENV=development dumi dev",
-    "build": "node ./scripts/genIndex && NODE_ENV=production dumi build",
+    "start": "npm run clean && node ./scripts/genIndex && cross-env NODE_ENV=development dumi dev",
+    "build": "node ./scripts/genIndex && cross-env NODE_ENV=production dumi build",
     "dist": "npm run clean && node ./scripts/genIndex && father-build",
-    "dist:tsc": "rm -rf es lib dist && npm run dist:cjs && npm run dist:es",
+    "dist:tsc": "cross-env rm -rf es lib dist && npm run dist:cjs && npm run dist:es",
     "serve": "node ./scripts/serve",
     "lint": "npm run clean && node ./scripts/genIndex && npm run lint:ts && npm run lint:es && npm run lint:style",
     "lint:es": "npx eslint --ext tsx,ts,js src docs/demo",
@@ -26,8 +26,8 @@
     "prettier": "prettier --write '**/*.{js,tsx,ts,less,md,json}'",
     "version": "AUTO=1 node ./scripts/versioning",
     "changelog": "node ./scripts/changelog",
-    "clean": "rm -rf es lib dist .tsc-check coverage src/index.tsx",
-    "relaunch": "npm run clean && rm -rf node_modules package-lock.json yarn.lock src/.umi && npm install"
+    "clean": "cross-env rm -rf es lib dist .tsc-check coverage src/index.tsx",
+    "relaunch": "npm run clean && cross-env rm -rf node_modules package-lock.json yarn.lock src/.umi && npm install"
   },
   "module": "es/index.js",
   "main": "lib/index.js",
