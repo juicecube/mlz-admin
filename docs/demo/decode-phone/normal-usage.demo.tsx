@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import DecodePhone from '../../../src/decode-phone';
+import { DecodePhone } from '@mlz/admin';
 
 const Index = () => {
   return (

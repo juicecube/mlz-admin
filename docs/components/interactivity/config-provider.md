@@ -10,7 +10,7 @@
 
 ## 优化内容
 
-- 在 window 中写入组件库相关变量`__MLZ_ADMIN_VERSION__`、`__MLZ_ADMIN_RUNTIME_ENV__`和`__MLZ_ADMIN_BUILD_ENV__`，分别表示本组件库当前`使用的构建版本`、`所在的开发环境`和`组件构建的环境的型号`。
+- 在 window 中写入组件库相关变量`__MLZ_ADMIN_VERSION__`、`__MLZ_ADMIN_RUNTIME_ENV__`和`__MLZ_ADMIN_BUILD_ENV__`，分别表示本组件库当前`使用的构建版本`、`所在的运行时环境`和`组件构建的环境的型号`。
 - 默认配置中文 locale。
 
 ```tsx

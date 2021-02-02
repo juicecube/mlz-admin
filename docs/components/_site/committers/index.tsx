@@ -2,7 +2,7 @@ import React, { useState, useEffect, CSSProperties } from 'react';
 import axios from 'axios';
 import { Avatar, Tooltip, Typography, Spin, Button, Icon, Affix, BackTop } from '@mlz/admin';
 import { uniqBy } from 'lodash-es';
-import { getPaths } from '../../../../src/shared/utils';
+import { getPaths } from '../../../../packages/mlz-admin/src/shared/utils';
 import './index.less';
 
 const getDocCommits = ($path: string) => axios.get('https://api.github.com/repos/juicecube/mlz-admin/commits?per_page=100&path=' + $path + '&sha=master');

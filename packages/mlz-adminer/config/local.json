@@ -1,0 +1,32 @@
+{
+  "env": "local",
+  "buildtime": {
+    "debug": true,
+    "language": "zh-CN",
+    "analyze": false,
+    "hot": true,
+    "sourcemap": true,
+    "origin_server": {
+      "ip": "localhost",
+      "port": "3000",
+      "https": {
+        "enabled": false,
+        "crt": "",
+        "key": ""
+      }
+    }
+  },
+  "runtime": {
+    "api": {
+      "host": "https://dev-api-admin-transaction.codemao.cn",
+      "openServiceHost": "https://dev-open-service.codemao.cn"
+    },
+    "account": {
+      "host": "https://dev-internal-account-api.codemao.cn"
+    },
+    "qiniu": {
+      "host": "https://dev-static.codemao.cn",
+      "qnBucketName": "dev-static-platform"
+    }
+  }
+}

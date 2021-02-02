@@ -37,7 +37,7 @@ const checkTag = async ({ current }) => {
 const checkBranch = async ({ current }) => {
   if (!canPublishBranches.includes(current)) {
     console.error(`Error: 没有在${canPublishBranches.join('或')}分支发布，而是${current}分支`, `\r\n`);
-    // process.exit(1);
+    process.exit(1);
   }
 };
 
@@ -52,7 +52,7 @@ const pushTag = git.pushTags('origin');
 
 (async () => {
   const status = await git.status();
-  // await checkBranch(status);
+  await checkBranch(status);
   await checkVersion();
 
   // 打tag

@@ -9,6 +9,7 @@ const genSupporttingEnv = require('./common/genSupporttingEnv');
 const joinGeneratorsIntoBuffer = require('./common/joinGeneratorsIntoBuffer');
 const { SRC_PATH } = require('./common/constants');
 
+// 为mlz-admin生成index
 fs.writeFileSync(SRC_PATH + '/index.tsx', Buffer.from(`${joinGeneratorsIntoBuffer(genVersion, genBuildTime, genSupporttingEnv)}${genExports()}`), (err) => {
   if (err) {
     console.error(`❌ 发生错误：${err}`);
@@ -16,3 +17,5 @@ fs.writeFileSync(SRC_PATH + '/index.tsx', Buffer.from(`${joinGeneratorsIntoBuffe
     console.log(`✅ `, SRC_PATH + '/index.tsx');
   }
 });
+
+// 为mlz-adminer生成index

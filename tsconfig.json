@@ -15,8 +15,8 @@
     "noImplicitAny": false,
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"],
-      "@@/*": ["src/.umi/*"]
+      "@/*": ["packages/mlz-admin/src/*"],
+      "@@/*": ["packages/mlz-admin/src/.umi/*"]
     },
   },
   "exclude": [
