@@ -86,7 +86,7 @@ export default (props: { refered?: boolean | string }) => {
           })()}
         </ul>
       </Spin>
-      <BackTop />
+      <BackTop visibilityHeight={800} duration={300} />
     </div>
   );
 };
