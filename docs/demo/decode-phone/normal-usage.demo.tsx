@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
-import { DecodePhone } from '@mlz/admin';
+import React from 'react';
+import { DecodePhone } from '@mlz/adminer';
 
-const Index = () => {
-  return (
-    <>
-      <DecodePhone params="jZgOvsexafxJUlU3WHaMfA==">
-        <span>155****1234</span>
-      </DecodePhone>
-    </>
-  );
-};
+const App = () => (
+  <>
+    <DecodePhone params="jZgOvsexafxJUlU3WHaMfA==">
+      <span>155****1234</span>
+    </DecodePhone>
+  </>
+);
 
-export default Index;
+export default App;

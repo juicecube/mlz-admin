@@ -2,7 +2,7 @@ export const version = 'undefined';
 
 export const AntdVersion = '4.10.0';
 
-export const BuildTime = '1612111546891';
+export const BuildTime = '1612286084552';
 
 export const EScences = {
   production: '',
@@ -55,8 +55,6 @@ export { default as CreateIconFontScript } from './create-icon-font-script';
 export { default as DarkThemeToggler } from './dark-theme-toggler';
 
 export { default as DatePicker } from './date-picker';
-
-export { default as DecodePhone } from './decode-phone';
 
 export { default as Descriptions } from './descriptions';
 

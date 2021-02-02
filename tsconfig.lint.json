@@ -1,5 +1,5 @@
 {
-  "extends": "./tsconfig.dist.json",
+  "extends": "./packages/mlz-admin/tsconfig.dist.json",
   "compilerOptions": {
     "outDir": ".tsc-check"
   }

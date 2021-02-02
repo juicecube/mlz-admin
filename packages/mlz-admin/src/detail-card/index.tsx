@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React from 'react';
 import { IDetailCardProps } from './index.type';
 import { createBem } from '../shared/utils';
@@ -33,13 +34,19 @@ const DetailCard = (props: IDetailCardProps) => {
         <Skeleton active loading={props.loading}>
           <Descriptions bordered {...others.descriptionProps}>
             {(columns as any).map((column, index: number) => {
-              const { dataIndex, title, render, span, type } = column;
+              const { dataIndex, title, render, span, type, placeholder = '--' } = column;
               const data = dataSource?.[dataIndex];
               return data ? (
-                <Descriptions.Item label={title} span={span} key={data}>
+                <Descriptions.Item label={title} span={span} key={dataIndex}>
                   {render ? render(data, dataSource, index) : data ? renderNode(type, data, column) : ''}
                 </Descriptions.Item>
-              ) : null;
+              ) : placeholder === null ? (
+                placeholder
+              ) : (
+                <Descriptions.Item label={title} span={span} key={dataIndex}>
+                  {placeholder}
+                </Descriptions.Item>
+              );
             })}
           </Descriptions>
         </Skeleton>

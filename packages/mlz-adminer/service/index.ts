@@ -1,4 +1,4 @@
-import Http from './$http';
+import $http from './request';
 import { isCompiled, OpenServiceHOST } from './constant';
 
 /**
@@ -11,15 +11,16 @@ export const decodeEncodedPhone = (encodedPhone: string, specifiedUrl?: URL['hre
   const DECODE_URL = isCompiled ? `${OpenServiceHOST}/decode/phone_number` : 'https://service-81ozmkay-1252070958.gz.apigw.tencentcs.com/release/mock_redirect';
   const requestUrl = new URL(specifiedUrl || DECODE_URL);
 
-  return new Http(requestUrl.origin, { timeout: 2000 }).post(
-    requestUrl.pathname,
-    paramsDiverter(
+  return $http.post(requestUrl.pathname, {
+    timeout: 3000,
+    ...paramsDiverter(
       {
-        cipher_text: encodedPhone,
+        params: { cipher_text: encodedPhone },
       },
       {
-        url: `${DECODE_PHONE_MOCK_URL}?cipher_text=${encodedPhone}`,
+        data: { url: `${DECODE_PHONE_MOCK_URL}?cipher_text=${encodedPhone}` },
       },
     ),
-  );
+    host: `https://${requestUrl.host}`,
+  });
 };

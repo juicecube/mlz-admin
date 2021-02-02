@@ -1,5 +1,4 @@
 import React from 'react';
-import { Layout } from 'antd';
 import CommonTable, { formatColumns } from './common-table';
 import CommonSearchForm from './common-search';
 import { ITableTypes } from './common-table/index.type';

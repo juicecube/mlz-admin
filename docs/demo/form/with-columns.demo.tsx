@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Button, Input, InputNumber, DatePicker } from '@mlz/admin';
-import * as moment from 'moment';
+import moment from 'moment';
 
 const normalStyle = { width: '100%' };
 const columns = [

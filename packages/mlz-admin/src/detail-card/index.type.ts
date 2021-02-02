@@ -11,8 +11,9 @@ export interface IDetailCardColumn {
   type?: IColumnTypes<unknown>['type'];
   render?: (val: any, row: any, index: number) => React.ReactNode;
   span?: string | number;
+  // 某项数据没有匹配到对应值时的站位内容
+  placeholder?: '--' | '' | null;
 }
-export type SupporttedNullExceptorTypes = '--' | '';
 export interface IDetailCardProps extends CardProps {
   dataSource: { [key: string]: any } | RcTableProps<unknown>['data'] | undefined | null;
   columns: IDetailCardColumn[] | IColumnTypes<any>[];

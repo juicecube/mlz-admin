@@ -1,4 +1,4 @@
-import { decodeEncodedPhone } from '../shared/service';
+import { decodeEncodedPhone } from '../../service';
 
 export type DecodedPhoneType = string;
 class EncodePhoneModel {

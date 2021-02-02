@@ -13,18 +13,20 @@
     "build": "node ./scripts/genIndex && NODE_ENV=production dumi build",
     "serve": "node ./scripts/serve",
     "lint": "npm run clean && node ./scripts/genIndex && npm run lint:ts && npm run lint:es && npm run lint:style",
-    "lint:es": "npx eslint --ext tsx,ts,js src docs/demo",
+    "lint:es": "npx eslint --ext tsx,ts,js packages/**/src docs/demo",
     "lint:ts": "tsc --project ./tsconfig.lint.json",
-    "lint:style": "stylelint 'src/**/*.less' --syntax less",
-    "lint:esFix": "npx eslint --ext tsx,ts,js src docs/demo --fix",
+    "lint:style": "stylelint '**/*.less' --syntax less",
     "test": "npm run clean && node ./scripts/genIndex && dumi test",
     "test:coverage": "npm run clean && node ./scripts/genIndex && dumi test --coverage",
     "test:update": "npm run clean && node ./scripts/genIndex && dumi test --cache=false -u --coverage",
     "check-coverage": "npx istanbul check-coverage --statement 85 --branch -75",
     "prettier": "prettier --write '**/*.{js,tsx,ts,less,md,json}'",
     "version": "AUTO=1 node ./scripts/versioning",
-    "clean": "rm -rf es lib dist .tsc-check coverage src/index.tsx",
-    "relaunch": "npm run clean && rm -rf node_modules src/.umi && npm install"
+    "clean": "rm -rf es lib dist .tsc-check coverage packages/mlz-admin/src/index.tsx packages/mlz-adminer/src/index.tsx",
+    "clean:lerna": "lerna clean",
+    "relaunch": "npm run clean && npm run clean:lerna && rm -rf node_modules src/.umi && npm install",
+    "boot": "lerna bootstrap",
+    "publish": "lerna publish"
   },
   "gitHooks": {
     "pre-commit": "npx lint-staged && npx pretty-quick --staged"
