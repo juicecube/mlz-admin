@@ -56,15 +56,15 @@ const pushTag = git.pushTags('origin');
 
 (async () => {
   const status = await git.status();
-  await checkBranch(status);
-  await checkVersion();
+  // await checkBranch(status);
+  // await checkVersion();
 
   // 打tag
   const tag = await checkTag(status);
   if (tag) {
     console.log('🚗 taging... \r\n');
     await tagTag(tag);
-    await pushTag();
+    // await pushTag();
     console.log('✅ push tag successfutlly');
   } else {
     throw new Error(`no tag detected`);

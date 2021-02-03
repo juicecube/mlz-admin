@@ -9,10 +9,9 @@
     "antd"
   ],
   "scripts": {
-    "start": "npm run clean && node ./scripts/genIndex && cross-env NODE_ENV=development dumi dev",
-    "build": "node ./scripts/genIndex && cross-env NODE_ENV=production dumi build",
+    "start": "npm run clean && node ./scripts/genIndex && npx cross-env NODE_ENV=development dumi dev",
+    "build": "node ./scripts/genIndex && npx cross-env NODE_ENV=production dumi build",
     "dist": "npm run clean && node ./scripts/genIndex && father-build",
-    "dist:tsc": "cross-env rm -rf es lib dist && npm run dist:cjs && npm run dist:es",
     "serve": "node ./scripts/serve",
     "lint": "npm run clean && node ./scripts/genIndex && npm run lint:ts && npm run lint:es && npm run lint:style",
     "lint:es": "npx eslint --ext tsx,ts,js packages/**/src docs/demo",
@@ -24,9 +23,9 @@
     "check-coverage": "npx istanbul check-coverage --statement 85 --branch -75",
     "prettier": "prettier --write '**/*.{js,tsx,ts,less,md,json}'",
     "publish": "AUTO=1 node ./scripts/versioning && lerna publish from-package --no-changelog",
-    "clean": "cross-env rm -rf packages/**/es packages/**/lib .tsc-check coverage packages/**/src/index.tsx",
+    "clean": "npx cross-env rimraf packages/**/es packages/**/lib packages/**/src/index.tsx .tsc-check coverage",
     "clean:lerna": "lerna clean --yes",
-    "reset": "npm run clean && npm run clean:lerna && cross-env rm -rf node_modules src/.umi && npm run boot",
+    "reset": "npm run clean && npx cross-env rimraf node_modules src/.umi && npm install && npm run clean:lerna && npm run boot",
     "boot": "lerna bootstrap"
   },
   "gitHooks": {
@@ -82,10 +81,12 @@
     "less": "~3.9.0",
     "lint-staged": "^10.3.0",
     "lodash-es": "^4.17.15",
+    "mytils": "^1.3.21",
     "node-fetch": "^2.6.0",
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
     "react-copy-to-clipboard": "^5.0.2",
+    "rimraf": "^3.0.2",
     "rollup-plugin-typescript2": "^0.27.1",
     "simple-git": "^2.27.0",
     "stylelint": "latest",
