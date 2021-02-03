@@ -5,7 +5,12 @@ const fetch = require('node-fetch');
 const simpleGit = require('simple-git/promise');
 const changelog = require('./changelog');
 
-const pkg = require('../package.json');
+const pkg = require('../packages/mlz-admin/package.json');
+const pkg2 = require('../packages/mlz-adminer/package.json');
+
+if (pkg.version !== pkg2.version) {
+  throw new Error('we would not support independent package releasing version');
+}
 
 const git = simpleGit(process.cwd());
 const { version } = pkg;
@@ -44,8 +49,7 @@ const checkBranch = async ({ current }) => {
 const tagTag = async (tag) => {
   const tagMessage = await changelog(process.env.AUTO === '1');
   git.addAnnotatedTag(tag, tagMessage);
-  console.log(`annotated successfully, tag message is :`);
-  console.log(tagMessage + '\r\n');
+  console.log(`annotated successfully, tag message is : \r\n` + tagMessage + '\r\n');
 };
 
 const pushTag = git.pushTags('origin');

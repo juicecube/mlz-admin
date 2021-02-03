@@ -30,9 +30,15 @@
 
 为了避免一些意外的 bug 影响你的开发进度和体验，请尽量使用`npm`进行依赖管理[Dumi Issue#117 bug: 包冲突](https://github.com/umijs/dumi/issues/117)
 
+安装方式：
+
+```shell
+$ npm run boot
+```
+
 ## 🏭 workflow 管理
 
-#### git flow @mlz/admin 要求采用编程猫现有的 git flow 管理规范对 GIT.Flow 进行管理：[《编程猫前端 Git Flow》](https://shimo.im/docs/aBAYV4XJdXfn8d3j)
+#### git flow： @mlz/admin 要求采用编程猫现有的 git flow 管理规范对 GIT.Flow 进行管理：[《编程猫前端 Git Flow》](https://shimo.im/docs/aBAYV4XJdXfn8d3j)
 
 ###
 

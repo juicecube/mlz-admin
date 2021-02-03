@@ -6,12 +6,19 @@
   ],
   "command": {
     "version": {
-      "allowBranch": "refactor/*",
-      "includeMergedTags": true
+      "allowBranch": [
+        "release"
+      ],
+      "includeMergedTags": true,
+      "message": "chore(release): publish %s"
     },
     "publish": {
       "registry": "https://registry.npmjs.org/"
     }
   },
+  "ignoreChanges": [
+    "**/__tests__/**",
+    "**/*.md"
+  ],
   "npmClient": "npm"
 }

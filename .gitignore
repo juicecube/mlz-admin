@@ -11,13 +11,11 @@
 /yarn-error.log
 
 # production
-/dist
-/unpkg
-/es
-/lib
-/build
-# 不需要index.tsx，它会在dist时自动生成
-/src/index.tsx
+packages/**/*/es
+packages/**/*/lib
+packages/**/*/dist
+packages/**/*/unpkg
+packages/**/*/build
 *.tgz
 
 # umi
@@ -38,3 +36,5 @@ yarn-error.log*
 
 # 自动生成
 CHANGELOG.md
+/packages/mlz-admin/src/index.tsx
+/packages/mlz-adminer/src/index.tsx
