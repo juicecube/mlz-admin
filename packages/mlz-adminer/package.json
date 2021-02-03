@@ -1,6 +1,6 @@
 {
   "name": "@mlz/adminer",
-  "version": "0.9.91",
+  "version": "0.9.92",
   "description": "@mlz/admin配套的交互和业务代码库",
   "license": "MPL2",
   "keywords": [
