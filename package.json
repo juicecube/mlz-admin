@@ -1,43 +1,33 @@
 {
-  "name": "@mlz/admin",
-  "version": "0.9.0",
-  "description": "一套遵循编程猫组件使用规范的管理系统React组件库",
-  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "private": true,
   "keywords": [
     "react",
     "components",
     "antd"
   ],
   "scripts": {
-    "start": "npm run clean && node ./scripts/genIndex && NODE_ENV=development dumi dev",
-    "build": "node ./scripts/genIndex && NODE_ENV=production dumi build",
+    "start": "npm run clean && node ./scripts/genIndex && npx cross-env NODE_ENV=development dumi dev",
+    "build": "node ./scripts/genIndex && npx cross-env NODE_ENV=production dumi build",
     "dist": "npm run clean && node ./scripts/genIndex && father-build",
-    "dist:tsc": "rm -rf es lib dist && npm run dist:cjs && npm run dist:es",
     "serve": "node ./scripts/serve",
     "lint": "npm run clean && node ./scripts/genIndex && npm run lint:ts && npm run lint:es && npm run lint:style",
-    "lint:es": "npx eslint --ext tsx,ts,js src docs/demo",
+    "lint:es": "npx eslint --ext tsx,ts,js packages/**/src docs/demo",
     "lint:ts": "tsc --project ./tsconfig.lint.json",
-    "lint:style": "stylelint 'src/**/*.less' --syntax less",
-    "lint:esFix": "npx eslint --ext tsx,ts,js src docs/demo --fix",
+    "lint:style": "stylelint '**/*.less' --syntax less",
     "test": "npm run clean && node ./scripts/genIndex && dumi test",
-    "test:coverage": "npm run clean && node ./scripts/genIndex && dumi test --coverage",
+    "test:coverage": "npm run clean && node ./scripts/genIndex && dumi test --coverage --verbose",
     "test:update": "npm run clean && node ./scripts/genIndex && dumi test --cache=false -u --coverage",
     "check-coverage": "npx istanbul check-coverage --statement 85 --branch -75",
     "prettier": "prettier --write '**/*.{js,tsx,ts,less,md,json}'",
-    "version": "AUTO=1 node ./scripts/versioning",
-    "changelog": "node ./scripts/changelog",
-    "clean": "rm -rf es lib dist .tsc-check coverage src/index.tsx",
-    "relaunch": "npm run clean && rm -rf node_modules package-lock.json yarn.lock src/.umi && npm install"
+    "publish": "AUTO=1 node ./scripts/versioning && lerna publish from-package --no-changelog",
+    "clean": "npx cross-env rimraf packages/**/es packages/**/lib packages/**/src/index.tsx .tsc-check coverage",
+    "clean:lerna": "lerna clean --yes",
+    "reset": "npm run clean && npx cross-env rimraf node_modules src/.umi && npm install && npm run clean:lerna && npm run boot",
+    "boot": "lerna bootstrap"
   },
-  "module": "es/index.js",
-  "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
-  "files": [
-    "lib",
-    "es",
-    "LICENSE",
-    "service"
-  ],
   "gitHooks": {
     "pre-commit": "npx lint-staged && npx pretty-quick --staged"
   },
@@ -53,21 +43,11 @@
     "@babel/runtime": "^7.10.2",
     "compression": "^1.7.4",
     "express": "^4.17.1",
-    "antd": "^4.9.4",
     "react": "^16.14.0",
-    "react-dom": "^16.14.0",
-    "@mlz/axios": "^1.1.3"
-  },
-  "peerDependencies": {
-    "antd": ">=4.6.2",
-    "react": ">=16.12.0",
-    "react-dom": ">=16.12.0",
-    "@mlz/axios": ">=1.1.3"
+    "react-dom": "^16.14.0"
   },
   "devDependencies": {
     "@ant-design/colors": "^5.0.1",
-    "@sentry/browser": "^5.27.6",
-    "@sentry/tracing": "^5.27.6",
     "@testing-library/react": "^11.2.2",
     "@types/enzyme": "^3.10.5",
     "@types/jest": "^26.0.13",
@@ -78,7 +58,6 @@
     "@umijs/test": "^3.2.19",
     "axios": "^0.20.0",
     "babel-plugin-search-and-replace": "^1.1.0",
-    "bundlesize": "^0.18.0",
     "dumi": "^1.0.6",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.4",
@@ -98,6 +77,7 @@
     "istanbul": "^0.4.5",
     "jest": "^26.0.1",
     "jest-canvas-mock": "^2.3.0",
+    "lerna": "^3.22.1",
     "less": "~3.9.0",
     "lint-staged": "^10.3.0",
     "lodash-es": "^4.17.15",
@@ -106,6 +86,7 @@
     "prettier": "^1.19.1",
     "pretty-quick": "^2.0.1",
     "react-copy-to-clipboard": "^5.0.2",
+    "rimraf": "^3.0.2",
     "rollup-plugin-typescript2": "^0.27.1",
     "simple-git": "^2.27.0",
     "stylelint": "latest",
@@ -116,16 +97,5 @@
     "typescript": "~3.9.7",
     "typescript-transform-paths": "^2.0.1",
     "yorkie": "^2.0.0"
-  },
-  "bugs": {
-    "url": "https://github.com/juicecube/mlz-admin/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/juicecube/mlz-admin"
-  },
-  "homepage": "https://mlz-admin.com",
-  "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
   }
 }

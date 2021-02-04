@@ -9,12 +9,18 @@
   ],
   "rules": {
     "comment-empty-line-before": null,
-    "function-name-case": [
-      "lower"
-    ],
+    "function-name-case": null,
     "no-invalid-double-slash-comments": null,
     "no-descending-specificity": null,
     "declaration-empty-line-before": null,
-    "order/properties-order": null
+    "order/properties-order": null,
+    "value-keyword-case": [
+      "lower",
+      {
+        "ignoreFunctions": [
+          "**/*.tsx"
+        ]
+      }
+    ]
   }
 }

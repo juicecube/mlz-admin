@@ -14,7 +14,7 @@ const columnsForDetail = [
   },
   {
     title: '售后单ID',
-    dataIndex: 'id',
+    dataIndex: 'aftersaleId',
   },
   {
     title: '归属人',

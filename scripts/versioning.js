@@ -5,7 +5,12 @@ const fetch = require('node-fetch');
 const simpleGit = require('simple-git/promise');
 const changelog = require('./changelog');
 
-const pkg = require('../package.json');
+const pkg = require('../packages/mlz-admin/package.json');
+const pkg2 = require('../packages/mlz-adminer/package.json');
+
+if (pkg.version !== pkg2.version) {
+  throw new Error('we would not support independent package releasing version');
+}
 
 const git = simpleGit(process.cwd());
 const { version } = pkg;
@@ -37,15 +42,14 @@ const checkTag = async ({ current }) => {
 const checkBranch = async ({ current }) => {
   if (!canPublishBranches.includes(current)) {
     console.error(`Error: 没有在${canPublishBranches.join('或')}分支发布，而是${current}分支`, `\r\n`);
-    // process.exit(1);
+    process.exit(1);
   }
 };
 
 const tagTag = async (tag) => {
   const tagMessage = await changelog(process.env.AUTO === '1');
   git.addAnnotatedTag(tag, tagMessage);
-  console.log(`annotated successfully, tag message is :`);
-  console.log(tagMessage + '\r\n');
+  console.log(`annotated successfully, tag message is : \r\n` + tagMessage + '\r\n');
 };
 
 const pushTag = git.pushTags('origin');
@@ -53,14 +57,14 @@ const pushTag = git.pushTags('origin');
 (async () => {
   const status = await git.status();
   // await checkBranch(status);
-  await checkVersion();
+  // await checkVersion();
 
   // 打tag
   const tag = await checkTag(status);
   if (tag) {
     console.log('🚗 taging... \r\n');
     await tagTag(tag);
-    await pushTag();
+    // await pushTag();
     console.log('✅ push tag successfutlly');
   } else {
     throw new Error(`no tag detected`);

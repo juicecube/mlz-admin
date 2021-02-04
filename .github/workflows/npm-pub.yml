@@ -39,10 +39,10 @@ jobs:
       - name: build dist
         run: npm run dist
       
-      - name: tag a tag
-        run: npm run version
+      - name: publish
+        run: npm run publish
       
-      - name: Get the version
+      - name: Get the published version
         id: vars
         run: echo ::set-output name=ref::${GITHUB_REF#refs/*/}
 
@@ -58,7 +58,7 @@ jobs:
           draft: true
           prerelease: false
         
-      - name: npm publish
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
+      # - name: npm publish
+      #   uses: JS-DevTools/npm-publish@v1
+      #   with:
+      #     token: ${{ secrets.NPM_TOKEN }}

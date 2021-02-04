@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-/* eslint-disable */
 const fs = require('fs');
 const path = require('path');
 const { capitalize } = require('lodash');
@@ -29,22 +28,28 @@ const extraContents = [
 `,
 ];
 
-const genExports = () => {
-  const gutter = '\r\n\r\n';
-  let exportsContents = ``;
-  for (const folder of fs.readdirSync(SRC_PATH)) {
-    if (!/\.umi/.test(folder) && !donotCompiles.includes(folder)) {
-      const filePathname = path.join(SRC_PATH, folder);
-      const folderStat = fs.statSync(filePathname);
-      if (folderStat.isDirectory()) {
-        exportsContents += `export { default as ${donotCamelizes.includes(folder) ? folder : camelizeFolderName(folder)} } from '.${filePathname.split(SRC_PATH)[1]}';\n\r`;
+const genExports = ($srcPath = SRC_PATH, $opt = { donotCamelizes, donotCompiles, extraContents }) => {
+  const { donotCamelizes: unCamelizes, donotCompiles: unCompiles, extraContents: extras } = $opt;
+  if (Object.values($opt).every((param) => typeof param === 'object' && param.length >= 0)) {
+    const gutter = '\r\n\r\n';
+    let exportsContents = ``;
+    // eslint-disable-next-line no-restricted-syntax
+    for (const folder of fs.readdirSync($srcPath)) {
+      if (!/\.umi/.test(folder) && !unCompiles.includes(folder)) {
+        const filePathname = path.join($srcPath, folder);
+        const folderStat = fs.statSync(filePathname);
+        if (folderStat.isDirectory()) {
+          exportsContents += `export { default as ${unCamelizes.includes(folder) ? folder : camelizeFolderName(folder)} } from '.${filePathname.split($srcPath)[1]}';\n\r`;
+        }
       }
     }
+    exportsContents += extras.reduce((prev, curr) => {
+      return (prev += `${gutter}${curr}`);
+    }, '');
+    return `/**  you SHOULD NOT delete this file ,  keep it       *\r\n*    stay in your .gitignore cause it was generated      *\r\n*    with necessities automatically❗️      *\r\n**/${gutter}${exportsContents}`;
+  } else {
+    throw new Error(`$opt的每个参数都必须是数组`);
   }
-  exportsContents += extraContents.reduce((prev, curr) => {
-    return (prev += `${gutter}${curr}`);
-  });
-  return `/**  you SHOULD NOT delete this file ,  keep it       *\r\n*    stay in your .gitignore cause it was generated      *\r\n*    with necessities automatically❗️      *\r\n**/${gutter}${exportsContents}`;
 };
 
 module.exports = genExports;

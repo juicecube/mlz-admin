@@ -3,7 +3,7 @@ const path = require('path');
 const extraIgnoredPaths = ['/src/shared/utils/', '/src/shared/test-utils/', '/src/date-picker/__tests__/utils.test.ts', '/src/shared/service/', '/src/error-boundary/', '/src/watermark/canvas.ts'];
 
 module.exports = {
-  verbose: true,
+  verbose: false,
   rootDir: path.join(__dirname, ''),
   setupFiles: ['<rootDir>/tests/setup.js', 'jest-canvas-mock'],
   testTimeout: 5000,

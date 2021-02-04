@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Cascader, message } from '@mlz/admin';
 
-const Index = () => {
+const App = () => {
   const options = [
     {
       value: 'zhejiang',
@@ -44,4 +44,4 @@ const Index = () => {
   return <Cascader options={options} onChange={onChange} placeholder="Please select" />;
 };
 
-export default Index;
+export default App;
