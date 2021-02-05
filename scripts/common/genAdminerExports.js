@@ -6,7 +6,7 @@ const { ADMINER_SRC_PATH } = require('./constants');
 const genAdminerExports = () =>
   genExports(ADMINER_SRC_PATH, {
     donotCamelizes: [],
-    donotCompiles: [],
+    donotCompiles: ['service'],
     extraContents: [],
   });
 

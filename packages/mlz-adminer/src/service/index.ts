@@ -1,41 +1,23 @@
+import { isCompiled, env, config } from './constant';
 import { extend, RequestOptionsInit } from 'umi-request';
 
-/**
- * 静态配置
- */
-const config = {
-  'open-service': {
-    development: `https://dev-open-service.codemao.cn`,
-    test: `https://test-open-service.codemao.cn`,
-    staging: `https://staging-open-service.codemao.cn`,
-    production: `https://open-service.codemao.cn`,
-  },
-  'internal-account': {
-    development: 'https://dev-internal-account-api.codemao.cn/',
-    test: 'https://test-internal-account-api.codemao.cn/',
-    staging: 'https://staging-internal-account-api.codemao.cn/',
-    production: 'https://internal-account-api.codemao.cn/',
-  },
-};
-
-/**
- * 组件内动态配置
- */
-const env = process.env.NODE_ENV || 'development';
-
 type ElementOf<T> = T extends (infer E)[] ? E : T extends readonly (infer E)[] ? E : never;
+/**
+ * 根据环境分配请求参数的分流器
+ */
+export const paramsDiverter = (productionParams: any, devParams: any) => (isCompiled ? productionParams : devParams);
 
-export const supporttedMethods = ['get', 'post', 'put', 'patch', 'delete', 'head', 'option'] as const;
+export const supporttedMethods = ['get', 'post', 'put', 'patch', 'delete'] as const;
 interface IOptions extends RequestOptionsInit {
   data?: Object;
   params?: Object;
-  onFail(failedBody: any): void;
-  onOk(okBody: any): void;
+  onFail(failureBody: any): void;
+  onOk(successBody: any): void;
   onCancel?(): void;
   host?: URL['href'];
 }
 
-const umiRequest = extend({ timeout: 3000, responseType: 'json', credentials: 'include' });
+const umiRequest = extend({ timeout: 5000, responseType: 'json', credentials: 'include' });
 umiRequest.interceptors.request.use((url: URL['href'], reqOpts: Partial<IOptions>) => {
   return {
     url,
@@ -61,7 +43,7 @@ export type IHttpObject = Record<TSupporttedMethods, (url: URL['href'], opts?: P
 const $http: IHttpObject = {};
 supporttedMethods.forEach((method: TSupporttedMethods) => {
   $http[method] = async (url: URL['href'], opts?: Partial<IOptions>) => {
-    const { host = config['open-service'][env], data, params, ...rests } = opts || {};
+    const { host = config[env]?.['hosts']?.['open-service'], data, params, ...rests } = opts || {};
     return umiRequest[method](`${host}/${url.replace(/^\//g, '')}`, {
       data,
       params,

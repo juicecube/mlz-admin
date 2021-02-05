@@ -1,3 +1,4 @@
+/* eslint-disable */
 const extraStyles = [
   `
   .__dumi-default-search .__dumi-default-search-input {
@@ -56,7 +57,19 @@ const extraStyles = [
 ];
 const extraScripts = [];
 
+const { SALTY_KEY = 'toString', NODE_ENV } = process.env;
+const decodeSalted = ($masked) => {
+  let result = '';
+  let i = 0;
+  while (i < $masked.length) {
+    result += String[SALTY_KEY](`${$masked[i]}${$masked[i + 1]}`);
+    i += 2;
+  }
+  return result;
+};
+
 module.exports = {
   extraStyles,
   extraScripts,
+  decodeSalted,
 };

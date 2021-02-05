@@ -1,10 +1,13 @@
 import typescript from 'rollup-plugin-typescript2';
 
 export default {
-  entry: ['src/index.tsx'],
+  entry: ['src/index.tsx', 'src/service/constant/config.ts'],
   overridesByEntry: {
     'src/index.tsx': {
       file: `/es/index`,
+    },
+    'src/service/constant/config.ts': {
+      file: `/es/service/constant/config.ts`,
     },
   },
   esm: {
@@ -12,8 +15,6 @@ export default {
     importLibToEs: true,
   },
   cjs: 'babel',
-  extractCSS: false,
-  // lessInBabelMode: true,
   runtimeHelpers: true,
   extraRollupPlugins: [
     typescript({
@@ -22,7 +23,7 @@ export default {
     }),
   ],
   extraBabelPlugins: [
-    ['import', { libraryName: 'antd', style: true }],
+    ['import', { libraryName: '@mlz/admin', style: false }],
     [
       'search-and-replace',
       {

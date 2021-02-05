@@ -32,8 +32,6 @@ npm install @mlz/pack -D
 它内置了普适性的配置和优化，有方便且丰富的编程猫业务开发的底层配置。当然，支持自定义 webpack 全部配置。如果你是编程猫的开发人员，这将是必须使用的。
 
 > @mlz/pack：[@mlz/pack 文档](https://github.com/juicecube/mlz-pack)
->
-> 或直接使用搭载@mlz/pack 的 CLI 软件 - yummi：[yummi 文档](https://phab.srv.codemao.cn/source/yuumi/)
 
 #### 二、使用 `webpack`
 
@@ -42,8 +40,8 @@ npm install @mlz/pack -D
 ```json
   // package.json
   "dependencies": {
--    "antd": "latest",
-+    "@mlz/admin": "latest",
+--  "antd": "latest",
+++  "@mlz/admin": "latest",
   }
 ```
 

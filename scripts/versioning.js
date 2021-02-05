@@ -5,15 +5,16 @@ const fetch = require('node-fetch');
 const simpleGit = require('simple-git/promise');
 const changelog = require('./changelog');
 
-const pkg = require('../packages/mlz-admin/package.json');
-const pkg2 = require('../packages/mlz-adminer/package.json');
+const pkgLerna = require('../lerna.json');
+const pkgADMIN = require('../packages/mlz-adminer/package.json');
+const pkgADMINER = require('../packages/mlz-adminer/package.json');
 
-if (pkg.version !== pkg2.version) {
+if (pkgADMIN.version !== pkgADMINER.version || pkgADMINER.version !== pkgLerna) {
   throw new Error('we would not support independent package releasing version');
 }
 
 const git = simpleGit(process.cwd());
-const { version } = pkg;
+const { version } = pkgLerna;
 const tagPrefix = 'v';
 const canPublishBranches = ['release', 'master'];
 

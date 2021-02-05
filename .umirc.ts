@@ -1,7 +1,9 @@
 import { defineConfig } from 'dumi';
 import path from 'path';
 import fs from 'fs';
-import { extraStyles, extraScripts } from './scripts/genUmiExtraConf';
+import { extraStyles, extraScripts, decodeSalted } from './scripts/genUmiExtraConf';
+
+const { HOST_ROOT, NODE_ENV } = process.env;
 
 // 根据dir获取其下的所有.md文件
 const getMds = ($relativedFromDoc) => {
@@ -11,6 +13,9 @@ const getMds = ($relativedFromDoc) => {
   });
   return files;
 };
+const demoChildren = ['7673668265', '83858080798284456568777378', '7685677589676584456568777378', '83858080768945677265737845776578657169456568777378', '83696782698465828945676584'].map((key) =>
+  decodeSalted(key),
+);
 
 export default defineConfig({
   hash: true,
@@ -46,13 +51,16 @@ export default defineConfig({
     },
     {
       title: '案例',
-      children: [
-        { title: 'Libra投放管理平台', path: 'https://libra.codemao.cn/' },
-        { title: '行政综合支撑平台', path: 'https://support-admin.codemao.cn/' },
-        { title: 'LuckyCat营销管理系统', path: 'https://luckycat-admin.codemao.cn/' },
-        { title: 'SCM供应链管理系统', path: 'https://supply-chain-manage-admin.codemao.cn/' },
-        { title: '猫小秘客服系统', path: 'https://secretary-cat.codemao.cn/' },
-      ],
+      children:
+        NODE_ENV === 'development'
+          ? [{ title: '开发环境不予以展示', path: `https://www.google.com` }]
+          : [
+              { title: 'Libra投放管理平台', path: `https://${demoChildren[0]}.${HOST_ROOT}` },
+              { title: '行政综合支撑平台', path: `https://${demoChildren[1]}.${HOST_ROOT}` },
+              { title: 'LuckyCat营销管理系统', path: `https://${demoChildren[2]}.${HOST_ROOT}` },
+              { title: 'SCM供应链管理系统', path: `https://${demoChildren[3]}.${HOST_ROOT}` },
+              { title: '猫小秘客服系统', path: `https://${demoChildren[4]}.${HOST_ROOT}` },
+            ],
     },
     {
       title: 'Github',

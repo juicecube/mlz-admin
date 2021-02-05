@@ -4,12 +4,12 @@ import { mount } from 'enzyme';
 import { testMount, sleep } from '../../../../../tests';
 import DecodePhone from '..';
 import EncodePhoneModel from '../model';
-import { decodeEncodedPhone } from '../../../service';
+import { decodeEncodedPhone } from '../controller';
 
 const testee = '155****1234';
 const params = 'jZgOvsexafxJUlU3WHaMfA==';
 
-jest.mock('../../../service', () => {
+jest.mock('../controller', () => {
   return {
     decodeEncodedPhone: jest.fn(),
   };

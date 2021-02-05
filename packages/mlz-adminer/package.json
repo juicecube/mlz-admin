@@ -24,7 +24,8 @@
     "umi-request": "^1.3.5"
   },
   "peerDependencies": {
-    "@mlz/admin": ">=0.8.5"
+    "@mlz/admin": ">=0.8.5",
+    "umi-request": ">=1.3.5"
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.3",
@@ -40,6 +41,7 @@
     "type": "git",
     "url": "https://github.com/juicecube/mlz-admin"
   },
+  "sideEffect": false,
   "homepage": "https://mlz-admin.com",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
