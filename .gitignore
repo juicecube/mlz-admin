@@ -38,3 +38,8 @@ yarn-error.log*
 CHANGELOG.md
 /packages/mlz-admin/src/index.tsx
 /packages/mlz-adminer/src/index.tsx
+/packages/mlz-adminer/src/**/config.ts
+
+# specified config
+/config/*
+!/config/.gitkeep

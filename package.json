@@ -23,7 +23,7 @@
     "check-coverage": "npx istanbul check-coverage --statement 85 --branch -75",
     "prettier": "prettier --write '**/*.{js,tsx,ts,less,md,json}'",
     "publish": "AUTO=1 node ./scripts/versioning && lerna publish from-package --no-changelog",
-    "clean": "npx cross-env rimraf packages/**/es packages/**/lib packages/**/src/index.tsx .tsc-check coverage",
+    "clean": "npx cross-env rimraf packages/**/es packages/**/lib packages/**/src/index.tsx packages/mlz-adminer/src/service/constant/config.ts .tsc-check coverage",
     "clean:lerna": "lerna clean --yes",
     "reset": "npm run clean && npx cross-env rimraf node_modules src/.umi && npm install && npm run clean:lerna && npm run boot",
     "boot": "lerna bootstrap"

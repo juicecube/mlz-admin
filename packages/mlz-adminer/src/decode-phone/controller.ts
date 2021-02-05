@@ -1,10 +1,6 @@
-import $http from './request';
-import { isCompiled, OpenServiceHOST } from './constant';
-
-/**
- * 根据环境分配请求参数的分流器
- */
-const paramsDiverter = (productionParams: any, devParams: any) => (isCompiled ? productionParams : devParams);
+import $http, { paramsDiverter } from '../service';
+import { isCompiled, env, config } from '../service/constant';
+const OpenServiceHOST = config[env]?.['hosts']?.['open-service'];
 
 export const decodeEncodedPhone = (encodedPhone: string, specifiedUrl?: URL['href']): Promise<any> => {
   const DECODE_PHONE_MOCK_URL = 'http://rap2api.taobao.org/app/mock/252468/admini/decode-phone';

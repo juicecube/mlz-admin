@@ -16,7 +16,7 @@ import { Menu, Layout, Button } from '@mlz/admin';
 const HeaderContent = () => (
   <div style={{ overflow: 'hidden' }}>
     <div style={{ float: 'left', color: 'white' }}>
-      <img src="https://static-platform.codemao.cn/logo" width="26" height="26" alt="codemao-logo" />
+      <img src="https://cmm-1252070958.cos.ap-guangzhou.myqcloud.com/logo" width="26" height="26" alt="codemao-logo" />
       <span style={{ padding: '0 16px' }}>Football Manager</span>
     </div>
     <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} style={{ float: 'left' }}>
@@ -83,7 +83,7 @@ class App extends React.PureComponent {
         <Layout>
           <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
             <div style={{ float: 'left', color: 'white', height: 32, margin: '16px 0', textAlign: 'center', width: '100%' }}>
-              <img src="https://static-platform.codemao.cn/logo" width="26" height="26" alt="codemao-logo" />
+              <img src="https://cmm-1252070958.cos.ap-guangzhou.myqcloud.com/logo" width="26" height="26" alt="codemao-logo" />
               {this.state.collapsed ? null : <span style={{ padding: '0 8px' }}>Football Manager</span>}
             </div>
             <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">

@@ -1,6 +1,14 @@
 const path = require('path');
 
-const extraIgnoredPaths = ['/src/shared/utils/', '/src/shared/test-utils/', '/src/date-picker/__tests__/utils.test.ts', '/src/shared/service/', '/src/error-boundary/', '/src/watermark/canvas.ts'];
+const extraIgnoredPaths = [
+  '/src/shared/utils/',
+  '/src/shared/test-utils/',
+  '/src/date-picker/__tests__/utils.test.ts',
+  '/src/error-boundary/',
+  '/src/watermark/canvas.ts',
+  '/src/decode-phone/controller.ts',
+  '/src/select-range',
+];
 
 module.exports = {
   verbose: false,

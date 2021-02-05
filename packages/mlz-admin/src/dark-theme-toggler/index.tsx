@@ -23,15 +23,10 @@ const DarkThemeToggler = (props: DarkThemeTogglerProps) => {
     onChange?.(darkness ? 'dark' : 'light');
   }, darkness);
   useEffect(() => {
-    !darkness &&
-      setTimeout(async () => {
-        // 这里为切换的流畅性做了妥协。强制执行了副作用，无论用户是否真正使用此功能。
-        try {
-          await preloadDarkThemeCss(darkThemeCssResourceUrl);
-        } catch (err) {
-          throw new Error(err);
-        }
-      }, preload);
+    setTimeout(async () => {
+      // 这里为切换的流畅性做了妥协。强制执行了副作用，无论用户是否真正使用此功能。
+      !darkness && (await preloadDarkThemeCss(darkThemeCssResourceUrl));
+    }, preload);
   }, []);
 
   return <Switch checkedChildren={<Icon type="bulb_g" />} unCheckedChildren={<Icon type="bulb_l" />} defaultChecked={!darkness} onChange={() => darken(!darkness)} {...others} />;

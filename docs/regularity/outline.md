@@ -23,19 +23,19 @@ const contents = {
     {
       title: '画板',
       desc: '系统图标都是按照 8 的 16 倍 128 x 128 的画板进行制作的。',
-      pic: 'https://static-platform.codemao.cn/mlz-admin/p2.bmp',
+      pic: 'https://cmm-1252070958.cos.ap-guangzhou.myqcloud.com/p2.bmp',
       picStyle: { width: 399, height: 166 },
     },
     {
       title: '出血位',
       desc: '设计规格在图形的外围预留了 8px 的出血位，多数的图标在设计中我们都不建议超过这个区域。',
-      pic: 'https://static-platform.codemao.cn/mlz-admin/p31.bmp',
+      pic: 'https://cmm-1252070958.cos.ap-guangzhou.myqcloud.com/p31.bmp',
       picStyle: { width: 343, height: 173 },
     },
     {
       title: '轮廓线',
       desc: '对基本图形进行规范，是图标设计中最常用的基本形式，设计师可以快速的调用并在此基础上做变形。',
-      pic: 'https://static-platform.codemao.cn/mlz-admin/p4.bmp',
+      pic: 'https://cmm-1252070958.cos.ap-guangzhou.myqcloud.com/p4.bmp',
       picStyle: { width: 722, height: 331 },
     },
   ],
@@ -45,7 +45,7 @@ export default () => (
     <PageHeader title="后台系统图标规范" />
     <PageContainer>
       <div style={{ display: 'flex' }}>
-        <ImageViewer src="https://static-platform.codemao.cn/mlz-admin/p1.bmp" style={{ marginRight: 16, width: 113, height: 113 }} />
+        <ImageViewer src="https://cmm-1252070958.cos.ap-guangzhou.myqcloud.com/p1.bmp" style={{ marginRight: 16, width: 113, height: 113 }} />
         <Typography style={{ marginBottom: 100 }}>
           <Paragraph type="secondary">
             系统图标默认使用线性图标，在此基础上，还提供相对应的面性图标进行替换。 单独使用时，尺寸为 20pt，色值为 #000000 65%，在操作控件下使用时，尺寸为 16pt，色值为 #000000 25%

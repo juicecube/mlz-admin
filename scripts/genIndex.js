@@ -3,27 +3,40 @@
 const fs = require('fs');
 
 const genExports = require('./common/genExports');
-const genAdminerExports = require('./common/genAdminerExports');
 const genVersion = require('./common/genVersion');
 const genBuildTime = require('./common/genBuildTime');
 const genSupporttingEnv = require('./common/genSupporttingEnv');
+const genAdminerExports = require('./common/genAdminerExports');
+const genAdminerConfig = require('./common/genAdminerConfig');
 const joinGeneratorsIntoBuffer = require('./common/joinGeneratorsIntoBuffer');
-const { SRC_PATH, ADMINER_SRC_PATH } = require('./common/constants');
+const { SRC_PATH, ADMINER_SRC_PATH, SERVICE_PATH } = require('./common/constants');
 
-// 为mlz-admin生成index
-fs.writeFileSync(SRC_PATH + '/index.tsx', Buffer.from(`${joinGeneratorsIntoBuffer(genVersion, genBuildTime, genSupporttingEnv)}${genExports()}`), (err) => {
-  if (err) {
-    console.error(`❌ 发生错误：${err}`);
-  } else {
-    console.log(`✅ `, SRC_PATH + '/index.tsx');
-  }
-});
-
-// 为mlz-adminer生成index
-fs.writeFileSync(ADMINER_SRC_PATH + '/index.tsx', Buffer.from(genAdminerExports()), (err) => {
-  if (err) {
-    console.error(`❌ 发生错误：${err}`);
-  } else {
-    console.log(`✅ `, SRC_PATH + '/index.tsx');
-  }
+[
+  // 生成admin组件列表
+  {
+    path: SRC_PATH + '/index.tsx',
+    bufferGenerators: [genVersion, genBuildTime, genSupporttingEnv],
+    extra: genExports(),
+  },
+  // 生成adminer hooks列表
+  {
+    path: ADMINER_SRC_PATH + '/index.tsx',
+    bufferGenerators: [genAdminerExports],
+    extra: [],
+  },
+  // 生成adminer的config列表
+  {
+    path: SERVICE_PATH + '/constant/config.ts',
+    bufferGenerators: [genAdminerConfig],
+    extra: [],
+  },
+].forEach(($section) => {
+  const { path, bufferGenerators, extra } = $section;
+  fs.writeFileSync(path, Buffer.from(`${joinGeneratorsIntoBuffer(...bufferGenerators)}${extra || ''}`), (err) => {
+    if (err) {
+      console.error(`❌ 发生错误：${err}`);
+    } else {
+      console.log(`✅ `, path);
+    }
+  });
 });
