@@ -20,11 +20,7 @@ export default () => (
   <Layout>
     <Sider>
       <div style={{ float: 'left', color: 'white', height: 32, margin: '16px 0', textAlign: 'center', width: '100%' }}>
-        <img
-          src="https://cmm-1252070958.cos.ap-guangzhou.myqcloud.com/logo?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDYRYpuprEH0s7sNYThKoQWCqnfREhQiKS%26q-sign-time%3D1612511088%3B1612514748%26q-key-time%3D1612511088%3B1612514748%26q-header-list%3Dhost%26q-url-param-list%3D%26q-signature%3D045e31931acedf59df62f138a73957eee9102a32&x-cos-security-token=431458c7091e79151e3615c17f3a777810b233e910001"
-          width="26"
-          height="26"
-        />
+        <img src="https://cmm-1252070958.cos.ap-guangzhou.myqcloud.com/logo" width="26" height="26" />
         <span style={{ padding: '0 8px' }}>Football Manager</span>
       </div>
       <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
@@ -75,11 +71,7 @@ export default () => (
   <Layout>
     <Sider>
       <div style={{ float: 'left', color: 'white', height: 32, margin: '16px 0', textAlign: 'center', width: '100%' }}>
-        <img
-          src="https://cmm-1252070958.cos.ap-guangzhou.myqcloud.com/logo?sign=q-sign-algorithm%3Dsha1%26q-ak%3DAKIDYRYpuprEH0s7sNYThKoQWCqnfREhQiKS%26q-sign-time%3D1612511088%3B1612514748%26q-key-time%3D1612511088%3B1612514748%26q-header-list%3Dhost%26q-url-param-list%3D%26q-signature%3D045e31931acedf59df62f138a73957eee9102a32&x-cos-security-token=431458c7091e79151e3615c17f3a777810b233e910001"
-          width="26"
-          height="26"
-        />
+        <img src="https://cmm-1252070958.cos.ap-guangzhou.myqcloud.com/logo" width="26" height="26" />
         <span style={{ padding: '0 8px' }}>Football Manager</span>
       </div>
       <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
