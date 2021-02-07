@@ -42,7 +42,7 @@
     "type": "git",
     "url": "https://github.com/juicecube/mlz-admin"
   },
-  "homepage": "https://mlz-admin.com",
+  "homepage": "https://www.mlz-admin.com",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
