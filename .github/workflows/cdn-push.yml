@@ -40,4 +40,4 @@ jobs:
           secret_id: ${{ secrets.SECRET_ID }}
           secret_key: ${{ secrets.SECRET_KEY }}
           bucket: ${{ secrets.BUCKET }}
-          region: guangzhou
+          region: ap-guangzhou
