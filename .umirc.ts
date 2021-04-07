@@ -24,6 +24,7 @@ export default defineConfig({
   favicon: '/assets/logo.36.png',
   logo: '/assets/logo.360.png',
   locales: [['zh-CN', '中文']],
+  publicPath: 'https://cmm-1252070958.cos.ap-guangzhou.myqcloud.com/',
   menus: {
     '/components': [
       {
