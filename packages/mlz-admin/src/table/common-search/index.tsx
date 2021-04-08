@@ -140,7 +140,7 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
           );
         })}
         {/* 空白的占位块 */}
-        {searchings.length ? <Col style={{ height: 32, marginBottom: 24 }} sm={perColspan * 3} lg={perColspan * 2} xl={perColspan}></Col> : null}
+        {searchings.length ? <Col style={{ height: 32, marginBottom: 24 }} sm={perColspan * 3} lg={perColspan * 2} xl={perColspan} /> : null}
         {/* 绝对定位的按钮组 */}
         {formSubmitters}
       </Row>
