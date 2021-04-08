@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 const fs = require('fs');
 
-const genExports = require('./common/genExports');
+const { genExports } = require('./common/genExports');
 const genVersion = require('./common/genVersion');
 const genBuildTime = require('./common/genBuildTime');
 const genSupporttingEnv = require('./common/genSupporttingEnv');

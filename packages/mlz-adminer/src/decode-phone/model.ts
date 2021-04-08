@@ -1,12 +1,14 @@
 import { decodeEncodedPhone } from './controller';
+import { Model } from '../shared/basic-class';
 
 export type DecodedPhoneType = string;
-class EncodePhoneModel {
+class EncodePhoneModel extends Model {
   readonly decodedTel: DecodedPhoneType = '';
 
   private encodedTel: DecodedPhoneType;
 
   constructor(encodedTel: DecodedPhoneType) {
+    super();
     this.encodedTel = encodedTel;
   }
 

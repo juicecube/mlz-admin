@@ -48,7 +48,8 @@
   },
   "devDependencies": {
     "@ant-design/colors": "^5.0.1",
-    "@testing-library/react": "^11.2.2",
+    "@testing-library/react": "^11.2.6",
+    "@testing-library/react-hooks": "^5.1.1",
     "@types/enzyme": "^3.10.5",
     "@types/jest": "^26.0.13",
     "@types/lodash-es": "^4.17.3",

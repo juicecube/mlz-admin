@@ -1,12 +1,15 @@
 const path = require('path');
 
 const extraIgnoredPaths = [
-  '/src/shared/utils/',
-  '/src/shared/test-utils/',
+  '/utils/',
+  '/test-utils/',
+  '/shared/',
+  '/packages/mlz-adminer/src/shared/',
+  'model.ts',
+  'controller.ts',
   '/src/date-picker/__tests__/utils.test.ts',
   '/src/error-boundary/',
   '/src/watermark/canvas.ts',
-  '/src/decode-phone/controller.ts',
   '/src/select-range',
 ];
 

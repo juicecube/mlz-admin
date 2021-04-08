@@ -9,7 +9,7 @@ const camelizeFolderName = (foldername) => {
   return foldername
     .split('-')
     .map((item) => {
-      return capitalize(item);
+      return item === 'use' ? item : capitalize(item);
     })
     .join('');
 };
@@ -28,6 +28,8 @@ const extraContents = [
 `,
 ];
 
+const forbiddenReminder = () =>
+  `/**  you SHOULD NOT delete this file ,  keep it       *\r\n*    stay in your .gitignore cause it was generated      *\r\n*    with necessities automatically❗️      *\r\n*/\r\n\r\n`;
 const genExports = ($srcPath = SRC_PATH, $opt = { donotCamelizes, donotCompiles, extraContents }) => {
   const { donotCamelizes: unCamelizes, donotCompiles: unCompiles, extraContents: extras } = $opt;
   if (Object.values($opt).every((param) => typeof param === 'object' && param.length >= 0)) {
@@ -46,10 +48,10 @@ const genExports = ($srcPath = SRC_PATH, $opt = { donotCamelizes, donotCompiles,
     exportsContents += extras.reduce((prev, curr) => {
       return (prev += `${gutter}${curr}`);
     }, '');
-    return `/**  you SHOULD NOT delete this file ,  keep it       *\r\n*    stay in your .gitignore cause it was generated      *\r\n*    with necessities automatically❗️      *\r\n**/${gutter}${exportsContents}`;
+    return `${forbiddenReminder()}${exportsContents}`;
   } else {
     throw new Error(`$opt的每个参数都必须是数组`);
   }
 };
 
-module.exports = genExports;
+module.exports = { genExports, forbiddenReminder };
