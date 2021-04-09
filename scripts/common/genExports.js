@@ -38,10 +38,10 @@ const genExports = ($srcPath = SRC_PATH, $opt = { donotCamelizes, donotCompiles,
     // eslint-disable-next-line no-restricted-syntax
     for (const folder of fs.readdirSync($srcPath)) {
       if (!/\.umi/.test(folder) && !unCompiles.includes(folder)) {
-        const filePathname = path.join($srcPath, folder);
+        const filePathname = path.join($srcPath, '/', folder).replace(/\\/g, '/');
         const folderStat = fs.statSync(filePathname);
         if (folderStat.isDirectory()) {
-          exportsContents += `export { default as ${unCamelizes.includes(folder) ? folder : camelizeFolderName(folder)} } from '.${filePathname.split($srcPath)[1]}';\n\r`;
+          exportsContents += `export { default as ${unCamelizes.includes(folder) ? folder : camelizeFolderName(folder)} } from '.${filePathname.split($srcPath.replace(/\\/g, '/'))[1]}';\n\r`;
         }
       }
     }
