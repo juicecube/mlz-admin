@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { isCompiled } from '../service/constant';
 import { IBasicHooksOptions } from './index.type';
 
@@ -7,7 +7,7 @@ const responseHandler = (res: any, responseSetter: Function, loadingToggler: Fun
   loadingToggler(false);
   return res;
 };
-export const noManualSettedReminder = `you should try run with a spacified manual option setted in hooks`;
+export const noManualSettedReminder = `you should try run/cancel with a spacified manual option setted in hooks`;
 
 /**
  *
@@ -26,15 +26,23 @@ const useBasicRequest = <P extends Partial<IBasicHooksOptions>, R>(fetchPromise:
   const [response, setResponse] = useState<R>();
   const [loading, toggleLoading] = useState(init?.loading || false);
 
-  const run = (args?: unknown) => {
+  // run
+  const run = useCallback((args?: unknown) => {
     if (!manual) {
       throw new Error(noManualSettedReminder);
     }
+    toggleLoading(true);
     // REMARK: run方法携带的参数权重高于requestParams
     return fetchPromise(args || requestParams)
       .then((res) => responseHandler(res, setResponse, toggleLoading))
       .catch((err) => responseHandler(err, setResponse, toggleLoading, true));
-  };
+  }, []);
+
+  //
+  const abort = useCallback(() => {}, []);
+
+  // TODO: throttle/debounce/cache etc,
+
   useEffect(() => {
     if (!manual) {
       fetchPromise(requestParams)
@@ -44,7 +52,8 @@ const useBasicRequest = <P extends Partial<IBasicHooksOptions>, R>(fetchPromise:
   }, deps ?? []);
 
   //
-  return { loading, run, ...(!manual && { data: response }), ...(!isCompiled && { setResponse, toggleLoading }) };
+  const devResult = { loading, run, data: response, abort, setResponse, toggleLoading };
+  return isCompiled ? { loading, run, ...(!manual && { data: response, abort }) } : devResult;
 };
 
 export default useBasicRequest;

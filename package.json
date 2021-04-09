@@ -25,7 +25,8 @@
     "publish": "AUTO=1 node ./scripts/versioning && lerna publish from-package --no-changelog",
     "clean": "npx cross-env rimraf packages/**/es packages/**/lib packages/**/src/index.tsx packages/mlz-adminer/src/service/constant/config.ts .tsc-check coverage",
     "clean:lerna": "lerna clean --yes",
-    "reset": "npm run clean && npx cross-env rimraf node_modules src/.umi && npm install && npm run clean:lerna && npm run boot",
+    "reset": "npm run clean && npx cross-env rimraf node_modules src/.umi && npm run clean:lerna && npm run boot",
+    "reset:lock": "npm run clean && npx cross-env rimraf node_modules src/.umi package-lock.json && npm run cache clean --force && npm run clean:lerna && npm run boot",
     "boot": "lerna bootstrap"
   },
   "gitHooks": {
@@ -58,6 +59,7 @@
     "@umijs/preset-react": "^1.6.4",
     "@umijs/test": "^3.2.19",
     "axios": "^0.20.0",
+    "babel-plugin-import": "^1.13.3",
     "babel-plugin-search-and-replace": "^1.1.0",
     "dumi": "^1.0.6",
     "enzyme": "^3.11.0",

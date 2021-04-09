@@ -1,5 +1,4 @@
 import React from 'react';
-import { act } from 'react-dom/test-utils';
 import { sleep } from '../../../../../tests';
 import useStaffLogout from '..';
 import { noManualSettedReminder } from '../../shared/basic-request-hook';
@@ -9,11 +8,18 @@ import { logout } from '../controller';
 
 jest.mock('../controller', () => {
   return {
-    logout: jest.fn(),
+    logout: jest.fn().mockImplementation(() => Promise.resolve('ok')),
   };
 });
 
 describe('🧪 useStaffLogout', () => {
+  beforeAll(() => {
+    jest.useFakeTimers();
+  });
+  it('hooks定义正确', () => {
+    expect(useStaffLogout).toBeDefined();
+  });
+
   const expectedResponsedValue = 'ok';
 
   it('logout方法mock执行正确', async () => {
@@ -33,18 +39,16 @@ describe('🧪 useStaffLogout', () => {
     expect(result.current.loading).toBe(false);
   });
 
-  it('通过手动run+manual触发', async () => {
+  it('通过手动run+manual触发且loading状态正确', async () => {
     (logout as jest.Mocked<any>).mockResolvedValue('ok');
-    const { result, waitForNextUpdate } = renderHook(() => useStaffLogout({ manual: true, init: { loading: true } }));
-    const hooksRef = result.current;
-    const { run } = hooksRef;
-    expect(result.current.loading).toBe(true);
-    await run();
-    expect(hooksRef.data).toBe(expectedResponsedValue);
-    expect(hooksRef.loading).toBe(false);
+    const { result, waitForNextUpdate } = renderHook(() => useStaffLogout({ manual: true }));
+    const hookRef = result.current;
+    expect(result.current.loading).toBe(false);
+    const logoutRes = await hookRef.run();
+    expect(logoutRes).toBe(expectedResponsedValue);
   });
 
-  it('通过手动run触发，但是没有设置manuel则给予错误警示', () => {
+  it('通过手动run触发，但是没有设置manual则给予错误警示', () => {
     // (logout as jest.Mocked<any>).mockResolvedValue('ok');
     // const { result, waitForNextUpdate } = renderHook(() => useStaffLogout({ init: { loading: true } }));
     // expect(() => result.current.run()).toThrowError(noManualSettedReminder);
