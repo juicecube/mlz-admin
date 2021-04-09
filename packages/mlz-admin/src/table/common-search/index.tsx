@@ -84,7 +84,7 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
   const collapsedHandler = () => toggleCollapsed(!collapsed);
 
   const formSubmitters = searchings.length ? (
-    <div style={{ position: 'absolute', bottom: 24, right: 0 }}>
+    <div style={{ position: 'absolute', bottom: 24, right: 12 }}>
       {searchCollapsedThreshold ? (
         <Button className="toggle-search-count-btn" type="link" icon={<Icon type="arrow_down" rotate={collapsed ? 0 : 180} />} onClick={collapsedHandler}>
           {collapsed ? '展开' : '收起'}
