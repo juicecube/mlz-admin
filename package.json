@@ -22,12 +22,12 @@
     "test:update": "npm run clean && node ./scripts/genIndex && dumi test --cache=false -u --coverage",
     "check-coverage": "npx istanbul check-coverage --statement 85 --branch -75",
     "prettier": "prettier --write '**/*.{js,tsx,ts,less,md,json}'",
-    "publish": "AUTO=1 node ./scripts/versioning && lerna publish from-package --no-changelog",
+    "publish": "AUTO=1 node ./scripts/versioning && npx lerna publish from-package --no-changelog",
     "clean": "npx cross-env rimraf packages/**/es packages/**/lib packages/**/src/index.tsx packages/mlz-adminer/src/service/constant/config.ts .tsc-check coverage",
-    "clean:lerna": "lerna clean --yes",
-    "reset": "npm run clean && npx cross-env rimraf node_modules src/.umi && npm run clean:lerna && npm run boot",
+    "clean:lerna": "npx lerna clean --yes",
+    "reset": "npm run clean && npx cross-env rimraf node_modules src/.umi && npm run clean:lerna && npm install && npm run boot",
     "reset:lock": "npm run clean && npx cross-env rimraf node_modules src/.umi package-lock.json && npm run cache clean --force && npm run clean:lerna && npm run boot",
-    "boot": "lerna bootstrap"
+    "boot": "npx lerna bootstrap"
   },
   "gitHooks": {
     "pre-commit": "npx lint-staged && npx pretty-quick --staged"

@@ -13,7 +13,7 @@ import { Button, Modal } from '@mlz/admin';
 import { useStaffLogout } from '@mlz/adminer';
 
 export default () => {
-  const { run } = useStaffLogout({ manual: true });
+  const { run: runStaffLogout } = useStaffLogout({ manual: true });
   return (
     <Button
       type="primary"
@@ -21,7 +21,7 @@ export default () => {
         Modal.confirm({
           content: `确认退出登录？`,
           onOk() {
-            run({ a: 'test' }).then((res) => {
+            runStaffLogout({ a: 'test' }).then((res) => {
               console.log(res);
             });
           },

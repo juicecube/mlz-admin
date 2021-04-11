@@ -2,7 +2,7 @@ import React from 'react';
 import { sleep } from '../../../../../tests';
 import useStaffLogout from '..';
 import { noManualSettedReminder } from '../../shared/basic-request-hook';
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook, act } from '@testing-library/react-hooks';
 import Staff from '../model';
 import { logout } from '../controller';
 
@@ -30,7 +30,7 @@ describe('🧪 useStaffLogout', () => {
     expect(result).toBe(expectedResponsedValue);
   });
 
-  it('不通过手动触发且loading状态正确', async () => {
+  it('自动触发且loading状态正确', async () => {
     (logout as jest.Mocked<any>).mockResolvedValue('ok');
     const { result, waitForNextUpdate } = renderHook(() => useStaffLogout({ init: { loading: true } }));
     expect(result.current.loading).toBe(true);
@@ -44,15 +44,17 @@ describe('🧪 useStaffLogout', () => {
     const { result, waitForNextUpdate } = renderHook(() => useStaffLogout({ manual: true }));
     const hookRef = result.current;
     expect(result.current.loading).toBe(false);
-    const logoutRes = await hookRef.run();
-    expect(logoutRes).toBe(expectedResponsedValue);
+    let res;
+    act(async () => {
+      res = await hookRef.run();
+    });
+    await waitForNextUpdate();
+    expect(res).toBe('ok');
   });
 
   it('通过手动run触发，但是没有设置manual则给予错误警示', () => {
-    // (logout as jest.Mocked<any>).mockResolvedValue('ok');
-    // const { result, waitForNextUpdate } = renderHook(() => useStaffLogout({ init: { loading: true } }));
-    // expect(() => result.current.run()).toThrowError(noManualSettedReminder);
+    (logout as jest.Mocked<any>).mockResolvedValue('ok');
+    const { result, waitForNextUpdate } = renderHook(() => useStaffLogout({ init: { loading: true } }));
+    expect(() => result.current.run()).toThrowError(noManualSettedReminder);
   });
-
-  it('根据deps进行请求发起', async () => {});
 });
