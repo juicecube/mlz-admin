@@ -33,16 +33,17 @@ describe('🧪 useStaffLogout', () => {
   it('自动触发且loading状态正确', async () => {
     (logout as jest.Mocked<any>).mockResolvedValue('ok');
     const { result, waitForNextUpdate } = renderHook(() => useStaffLogout({ init: { loading: true } }));
-    expect(result.current.loading).toBe(true);
+    const hookRef = result.current as any;
+    expect(hookRef.loading).toBe(true);
     await waitForNextUpdate();
-    expect(result.current.data).toBe(expectedResponsedValue);
-    expect(result.current.loading).toBe(false);
+    expect(hookRef.data).toBe(expectedResponsedValue);
+    expect(hookRef.loading).toBe(false);
   });
 
   it('通过手动run+manual触发且loading状态正确', async () => {
     (logout as jest.Mocked<any>).mockResolvedValue('ok');
     const { result, waitForNextUpdate } = renderHook(() => useStaffLogout({ manual: true }));
-    const hookRef = result.current;
+    const hookRef = result.current as any;
     expect(result.current.loading).toBe(false);
     let res;
     act(async () => {
