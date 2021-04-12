@@ -9,7 +9,7 @@
  * title: 基本使用
  */
 import React from 'react';
-import { Button, Modal } from '@mlz/admin';
+import { Button, Modal, message } from '@mlz/admin';
 import { useStaffLogout } from '@mlz/adminer';
 
 export default () => {
@@ -21,8 +21,8 @@ export default () => {
         Modal.confirm({
           content: `确认退出登录？`,
           onOk() {
-            runStaffLogout({ a: 'test' }).then((res) => {
-              console.log(res);
+            runStaffLogout().then((res) => {
+              message.success(`退出成功`);
             });
           },
           onCancel() {

@@ -1,9 +1,8 @@
 import $http, { paramsDiverter } from '../shared/service';
-import config, { isCompiled, env, mockHost, redirectMiddleService } from '../shared/service/constant';
+import config, { isCompiled, env, mockHost, redirectMiddleService, OpenServiceHOST } from '../shared/service/constant';
 import { useStaffLogoutOptions } from './index.type';
 
-const OpenServiceHOST = config[env]?.['host']?.['open-service'];
-const { timeout } = config[env];
+const { timeout = 5000 } = config?.[env] || {};
 
 export const logout = (params?: useStaffLogoutOptions): Promise<any> => {
   const DECODE_PHONE_MOCK_URL = `${mockHost}/logout`;

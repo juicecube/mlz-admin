@@ -1,8 +1,7 @@
 import $http, { paramsDiverter } from '../shared/service';
-import config, { isCompiled, env, mockHost, redirectMiddleService } from '../shared/service/constant';
+import config, { isCompiled, env, mockHost, redirectMiddleService, OpenServiceHOST } from '../shared/service/constant';
 
-const OpenServiceHOST = config[env]?.['host']?.['open-service'];
-const { timeout } = config[env];
+const { timeout } = config?.[env] || {};
 
 export const decodeEncodedPhone = (encodedPhone: string, specifiedUrl?: URL['href']): Promise<any> => {
   const DECODE_PHONE_MOCK_URL = `${mockHost}/decode-phone`;
