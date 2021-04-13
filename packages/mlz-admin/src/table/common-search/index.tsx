@@ -72,33 +72,19 @@ const renderCol = ($column) => {
   );
 };
 
-const calcTotalColspan = ($items, perColspan) => $items.reduce((prev, curr) => (prev += curr.searchColSpan || perColspan), 0);
-
 const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
   const [form] = Form.useForm();
   const { columns = [], tools = [], operations = [], colCount = 4 } = props;
   const searchCollapsedThreshold = Number(props.searchCollapsedThreshold);
   const searchings = columns?.filter((item) => item.searchable || item.searchable === 0).sort((prev, curr) => Number(curr?.['searchable']) - Number(prev?.['searchable']));
   const perColspan = 24 / colCount;
-  const collapsingButtonColspan = 2;
-  const sparedColSpan = searchings?.length
-    ? 24 -
-      (calcTotalColspan(
-        searchings.filter((_, index: number) => {
-          return index < searchCollapsedThreshold;
-        }),
-        perColspan,
-      ) %
-        24)
-    : perColspan + collapsingButtonColspan;
-  const shouldMergeSubmitButton = searchings?.length % colCount === 0;
   const hasMoreInteractionArea = tools.length || operations.length;
 
   const [collapsed, toggleCollapsed] = useState(false);
   const collapsedHandler = () => toggleCollapsed(!collapsed);
 
   const formSubmitters = searchings.length ? (
-    <Col span={sparedColSpan < perColspan + collapsingButtonColspan ? 24 : sparedColSpan} style={{ textAlign: 'right', marginBottom: hasMoreInteractionArea ? 16 : 0 }} flex="1">
+    <div style={{ position: 'absolute', bottom: 24, right: 12 }}>
       {searchCollapsedThreshold ? (
         <Button className="toggle-search-count-btn" type="link" icon={<Icon type="arrow_down" rotate={collapsed ? 0 : 180} />} onClick={collapsedHandler}>
           {collapsed ? '展开' : '收起'}
@@ -119,7 +105,7 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
       <Button icon={<Icon type="search_l" />} type="primary" htmlType="submit">
         查询
       </Button>
-    </Col>
+    </div>
   ) : null;
 
   return (
@@ -139,7 +125,7 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
             }
           : {}
       }>
-      <Row gutter={24}>
+      <Row gutter={24} style={{ position: 'relative' }}>
         {searchings?.map((row, index: number) => {
           return (
             <Col
@@ -153,9 +139,11 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
             </Col>
           );
         })}
-        {shouldMergeSubmitButton ? null : formSubmitters}
+        {/* 空白的占位块 */}
+        {searchings.length ? <Col style={{ height: 32, marginBottom: 24 }} sm={perColspan * 3} lg={perColspan * 2} xl={perColspan} /> : null}
+        {/* 绝对定位的按钮组 */}
+        {formSubmitters}
       </Row>
-      {shouldMergeSubmitButton ? <Row justify="end">{formSubmitters}</Row> : null}
       {hasMoreInteractionArea ? (
         <>
           <section className={bem('extra')}>
