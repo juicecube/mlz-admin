@@ -1,2 +1,5 @@
 import React from 'react';
-export { Tree as default } from 'antd';
+import { Tree as AntdTree } from 'antd';
+import './index.less';
+
+export default AntdTree;

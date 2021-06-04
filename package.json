@@ -16,7 +16,7 @@
     "lint": "npm run clean && node ./scripts/genIndex && npm run lint:ts && npm run lint:es && npm run lint:style",
     "lint:es": "npx eslint --ext tsx,ts,js",
     "lint:ts": "tsc --project ./tsconfig.lint.json",
-    "lint:style": "stylelint \"packages/**\/*.less\" --syntax less",
+    "lint:style": "stylelint \"packages/**/*.less\" --syntax less",
     "test": "npm run clean && node ./scripts/genIndex && dumi test",
     "test:coverage": "npm run clean && node ./scripts/genIndex && dumi test --coverage --verbose",
     "test:update": "npm run clean && node ./scripts/genIndex && dumi test --cache=false -u --coverage",
