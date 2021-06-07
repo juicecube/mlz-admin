@@ -38,7 +38,7 @@ export default () => (
         View Contents
       </div>
     </Content>
-    <Footer style={{ textAlign: 'center' }}>@mlz/admin &copy; 2020</Footer>
+    <Footer style={{ textAlign: 'center' }}>@mlz/admin &copy; 2021</Footer>
   </Layout>
 );
 ```
@@ -115,7 +115,7 @@ class App extends React.PureComponent {
                 View Contents
               </div>
             </Content>
-            <Footer style={{ textAlign: 'center', zIndex: 1 }}>@mlz/admin &copy; 2020</Footer>
+            <Footer style={{ textAlign: 'center', zIndex: 1 }}>@mlz/admin &copy; 2021</Footer>
           </Layout>
         </Layout>
       </div>

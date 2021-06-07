@@ -40,7 +40,7 @@ import { Tabs, Dropdown, Menu } from '@mlz/admin';
 const { TabPane } = Tabs;
 export default () => (
   <>
-    <Tabs defaultActiveKey="1" type="editable-card">
+    <Tabs defaultActiveKey="1" type="editable-card" onEdit={(e) => console.log(e)}>
       <TabPane tab="Tab 122" key="1">
         Content of Tab Pane 1
       </TabPane>
@@ -60,26 +60,51 @@ export default () => (
 ```tsx
 /**
  * title: 带右键菜单的标签
- * desc: 通过`contextMenu`属性设置为ReactElement，来开启右键菜单功能，并且在回调后进行操作。
+ * desc: 使用Tabs的静态成员`ContextMenuTabs`替换`Tabs`，来开启右键菜单功能，并且在回调后进行操作。注意：这种情况下`size`属性会失效
  */
 import React from 'react';
-import { Tabs, Dropdown, Menu } from '@mlz/admin';
+import { Tabs, Dropdown, Menu, message } from '@mlz/admin';
+import { Tabs as AntdTabs } from 'antd';
 
-const { TabPane } = Tabs;
+const { ContextMenuTabs, TabPane } = Tabs;
+
 export default () => (
-  <>
-    <Tabs defaultActiveKey="1" type="editable-card" contextMenu={true}>
-      <TabPane tab="Tab 122" key="1">
-        Content of Tab Pane 1
-      </TabPane>
-      <TabPane tab="Tab 2" key="2">
-        Content of Tab Pane 2
-      </TabPane>
-      <TabPane tab="Tab 3" key="3">
-        Content of Tab Pane 3
-      </TabPane>
-    </Tabs>
-  </>
+  <ContextMenuTabs
+    defaultActiveKey="1"
+    type="editable-card"
+    contextMenu={
+      <Menu
+        onClick={(e) => {
+          message.info(`选择了${e.key}选项`);
+        }}>
+        <Menu.Item>
+          <div>关闭</div>
+        </Menu.Item>
+        <Menu.Item>
+          <div>关闭其它标签</div>
+        </Menu.Item>
+        <Menu.Item>
+          <div>关闭右侧全部</div>
+        </Menu.Item>
+      </Menu>
+    }
+    onContextMenuCapture={(tabInfo) => {
+      const { key } = tabInfo;
+      message.success(`右键tabs菜单${key}`);
+    }}>
+    <TabPane tab="Tab 122" key="1">
+      Content of Tab Pane 1
+    </TabPane>
+    <TabPane tab="Tab 2" key="2">
+      Content of Tab Pane 2
+    </TabPane>
+    <TabPane tab="Tab 3" key="3">
+      Content of Tab Pane 3
+    </TabPane>
+    <TabPane tab="Tab 4" key="4">
+      Content of Tab Pane 4
+    </TabPane>
+  </ContextMenuTabs>
 );
 ```
 

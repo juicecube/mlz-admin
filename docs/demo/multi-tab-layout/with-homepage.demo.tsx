@@ -72,7 +72,7 @@ export default () => {
               <MultiTabLayoutHelmet dataSource={dataSource} hideAdd indexPage={<div>这里是首页了啊</div>} />
             </div>
           </Content>
-          <Footer style={{ textAlign: 'center', zIndex: 1 }}>@mlz/admin &copy; 2020</Footer>
+          <Footer style={{ textAlign: 'center', zIndex: 1 }}>@mlz/admin &copy; 2021</Footer>
         </Layout>
       </Layout>
     </div>
