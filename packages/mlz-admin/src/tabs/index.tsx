@@ -48,13 +48,13 @@ const ContextMenuTabs = (props: ITabsProp) => {
           {tabs?.map((tab) => {
             return (
               <li
-                className={bem('tab-pane') + (activeKey === tab.key ? ' active' : '') + (contextMenuCapturedKey === tab.key && contextMenuVisible ? ' context-menu-active' : '')}
+                className={bem('tab-pane') + (activeKey.toString() === tab.key ? ' active' : '') + (contextMenuCapturedKey === tab.key && contextMenuVisible ? ' context-menu-active' : '')}
                 key={tab.key}
                 onClick={(e) => {
                   setActiveKey(tab.key);
                   onTabClick?.(tab.key, e);
                 }}
-                onContextMenuCapture={(e) => {
+                onContextMenu={(e) => {
                   setContextMenuCapturedKey(tab.key);
                   onContextMenuCapture?.(tab, e);
                 }}
@@ -63,8 +63,9 @@ const ContextMenuTabs = (props: ITabsProp) => {
                 <button
                   type="button"
                   className={bem('remove-button') + ' ant-tabs-tab-remove'}
-                  onClick={() => {
+                  onClick={(e) => {
                     onEdit?.(tab.key, 'remove');
+                    e.stopPropagation();
                   }}>
                   x
                 </button>
@@ -97,7 +98,7 @@ const ContextMenuTabs = (props: ITabsProp) => {
 };
 
 interface compositedComponent extends React.ForwardRefExoticComponent<TabsProps & React.RefAttributes<HTMLElement>> {
-  ContextMenuTabs?: typeof ContextMenuTabs;
+  ContextMenuTabs: typeof ContextMenuTabs;
   TabPane: typeof AntdTabsVariety.TabPane;
 }
 

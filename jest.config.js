@@ -11,6 +11,7 @@ const extraIgnoredPaths = [
   '/src/error-boundary/',
   '/src/watermark/canvas.ts',
   '/src/select-range',
+  '/.umi/',
 ];
 
 module.exports = {
