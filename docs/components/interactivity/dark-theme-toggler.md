@@ -39,7 +39,7 @@ export default App;
 
 | 参数名 | 描述 | 类型 | 默认值 | 更多内容 |
 | --- | --- | --- | --- | --- |
-| **onChange** | 当 Switch 组件发生值的变化时的回调 | (darkness: [ThemeKeyNameTypes](#themekeynametypes-type))=> void | `undefined` |  |
+| **onChange** | 主题切换时的回调 | (darkness: [ThemeKeyNameTypes](#themekeynametypes-type))=> void | `undefined` |  |
 | **initialTheme** | 初始主题 | 'dark' ｜ 'light' | `light` |  |
 | **preload** | 是否开启预热以及开启的时间 | number ｜ undefined | `3000` | dark theme 的 css 文件大小还是比较大的，可以通过预加载来改善真正发生切换时的交互流畅度；单位为 `ms` |
 | **darkThemeCssResourceUrl** | 将要加载的深色主题样式资源的地址 | string | `bootcdn.net/**/*.css` |  |

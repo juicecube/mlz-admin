@@ -9,7 +9,7 @@ const camelizeFolderName = (foldername) => {
   return foldername
     .split('-')
     .map((item) => {
-      return capitalize(item);
+      return item === 'use' ? item : capitalize(item);
     })
     .join('');
 };
@@ -28,6 +28,8 @@ const extraContents = [
 `,
 ];
 
+const forbiddenReminder = () =>
+  `/**  you SHOULD NOT delete this file ,  keep it       *\r\n*    stay in your .gitignore cause it was generated      *\r\n*    with necessities automatically❗️      *\r\n*/\r\n\r\n`;
 const genExports = ($srcPath = SRC_PATH, $opt = { donotCamelizes, donotCompiles, extraContents }) => {
   const { donotCamelizes: unCamelizes, donotCompiles: unCompiles, extraContents: extras } = $opt;
   if (Object.values($opt).every((param) => typeof param === 'object' && param.length >= 0)) {
@@ -36,20 +38,20 @@ const genExports = ($srcPath = SRC_PATH, $opt = { donotCamelizes, donotCompiles,
     // eslint-disable-next-line no-restricted-syntax
     for (const folder of fs.readdirSync($srcPath)) {
       if (!/\.umi/.test(folder) && !unCompiles.includes(folder)) {
-        const filePathname = path.join($srcPath, folder);
+        const filePathname = path.join($srcPath, '/', folder).replace(/\\/g, '/');
         const folderStat = fs.statSync(filePathname);
         if (folderStat.isDirectory()) {
-          exportsContents += `export { default as ${unCamelizes.includes(folder) ? folder : camelizeFolderName(folder)} } from '.${filePathname.split($srcPath)[1]}';\n\r`;
+          exportsContents += `export { default as ${unCamelizes.includes(folder) ? folder : camelizeFolderName(folder)} } from '.${filePathname.split($srcPath.replace(/\\/g, '/'))[1]}';\n\r`;
         }
       }
     }
     exportsContents += extras.reduce((prev, curr) => {
       return (prev += `${gutter}${curr}`);
     }, '');
-    return `/**  you SHOULD NOT delete this file ,  keep it       *\r\n*    stay in your .gitignore cause it was generated      *\r\n*    with necessities automatically❗️      *\r\n**/${gutter}${exportsContents}`;
+    return `${forbiddenReminder()}${exportsContents}`;
   } else {
     throw new Error(`$opt的每个参数都必须是数组`);
   }
 };
 
-module.exports = genExports;
+module.exports = { genExports, forbiddenReminder };

@@ -64,6 +64,31 @@ module.exports = {
 };
 ```
 
+如果你还使用了业务组件 mlz/adminer 部分，那么需要为它配置：
+
+```js
+module.exports = {
+  plugins: [
+    [
+      'import',
+      [
+        {
+          libraryName: '@mlz/admin',
+          libraryDirectory: 'es',
+          // 这里略有不同
+          style: false,
+        },
+        {
+          libraryName: '@mlz/adminer',
+          libraryDirectory: 'es',
+          style: false,
+        },
+      ],
+    ],
+  ],
+};
+```
+
 ---
 
 ## 兼容性

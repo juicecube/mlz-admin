@@ -7,5 +7,5 @@ module.exports = {
   PACKAGE_PATH,
   SRC_PATH: path.join(PACKAGE_PATH, './mlz-admin/src'),
   ADMINER_SRC_PATH: path.join(PACKAGE_PATH, './mlz-adminer/src'),
-  SERVICE_PATH: path.join(PACKAGE_PATH, './mlz-adminer/src/service'),
+  SERVICE_PATH: path.join(PACKAGE_PATH, './mlz-adminer/src/shared/service'),
 };
