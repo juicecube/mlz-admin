@@ -11,6 +11,7 @@
 /yarn-error.log
 
 # production
+dist
 packages/**/*/es
 packages/**/*/lib
 packages/**/*/dist
@@ -38,7 +39,7 @@ yarn-error.log*
 CHANGELOG.md
 /packages/mlz-admin/src/index.tsx
 /packages/mlz-adminer/src/index.tsx
-/packages/mlz-adminer/src/**/config.ts
+/packages/mlz-adminer/src/shared/**/config.ts
 
 # specified config
 /config/*

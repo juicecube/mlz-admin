@@ -24,11 +24,11 @@ const TheAvatar = (props: { item: any; alternatives: string[]; rand: number; sty
     </Avatar>
   );
 };
-export default (props: { refered?: boolean | string }) => {
-  const { refered } = props;
+export default (props: { refered?: boolean | string; isAdminer?: boolean }) => {
+  const { refered, isAdminer } = props;
   const [commits, setCommits] = useState<any[]>([]);
   const [loading, toggoleLoading] = useState(true);
-  const { docPath, componentPath, antdDocPath } = getPaths();
+  const { docPath, componentPath, antdDocPath } = getPaths(isAdminer);
   useEffect(() => {
     Promise.all([getDocCommits(docPath), getCompCommits(componentPath)])
       .then((res: any[]) => {

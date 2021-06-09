@@ -3,7 +3,7 @@ import { RenderFunction } from 'antd/lib/tooltip';
 import { DecodePhoneProps } from './index.type';
 import { message, Tooltip } from 'antd';
 import { default as Phone } from './model';
-import { isCompiled } from '../service/constant';
+import { isCompiled } from '../shared/service/constant';
 
 export const INIT_TITLE = '加载中';
 const DecodePhone = (props: DecodePhoneProps) => {

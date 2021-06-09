@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`🧪 Checkbox snapshot test 快照匹配 1`] = `"<label class=\\"ant-checkbox-wrapper\\"><span class=\\"ant-checkbox\\"><input type=\\"checkbox\\" class=\\"ant-checkbox-input\\" value><span class=\\"ant-checkbox-inner\\"></span></span></label>"`;
+exports[`🧪 Checkbox snapshot test 快照匹配 1`] = `"<label class=\\"ant-checkbox-wrapper\\"><span class=\\"ant-checkbox\\"><input type=\\"checkbox\\" class=\\"ant-checkbox-input\\" value=\\"\\"><span class=\\"ant-checkbox-inner\\"></span></span></label>"`;

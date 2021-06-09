@@ -1,9 +1,11 @@
-import { isCompiled, env, config } from './constant';
+import config, { isCompiled, env } from './constant';
 import { extend, RequestOptionsInit } from 'umi-request';
 
 type ElementOf<T> = T extends (infer E)[] ? E : T extends readonly (infer E)[] ? E : never;
 /**
  * 根据环境分配请求参数的分流器
+ *
+ * 前者返回生产环境，后者是开发环境
  */
 export const paramsDiverter = (productionParams: any, devParams: any) => (isCompiled ? productionParams : devParams);
 
