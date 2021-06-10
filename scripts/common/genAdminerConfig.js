@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const { ROOT_PATH } = require('./constants');
+const { forbiddenReminder } = require('./genExports');
 
 const genAdminerConfig = () => {
   const configDir = path.join(ROOT_PATH, './config');
@@ -16,8 +17,9 @@ const genAdminerConfig = () => {
     `;
   } catch (err) {
     // eslint-disable-next-line no-console
-    console.log(configPath + '并不存在');
-    return `export const config = {'development': {'hosts': 'https://www.google.com'}}`;
+    console.log(`${configPath} not found`);
+    const reminder = ``;
+    return `${forbiddenReminder()}export const config = {'development': {'hosts': 'https://www.google.com'}};export {config as ServiceConfig}`;
   }
 };
 

@@ -37,7 +37,7 @@
 | **type**        | 详情项的值类型   | [TypeValueRefers](/components/interactivity/table#typevaluerefers-type) |                            |
 | **render**      | 渲染的组件内容   | (val: any, row: any, index: number) => React.ReactNode                  |                            |
 | **span**        | 占据的栅格数     | string ｜ number                                                        |                            |
-| **placeholder** | 空置站位内容     | '--' ｜ '' ｜ null                                                      | `null`表示空值时不展示该项 |
+| **placeholder** | 空值展示内容     | '--' ｜ '' ｜ null                                                      | `null`表示空值时不展示该项 |
 
 ```tsx
 /**

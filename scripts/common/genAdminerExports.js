@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const genExports = require('./genExports');
+const { genExports } = require('./genExports');
 const { ADMINER_SRC_PATH } = require('./constants');
 
 const genAdminerExports = () =>

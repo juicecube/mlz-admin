@@ -6,10 +6,11 @@ const simpleGit = require('simple-git/promise');
 const changelog = require('./changelog');
 
 const pkgLerna = require('../lerna.json');
-const pkgADMIN = require('../packages/mlz-adminer/package.json');
+const pkgADMIN = require('../packages/mlz-admin/package.json');
 const pkgADMINER = require('../packages/mlz-adminer/package.json');
 
-if (pkgADMIN.version !== pkgADMINER.version || pkgADMINER.version !== pkgLerna) {
+// TODO 后面改成以lerna.json的版本为准
+if (pkgADMIN.version !== pkgADMINER.version || pkgADMIN.version !== pkgLerna.version || pkgADMINER.version !== pkgLerna.version) {
   throw new Error('we would not support independent package releasing version');
 }
 

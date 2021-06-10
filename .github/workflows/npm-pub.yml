@@ -8,7 +8,7 @@ on:
 
 jobs:
   publish: 
-    if: github.event.pull_request.merged == true && github.event.actions
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -34,6 +34,7 @@ jobs:
         run: npm run lint
 
       - name: execute unit test
+      
         run: npm run test
 
       - name: build dist
