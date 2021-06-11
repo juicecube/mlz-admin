@@ -17,8 +17,8 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
         run: |
-          git config user.name milo
-          git config user.email mazihang@codemao.cn
+          git config user.name milobluebell
+          git config user.email mazihang@gmail.cn
 
       - name: setup zh-cn timezone
         uses: zcong1993/setup-timezone@master
