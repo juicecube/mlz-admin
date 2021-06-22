@@ -70,8 +70,9 @@ const { ContextMenuTabs, TabPane } = Tabs;
 
 export default () => (
   <ContextMenuTabs
-    defaultActiveKey="1"
+    activeKey="2"
     type="editable-card"
+    hideAdd
     contextMenu={
       <Menu
         onClick={(e) => {
@@ -95,15 +96,27 @@ export default () => (
     <TabPane tab="Tab 122" key="1">
       Content of Tab Pane 1
     </TabPane>
-    <TabPane tab="Tab 2" key="2">
-      Content of Tab Pane 2
-    </TabPane>
-    <TabPane tab="Tab 3" key="3">
-      Content of Tab Pane 3
-    </TabPane>
-    <TabPane tab="Tab 4" key="4">
-      Content of Tab Pane 4
-    </TabPane>
+    {[
+      {
+        tab: 'Tab 2',
+        key: 2,
+        text: 'Content of Tab Pane 2',
+        closable: false,
+      },
+      {
+        tab: 'Tab 3',
+        key: 3,
+        text: 'Content of Tab Pane 3',
+      },
+      {
+        tab: 'Tab 4',
+        key: 4,
+        text: 'Content of Tab Pane 4',
+      },
+    ].map((pane: any, index: number) => {
+      const { tab, key, text, closable } = pane;
+      return <TabPane {...{ tab, key, text, closable }} />;
+    })}
   </ContextMenuTabs>
 );
 ```
