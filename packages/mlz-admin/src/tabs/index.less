@@ -12,11 +12,14 @@
   }
 }
 
-.ant-tabs-nav .ant-tabs-nav-wrap .ant-tabs-nav-list .ant-tabs-tab {
-  .ant-tabs-tab-btn {
-    margin-right: 8px;
-  }
-  .ant-tabs-tab-remove {
-    &:extend(.tab-remove-btn-base-style all);
+.ant-tabs-nav .ant-tabs-nav-wrap {
+  overflow: auto !important;
+  .ant-tabs-nav-list .ant-tabs-tab {
+    .ant-tabs-tab-btn {
+      margin-right: 8px;
+    }
+    .ant-tabs-tab-remove {
+      &:extend(.tab-remove-btn-base-style all);
+    }
   }
 }
