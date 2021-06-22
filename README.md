@@ -1,5 +1,5 @@
 <p align="center">
-This is a React Components Library, created for codemao's management system design guideline
+This is a React Components Library, packaged for codemao's management system design guideline
 </p>
 <p align="center" style="font-size: 32px">
 🌈 https://www.mlz-admin.com
@@ -34,6 +34,6 @@ _visit our [WEBSITE](https://www.mlz-admin.com) to learn more！_
 
 we are expecting your great `Pull Request` which's based on <[our contribution doc](https://github.com/juicecube/mlz-admin/blob/master/CONTRIBUTING.md)>. so read it before your coding plz.
 
-## Dingtalk Disscuission Group
+## Dingtalk Disscussion Group
 
 <img src="https://raw.githubusercontent.com/milobluebell/imgs-repo/master/WechatIMG9.jpeg" width="256" alt="Dingtalk Qrcode"/>
