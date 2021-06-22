@@ -1,5 +1,5 @@
 <p align="center">
-This is a React Components Library, created for codemao's management system design guideline
+@mlz/admin 是遵循编程猫后台管理系统设计规范的 React 组件库
 </p>
 <p align="center" style="font-size: 32px">
 🌈 https://www.mlz-admin.com
@@ -12,15 +12,15 @@ This is a React Components Library, created for codemao's management system desi
 
 ---
 
-## Usage
+## 使用方法
 
-#### 1. Install
+#### 1. 安装
 
 ```shell
 $ npm install @mlz/admin -S
 ```
 
-#### 2. Import Code
+#### 2. 使用
 
 ```jsx
 import { Button } from '@mlz/admin';
@@ -28,12 +28,12 @@ import { Button } from '@mlz/admin';
 const App = () => <Button type="primary">❤️❤️❤️</Button>;
 ```
 
-_visit our [WEBSITE](https://www.mlz-admin.com) to learn more！_
+更多详细内容请访问本库的在线文档。
 
-## Contribution
+## 贡献指南
 
-we are expecting your great `Pull Request` which's based on <[our contribution doc](https://github.com/juicecube/mlz-admin/blob/master/CONTRIBUTING.md)>. so read it before your coding plz.
+非常期待你的 PR！本库的开发代码，基于 [《贡献指南》](https://github.com/juicecube/mlz-admin/blob/master/CONTRIBUTING.md) ，所以请先仔细阅读。
 
-## Dingtalk Disscuission Group
+## 讨论组
 
 <img src="https://raw.githubusercontent.com/milobluebell/imgs-repo/master/WechatIMG9.jpeg" width="256" alt="Dingtalk Qrcode"/>
