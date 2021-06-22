@@ -62,7 +62,7 @@
     "axios": "^0.20.0",
     "babel-plugin-import": "^1.13.3",
     "babel-plugin-search-and-replace": "^1.1.0",
-    "dumi": "^1.0.6",
+    "dumi": "^1.1.20",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.4",
     "enzyme-to-json": "^3.6.1",

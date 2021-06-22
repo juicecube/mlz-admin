@@ -113,6 +113,21 @@ export default () => (
         key: 4,
         text: 'Content of Tab Pane 4',
       },
+      {
+        tab: 'Tab 5',
+        key: 5,
+        text: 'Content of Tab Pane 5',
+      },
+      {
+        tab: 'Tab 6',
+        key: 6,
+        text: 'Content of Tab Pane 6',
+      },
+      {
+        tab: 'Tab 7',
+        key: 7,
+        text: 'Content of Tab Pane 7',
+      },
     ].map((pane: any, index: number) => {
       const { tab, key, text, closable } = pane;
       return <TabPane {...{ tab, key, text, closable }} />;
