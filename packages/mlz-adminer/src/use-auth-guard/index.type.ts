@@ -1,3 +1,5 @@
+import React from 'react';
+
 export type TContact = {
   id: string;
   name: string;
@@ -38,4 +40,8 @@ export interface useAuthGuardOptions {}
 
 export interface IAuthRequestParams {
   host?: string;
+}
+
+export interface IAuthGuardProps {
+  children: (...args: any) => React.ReactElement;
 }

@@ -1,12 +1,14 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useMemo } from 'react';
 import useBasicRequest from '../shared/basic-request-hook';
-import { useAuthGuardOptions, TMenuListItem, TResourceListItem } from './index.type';
+import { useAuthGuardOptions, TMenuListItem, TResourceListItem, IAuthGuardProps } from './index.type';
+import AuthMenu from './accessories/auth-menu';
+import AuthResource from './accessories/auth-resource';
 import { default as Auth } from './model';
 
 /**
  * 创建context
  */
-const Context = createContext<{ menus: TMenuListItem[]; resources: TResourceListItem[]; routes: any[] }>({
+export const Context = createContext<{ menus: TMenuListItem[]; resources: TResourceListItem[]; routes: any[] }>({
   menus: [],
   resources: [],
   routes: [],
@@ -21,32 +23,40 @@ const useAuthGuard = (options?: useAuthGuardOptions, deps?: any[]) => {
 
   /**
    * 需求：
-   * 1. 根据menus分配前端动态路由，没有的不允许访问。
-   * 2. 根据resources对应的resource_url，在status为YES的情况下，也要成为生成路由的素材。
+   * 1.根据menus分配前端动态路由，没有的不允许访问。
+   * 2.根据resources对应的resource_url，在status为YES的情况下，也要成为生成路由的素材。
    * 3.
    */
+  console.log(menus, resources, 5566);
   const routes = [
-    ...menus.map((m) => m.menu_code),
-    ...resources.map((r) => {
-      if (r.status === 'YES') {
-        return r;
+    ...menus.map(($m) => $m.menu_code),
+    ...resources.map(($r) => {
+      if ($r.status === 'YES') {
+        return $r.resource_url;
       } else {
         return undefined;
       }
     }),
   ].filter((rt) => rt);
 
-  const AuthGuard = (
-    <Context.Provider
-      value={{
-        menus,
-        resources,
-        routes,
-      }}>
-      <div className="test">1234</div>
-    </Context.Provider>
-  );
+  const AuthGuard = useMemo(() => {
+    const contextPayload = {
+      menus,
+      resources,
+      routes,
+    };
+    return (props: IAuthGuardProps) => {
+      const { children } = props;
+      return (
+        <Context.Provider value={contextPayload}>
+          <Context.Consumer>{() => children(contextPayload)}</Context.Consumer>
+        </Context.Provider>
+      );
+    };
+  }, []);
 
   return { menus, resources, routes, AuthGuard, _Context: Context };
 };
+
+export { AuthMenu, AuthResource };
 export default useAuthGuard;

@@ -9,38 +9,9 @@
  * title: 基本使用
  */
 import React from 'react';
-import { Button, Modal, message, useAuthGuard } from '@mlz/admin';
+import { Button, Modal, message, useAuthGuard, AuthMenu } from '@mlz/adminer';
 
 export default () => {
-  const { run: runStaffLogout } = useStaffLogout({ manual: true });
-  return (
-    <Button
-      type="primary"
-      onClick={() => {
-        Modal.confirm({
-          content: `确认退出登录？`,
-          onOk() {
-            runStaffLogout().then((res) => {
-              message.success(`退出成功`);
-            });
-          },
-          onCancel() {
-            console.log('Cancel');
-          },
-        });
-      }}>
-      退出登录
-    </Button>
-  );
+  return <AuthMenu />;
 };
-```
-
-```tsx
-/**
- * inline: true
- */
-import React from 'react';
-import Commiters from '../_site/committers';
-
-export default () => <Commiters refered={false} isAdminer={true} />;
 ```
