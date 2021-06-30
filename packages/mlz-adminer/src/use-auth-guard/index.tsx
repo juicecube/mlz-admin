@@ -18,8 +18,8 @@ export const Context = createContext<{ menus: TMenuListItem[]; resources: TResou
 const useAuthGuard = (options?: useAuthGuardOptions, deps?: any[]) => {
   const context = useContext(Context);
 
-  const { data: menus } = useBasicRequest<useAuthGuardOptions, any>(Auth.create().getMenus, { deps, ...options });
-  const { data: resources } = useBasicRequest<useAuthGuardOptions, any>(Auth.create().getResources, { deps, ...options });
+  const { data: menus = [{ menu_code: '/a/b' }, { menu_code: '/c/d' }] } = useBasicRequest<useAuthGuardOptions, any>(Auth.create().getMenus, { deps, ...options });
+  const { data: resources = [] } = useBasicRequest<useAuthGuardOptions, any>(Auth.create().getResources, { deps, ...options });
 
   /**
    * 需求：
@@ -27,7 +27,6 @@ const useAuthGuard = (options?: useAuthGuardOptions, deps?: any[]) => {
    * 2.根据resources对应的resource_url，在status为YES的情况下，也要成为生成路由的素材。
    * 3.
    */
-  console.log(menus, resources, 5566);
   const routes = [
     ...menus.map(($m) => $m.menu_code),
     ...resources.map(($r) => {
@@ -48,9 +47,14 @@ const useAuthGuard = (options?: useAuthGuardOptions, deps?: any[]) => {
     return (props: IAuthGuardProps) => {
       const { children } = props;
       return (
-        <Context.Provider value={contextPayload}>
-          <Context.Consumer>{() => children(contextPayload)}</Context.Consumer>
-        </Context.Provider>
+        <>{children(contextPayload)}</>
+
+        // 权限系统目前来看，可以视为一个常量，用于派生
+        // 对应的menus或resources，所以不需要context后续更改
+        //
+        // <Context.Provider value={contextPayload}>
+        //   <Context.Consumer>{() => children(contextPayload)}</Context.Consumer>
+        // </Context.Provider>
       );
     };
   }, []);

@@ -26,8 +26,6 @@ const useBasicRequest = <P extends Partial<IBasicHooksOptions>, R>(fetchPromise:
   const [response, setResponse] = useState<R>();
   const [loading, toggleLoading] = useState(init?.loading || false);
 
-  console.log(fetchPromise, 0);
-
   // run
   const run = useCallback((args?: unknown) => {
     if (!manual) {

@@ -8,7 +8,7 @@ const InnerAuthMenu = (props: any) => {
 
 const AuthMenu = (props?: any) => {
   const { AuthGuard } = useAuthGuard();
-  return <AuthGuard>{(info) => <InnerAuthMenu {...props} />}</AuthGuard>;
+  return <AuthGuard>{(info) => <InnerAuthMenu info={info} />}</AuthGuard>;
 };
 
 export default AuthMenu;

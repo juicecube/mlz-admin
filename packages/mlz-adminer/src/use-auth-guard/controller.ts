@@ -11,8 +11,6 @@ export const getMenus = (params?: IAuthRequestParams): Promise<TMenuResponse> =>
   const logoutURL = isCompiled ? `${host || OpenServiceHOST}/decode/phone_number` : redirectMiddleService;
   const requestUrl = new URL(logoutURL);
 
-  console.log(requestUrl, 1);
-
   return <Promise<TMenuResponse>>$http.post(requestUrl.pathname, {
     timeout,
     ...paramsDiverter(params || {}, {
@@ -28,8 +26,6 @@ export const getResources = (params?: IAuthRequestParams): Promise<TResourceResp
   const DECODE_PHONE_MOCK_URL = `${mockHost}/resources`;
   const logoutURL = isCompiled ? `${OpenServiceHOST}/decode/phone_number` : redirectMiddleService;
   const requestUrl = new URL(logoutURL);
-
-  console.log(requestUrl, 2);
 
   return <Promise<TResourceResponse>>$http.post(requestUrl.pathname, {
     timeout,
