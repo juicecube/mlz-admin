@@ -44,7 +44,7 @@ export type IHttpObject = Record<TSupporttedMethods, (url: URL['href'], opts?: P
 // @ts-ignore
 const $http: IHttpObject = {};
 supporttedMethods.forEach((method: TSupporttedMethods) => {
-  $http[method] = async (url: URL['href'], opts?: Partial<IOptions>) => {
+  $http[method] = async <R extends Response>(url: URL['href'], opts?: Partial<IOptions>): Promise<R> => {
     const { host = config[env]?.['hosts']?.['open-service'], data, params, ...rests } = opts || {};
     return umiRequest[method](`${host}/${url.replace(/^\//g, '')}`, {
       data,

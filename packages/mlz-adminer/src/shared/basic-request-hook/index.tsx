@@ -53,7 +53,12 @@ const useBasicRequest = <P extends Partial<IBasicHooksOptions>, R>(fetchPromise:
 
   //
   const devResult = { loading, run, data: response, abort, setResponse, toggleLoading };
-  return isCompiled ? { loading, run, ...(!manual && { data: response, abort }) } : devResult;
+
+  type TDevResult = typeof devResult;
+  type TCompiledBundleType = { loading: boolean; run: Function; data: R; abort: Function };
+
+  const returnedValue = (isCompiled ? ({ loading, run, ...(!manual && { data: response, abort }) } as TCompiledBundleType) : devResult) as TDevResult;
+  return returnedValue;
 };
 
 export default useBasicRequest;

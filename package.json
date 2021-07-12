@@ -27,7 +27,9 @@
     "clean:lerna": "npx lerna clean --yes",
     "reset": "npm run clean && npx cross-env rimraf node_modules src/.umi && npm run clean:lerna && npm install && npm run boot",
     "reset:lock": "npm run clean && npx cross-env rimraf node_modules src/.umi package-lock.json && npm run cache clean --force && npm run clean:lerna && npm run boot",
-    "boot": "npx lerna bootstrap"
+    "boot": "npx lerna bootstrap",
+    "pack:admin": "npm run dist && cd packages/mlz-admin && rimraf *.tgz && npm pack",
+    "pack:adminer": "npm run dist && cd packages/mlz-adminer && rimraf *.tgz && npm pack"
   },
   "gitHooks": {
     "pre-commit": "npx lint-staged && npx pretty-quick --staged"
@@ -61,7 +63,7 @@
     "axios": "^0.20.0",
     "babel-plugin-import": "^1.13.3",
     "babel-plugin-search-and-replace": "^1.1.0",
-    "dumi": "^1.0.6",
+    "dumi": "^1.1.20",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.4",
     "enzyme-to-json": "^3.6.1",
