@@ -12,12 +12,12 @@ export default class Auth {
 
   getMenus = async () => {
     const menus = await getMenus();
-    console.log(menus, 'menus');
+    return menus;
   };
 
   getResources = async () => {
     const resources = await getResources();
-    console.log(resources, 'resources');
+    return resources;
   };
 
   genRouters = () => {};
