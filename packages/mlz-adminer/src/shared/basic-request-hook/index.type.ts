@@ -9,8 +9,9 @@ export interface IBasicHooksOptions<R = any> {
   debounce: boolean;
   // 是否开启节流
   throttle: boolean;
-  // 是否开启缓存
-  cache: boolean | supportedCacheMethods;
+  // 是否开启缓存(暂时只支持get方法)
+  cache: boolean | number;
+  //
   init: {
     loading: boolean;
   };

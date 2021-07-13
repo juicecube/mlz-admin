@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { isCompiled } from '../service/constant';
 import { IBasicHooksOptions } from './index.type';
+import { memoizeFunctionResult } from '../utils';
 
 const responseHandler = (res: any, responseSetter: Function, loadingToggler: Function, isCatchingError = false) => {
   !isCatchingError && responseSetter(res);
@@ -11,16 +12,15 @@ export const noManualSettedReminder = `you should try run/cancel with a spacifie
 
 /**
  *
- * @param fetchPromise: Function
- * @param options: object
+ * @param fetchPromise
+ * @param options
  *
- * @remarks
  * P是传入的Options的类型。
  * R是该请求发起完毕后，response的类型。
  */
 const useBasicRequest = <P extends Partial<IBasicHooksOptions>, R>(fetchPromise: (...args: any[]) => Promise<R>, options?: P) => {
   //
-  const { manual, deps, requestParams, init } = options || {};
+  const { manual, deps, requestParams, cache = 0, init } = options || {};
 
   //
   const [response, setResponse] = useState<R>();
@@ -38,7 +38,7 @@ const useBasicRequest = <P extends Partial<IBasicHooksOptions>, R>(fetchPromise:
       .catch((err) => responseHandler(err, setResponse, toggleLoading, true));
   }, []);
 
-  //
+  // TODO: abort
   const abort = useCallback(() => {}, []);
 
   // TODO: throttle/debounce/cache etc,
@@ -53,7 +53,12 @@ const useBasicRequest = <P extends Partial<IBasicHooksOptions>, R>(fetchPromise:
 
   //
   const devResult = { loading, run, data: response, abort, setResponse, toggleLoading };
-  return isCompiled ? { loading, run, ...(!manual && { data: response, abort }) } : devResult;
+
+  type TDevResult = typeof devResult;
+  type TCompiledBundleType = { loading: boolean; run: Function; data: R; abort: Function };
+
+  const returnedValue = (isCompiled ? ({ loading, run, ...(!manual && { data: response, abort }) } as TCompiledBundleType) : devResult) as TDevResult;
+  return returnedValue;
 };
 
 export default useBasicRequest;

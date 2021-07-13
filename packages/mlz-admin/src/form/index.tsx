@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Form as AntdForm, Spin, Button, Row } from 'antd';
 import { NamePath } from 'rc-field-form/es/interface';
 import { IFormProps, IFormColumnType, IDependencyItem, CompoundedForm } from './index.type';
@@ -9,14 +9,16 @@ Form.Block = (props: IFormProps) => {
   const [form] = AntdForm.useForm();
   const [forceRefresh, toggleForceRefresh] = useState(false);
   // 所有表单项的所有依赖内容
-  const allRelyOnKeys = Array.from(
-    new Set(
-      columns?.reduce((prev: unknown[], curr: IFormColumnType) => {
-        const currRelyOnKeys = curr?.relyOn?.reduce((prv: NamePath[], cur: IDependencyItem) => prv.concat([cur?.name] || []), []);
-        return prev.concat(currRelyOnKeys || []);
-      }, []),
-    ),
-  );
+  const allRelyOnKeys = useMemo(() => {
+    return Array.from(
+      new Set(
+        columns?.reduce((prev: unknown[], curr: IFormColumnType) => {
+          const currRelyOnKeys = curr?.relyOn?.reduce((prv: NamePath[], cur: IDependencyItem) => prv.concat([cur?.name] || []), []);
+          return prev.concat(currRelyOnKeys || []);
+        }, []),
+      ),
+    );
+  }, [columns]);
 
   const hasSettled = initialValues && Object.keys(initialValues).length;
   useEffect(() => {
@@ -35,8 +37,7 @@ Form.Block = (props: IFormProps) => {
             toggleForceRefresh(!forceRefresh);
           }
         }}
-        {...{ form, style }}
-        {...props}>
+        {...{ form, style, props }}>
         {columns.map((item: IFormColumnType) => {
           const { relyOn, name, label, render } = item;
           const showItem = relyOn ? relyOn?.some((relyOnItem: IDependencyItem) => relyOnItem.toContain?.includes(form.getFieldValue(relyOnItem.name))) : true;

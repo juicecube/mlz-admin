@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, memo } from 'react';
 import { Form, Input, Row, Col, InputNumber, Select } from 'antd';
 import Button from '../../button';
 import DatePicker from '../../date-picker';
@@ -179,5 +179,5 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
     </Form>
   );
 };
-const CommonSearchForm = (props: ICommonSearch<unknown>) => <InternalCommonSearch {...props} />;
+const CommonSearchForm = memo((props: ICommonSearch<unknown>) => <InternalCommonSearch {...props} />);
 export default CommonSearchForm;

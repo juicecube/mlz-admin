@@ -1,7 +1,8 @@
-import React, { ErrorInfo } from 'react';
+import React, { CSSProperties, ErrorInfo } from 'react';
 import { Result, Typography } from 'antd';
 import { ResultProps } from 'antd/lib/result';
 import { createBem } from '../shared/utils';
+import { themeChangeEventName } from '../dark-theme-toggler/index.hooks';
 import './index.less';
 
 type metaData = string;
@@ -10,6 +11,7 @@ interface IErrorBoundaryState {
   error: Error;
   reactMetaStacks?: metaData[];
   browserMetaStacks?: metaData[];
+  isDarkTheme: boolean;
 }
 
 const errorStackGenerator = (errorStackString: Error['stack'] | ErrorInfo['componentStack']): metaData[] => {
@@ -24,7 +26,7 @@ const errorStackGenerator = (errorStackString: Error['stack'] | ErrorInfo['compo
 const stackMetaTransformer = ($metaData: metaData[] | undefined) => {
   return $metaData?.map((meta, index) => (
     // eslint-disable-next-line react/no-array-index-key
-    <p key={index} style={{ marginBottom: 0, fontWeight: index === 0 ? 800 : 600 }}>
+    <p key={index} style={{ marginBottom: 4 }}>
       {meta}
     </p>
   ));
@@ -37,7 +39,7 @@ const { Paragraph, Text } = Typography;
 class ErrorBoundary extends React.Component<ResultProps, IErrorBoundaryState> {
   constructor(props) {
     super(props);
-    this.state = { hasError: false, error: { name: '', message: '' }, reactMetaStacks: [], browserMetaStacks: [] };
+    this.state = { hasError: false, error: { name: '', message: '' }, reactMetaStacks: [], browserMetaStacks: [], isDarkTheme: false };
   }
 
   static getDerivedStateFromError(error) {
@@ -50,6 +52,12 @@ class ErrorBoundary extends React.Component<ResultProps, IErrorBoundaryState> {
     this.setState({ hasError: true, error, reactMetaStacks, browserMetaStacks });
   }
 
+  componentDidMount() {
+    window?.addEventListener('themeChange', (e) => {
+      this.setState({ isDarkTheme: (e as any).detail.theme === 'dark' });
+    });
+  }
+
   render() {
     if (this.state.hasError) {
       const { error } = this.state;
@@ -57,9 +65,10 @@ class ErrorBoundary extends React.Component<ResultProps, IErrorBoundaryState> {
         <Result
           status="error"
           title={`${error.name}: ${error.message}`}
-          subTitle={`sorry，${this.state.reactMetaStacks?.[0]?.replace('in', '') || '当前页面'}发生了错误`}
+          subTitle={`抱歉，${this.state.reactMetaStacks?.[0]?.replace('in', '') || '当前页面'} 发生了意外错误`}
           {...this.props}
-          className={bem('wrapper')}>
+          className={bem('wrapper')}
+          style={this.state.isDarkTheme ? { backgroundColor: `var(--theme-bg)` } : {}}>
           <Paragraph className={bem('paragraph')}>
             {shouldDisplayErrorDetail ? (
               <>

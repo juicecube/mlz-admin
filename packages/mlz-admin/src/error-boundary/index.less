@@ -3,9 +3,20 @@
 .admini-error-boundary {
   &__wrapper {
     background: @red-1;
-    .admini-error-boundary__paragraph {
+    .ant-result-content {
       background: @red-2;
-      padding: 24;
+      border-radius: 6px;
+      width: 76%;
+      min-width: 640px;
+      margin: 0 auto;
+      margin-top: 24px;
+    }
+    .admini-error-boundary__paragraph {
+      background: transparent;
+      hr {
+        border-color: @black;
+        opacity: 0.3;
+      }
     }
   }
 }
