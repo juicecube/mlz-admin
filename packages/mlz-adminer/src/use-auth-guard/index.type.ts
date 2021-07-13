@@ -1,4 +1,5 @@
 import React from 'react';
+import { RouteProps } from 'react-router';
 
 export type TContact = {
   id: string;
@@ -44,4 +45,16 @@ export interface IAuthRequestParams {
 
 export interface IAuthGuardProps {
   children: (...args: any) => React.ReactElement;
+}
+
+export interface IAuthGuardInfo {
+  menus?: TMenuListItem[];
+  resources?: TResourceListItem[];
+  routes?: RouteProps[];
+}
+
+export interface IAuthMenuProps {
+  // 父子菜单的区分标识
+  subMenuFlag?: string;
+  info: IAuthGuardInfo;
 }

@@ -17,9 +17,21 @@ export const Context = createContext<{ menus: TMenuListItem[]; resources: TResou
 //
 const useAuthGuard = (options?: useAuthGuardOptions, deps?: any[]) => {
   const context = useContext(Context);
+  const authInstance = Auth.create();
 
-  const { data: menus = [{ menu_code: '/a/b' }, { menu_code: '/c/d' }] } = useBasicRequest<useAuthGuardOptions, any>(Auth.create().getMenus, { deps, ...options });
-  const { data: resources = [] } = useBasicRequest<useAuthGuardOptions, any>(Auth.create().getResources, { deps, ...options });
+  const {
+    data: menus = [
+      { menu_code: '/a/b', order_number: 0, menu_name: '第一个菜单' },
+      { menu_code: '/c/d', order_number: 1, menu_name: '第二个菜单' },
+    ],
+  } = useBasicRequest<useAuthGuardOptions, any>(authInstance.getMenus, { deps, ...options });
+  const {
+    data: resources = [
+      { resource_code: '/a/1', resource_name: '按钮1' },
+      { resource_code: '/a/2', resource_name: '按钮2' },
+      { resource_code: '/a/3', resource_name: '按钮3' },
+    ],
+  } = useBasicRequest<useAuthGuardOptions, any>(authInstance.getResources, { deps, ...options });
 
   /**
    * 需求：
@@ -59,7 +71,13 @@ const useAuthGuard = (options?: useAuthGuardOptions, deps?: any[]) => {
     };
   }, []);
 
-  return { menus, resources, routes, AuthGuard, _Context: Context };
+  // REMARK: resources是一个weakMap结构的数据，而非object/array
+  const resourceMap = new Map();
+  resources.forEach((item: TResourceListItem) => {
+    resourceMap.set(item.resource_code, item);
+  });
+
+  return { menus, resourceMap, routes, AuthGuard, _Context: Context };
 };
 
 export { AuthMenu, AuthResource };
