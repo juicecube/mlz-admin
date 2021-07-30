@@ -1,24 +1,19 @@
 import { getMenus, getResources } from './controller';
+import { Model } from '../shared/basic-class';
 import { TMenuListItem, TResourceListItem } from './index.type';
 
-export default class Auth {
-  readonly menus: TMenuListItem[] = [];
-
-  readonly resources: TResourceListItem[] = [];
-
+export default class Auth extends Model {
   static create = () => {
     return new Auth();
   };
 
-  getMenus = async () => {
-    const menus = await getMenus();
-    return menus;
-  };
+  // eslint-disable-next-line class-methods-use-this
+  getMenus() {
+    return getMenus();
+  }
 
-  getResources = async () => {
-    const resources = await getResources();
-    return resources;
-  };
-
-  genRouters = () => {};
+  // eslint-disable-next-line class-methods-use-this
+  getResources() {
+    return getResources();
+  }
 }

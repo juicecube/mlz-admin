@@ -8,7 +8,7 @@ import { AntdVersion, version, BuildTime, EScences } from '..';
 
 export const preloadDarkThemeCss = (cssUrl: URL['href']) =>
   appendNode2Body('link', {
-    rel: 'preload',
+    rel: 'prefecth',
     href: cssUrl,
     type: 'text/css',
     as: 'style',

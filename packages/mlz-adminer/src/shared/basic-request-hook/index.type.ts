@@ -17,5 +17,8 @@ export interface IBasicHooksOptions<R = any> {
   };
   // 请求相关
   data: unknown;
+  // 发起的请求的参数
   requestParams: object;
+  // 单例请求
+  singleton: boolean;
 }

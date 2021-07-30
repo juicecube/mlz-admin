@@ -1,4 +1,4 @@
-import { groupBy } from 'lodash-es';
+import { groupBy, cloneDeep } from 'lodash-es';
 
 /**
  *
@@ -38,9 +38,35 @@ export const memoizeFunctionResult = (fn: Function, duration: number) => {
 };
 
 /**
- * 根据某个key将一个flatten的数组树立为父子折叠结构结构
- * TODO 后面可以转移到mytils
+ * 根据primaryKey和foldPointFlag的管道对应关系。
+ * 将一个flatten的数组树立为父子折叠结构结构
  */
-export const foldObject = (flattenedArray, foldPointFlag) => {
-  const result = groupBy(flattenedArray, foldPointFlag);
+export const foldArray = <P = any>(flattenedArray: P[], opts: { primaryKey: string | number; foldPointFlag: string | number; childrenKey?: string }) => {
+  const { primaryKey, foldPointFlag, childrenKey = 'children' } = opts || {};
+
+  const newArray = cloneDeep(flattenedArray);
+  const groupedArray = groupBy(newArray, foldPointFlag);
+  const result = [] as any;
+
+  newArray.forEach((item) => {
+    const foldPointFlagValue = item[primaryKey];
+    if (foldPointFlagValue) {
+      const children = groupedArray[foldPointFlagValue] || [];
+      item[childrenKey] = children;
+    }
+    result.push(item);
+  });
+
+  return result as P[];
+};
+
+// eslint-disable-next-line no-shadow
+enum EBasicRequestHooksStatus {
+  'waiting' = 0,
+  'pending' = 1 << 0,
+  'resolved' = 1 << 1,
+  'rejected' = 1 << 2,
+}
+export const getRequestStatus = (statusNumber: number | keyof typeof EBasicRequestHooksStatus) => {
+  return EBasicRequestHooksStatus[statusNumber];
 };

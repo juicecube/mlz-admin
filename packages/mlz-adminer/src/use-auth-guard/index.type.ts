@@ -1,5 +1,6 @@
 import React from 'react';
 import { RouteProps } from 'react-router';
+import { MenuProps, MenuItemProps } from 'antd/lib/menu';
 
 export type TContact = {
   id: string;
@@ -12,6 +13,7 @@ export type TMenuListItem = {
   menu_name: string;
   order_number: number;
   parent_id: number;
+  children?: TMenuListItem[];
 };
 
 export interface TMenuResponse extends Response {
@@ -37,7 +39,10 @@ export interface TResourceResponse extends Response {
   readonly resources: TResourceListItem[];
 }
 
-export interface useAuthGuardOptions {}
+export interface useAuthGuardOptions {
+  passeds?: RouteProps[];
+  forbiddens?: RouteProps[];
+}
 
 export interface IAuthRequestParams {
   host?: string;
@@ -53,8 +58,11 @@ export interface IAuthGuardInfo {
   routes?: RouteProps[];
 }
 
-export interface IAuthMenuProps {
-  // 父子菜单的区分标识
+export interface IAuthMenuProps extends MenuProps {
+  // 父菜单主键
+  primaryKeyFlag?: string;
+  // 子菜单的对应外键
   subMenuFlag?: string;
-  info: IAuthGuardInfo;
+  //
+  itemOptions?: MenuItemProps;
 }

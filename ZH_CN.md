@@ -28,7 +28,7 @@ import { Button } from '@mlz/admin';
 const App = () => <Button type="primary">❤️❤️❤️</Button>;
 ```
 
-更多详细内容请访问本库的在线文档。
+更多详细内容请访问 [官方网站](https://www.mlz-admin.com)。
 
 ## 贡献指南
 

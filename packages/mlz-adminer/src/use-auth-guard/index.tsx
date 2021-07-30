@@ -1,9 +1,13 @@
 import React, { createContext, useContext, useMemo } from 'react';
 import useBasicRequest from '../shared/basic-request-hook';
 import { useAuthGuardOptions, TMenuListItem, TResourceListItem, IAuthGuardProps } from './index.type';
+import { RouteProps } from 'react-router';
 import AuthMenu from './accessories/auth-menu';
 import AuthResource from './accessories/auth-resource';
 import { default as Auth } from './model';
+
+// typings
+type IAuthRequestParams = Omit<useAuthGuardOptions, 'passeds' | 'forbiddens'>;
 
 /**
  * 创建context
@@ -14,46 +18,71 @@ export const Context = createContext<{ menus: TMenuListItem[]; resources: TResou
   routes: [],
 });
 
-//
-const useAuthGuard = (options?: useAuthGuardOptions, deps?: any[]) => {
-  const context = useContext(Context);
-  const authInstance = Auth.create();
+/**
+ *
+ */
+export const reactRouterMaker = (menuCode, opts?: RouteProps): RouteProps => {
+  return {
+    path: menuCode,
+    exact: true,
+    strict: true,
+    ...opts,
+  };
+};
 
-  const {
-    data: menus = [
-      { menu_code: '/a/b', order_number: 0, menu_name: '第一个菜单' },
-      { menu_code: '/c/d', order_number: 1, menu_name: '第二个菜单' },
-    ],
-  } = useBasicRequest<useAuthGuardOptions, any>(authInstance.getMenus, { deps, ...options });
-  const {
-    data: resources = [
-      { resource_code: '/a/1', resource_name: '按钮1' },
-      { resource_code: '/a/2', resource_name: '按钮2' },
-      { resource_code: '/a/3', resource_name: '按钮3' },
-    ],
-  } = useBasicRequest<useAuthGuardOptions, any>(authInstance.getResources, { deps, ...options });
+//
+const newAuth = Auth.create();
+const asyncGetAuthInfo = () => Promise.all([newAuth.getMenus(), newAuth.getResources()]);
+const useAuthGuard = (options?: useAuthGuardOptions, deps?: any[]) => {
+  //
+  const { passeds, forbiddens } = options || {};
+
+  //
+  const context = useContext(Context);
+
+  // TODO: 因为是全局型hooks，所以尽量使用缓存，在其它页面不要调用
+  const { data } = useBasicRequest<IAuthRequestParams, any>(asyncGetAuthInfo, { singleton: true, deps, ...options });
+  const [menus, resources] = useMemo(() => {
+    if (data) {
+      return [data[0]?.menus, data[1]?.resources];
+    }
+    return [[], []];
+  }, [data]);
 
   /**
    * 需求：
    * 1.根据menus分配前端动态路由，没有的不允许访问。
    * 2.根据resources对应的resource_url，在status为YES的情况下，也要成为生成路由的素材。
-   * 3.
+   * 3.根据passeds将一些权限完全
    */
-  const routes = [
-    ...menus.map(($m) => $m.menu_code),
-    ...resources.map(($r) => {
-      if ($r.status === 'YES') {
-        return $r.resource_url;
-      } else {
-        return undefined;
-      }
-    }),
-  ].filter((rt) => rt);
+  const routes = useMemo(() => {
+    return [
+      ...menus?.map(($m) => $m.menu_code),
+      ...resources?.map(($r) => {
+        if (['YES', 1, true].includes($r.status)) {
+          return $r.resource_url;
+        } else {
+          return undefined;
+        }
+      }),
+    ]
+      .concat(passeds)
+      .filter((item) => {
+        return item && !forbiddens?.some((r) => r.path === item.path);
+      })
+      .map((item) => reactRouterMaker(item));
+  }, [menus, resources, passeds, forbiddens]);
 
-  const AuthGuard = useMemo(() => {
+  // REMARK: resources是一个weakMap结构的数据，而非object/array
+  const resourceMap = new Map();
+  resources.forEach((item: TResourceListItem) => {
+    resourceMap.set(item.resource_code, item);
+  });
+
+  const AuthGuardRender = useMemo(() => {
     const contextPayload = {
       menus,
-      resources,
+      resourceMap,
       routes,
     };
     return (props: IAuthGuardProps) => {
@@ -69,15 +98,9 @@ const useAuthGuard = (options?: useAuthGuardOptions, deps?: any[]) => {
         // </Context.Provider>
       );
     };
-  }, []);
+  }, [menus, resources, routes]);
 
-  // REMARK: resources是一个weakMap结构的数据，而非object/array
-  const resourceMap = new Map();
-  resources.forEach((item: TResourceListItem) => {
-    resourceMap.set(item.resource_code, item);
-  });
-
-  return { menus, resourceMap, routes, AuthGuard, _Context: Context };
+  return { menus, resourceMap, routes, AuthGuardRender, _Context: Context };
 };
 
 export { AuthMenu, AuthResource };

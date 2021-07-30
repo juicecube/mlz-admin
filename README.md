@@ -1,5 +1,5 @@
 <p align="center">
-This is a React Components Library, packaged for codemao's management system design guideline
+This is a extended UI Library, packaged with Ant Design
 </p>
 <p align="center" style="font-size: 32px">
 🌈 https://www.mlz-admin.com
