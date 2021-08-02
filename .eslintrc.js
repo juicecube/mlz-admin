@@ -30,7 +30,7 @@ module.exports = {
         'react/no-array-index-key': 1,
         'spaced-comment': 0,
         'react/require-default-props': 0,
-        'react/jsx-closing-bracket-location': 1
+        'react/jsx-closing-bracket-location': 1,
       },
     },
     {
@@ -92,6 +92,7 @@ module.exports = {
     'max-classes-per-file': 0,
     'prefer-const': 1,
     'no-bitwise': 0,
-    'camelcase': 1,
+    'no-continue': 0,
+    camelcase: 1,
   },
 };

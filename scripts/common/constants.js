@@ -8,4 +8,5 @@ module.exports = {
   SRC_PATH: path.join(PACKAGE_PATH, './mlz-admin/src'),
   ADMINER_SRC_PATH: path.join(PACKAGE_PATH, './mlz-adminer/src'),
   SERVICE_PATH: path.join(PACKAGE_PATH, './mlz-adminer/src/shared/service'),
+  ANTD_PATH: path.join(ROOT_PATH, './node_modules/antd'),
 };

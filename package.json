@@ -11,7 +11,8 @@
   "scripts": {
     "start": "npm run clean && node ./scripts/genIndex && npx cross-env NODE_ENV=development dumi dev",
     "build": "node ./scripts/genIndex && npx cross-env NODE_ENV=production dumi build",
-    "dist": "npm run clean && node ./scripts/genIndex && father-build",
+    "dist": "npm run clean && node ./scripts/genIndex && father-build && npm run dist:style",
+    "dist:style": "node ./scripts/copyCss",
     "serve": "node ./scripts/serve",
     "lint": "npm run clean && node ./scripts/genIndex && npm run lint:ts && npm run lint:es && npm run lint:style",
     "lint:es": "npx eslint --ext tsx,ts,js",

@@ -28,9 +28,9 @@ import { Button } from '@mlz/admin';
 const App = () => <Button type="primary">❤️❤️❤️</Button>;
 ```
 
-> 🎉 we are supporting Server Side Rendering now! (>=1.2.0)
+> 🎉 we have supportted Server Side Rendering now! (>=1.2.0)
 
-visit our [WEBSITE](https://www.mlz-admin.com) to learn more！\_
+visit our [WEBSITE](https://www.mlz-admin.com) to learn more！
 
 ## Contribution
 
