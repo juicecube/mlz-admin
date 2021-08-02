@@ -3,6 +3,7 @@ import { isCompiled } from '../service/constant';
 import { IBasicHooksOptions } from './index.type';
 import { getRequestStatus } from '../utils';
 
+const Window = window as any;
 const responseHandler = (res: any, responseSetter: Function, loadingToggler: Function, isCatchingError = false) => {
   !isCatchingError && responseSetter(res);
   loadingToggler(false);
@@ -46,7 +47,7 @@ const useBasicRequest = <P extends Partial<IBasicHooksOptions>, R>(promiseFuncti
     if (!manual) {
       // 开启请求单例
       const uniqueFrameKey = `${promiseFunction.name}-${JSON.stringify(requestParams)}`;
-      const fetcher = (flag: 'forced' | 'unforced', checker = window.runningBasicRequestHooksPromise, fromCache?: boolean, initData?: unknown) => {
+      const fetcher = (flag: 'forced' | 'unforced', checker = Window.runningBasicRequestHooksPromise, fromCache?: boolean, initData?: unknown) => {
         // read from cache
         if (fromCache) {
           let data = null as any;
@@ -74,10 +75,10 @@ const useBasicRequest = <P extends Partial<IBasicHooksOptions>, R>(promiseFuncti
       if (singleton) {
         // keep promises to be a singleton. avoiding duplicated requests from serveral
         // components who's using this or hooks those packaged with this.
-        const singletonTarget = window.runningBasicRequestHooksPromise || new Map();
+        const singletonTarget = Window.runningBasicRequestHooksPromise || new Map();
         if (!singletonTarget) {
-          // mount a singleton pattern instance onto window.
-          window.runningBasicRequestHooksPromise = new Map();
+          // mount a singleton pattern instance onto Window.
+          Window.runningBasicRequestHooksPromise = new Map();
         }
         if (singletonTarget.has(uniqueFrameKey)) {
           if (singletonTarget.get(uniqueFrameKey) !== getRequestStatus('pending')) {
@@ -88,16 +89,16 @@ const useBasicRequest = <P extends Partial<IBasicHooksOptions>, R>(promiseFuncti
             const loadCache = async () => {
               const cachedData = await fetcher('unforced', singletonTarget, true);
               if (!cachedData) {
-                window.requestAnimationFrame(loadCache);
+                Window.requestAnimationFrame(loadCache);
               }
             };
-            window.requestAnimationFrame(loadCache);
+            Window.requestAnimationFrame(loadCache);
           }
         } else {
           fetcher('unforced', singletonTarget);
           singletonTarget.set(uniqueFrameKey, getRequestStatus('pending'));
         }
-        window.runningBasicRequestHooksPromise = singletonTarget;
+        Window.runningBasicRequestHooksPromise = singletonTarget;
       } else {
         fetcher('forced');
       }
