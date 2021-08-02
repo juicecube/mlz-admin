@@ -1,3 +1,6 @@
 /.build-cache/
 **/_vendor/**/*
 /tests/
+**/es/**/*
+**/lib/**/*
+**/dist/**/*

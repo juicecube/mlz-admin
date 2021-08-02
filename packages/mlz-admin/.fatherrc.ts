@@ -13,7 +13,6 @@ export default {
   },
   cjs: 'babel',
   extractCSS: false,
-  // lessInBabelMode: true,
   runtimeHelpers: true,
   extraRollupPlugins: [
     typescript({
@@ -22,7 +21,7 @@ export default {
     }),
   ],
   extraBabelPlugins: [
-    ['import', { libraryName: 'antd', style: true }],
+    ['import', { libraryName: 'antd', style: false }],
     [
       'search-and-replace',
       {
