@@ -1,4 +1,5 @@
-import { groupBy, cloneDeep } from 'lodash-es';
+import cloneDeep from 'lodash/cloneDeep';
+import groupBy from 'lodash/groupBy';
 
 /**
  *

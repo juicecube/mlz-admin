@@ -54,9 +54,25 @@ module.exports = {
       'import',
       {
         libraryName: '@mlz/admin',
+        style: true,
         libraryDirectory: 'es',
-        // 这里略有不同
-        style: false,
+      },
+      '@mlz/admin',
+    ],
+  ],
+};
+```
+
+```js
+// for SSR
+module.exports = {
+  plugins: [
+    [
+      'import',
+      {
+        libraryName: '@mlz/admin',
+        style: true,
+        libraryDirectory: 'lib',
       },
       '@mlz/admin',
     ],
@@ -73,12 +89,6 @@ module.exports = {
       'import',
       [
         {
-          libraryName: '@mlz/admin',
-          libraryDirectory: 'es',
-          // 这里略有不同
-          style: false,
-        },
-        {
           libraryName: '@mlz/adminer',
           libraryDirectory: 'es',
           style: false,
@@ -88,6 +98,8 @@ module.exports = {
   ],
 };
 ```
+
+目前 mlz/adminer 部分不承诺对 ssr 进行支持
 
 ---
 

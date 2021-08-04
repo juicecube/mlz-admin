@@ -6,7 +6,7 @@ import React, { useEffect, useMemo, useState, useCallback } from 'react';
 import { createBem } from '../shared/utils';
 import { ITabsProp, TTabPaneInfo } from './index.type';
 import { getDataType } from 'mytils';
-import { flatten } from 'lodash-es';
+import flatten from 'lodash/flatten';
 import Icon from '../icon';
 import './custom-tab-bar.less';
 import './index.less';
