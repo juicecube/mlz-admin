@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Table, Tooltip, Tag, ConfigProvider } from 'antd';
-import zhCN from 'antd/es/locale/zh_CN';
+import zhCN from 'antd/lib/locale/zh_CN';
 import { formatUnixTime, omitProps, getRatioFromNum } from 'mytils';
 import { formatPrice, guessPrimaryKey, createBem, tableValueValidationJudger } from '../../shared/utils';
 import { IColumnTypes, ITableTypes, recordedType, EnumsType, TagEnumsType, SupporttedColumnTypes } from './index.type';

@@ -39,3 +39,5 @@ we are expecting your great `Pull Request` which's based on <[our contribution d
 ## Dingtalk Disscussion Group
 
 <img src="https://raw.githubusercontent.com/milobluebell/imgs-repo/master/WechatIMG9.jpeg" width="256" alt="Dingtalk Qrcode"/>
+——
+<img src="https://raw.githubusercontent.com/milobluebell/imgs-repo/master/WechatIMG72.jpeg" width="256" alt="Dingtalk Qrcode"/>

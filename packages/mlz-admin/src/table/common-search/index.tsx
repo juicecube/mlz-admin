@@ -6,7 +6,7 @@ import { ICommonSearch } from './index.type';
 import { TagEnumsType, EnumsType } from '../common-table/index.type';
 import { commonPaginationKeys } from '../common-table';
 import { omitProps, purgeData } from 'mytils';
-import locale from 'antd/es/date-picker/locale/zh_CN';
+import locale from 'antd/lib/date-picker/locale/zh_CN';
 import Icon from '../../icon';
 import { createBem } from '../../shared/utils';
 import './index.less';

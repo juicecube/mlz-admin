@@ -2,7 +2,7 @@ import React from 'react';
 import { FormItemProps } from 'antd/lib/form/FormItem';
 import { FormProps } from 'antd/lib/form/Form';
 import { RowProps } from 'antd/lib/row/index';
-import { NamePath } from 'rc-field-form/es/interface';
+import { NamePath } from 'rc-field-form/lib/interface';
 import { Form as AntdForm } from 'antd';
 
 export interface IDependencyItem {

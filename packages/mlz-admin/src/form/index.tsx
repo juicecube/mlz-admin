@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Form as AntdForm, Spin, Button, Row } from 'antd';
-import { NamePath } from 'rc-field-form/es/interface';
+import { NamePath } from 'rc-field-form/lib/interface';
 import { IFormProps, IFormColumnType, IDependencyItem, CompoundedForm } from './index.type';
 
 const Form: CompoundedForm = AntdForm;

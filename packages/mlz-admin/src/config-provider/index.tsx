@@ -2,7 +2,7 @@ import React from 'react';
 import { ConfigProvider as AntdConfigProvider } from 'antd';
 import { Locale } from 'antd/lib/locale-provider';
 import { ConfigProviderProps } from 'antd/lib/config-provider';
-import { default as zhLocale } from 'antd/es/locale-provider/zh_CN';
+import { default as zhLocale } from 'antd/lib/locale-provider/zh_CN';
 import { version } from '..';
 import './index.less';
 
@@ -10,7 +10,7 @@ interface ConfigProviderType extends ConfigProviderProps {
   locale?: Locale;
 }
 
-const Window = window as any;
+const Window = (typeof window === 'undefined' ? { __DEV__: true } : window) as any;
 Window.__MLZ_ADMIN_VERSION__ = version;
 Window.__MLZ_ADMIN_RUNTIME_ENV__ = process.env.NODE_ENV;
 Window.__MLZ_ADMIN_BUILD_ENV__ = '$THIS_WILL_BE_EMPTY_AFTER_DIST$' ? 'development' : 'production';
