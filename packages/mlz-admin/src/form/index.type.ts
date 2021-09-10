@@ -23,17 +23,17 @@ export interface IFormProps extends FormProps<unknown> {
   //
   initialValues?: object;
   // formlist，类似table的columns，用于摆放数据
-  columns: IFormColumnType[];
+  rows: IFormColumnType[];
   // 重置表单事件
   onReset?: (initValues: object) => void;
   // 重置按钮文字描述
-  resetText?: string;
+  resetText?: boolean | string;
   // 提交按钮文字描述
-  confirmText?: string;
+  confirmText?: boolean | string;
   // 提交表单按钮区的属性
   submitterProps?: RowProps;
 }
 export type AntdFormType = typeof AntdForm;
 export interface CompoundedForm extends AntdFormType {
-  Block?: React.FC<IFormProps>;
+  Block: React.FC<IFormProps>;
 }

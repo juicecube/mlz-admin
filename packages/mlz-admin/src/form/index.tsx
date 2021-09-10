@@ -3,22 +3,22 @@ import { Form as AntdForm, Spin, Button, Row } from 'antd';
 import { NamePath } from 'rc-field-form/lib/interface';
 import { IFormProps, IFormColumnType, IDependencyItem, CompoundedForm } from './index.type';
 
-const Form: CompoundedForm = AntdForm;
+const Form = AntdForm as CompoundedForm;
 Form.Block = (props: IFormProps) => {
-  const { loading, initialValues, columns, style, onFinish } = props;
+  const { loading, initialValues, rows, style, onFinish } = props;
   const [form] = AntdForm.useForm();
   const [forceRefresh, toggleForceRefresh] = useState(false);
   // 所有表单项的所有依赖内容
   const allRelyOnKeys = useMemo(() => {
     return Array.from(
       new Set(
-        columns?.reduce((prev: unknown[], curr: IFormColumnType) => {
+        rows?.reduce((prev: unknown[], curr: IFormColumnType) => {
           const currRelyOnKeys = curr?.relyOn?.reduce((prv: NamePath[], cur: IDependencyItem) => prv.concat([cur?.name] || []), []);
           return prev.concat(currRelyOnKeys || []);
         }, []),
       ),
     );
-  }, [columns]);
+  }, [rows]);
 
   const hasSettled = initialValues && Object.keys(initialValues).length;
   useEffect(() => {
@@ -38,7 +38,7 @@ Form.Block = (props: IFormProps) => {
           }
         }}
         {...{ form, style, props }}>
-        {columns.map((item: IFormColumnType) => {
+        {rows.map((item: IFormColumnType) => {
           const { relyOn, name, label, render } = item;
           const showItem = relyOn ? relyOn?.some((relyOnItem: IDependencyItem) => relyOnItem.toContain?.includes(form.getFieldValue(relyOnItem.name))) : true;
           const component = typeof render === 'function' ? render() : render;
@@ -49,7 +49,7 @@ Form.Block = (props: IFormProps) => {
           ) : null;
         })}
         <Row justify="end" {...props.submitterProps}>
-          {props.resetText !== '' ? (
+          {props.resetText ? (
             <Button
               htmlType="reset"
               className="form-block-reset-btn"
@@ -70,7 +70,7 @@ Form.Block = (props: IFormProps) => {
               重置
             </Button>
           ) : null}
-          {props.confirmText !== '' ? (
+          {props.confirmText ? (
             <Button type="primary" htmlType="submit" className="form-block-submit-btn">
               提交
             </Button>

@@ -6,6 +6,7 @@ import { ICommonSearch } from './index.type';
 import { TagEnumsType, EnumsType } from '../common-table/index.type';
 import { commonPaginationKeys } from '../common-table';
 import { omitProps, purgeData } from 'mytils';
+import { SelectProps } from 'antd/lib/select';
 import locale from 'antd/lib/date-picker/locale/zh_CN';
 import Icon from '../../icon';
 import { createBem } from '../../shared/utils';
@@ -17,8 +18,8 @@ const bem = createBem('common-search');
 /**
  * @func 根据column.enums生成对应的Select
  */
-const renderSelection = (opts: TagEnumsType | EnumsType) => (
-  <Select allowClear placeholder="请选择">
+const renderSelection = (opts: TagEnumsType | EnumsType, selectProps: SelectProps<any> = {}) => (
+  <Select allowClear placeholder="请选择" {...selectProps}>
     {Object.entries(opts).map((kv) => {
       const [key, value] = kv;
       const text = typeof value === 'string' ? value : value.text;
@@ -50,8 +51,8 @@ const regularOptions = {
 export const typeFormItemRefers = {
   normal: () => <Input />,
   number: () => <InputNumber style={fullWidthStyle} />,
-  enum: ({ enums }) => renderSelection(enums),
-  tag: ({ enums }) => renderSelection(enums),
+  enum: ({ enums, searchItemProps }) => renderSelection(enums, searchItemProps),
+  tag: ({ enums, searchItemProps }) => renderSelection(enums, searchItemProps),
   date: ({ searchItemProps }) => <DatePicker {...regularOptions} {...searchItemProps} />,
   datetime: ({ searchItemProps }) => <DatePicker showTime {...regularOptions} {...searchItemProps} />,
   dateRange: ({ searchItemProps }) => <DatePicker.RangePicker {...regularOptions} {...searchItemProps} />,

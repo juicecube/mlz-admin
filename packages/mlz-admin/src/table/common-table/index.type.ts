@@ -2,6 +2,7 @@ import React from 'react';
 import { ColumnProps, TableProps } from 'antd/lib/table';
 import { PresetColorType, PresetStatusColorType } from 'antd/lib/_util/colors';
 import { LiteralUnion } from 'antd/lib/_util/type';
+import { FormProps } from 'antd/lib/form';
 import { typeValueRefers } from '.';
 import { typeFormItemRefers } from '../common-search';
 import { ICommonSearch } from '../common-search/index.type';
@@ -39,4 +40,5 @@ export type IExtraSearchType = Omit<IColumnTypes<unknown>, 'primary' | 'searchab
 
 export interface ITableTypes<T> extends TableProps<T>, ICommonSearch<T> {
   columns: IColumnTypes<T>[];
+  searchFormProps?: FormProps;
 }
