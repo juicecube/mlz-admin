@@ -190,14 +190,14 @@ export default () => (
       <Typography>
         <Paragraph style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 25%)', gridColumnGap: 25 }}>
           {palettes.map((palette) => (
-            <section style={{ marginBottom: 60 }}>
+            <div style={{ marginBottom: 60 }}>
               <Title level={4} style={{ textAlign: 'center' }}>
                 {palette.title}
               </Title>
               <h6 style={{ textAlign: 'center' }}>{palette.subtitle}</h6>
               <Text style={{ fontSize: 12, color: '#C1C1C1', display: 'block', height: 65 }}>{palette.desc}</Text>
               <ColorPalette colorList={palette.colors} />
-            </section>
+            </div>
           ))}
         </Paragraph>
       </Typography>

@@ -158,24 +158,22 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
       </Row>
       {shouldMergeSubmitButton ? <Row justify="end">{formSubmitters}</Row> : null}
       {hasMoreInteractionArea ? (
-        <>
-          <section className={bem('extra')}>
-            <div className={`bar-area ${bem('operations-area')}`}>
-              <Row justify="start" align="middle" gutter={16}>
-                {operations.map((operation, index) => (
-                  <Col key={operation?.['key'] || index}>{operation}</Col>
-                ))}
-              </Row>
-            </div>
-            <div className={`bar-area ${bem('tools-area')}`}>
-              <Row justify="end" align="middle" gutter={16}>
-                {tools.map((tool, index) => (
-                  <Col key={tool?.['key'] || index}>{tool}</Col>
-                ))}
-              </Row>
-            </div>
-          </section>
-        </>
+        <div className={bem('extra')}>
+          <div className={`bar-area ${bem('operations-area')}`}>
+            <Row justify="start" align="middle" gutter={16}>
+              {operations.map((operation, index) => (
+                <Col key={operation?.['key'] || index}>{operation}</Col>
+              ))}
+            </Row>
+          </div>
+          <div className={`bar-area ${bem('tools-area')}`}>
+            <Row justify="end" align="middle" gutter={16}>
+              {tools.map((tool, index) => (
+                <Col key={tool?.['key'] || index}>{tool}</Col>
+              ))}
+            </Row>
+          </div>
+        </div>
       ) : null}
     </Form>
   );
