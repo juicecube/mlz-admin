@@ -27,7 +27,7 @@ const extraStyles = [
     height: 100%;
     border-radius: 0;
     opacity: 0.25;
-    background-image: linear-gradient(to right, #1890FF 0%,#E6F7FF 80%);
+    background-color: #5fb2ff;
     transition: transform 0s, opacity 0.2s;
   }
   .__dumi-default-layout .__dumi-default-navbar > nav ul > li > a {

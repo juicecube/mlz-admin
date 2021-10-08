@@ -1,5 +1,5 @@
 <p align="center">
-This is a extended UI Library, packaged with Ant Design
+@mlz/admin 是遵循编程猫后台管理系统设计规范的 React 组件库
 </p>
 <p align="center" style="font-size: 32px">
 🌈 https://www.mlz-admin.com
@@ -12,15 +12,15 @@ This is a extended UI Library, packaged with Ant Design
 
 ---
 
-## Usage
+## 使用方法
 
-#### 1. Install
+#### 1. 安装
 
 ```shell
 $ npm install @mlz/admin -S
 ```
 
-#### 2. Import Code
+#### 2. 使用
 
 ```jsx
 import { Button } from '@mlz/admin';
@@ -28,16 +28,12 @@ import { Button } from '@mlz/admin';
 const App = () => <Button type="primary">❤️❤️❤️</Button>;
 ```
 
-> 🎉 we have supportted Server Side Rendering now! (>=1.2.0)
+更多详细内容请访问 [官方网站](https://www.mlz-admin.com)。
 
-visit our [WEBSITE](https://www.mlz-admin.com) to learn more！
+## 贡献指南
 
-## Contribution
+非常期待你的 PR！本库的开发代码，基于 [《贡献指南》](https://github.com/juicecube/mlz-admin/blob/master/CONTRIBUTING.md) ，所以请先仔细阅读。
 
-we are expecting your great `Pull Request` which's based on <[our contribution doc](https://github.com/juicecube/mlz-admin/blob/master/CONTRIBUTING.md)>. so read it before your coding plz.
-
-## Dingtalk Disscussion Group
+## 讨论组
 
 <img src="https://raw.githubusercontent.com/milobluebell/imgs-repo/master/WechatIMG9.jpeg" width="256" alt="Dingtalk Qrcode"/>
-——
-<img src="https://raw.githubusercontent.com/milobluebell/imgs-repo/master/WechatIMG72.jpeg" width="256" alt="Dingtalk Qrcode"/>

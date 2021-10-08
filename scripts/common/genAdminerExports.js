@@ -7,7 +7,7 @@ const genAdminerExports = () =>
   genExports(ADMINER_SRC_PATH, {
     donotCamelizes: [],
     donotCompiles: ['service'],
-    extraContents: [],
+    extraContents: [`export { AuthMenu } from './use-auth-guard';`, ` export { AuthResource } from './use-auth-guard';`],
   });
 
 module.exports = genAdminerExports;

@@ -12,11 +12,16 @@ import React, { useState, useEffect } from 'react';
 import { DarkThemeToggler, message } from '@mlz/admin';
 
 class App extends React.Component {
+  componentDidMount() {
+    window.addEventListener('themeChange', (e) => {
+      message.info(`window.addEventListener触发：切换成功。文档无法保证样式正常`);
+    });
+  }
   render() {
     return (
       <DarkThemeToggler
         onChange={(e: 'dark' | 'light') => {
-          e === 'dark' && message.info(`切换成功。文档无法保证样式正常`);
+          message.info(`组件onChange触发：切换成功。文档无法保证样式正常`);
         }}
       />
     );
@@ -30,6 +35,7 @@ export default App;
 
 - Antd 自身的组件，并没有实现`动态主题切换`功能（不论 dark/default 切换，还是多彩切换），我们通过比较节能的方式添加了进来.
 - 我们在全局注入了 css 变量：`--theme-bg`、`--theme-sub-bg`以及`--theme-menu-bg`，会在主题发生变化时自动切换对应的值，方便`必须设置与主题配套的显性颜色`时使用。如果有过多需求请提 issue。
+- 当主题发生变化的时候，会在 window 上监听到 `themeChange` 事件的触发。
 
 ---
 

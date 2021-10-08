@@ -5,10 +5,11 @@ import useDarkTheme, { calcDefaultCDNPath } from './index.hooks';
 import { DarkThemeTogglerProps } from './index.type';
 import { appendNode2Body } from '../shared/utils';
 import { AntdVersion, version, BuildTime, EScences } from '..';
+import './style/index.less';
 
 export const preloadDarkThemeCss = (cssUrl: URL['href']) =>
   appendNode2Body('link', {
-    rel: 'preload',
+    rel: 'prefecth',
     href: cssUrl,
     type: 'text/css',
     as: 'style',

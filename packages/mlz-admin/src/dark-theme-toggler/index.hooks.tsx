@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { appendNode2Body, simpleHash } from '../shared/utils';
 import { UseDarkThemeOptions, ThemeKeyNameTypes } from './index.type';
 // import * as darkColors from 'antd/lib/style/themes/dark.less';
@@ -18,6 +18,7 @@ const lightThemePalette = {
 
 export const calcDefaultCDNPath = ($antdVersion: string, $version: string, $BuildTime: string) =>
   `https://cdn.bootcdn.net/ajax/libs/antd/${$antdVersion}/antd.dark.min.css?version=${$version}&t=${$BuildTime}`;
+export const themeChangeEventName = 'themeChange';
 
 const useDarkTheme = (callback: Function, observed?: any, conf?: UseDarkThemeOptions) => {
   const defaultCDNPath = calcDefaultCDNPath(AntdVersion, version, BuildTime);
@@ -29,6 +30,12 @@ const useDarkTheme = (callback: Function, observed?: any, conf?: UseDarkThemeOpt
     // observed被观察对象为true时则切换主题
     typeof observed !== 'undefined' && toggleTheme(observed ? 'dark' : 'light');
   }, [observed]);
+
+  const eventRef = useRef<(detail: 'dark' | 'default' | 'light') => Event>((_ = 'default') => {
+    return new CustomEvent(themeChangeEventName, {
+      detail: { theme: _ },
+    });
+  });
   useLayoutEffect(() => {
     if (theme === 'dark') {
       // 当dark时
@@ -68,7 +75,12 @@ const useDarkTheme = (callback: Function, observed?: any, conf?: UseDarkThemeOpt
       saveDom(null);
       document.body.setAttribute('data-theme', 'default');
     }
+
+    // 回调
     callback?.(theme);
+
+    // 切换主题事件的分发
+    window?.dispatchEvent(eventRef.current(theme));
   }, [theme]);
   return { dom };
 };

@@ -144,7 +144,7 @@ describe('🧪 Tabs', () => {
       .simulate('click');
     expect(onTabClickHandler).toHaveBeenCalled();
     // 一次是初始化时的变化，一次是click时的变化
-    expect(onChangeHandler).toHaveBeenCalledTimes(2);
+    expect(onChangeHandler).toHaveBeenCalledTimes(3);
   });
 
   // TODO: contextMenu属性设置内容时，点击关闭和新增按钮触发对应的onEdit事件

@@ -11,7 +11,8 @@
   "scripts": {
     "start": "npm run clean && node ./scripts/genIndex && npx cross-env NODE_ENV=development dumi dev",
     "build": "node ./scripts/genIndex && npx cross-env NODE_ENV=production dumi build",
-    "dist": "npm run clean && node ./scripts/genIndex && father-build",
+    "dist": "npm run clean && node ./scripts/genIndex && father-build && npm run dist:style",
+    "dist:style": "node ./scripts/copyStyles",
     "serve": "node ./scripts/serve",
     "lint": "npm run clean && node ./scripts/genIndex && npm run lint:ts && npm run lint:es && npm run lint:style",
     "lint:es": "npx eslint --ext tsx,ts,js",
@@ -27,7 +28,9 @@
     "clean:lerna": "npx lerna clean --yes",
     "reset": "npm run clean && npx cross-env rimraf node_modules src/.umi && npm run clean:lerna && npm install && npm run boot",
     "reset:lock": "npm run clean && npx cross-env rimraf node_modules src/.umi package-lock.json && npm run cache clean --force && npm run clean:lerna && npm run boot",
-    "boot": "npx lerna bootstrap"
+    "boot": "npx lerna bootstrap",
+    "pack:admin": "npm run dist && cd packages/mlz-admin && rimraf *.tgz && npm pack",
+    "pack:adminer": "npm run dist && cd packages/mlz-adminer && rimraf *.tgz && npm pack"
   },
   "gitHooks": {
     "pre-commit": "npx lint-staged && npx pretty-quick --staged"
@@ -41,7 +44,6 @@
     ]
   },
   "dependencies": {
-    "@babel/runtime": "^7.10.2",
     "compression": "^1.7.4",
     "express": "^4.17.1",
     "react": "^16.14.0",
@@ -53,7 +55,8 @@
     "@testing-library/react-hooks": "^5.1.1",
     "@types/enzyme": "^3.10.5",
     "@types/jest": "^26.0.13",
-    "@types/lodash-es": "^4.17.3",
+    "@types/lodash": "^4.14.171",
+    "@types/node": "^16.4.10",
     "@typescript-eslint/eslint-plugin": "^4.6.0",
     "@typescript-eslint/parser": "^4.6.0",
     "@umijs/preset-react": "^1.6.4",
@@ -61,7 +64,7 @@
     "axios": "^0.20.0",
     "babel-plugin-import": "^1.13.3",
     "babel-plugin-search-and-replace": "^1.1.0",
-    "dumi": "^1.0.6",
+    "dumi": "^1.1.20",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.4",
     "enzyme-to-json": "^3.6.1",
@@ -75,7 +78,8 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.0.2",
-    "father-build": "^1.18.4",
+    "father-build": "^1.19.6",
+    "fs-extra": "^8.1.0",
     "inquirer": "^7.3.3",
     "istanbul": "^0.4.5",
     "jest": "^26.0.1",
@@ -83,7 +87,7 @@
     "lerna": "^3.22.1",
     "less": "~3.9.0",
     "lint-staged": "^10.3.0",
-    "lodash-es": "^4.17.15",
+    "lodash": "^4.17.21",
     "mytils": "^1.3.21",
     "node-fetch": "^2.6.0",
     "prettier": "^1.19.1",

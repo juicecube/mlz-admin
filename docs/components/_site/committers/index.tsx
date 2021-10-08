@@ -1,7 +1,7 @@
 import React, { useState, useEffect, CSSProperties } from 'react';
 import axios from 'axios';
 import { Avatar, Tooltip, Typography, Spin, Button, Icon, Affix, BackTop } from '@mlz/admin';
-import { uniqBy } from 'lodash-es';
+import uniqBy from 'lodash/uniqBy';
 import { getPaths } from '../../../../packages/mlz-admin/src/shared/utils';
 import './index.less';
 

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, memo } from 'react';
 import { Form, Input, Row, Col, InputNumber, Select } from 'antd';
 import Button from '../../button';
 import DatePicker from '../../date-picker';
@@ -6,7 +6,8 @@ import { ICommonSearch } from './index.type';
 import { TagEnumsType, EnumsType } from '../common-table/index.type';
 import { commonPaginationKeys } from '../common-table';
 import { omitProps, purgeData } from 'mytils';
-import locale from 'antd/es/date-picker/locale/zh_CN';
+import { SelectProps } from 'antd/lib/select';
+import locale from 'antd/lib/date-picker/locale/zh_CN';
 import Icon from '../../icon';
 import { createBem } from '../../shared/utils';
 import './index.less';
@@ -17,8 +18,8 @@ const bem = createBem('common-search');
 /**
  * @func 根据column.enums生成对应的Select
  */
-const renderSelection = (opts: TagEnumsType | EnumsType) => (
-  <Select allowClear placeholder="请选择">
+const renderSelection = (opts: TagEnumsType | EnumsType, selectProps: SelectProps<any> = {}) => (
+  <Select allowClear placeholder="请选择" {...selectProps}>
     {Object.entries(opts).map((kv) => {
       const [key, value] = kv;
       const text = typeof value === 'string' ? value : value.text;
@@ -50,8 +51,8 @@ const regularOptions = {
 export const typeFormItemRefers = {
   normal: () => <Input />,
   number: () => <InputNumber style={fullWidthStyle} />,
-  enum: ({ enums }) => renderSelection(enums),
-  tag: ({ enums }) => renderSelection(enums),
+  enum: ({ enums, searchItemProps }) => renderSelection(enums, searchItemProps),
+  tag: ({ enums, searchItemProps }) => renderSelection(enums, searchItemProps),
   date: ({ searchItemProps }) => <DatePicker {...regularOptions} {...searchItemProps} />,
   datetime: ({ searchItemProps }) => <DatePicker showTime {...regularOptions} {...searchItemProps} />,
   dateRange: ({ searchItemProps }) => <DatePicker.RangePicker {...regularOptions} {...searchItemProps} />,
@@ -157,27 +158,25 @@ const InternalCommonSearch = (props: ICommonSearch<unknown>) => {
       </Row>
       {shouldMergeSubmitButton ? <Row justify="end">{formSubmitters}</Row> : null}
       {hasMoreInteractionArea ? (
-        <>
-          <section className={bem('extra')}>
-            <div className={`bar-area ${bem('operations-area')}`}>
-              <Row justify="start" align="middle" gutter={16}>
-                {operations.map((operation, index) => (
-                  <Col key={operation?.['key'] || index}>{operation}</Col>
-                ))}
-              </Row>
-            </div>
-            <div className={`bar-area ${bem('tools-area')}`}>
-              <Row justify="end" align="middle" gutter={16}>
-                {tools.map((tool, index) => (
-                  <Col key={tool?.['key'] || index}>{tool}</Col>
-                ))}
-              </Row>
-            </div>
-          </section>
-        </>
+        <div className={bem('extra')}>
+          <div className={`bar-area ${bem('operations-area')}`}>
+            <Row justify="start" align="middle" gutter={16}>
+              {operations.map((operation, index) => (
+                <Col key={operation?.['key'] || index}>{operation}</Col>
+              ))}
+            </Row>
+          </div>
+          <div className={`bar-area ${bem('tools-area')}`}>
+            <Row justify="end" align="middle" gutter={16}>
+              {tools.map((tool, index) => (
+                <Col key={tool?.['key'] || index}>{tool}</Col>
+              ))}
+            </Row>
+          </div>
+        </div>
       ) : null}
     </Form>
   );
 };
-const CommonSearchForm = (props: ICommonSearch<unknown>) => <InternalCommonSearch {...props} />;
+const CommonSearchForm = memo((props: ICommonSearch<unknown>) => <InternalCommonSearch {...props} />);
 export default CommonSearchForm;

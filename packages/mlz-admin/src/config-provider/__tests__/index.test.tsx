@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { mount } from 'enzyme';
-import enUS from 'antd/es/locale/en_US';
+import enUS from 'antd/lib/locale/en_US';
 import { testMount, testSnapshot, sleep } from '../../../../../tests';
 import ConfigProvider from '..';
 

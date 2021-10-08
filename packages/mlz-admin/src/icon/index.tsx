@@ -1,11 +1,13 @@
 import React from 'react';
-import { createFromIconfontCN } from '@ant-design/icons/es';
+import { createFromIconfontCN } from '@ant-design/icons';
 import { appendScript } from '../shared/utils';
 
 // 测试在使用这个export，所以不可以删除
 export const defaultScriptUrl = 'https://at.alicdn.com/t/font_1820833_32ida2n9cyl.js';
-const Window = window as any;
+
+const Window = (typeof window === 'undefined' ? { __DEV__: true } : window) as any;
 Window.IconScripts = [defaultScriptUrl];
+
 const Icon = createFromIconfontCN({
   scriptUrl: Window.IconScripts,
 });

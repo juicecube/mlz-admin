@@ -1,6 +1,5 @@
-const isProduction = process.env.NODE_NEV === 'production';
 module.exports = {
-  extends: ['airbnb', 'prettier', 'prettier/react', 'plugin:jest/recommended', 'plugin:react/recommended', 'plugin:import/typescript'],
+  extends: ['airbnb', 'prettier', 'plugin:import/typescript'],
   env: {
     browser: true,
     node: true,
@@ -31,6 +30,7 @@ module.exports = {
         'react/no-array-index-key': 1,
         'spaced-comment': 0,
         'react/require-default-props': 0,
+        'react/jsx-closing-bracket-location': 1,
       },
     },
     {
@@ -90,6 +90,9 @@ module.exports = {
     'arrow-body-style': 0,
     'dot-notation': 0,
     'max-classes-per-file': 0,
+    'prefer-const': 1,
+    'no-bitwise': 0,
+    'no-continue': 0,
     camelcase: 1,
   },
 };

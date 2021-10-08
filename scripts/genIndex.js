@@ -8,31 +8,31 @@ const genBuildTime = require('./common/genBuildTime');
 const genSupporttingEnv = require('./common/genSupporttingEnv');
 const genAdminerExports = require('./common/genAdminerExports');
 const genAdminerConfig = require('./common/genAdminerConfig');
-const joinGeneratorsIntoBuffer = require('./common/joinGeneratorsIntoBuffer');
+const joinMakersIntoBuffer = require('./common/joinMakersIntoBuffer');
 const { SRC_PATH, ADMINER_SRC_PATH, SERVICE_PATH } = require('./common/constants');
 
 [
   // 生成admin组件列表
   {
     path: SRC_PATH + '/index.tsx',
-    bufferGenerators: [genVersion, genBuildTime, genSupporttingEnv],
+    bufferMakers: [genVersion, genBuildTime, genSupporttingEnv],
     extra: genExports(),
   },
   // 生成adminer hooks列表
   {
     path: ADMINER_SRC_PATH + '/index.tsx',
-    bufferGenerators: [genAdminerExports],
+    bufferMakers: [genAdminerExports],
     extra: [],
   },
   // 生成adminer的config列表
   {
     path: SERVICE_PATH + '/constant/config.ts',
-    bufferGenerators: [genAdminerConfig],
+    bufferMakers: [genAdminerConfig],
     extra: [],
   },
 ].forEach(($section) => {
-  const { path, bufferGenerators, extra } = $section;
-  fs.writeFileSync(path, Buffer.from(`${joinGeneratorsIntoBuffer(...bufferGenerators)}${extra || ''}`), (err) => {
+  const { path, bufferMakers, extra } = $section;
+  fs.writeFileSync(path, Buffer.from(`${joinMakersIntoBuffer(...bufferMakers)}${extra || ''}`), (err) => {
     if (err) {
       console.error(`❌ 发生错误：${err}`);
     } else {

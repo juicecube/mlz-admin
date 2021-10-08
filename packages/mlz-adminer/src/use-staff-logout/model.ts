@@ -5,10 +5,6 @@ import { useStaffLogoutOptions } from './index.type';
 class Staff extends Model {
   readonly staff = {};
 
-  // constructor() {
-  //   super();
-  // }
-
   // eslint-disable-next-line class-methods-use-this
   lougout(opts?: useStaffLogoutOptions) {
     return logout(opts);

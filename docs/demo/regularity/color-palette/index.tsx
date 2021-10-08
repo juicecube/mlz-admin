@@ -14,7 +14,7 @@ interface IPaletteList {
   originRGB?: string;
 }
 const ColorPalette = (props: { title?: string; colorList: IPaletteList[] }) => (
-  <section className="color-palette-wrapper">
+  <div className="color-palette-wrapper">
     <Title level={5} className="palette-name">
       {props.title}
     </Title>
@@ -36,7 +36,7 @@ const ColorPalette = (props: { title?: string; colorList: IPaletteList[] }) => (
         );
       })}
     </div>
-  </section>
+  </div>
 );
 
 export default ColorPalette;
