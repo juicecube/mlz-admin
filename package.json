@@ -91,7 +91,7 @@
     "react-copy-to-clipboard": "^5.0.2",
     "rimraf": "^3.0.2",
     "rollup-plugin-typescript2": "^0.27.1",
-    "simple-git": "^2.27.0",
+    "simple-git": "^3.14.1",
     "stylelint": "latest",
     "stylelint-config-prettier": "latest",
     "stylelint-config-rational-order": "latest",
