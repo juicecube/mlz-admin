@@ -18,7 +18,7 @@
   ],
   "dependencies": {
     "@babel/runtime": "^7.10.2",
-    "antd": "^4.9.4"
+    "antd": "^5.0.3"
   },
   "peerDependencies": {
     "antd": ">=4.6.2",
